@@ -1,11 +1,46 @@
 // Enhanced JavaScript for Myco Language Website
 document.addEventListener('DOMContentLoaded', function() {
     // Theme management
-    const themes = ['light', 'dark', 'trans'];
+    const themes = ['light', 'dark'];
     let currentThemeIndex = 0;
+    
+    // Secret trans theme activation
+    let secretSequence = '';
+    let lastKeyTime = 0;
     
     // Initialize theme
     initTheme();
+    
+    // Secret trans theme detection
+    document.addEventListener('keydown', function(e) {
+        const currentTime = Date.now();
+        
+        // Reset sequence if too much time has passed
+        if (currentTime - lastKeyTime > 3000) {
+            secretSequence = '';
+        }
+        
+        lastKeyTime = currentTime;
+        
+        // Check for "I V Y" sequence
+        if (e.key.toLowerCase() === 'i' && secretSequence === '') {
+            secretSequence = 'i';
+        } else if (e.key.toLowerCase() === 'v' && secretSequence === 'i') {
+            secretSequence = 'iv';
+        } else if (e.key.toLowerCase() === 'y' && secretSequence === 'iv') {
+            secretSequence = 'ivy';
+            // Activate secret trans theme!
+            setTheme('trans');
+            showSecretMessage();
+            secretSequence = '';
+        } else if (e.key.toLowerCase() === 'i' && secretSequence === 'ivy') {
+            // Keep the sequence going for fun
+            secretSequence = 'ivyi';
+        } else {
+            // Reset if wrong key
+            secretSequence = '';
+        }
+    });
     
     // Mobile menu toggle
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
@@ -140,6 +175,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add scroll-triggered animations
     initScrollAnimations();
     
+    // Add copy functionality to code blocks
+    initCodeCopy();
+    
     // Theme functions
     function initTheme() {
         const savedTheme = localStorage.getItem('myco-theme');
@@ -194,14 +232,20 @@ document.addEventListener('DOMContentLoaded', function() {
         const themeToggle = document.querySelector('.theme-toggle');
         if (!themeToggle) return;
         
+        const themeIcon = themeToggle.querySelector('.theme-icon');
+        const themeText = themeToggle.querySelector('.theme-text');
+        
         if (document.body.classList.contains('dark-theme')) {
-            themeToggle.textContent = '☀️';
-            themeToggle.title = 'Switch to Trans theme (Ctrl+T)';
-        } else if (document.body.classList.contains('trans-theme')) {
-            themeToggle.textContent = '🌈';
+            themeIcon.textContent = '☀';
+            themeText.textContent = 'Light';
             themeToggle.title = 'Switch to Light theme (Ctrl+T)';
+        } else if (document.body.classList.contains('trans-theme')) {
+            themeIcon.textContent = '★';
+            themeText.textContent = 'Secret';
+            themeToggle.title = 'Secret Trans theme active!';
         } else {
-            themeToggle.textContent = '🌙';
+            themeIcon.textContent = '☾';
+            themeText.textContent = 'Dark';
             themeToggle.title = 'Switch to Dark theme (Ctrl+T)';
         }
     }
@@ -332,8 +376,110 @@ document.addEventListener('DOMContentLoaded', function() {
         scrollElements.forEach(el => scrollObserver.observe(el));
     }
     
+    // Code copy functionality
+    function initCodeCopy() {
+        const codeBlocks = document.querySelectorAll('.code-block');
+        
+        codeBlocks.forEach(block => {
+            const copyBtn = document.createElement('button');
+            copyBtn.className = 'copy-btn';
+            copyBtn.innerHTML = 'Copy';
+            copyBtn.title = 'Copy code';
+            
+            copyBtn.style.cssText = `
+                position: absolute;
+                top: 0.5rem;
+                right: 0.5rem;
+                background: var(--accent-primary);
+                color: var(--bg-primary);
+                border: none;
+                border-radius: 4px;
+                padding: 0.25rem 0.5rem;
+                cursor: pointer;
+                font-size: 0.75rem;
+                opacity: 0;
+                transition: all var(--transition-normal);
+                z-index: 10;
+                font-weight: 500;
+            `;
+            
+            block.style.position = 'relative';
+            block.appendChild(copyBtn);
+            
+            // Show copy button on hover
+            block.addEventListener('mouseenter', () => {
+                copyBtn.style.opacity = '1';
+            });
+            
+            block.addEventListener('mouseleave', () => {
+                copyBtn.style.opacity = '0';
+            });
+            
+            // Copy functionality
+            copyBtn.addEventListener('click', async () => {
+                const code = block.querySelector('code');
+                if (code) {
+                    try {
+                        await navigator.clipboard.writeText(code.textContent);
+                        copyBtn.innerHTML = 'Copied!';
+                        copyBtn.style.background = 'var(--accent-tertiary)';
+                        
+                        setTimeout(() => {
+                            copyBtn.innerHTML = 'Copy';
+                            copyBtn.style.background = 'var(--accent-primary)';
+                        }, 2000);
+                    } catch (err) {
+                        copyBtn.innerHTML = 'Error';
+                        copyBtn.style.background = 'var(--accent-secondary)';
+                        
+                        setTimeout(() => {
+                            copyBtn.innerHTML = 'Copy';
+                            copyBtn.style.background = 'var(--accent-primary)';
+                        }, 2000);
+                    }
+                }
+            });
+        });
+    }
+    
     // Add CSS for new animations
     addAnimationCSS();
+
+    // Show secret message
+    function showSecretMessage() {
+        const message = document.createElement('div');
+        message.className = 'secret-message';
+        message.innerHTML = `
+            <div class="secret-content">
+                <h3>Secret Trans Theme Activated!</h3>
+                <p>You discovered the hidden "I V Y" sequence!</p>
+                <p>This theme celebrates the creator, as well as the other Queer and Trans people in the Myco community.<br><br><i>With love from <strong>Ivy Mycelia</strong></i></p>
+            </div>
+        `;
+        message.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, var(--accent-primary-trans), var(--accent-secondary-trans));
+            color: var(--text-primary-trans);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            z-index: 10000;
+            animation: secretReveal 0.8s var(--elastic);
+            text-align: center;
+            max-width: 400px;
+        `;
+        
+        document.body.appendChild(message);
+        
+        // Remove message after 5 seconds
+        setTimeout(() => {
+            message.style.animation = 'secretHide 0.5s ease forwards';
+            setTimeout(() => message.remove(), 500);
+        }, 5000);
+    }
 });
 
 // Add CSS for new animations
@@ -354,6 +500,28 @@ function addAnimationCSS() {
             100% {
                 transform: translateY(-100px) rotate(360deg);
                 opacity: 0;
+            }
+        }
+        
+        @keyframes secretReveal {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+        
+        @keyframes secretHide {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
             }
         }
         
