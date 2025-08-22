@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Myco Language Documentation</title>
+    <meta name="description" content="Complete documentation for the Myco programming language - syntax, functions, examples, and more.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">🍄 Myco</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#features">Features</a></li>
+                <li><a href="/#examples">Examples</a></li>
+                <li><a href="docs.html">Documentation</a></li>
+                <li><a href="grammar.html">Grammar</a></li>
+                <li><a href="https://github.com/IvyMycelia/Myco" target="_blank">GitHub</a></li>
+            </ul>
+            <div class="mobile-menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Documentation Content -->
+    <main style="margin-top: 100px; padding: 2rem 0;">
+        <div class="container">
+            <div class="docs-layout">
+                <!-- Sidebar -->
+                <aside class="docs-sidebar">
+                    <nav class="docs-nav">
+                        <h3>📚 Contents</h3>
+                        <ul>
+                            <li><a href="#introduction">Introduction</a></li>
+                            <li><a href="#installation">Installation</a></li>
+                            <li><a href="#syntax">Basic Syntax</a></li>
+                            <li><a href="#variables">Variables</a></li>
+                            <li><a href="#functions">Functions</a></li>
+                            <li><a href="#control-flow">Control Flow</a></li>
+                            <li><a href="#data-structures">Data Structures</a></li>
+                            <li><a href="#error-handling">Error Handling</a></li>
+                            <li><a href="#stdlib">Standard Library</a></li>
+                            <li><a href="#examples">Examples</a></li>
+                        </ul>
+                    </nav>
+                </aside>
+
+                <!-- Main Content -->
+                <div class="docs-content">
+                    <h1>📚 Myco Language Documentation</h1>
+                    
+                    <section id="introduction">
+                        <h2>Introduction</h2>
+                        <p>Myco is a whimsical, mystical programming language designed for simplicity, readability, and just a touch of magic. Think C meets Lua — but with mushrooms.</p>
+                        <p>This documentation covers all aspects of the Myco language, from basic syntax to advanced features.</p>
+                    </section>
+
+                    <section id="installation">
+                        <h2>Installation</h2>
+                        <p>To get started with Myco, you'll need to build it from source:</p>
+                        <div class="code-container">
+                            <pre><code><span class="comment"># Clone the repository</span>
+<span class="keyword">git</span> <span class="function">clone</span> <span class="string">https://github.com/IvyMycelia/Myco.git</span>
+<span class="keyword">cd</span> <span class="function">Myco</span>
+
+<span class="comment"># Build the project</span>
+<span class="keyword">make</span></code></pre>
+                        </div>
+                    </section>
+
+                    <section id="syntax">
+                        <h2>Basic Syntax</h2>
+                        <p>Myco uses a clean, readable syntax inspired by Lua and C:</p>
+                        <div class="code-container">
+                            <pre><code><span class="comment"># This is a comment</span>
+<span class="keyword">let</span> <span class="function">message</span> = <span class="string">"Hello, Myco!"</span>;
+<span class="function">print</span>(<span class="function">message</span>);</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="variables">
+                        <h2>Variables</h2>
+                        <p>Variables in Myco are declared using the <code>let</code> keyword:</p>
+                        <div class="code-container">
+                            <pre><code><span class="keyword">let</span> <span class="function">name</span> = <span class="string">"Alice"</span>;
+<span class="keyword">let</span> <span class="function">age</span> = <span class="number">25</span>;
+<span class="keyword">let</span> <span class="function">is_active</span> = <span class="number">1</span>;  <span class="comment"># 1 = true, 0 = false</span></code></pre>
+                        </div>
+                    </section>
+
+                    <section id="functions">
+                        <h2>Functions</h2>
+                        <p>Functions are defined using the <code>func</code> keyword:</p>
+                        <div class="code-container">
+                            <pre><code><span class="keyword">func</span> <span class="function">greet</span>(<span class="function">name</span>):
+    <span class="function">print</span>(<span class="string">"Hello,"</span>, <span class="function">name</span>);
+<span class="keyword">end</span>
+
+<span class="comment"># Arrow syntax for return types</span>
+<span class="keyword">func</span> <span class="function">add</span>(<span class="function">a</span>, <span class="function">b</span>) -> <span class="keyword">int</span>:
+    <span class="keyword">return</span> <span class="function">a</span> + <span class="function">b</span>;
+<span class="keyword">end</span></code></pre>
+                        </div>
+                    </section>
+
+                    <section id="control-flow">
+                        <h2>Control Flow</h2>
+                        <p>Myco supports standard control flow constructs:</p>
+                        <div class="code-container">
+                            <pre><code><span class="comment"># If statements</span>
+<span class="keyword">if</span> <span class="function">age</span> >= <span class="number">18</span>:
+    <span class="function">print</span>(<span class="string">"Adult"</span>);
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"Minor"</span>);
+<span class="keyword">end</span>
+
+<span class="comment"># Loops</span>
+<span class="keyword">for</span> <span class="function">i</span> = <span class="number">1</span> <span class="keyword">to</span> <span class="number">10</span>:
+    <span class="function">print</span>(<span class="function">i</span>);
+<span class="keyword">end</span></code></pre>
+                        </div>
+                    </section>
+
+                    <section id="data-structures">
+                        <h2>Data Structures</h2>
+                        <p>Myco provides built-in support for lists and maps:</p>
+                        <div class="code-container">
+                            <pre><code><span class="comment"># Lists</span>
+<span class="keyword">let</span> <span class="function">numbers</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];
+
+<span class="comment"># Maps/Objects</span>
+<span class="keyword">let</span> <span class="function">person</span> = {
+    <span class="function">name</span>: <span class="string">"Bob"</span>,
+    <span class="function">age</span>: <span class="number">30</span>,
+    <span class="function">city</span>: <span class="string">"Forest"</span>
+};</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="error-handling">
+                        <h2>Error Handling</h2>
+                        <p>Use try-catch blocks for error handling:</p>
+                        <div class="code-container">
+                            <pre><code><span class="keyword">try</span>:
+    <span class="keyword">let</span> <span class="function">result</span> = <span class="function">divide</span>(<span class="number">10</span>, <span class="number">0</span>);
+<span class="keyword">catch</span> <span class="function">error</span>:
+    <span class="function">print</span>(<span class="string">"Error:"</span>, <span class="function">error</span>);
+<span class="keyword">end</span></code></pre>
+                        </div>
+                    </section>
+
+                    <section id="stdlib">
+                        <h2>Standard Library</h2>
+                        <p>Myco includes a comprehensive standard library:</p>
+                        <div class="code-container">
+                            <pre><code><span class="comment"># Math functions</span>
+<span class="keyword">let</span> <span class="function">result</span> = <span class="function">pow</span>(<span class="number">2</span>, <span class="number">8</span>);
+<span class="keyword">let</span> <span class="function">sqrt_result</span> = <span class="function">sqrt</span>(<span class="number">16</span>);
+
+<span class="comment"># Utility functions</span>
+<span class="function">debug</span>(<span class="function">variable</span>);
+<span class="keyword">let</span> <span class="function">type_info</span> = <span class="function">type</span>(<span class="function">variable</span>);</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="examples">
+                        <h2>Complete Examples</h2>
+                        <p>Here's a complete Myco program:</p>
+                        <div class="code-container">
+                            <pre><code><span class="comment"># Simple calculator</span>
+<span class="keyword">func</span> <span class="function">calculator</span>():
+    <span class="function">print</span>(<span class="string">"Myco Calculator"</span>);
+    
+    <span class="keyword">let</span> <span class="function">numbers</span> = [<span class="number">10</span>, <span class="number">5</span>, <span class="number">3</span>];
+    
+    <span class="keyword">for</span> <span class="function">num</span> <span class="keyword">in</span> <span class="function">numbers</span>:
+        <span class="keyword">let</span> <span class="function">square</span> = <span class="function">pow</span>(<span class="function">num</span>, <span class="number">2</span>);
+        <span class="function">print</span>(<span class="function">num</span>, <span class="string">"squared is"</span>, <span class="function">square</span>);
+    <span class="keyword">end</span>;
+<span class="keyword">end</span>
+
+<span class="function">calculator</span>();</code></pre>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🍄 Myco Language</h3>
+                    <p>A whimsical, mystical programming language rooted deep in the forest floor.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>🔗 Quick Links</h3>
+                    <ul>
+                        <li><a href="/">🏠 Home</a></li>
+                        <li><a href="docs.html">📚 Documentation</a></li>
+                        <li><a href="grammar.html">🔤 Grammar</a></li>
+                        <li><a href="https://github.com/IvyMycelia/Myco" target="_blank">🐙 GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Myco Language. Made with 🍄 by IvyMycelia.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -5,497 +5,171 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🍄 Myco Language - A Whimsical Programming Language</title>
     <meta name="description" content="Myco is a lightweight, expressive scripting language designed for simplicity, readability, and just a touch of magic. Think C meets Lua — but with mushrooms.">
+    <meta name="keywords" content="Myco, programming language, scripting, Lua, C, mushrooms, whimsical, mystical, forest">
+    <meta name="author" content="IvyMycelia">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mycolang.org/">
+    <meta property="og:title" content="🍄 Myco Language - A Whimsical Programming Language">
+    <meta property="og:description" content="A lightweight, expressive scripting language with mushrooms and magic">
+    <meta property="og:image" content="https://mycolang.org/images/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://mycolang.org/">
+    <meta property="twitter:title" content="🍄 Myco Language - A Whimsical Programming Language">
+    <meta property="twitter:description" content="A lightweight, expressive scripting language with mushrooms and magic">
+    <meta property="twitter:image" content="https://mycolang.org/images/og-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #8B5A2B;
-            --secondary: #228B22;
-            --accent: #FF6B35;
-            --dark: #2C1810;
-            --light: #F5F5DC;
-            --mushroom: #DC143C;
-            --forest: #228B22;
-            --brown: #8B4513;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background: linear-gradient(135deg, #F5F5DC 0%, #E8F5E8 100%);
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        header {
-            background: rgba(44, 24, 16, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--light);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 120px 0 80px;
-            text-align: center;
-            background: linear-gradient(135deg, #2C1810 0%, #8B4513 50%, #228B22 100%);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
-            opacity: 0.3;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero .description {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 3rem;
-            opacity: 0.8;
-            position: relative;
-            z-index: 2;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 2;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #e55a2b;
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            color: var(--dark);
-        }
-
-        /* Features Section */
-        .features {
-            padding: 80px 0;
-            background: white;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            color: var(--dark);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .feature-card p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* Code Examples */
-        .examples {
-            padding: 80px 0;
-            background: var(--dark);
-            color: white;
-        }
-
-        .code-container {
-            background: #1e1e1e;
-            border-radius: 12px;
-            padding: 2rem;
-            margin: 2rem 0;
-            overflow-x: auto;
-            border: 1px solid #333;
-        }
-
-        .code-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #333;
-        }
-
-        .code-title {
-            font-weight: 600;
-            color: #fff;
-        }
-
-        .copy-btn {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: background 0.3s ease;
-        }
-
-        .copy-btn:hover {
-            background: #e55a2b;
-        }
-
-        pre {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            color: #d4d4d4;
-            margin: 0;
-        }
-
-        .keyword { color: #569cd6; }
-        .string { color: #ce9178; }
-        .comment { color: #6a9955; }
-        .function { color: #dcdcaa; }
-        .number { color: #b5cea8; }
-
-        /* Getting Started */
-        .getting-started {
-            padding: 80px 0;
-            background: white;
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .step {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: var(--accent);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 0 auto 1rem;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 3rem 0 2rem;
-            text-align: center;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-
-        .footer-section a {
-            color: #ccc;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section a:hover {
-            color: var(--accent);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #333;
-            padding-top: 2rem;
-            color: #999;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero .subtitle {
-                font-size: 1.2rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .steps {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        /* Scroll animations */
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .scroll-reveal.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="js/main.js" as="script">
 </head>
 <body>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator"></div>
+
     <!-- Header -->
     <header>
         <nav class="container">
-            <a href="#" class="logo">🍄 Myco</a>
+            <a href="/" class="logo">
+                🍄 Myco
+            </a>
+            
             <ul class="nav-links">
                 <li><a href="#features">Features</a></li>
                 <li><a href="#examples">Examples</a></li>
                 <li><a href="#getting-started">Get Started</a></li>
+                <li><a href="docs.html">Documentation</a></li>
+                <li><a href="grammar.html">Grammar</a></li>
                 <li><a href="https://github.com/IvyMycelia/Myco" target="_blank">GitHub</a></li>
+                <li><a href="https://discord.gg/CR8xcKb3zM" target="_blank">Discord</a></li>
             </ul>
+            
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1 class="fade-in">🍄 Myco Language</h1>
-            <p class="subtitle fade-in">A whimsical, mystical programming language rooted deep in the forest floor</p>
-            <p class="description fade-in">Think C meets Lua — but with mushrooms. A lightweight, expressive scripting language designed for simplicity, readability, and just a touch of magic.</p>
-            <div class="cta-buttons fade-in">
-                <a href="https://github.com/IvyMycelia/Myco" target="_blank" class="btn btn-primary">View on GitHub</a>
-                <a href="#getting-started" class="btn btn-secondary">Get Started</a>
+            <div class="version-badge">Current Version: v1.4.0 - Float Support & File I/O</div>
+            <h1 class="typing-effect">🍄 Myco Language</h1>
+            <p class="subtitle">A whimsical, mystical programming language rooted deep in the forest floor</p>
+            <p class="description">Think C meets Lua — but with mushrooms. A lightweight, expressive scripting language designed for simplicity, readability, and just a touch of magic. Built without AI, crafted with care and a deep love for fungi.</p>
+            
+            <div class="cta-buttons">
+                <a href="https://github.com/IvyMycelia/Myco" target="_blank" class="btn btn-primary">
+                    <span>🚀</span> View on GitHub
+                </a>
+                <a href="#getting-started" class="btn btn-secondary">
+                    <span>🌱</span> Get Started
+                </a>
+                <a href="docs.html" class="btn btn-outline">
+                    <span>📚</span> Read Docs
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="features">
+    <section id="features" class="section features">
         <div class="container">
             <h2 class="section-title scroll-reveal">🌟 Language Features</h2>
             <div class="features-grid">
                 <div class="feature-card scroll-reveal">
                     <div class="feature-icon">🌙</div>
                     <h3>Clean, Readable Syntax</h3>
-                    <p>Intuitive syntax that's easy to read and write, making your code as clear as a forest stream.</p>
+                    <p>Intuitive syntax that's easy to read and write, making your code as clear as a forest stream. No more cryptic symbols or confusing syntax.</p>
+                    <span class="feature-status complete">✅ Complete</span>
                 </div>
+                
                 <div class="feature-card scroll-reveal">
                     <div class="feature-icon">🔮</div>
                     <h3>Dynamic Typing</h3>
-                    <p>Flexible type system with `let` declarations that adapt to your needs automatically.</p>
+                    <p>Flexible type system with `let` declarations that adapt to your needs automatically. Variables grow and change like mushrooms in the wild.</p>
+                    <span class="feature-status complete">✅ Complete</span>
                 </div>
+                
                 <div class="feature-card scroll-reveal">
                     <div class="feature-icon">🍂</div>
                     <h3>Control Flow & Loops</h3>
-                    <p>Complete control structures including functions, loops, and conditional statements.</p>
+                    <p>Complete control structures including functions, loops, and conditional statements. Navigate your code like paths through the forest.</p>
+                    <span class="feature-status complete">✅ Complete</span>
                 </div>
+                
                 <div class="feature-card scroll-reveal">
                     <div class="feature-icon">🌲</div>
                     <h3>Data Structures</h3>
-                    <p>Built-in support for lists and maps with intuitive syntax and operations.</p>
+                    <p>Built-in support for lists and maps with intuitive syntax and operations. Organize your data like a well-tended garden.</p>
+                    <span class="feature-status complete">✅ Complete</span>
                 </div>
+                
                 <div class="feature-card scroll-reveal">
                     <div class="feature-icon">🧪</div>
                     <h3>Error Handling</h3>
-                    <p>Try-catch error handling with clear error messages and graceful fallbacks.</p>
+                    <p>Try-catch error handling with clear error messages and graceful fallbacks. Handle unexpected situations like a seasoned forager.</p>
+                    <span class="feature-status complete">✅ Complete</span>
                 </div>
+                
                 <div class="feature-card scroll-reveal">
                     <div class="feature-icon">🧮</div>
                     <h3>Math Library</h3>
-                    <p>Comprehensive mathematical functions with full floating-point support and arithmetic operations.</p>
+                    <p>Comprehensive mathematical functions with full floating-point support and arithmetic operations. Calculate with precision like counting spores.</p>
+                    <span class="feature-status complete">✅ Complete</span>
                 </div>
+                
                 <div class="feature-card scroll-reveal">
                     <div class="feature-icon">🎯</div>
                     <h3>Utility Functions</h3>
-                    <p>20+ utility functions for debugging, type checking, and object manipulation.</p>
+                    <p>20+ utility functions for debugging, type checking, and object manipulation. Tools as versatile as a Swiss Army knife.</p>
+                    <span class="feature-status complete">✅ Complete</span>
                 </div>
+                
                 <div class="feature-card scroll-reveal">
                     <div class="feature-icon">🔀</div>
                     <h3>Switch Statements</h3>
-                    <p>Clean switch/case syntax for handling multiple conditions elegantly.</p>
+                    <p>Clean switch/case syntax for handling multiple conditions elegantly. Choose your path like selecting the right mushroom.</p>
+                    <span class="feature-status complete">✅ Complete</span>
                 </div>
+                
                 <div class="feature-card scroll-reveal">
                     <div class="feature-icon">🎯</div>
                     <h3>Lambda Functions</h3>
-                    <p>Functional programming support with lambda expressions and higher-order functions.</p>
+                    <p>Functional programming support with lambda expressions and higher-order functions. Express complex ideas with simple elegance.</p>
+                    <span class="feature-status complete">✅ Complete</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Code Examples -->
-    <section id="examples" class="examples">
+    <!-- Code Examples Section -->
+    <section id="examples" class="section examples">
         <div class="container">
             <h2 class="section-title scroll-reveal">🔧 Code Examples</h2>
             
             <div class="code-container scroll-reveal">
                 <div class="code-header">
                     <span class="code-title">Basic Syntax & Functions</span>
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <button class="copy-btn">
+                        <span>📋</span> Copy
+                    </button>
                 </div>
                 <pre><code><span class="keyword">let</span> <span class="function">name</span> = <span class="string">"Ivy"</span>;
 
@@ -516,7 +190,9 @@
             <div class="code-container scroll-reveal">
                 <div class="code-header">
                     <span class="code-title">Data Structures & Loops</span>
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <button class="copy-btn">
+                        <span>📋</span> Copy
+                    </button>
                 </div>
                 <pre><code><span class="comment"># Lists and maps</span>
 <span class="keyword">let</span> <span class="function">user</span> = {<span class="function">name</span>: <span class="string">"Alice"</span>, <span class="function">age</span>: <span class="number">25</span>};
@@ -532,7 +208,9 @@
             <div class="code-container scroll-reveal">
                 <div class="code-header">
                     <span class="code-title">Control Flow & Error Handling</span>
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <button class="copy-btn">
+                        <span>📋</span> Copy
+                    </button>
                 </div>
                 <pre><code><span class="comment"># Switch statement</span>
 <span class="keyword">let</span> <span class="function">day</span> = <span class="number">3</span>;
@@ -558,7 +236,9 @@
             <div class="code-container scroll-reveal">
                 <div class="code-header">
                     <span class="code-title">Float Support & Math</span>
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <button class="copy-btn">
+                        <span>📋</span> Copy
+                    </button>
                 </div>
                 <pre><code><span class="comment"># Float arithmetic examples</span>
 <span class="keyword">let</span> <span class="function">pi</span> = <span class="number">3.14159</span>;
@@ -573,35 +253,111 @@
         </div>
     </section>
 
-    <!-- Getting Started -->
-    <section id="getting-started" class="getting-started">
+    <!-- Getting Started Section -->
+    <section id="getting-started" class="section getting-started">
         <div class="container">
             <h2 class="section-title scroll-reveal">🚀 Getting Started</h2>
             <div class="steps">
                 <div class="step scroll-reveal">
                     <div class="step-number">1</div>
                     <h3>Clone the Repository</h3>
-                    <p>Get the latest source code from GitHub to start exploring Myco.</p>
+                    <p>Get the latest source code from GitHub to start exploring Myco's magical world.</p>
+                    <a href="https://github.com/IvyMycelia/Myco" target="_blank" class="btn btn-outline">Clone Repo</a>
                 </div>
+                
                 <div class="step scroll-reveal">
                     <div class="step-number">2</div>
                     <h3>Build from Source</h3>
-                    <p>Follow the build instructions to compile Myco for your platform.</p>
+                    <p>Follow the build instructions to compile Myco for your platform and bring it to life.</p>
+                    <a href="docs.html#building" class="btn btn-outline">Build Guide</a>
                 </div>
+                
                 <div class="step scroll-reveal">
                     <div class="step-number">3</div>
                     <h3>Write Your First Script</h3>
-                    <p>Create a simple .myco file and start coding with mushrooms!</p>
+                    <p>Create a simple .myco file and start coding with mushrooms! Let the magic begin.</p>
+                    <a href="docs.html#tutorial" class="btn btn-outline">Tutorial</a>
                 </div>
+                
                 <div class="step scroll-reveal">
                     <div class="step-number">4</div>
                     <h3>Join the Community</h3>
-                    <p>Connect with other Myco developers on Discord and GitHub.</p>
+                    <p>Connect with other Myco developers on Discord and GitHub. Share your discoveries!</p>
+                    <a href="https://discord.gg/CR8xcKb3zM" target="_blank" class="btn btn-outline">Join Discord</a>
                 </div>
             </div>
             
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="https://github.com/IvyMycelia/Myco" target="_blank" class="btn btn-primary">Get Started on GitHub</a>
+            <div class="text-center mt-4">
+                <a href="https://github.com/IvyMycelia/Myco" target="_blank" class="btn btn-primary">
+                    <span>🌟</span> Get Started on GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section class="section docs-section">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">📚 Documentation & Resources</h2>
+            <div class="docs-grid">
+                <div class="doc-card scroll-reveal">
+                    <h3>📖 Complete Documentation</h3>
+                    <p>Comprehensive guides covering all aspects of the Myco language, from basic syntax to advanced features.</p>
+                    <ul class="doc-links">
+                        <li><a href="docs.html#tutorial">🚀 Quick Start Tutorial</a></li>
+                        <li><a href="docs.html#syntax">📝 Language Syntax</a></li>
+                        <li><a href="docs.html#functions">⚡ Functions & Control Flow</a></li>
+                        <li><a href="docs.html#stdlib">📚 Standard Library</a></li>
+                    </ul>
+                    <a href="docs.html" class="btn btn-primary">Read Documentation</a>
+                </div>
+                
+                <div class="doc-card scroll-reveal">
+                    <h3>🔤 BNF Grammar</h3>
+                    <p>Formal language specification and grammar rules for Myco. Perfect for language enthusiasts and implementers.</p>
+                    <ul class="doc-links">
+                        <li><a href="grammar.html#bnf">📋 Complete BNF Grammar</a></li>
+                        <li><a href="grammar.html#tokens">🔍 Token Definitions</a></li>
+                        <li><a href="grammar.html#expressions">🧮 Expression Rules</a></li>
+                        <li><a href="grammar.html#statements">📝 Statement Rules</a></li>
+                    </ul>
+                    <a href="grammar.html" class="btn btn-primary">View Grammar</a>
+                </div>
+                
+                <div class="doc-card scroll-reveal">
+                    <h3>🛠️ Development Tools</h3>
+                    <p>Tools and extensions to enhance your Myco development experience.</p>
+                    <ul class="doc-links">
+                        <li><a href="https://github.com/IvyMycelia/Myco" target="_blank">🔧 Source Code</a></li>
+                        <li><a href="https://github.com/IvyMycelia/Myco/issues" target="_blank">🐛 Issue Tracker</a></li>
+                        <li><a href="https://github.com/IvyMycelia/Myco/releases" target="_blank">📦 Releases</a></li>
+                        <li><a href="https://discord.gg/CR8xcKb3zM" target="_blank">💬 Community Chat</a></li>
+                    </ul>
+                    <a href="https://github.com/IvyMycelia/Myco" target="_blank" class="btn btn-primary">Visit GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="section" style="background: var(--gradient-forest); color: white;">
+        <div class="container">
+            <h2 class="section-title scroll-reveal" style="color: white;">🌿 Join the Myco Community</h2>
+            <div class="text-center scroll-reveal">
+                <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">
+                    Connect with fellow mushroom enthusiasts and language developers. Share your code, ask questions, and contribute to the growth of Myco.
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://github.com/IvyMycelia/Myco" target="_blank" class="btn btn-secondary">
+                        <span>⭐</span> Star on GitHub
+                    </a>
+                    <a href="https://discord.gg/CR8xcKb3zM" target="_blank" class="btn btn-secondary">
+                        <span>💬</span> Join Discord
+                    </a>
+                    <a href="https://github.com/IvyMycelia/Myco/issues" target="_blank" class="btn btn-secondary">
+                        <span>🐛</span> Report Issues
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -612,100 +368,53 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>🍄 Myco Language</h3>
-                    <p>A whimsical, mystical programming language rooted deep in the forest floor. Think C meets Lua — but with mushrooms.</p>
+                    <p>A whimsical, mystical programming language rooted deep in the forest floor. Think C meets Lua — but with mushrooms. Built with care, without AI, by a developer who loves fungi.</p>
                 </div>
+                
                 <div class="footer-section">
-                    <h3>🔗 Links</h3>
-                    <ul style="list-style: none;">
-                        <li><a href="https://github.com/IvyMycelia/Myco" target="_blank">GitHub Repository</a></li>
-                        <li><a href="https://github.com/IvyMycelia/Myco/blob/main/Documentation.md" target="_blank">Documentation</a></li>
-                        <li><a href="https://github.com/IvyMycelia/Myco/blob/main/BNF_Grammar.md" target="_blank">BNF Grammar</a></li>
-                        <li><a href="https://discord.gg/CR8xcKb3zM" target="_blank">Discord Community</a></li>
+                    <h3>🔗 Quick Links</h3>
+                    <ul>
+                        <li><a href="/">🏠 Home</a></li>
+                        <li><a href="docs.html">📚 Documentation</a></li>
+                        <li><a href="grammar.html">🔤 Grammar</a></li>
+                        <li><a href="https://github.com/IvyMycelia/Myco" target="_blank">🐙 GitHub</a></li>
+                        <li><a href="https://discord.gg/CR8xcKb3zM" target="_blank">💬 Discord</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-section">
                     <h3>📚 Resources</h3>
-                    <ul style="list-style: none;">
-                        <li><a href="https://github.com/IvyMycelia/Myco/blob/main/README.md" target="_blank">README</a></li>
-                        <li><a href="https://github.com/IvyMycelia/Myco/blob/main/TODO.md" target="_blank">Roadmap</a></li>
-                        <li><a href="https://github.com/IvyMycelia/Myco/releases" target="_blank">Releases</a></li>
-                        <li><a href="https://github.com/IvyMycelia/Myco/issues" target="_blank">Issues</a></li>
+                    <ul>
+                        <li><a href="https://github.com/IvyMycelia/Myco/blob/main/README.md" target="_blank">📖 README</a></li>
+                        <li><a href="https://github.com/IvyMycelia/Myco/blob/main/Documentation.md" target="_blank">📋 Full Documentation</a></li>
+                        <li><a href="https://github.com/IvyMycelia/Myco/blob/main/BNF_Grammar.md" target="_blank">🔤 BNF Grammar</a></li>
+                        <li><a href="https://github.com/IvyMycelia/Myco/blob/main/TODO.md" target="_blank">🚧 Roadmap</a></li>
+                        <li><a href="https://github.com/IvyMycelia/Myco/releases" target="_blank">📦 Releases</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>🌱 Development</h3>
+                    <ul>
+                        <li><a href="https://github.com/IvyMycelia/Myco/issues" target="_blank">🐛 Issues</a></li>
+                        <li><a href="https://github.com/IvyMycelia/Myco/pulls" target="_blank">🔀 Pull Requests</a></li>
+                        <li><a href="https://github.com/IvyMycelia/Myco/commits/main" target="_blank">📝 Commits</a></li>
+                        <li><a href="https://github.com/IvyMycelia/Myco/network" target="_blank">🌐 Network</a></li>
+                        <li><a href="https://github.com/IvyMycelia/Myco/stargazers" target="_blank">⭐ Stargazers</a></li>
                     </ul>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2025 Myco Language. Made with 🍄 by IvyMycelia. Licensed under the MIT License.</p>
+                <p>&copy; 2025 Myco Language. Made with 🍄 by <a href="https://github.com/IvyMycelia" target="_blank">IvyMycelia</a>. Licensed under the <a href="https://github.com/IvyMycelia/Myco/blob/main/LICENSE" target="_blank">MIT License</a>.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.7;">
+                    🌿 No AI was used in the creation of this language. Built with pure human creativity and a love for mushrooms.
+                </p>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Copy code functionality
-        function copyCode(button) {
-            const codeBlock = button.parentElement.nextElementSibling;
-            const text = codeBlock.textContent;
-            
-            navigator.clipboard.writeText(text).then(() => {
-                const originalText = button.textContent;
-                button.textContent = 'Copied!';
-                button.style.background = '#28a745';
-                
-                setTimeout(() => {
-                    button.textContent = originalText;
-                    button.style.background = '';
-                }, 2000);
-            }).catch(err => {
-                console.error('Failed to copy: ', err);
-                button.textContent = 'Failed';
-                button.style.background = '#dc3545';
-                
-                setTimeout(() => {
-                    button.textContent = 'Copy';
-                    button.style.background = '';
-                }, 2000);
-            });
-        }
-
-        // Scroll reveal animations
-        function revealOnScroll() {
-            const elements = document.querySelectorAll('.scroll-reveal');
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('revealed');
-                }
-            });
-        }
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(44, 24, 16, 0.98)';
-            } else {
-                header.style.background = 'rgba(44, 24, 16, 0.95)';
-            }
-        });
-
-        // Initialize scroll reveal
-        window.addEventListener('scroll', revealOnScroll);
-        window.addEventListener('load', revealOnScroll);
-    </script>
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
 </body>
 </html>
