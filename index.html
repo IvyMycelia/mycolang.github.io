@@ -3,418 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🍄 Myco Language - A Whimsical Programming Language</title>
-    <meta name="description" content="Myco is a lightweight, expressive scripting language designed for simplicity, readability, and just a touch of magic. Think C meets Lua — but with mushrooms.">
-    <meta name="keywords" content="Myco, programming language, scripting, Lua, C, mushrooms, whimsical, mystical, forest">
-    <meta name="author" content="IvyMycelia">
+    <title>Myco - Programming Language</title>
+    <meta name="description" content="A lightweight scripting language inspired by Lua and C, designed for simplicity and readability.">
     
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://mycolang.org/">
-    <meta property="og:title" content="🍄 Myco Language - A Whimsical Programming Language">
-    <meta property="og:description" content="A lightweight, expressive scripting language with mushrooms and magic">
-    <meta property="og:image" content="https://mycolang.org/images/og-image.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://mycolang.org/">
-    <meta property="twitter:title" content="🍄 Myco Language - A Whimsical Programming Language">
-    <meta property="twitter:description" content="A lightweight, expressive scripting language with mushrooms and magic">
-    <meta property="twitter:image" content="https://mycolang.org/images/og-image.jpg">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
-    <!-- CSS -->
     <link rel="stylesheet" href="css/main.css">
-    
-    <!-- Preload critical resources -->
-    <link rel="preload" href="js/main.js" as="script">
 </head>
 <body>
-    <!-- Scroll Progress Indicator -->
-    <div class="scroll-indicator"></div>
-
-    <!-- Header -->
-    <header>
-        <nav class="container">
-            <a href="/" class="logo">
-                🍄 Myco
-            </a>
-            
-            <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#examples">Examples</a></li>
-                <li><a href="#getting-started">Get Started</a></li>
-                <li><a href="docs.html">Documentation</a></li>
-                <li><a href="grammar.html">Grammar</a></li>
-                <li><a href="https://github.com/IvyMycelia/Myco" target="_blank">GitHub</a></li>
-                <li><a href="https://discord.gg/CR8xcKb3zM" target="_blank">Discord</a></li>
-            </ul>
-            
-            <div class="mobile-menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="/" class="logo">Myco</a>
+                <ul class="nav-menu">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#examples">Examples</a></li>
+                    <li><a href="docs.html">Docs</a></li>
+                    <li><a href="grammar.html">Grammar</a></li>
+                    <li><a href="https://github.com/IvyMycelia/Myco" target="_blank">GitHub</a></li>
+                </ul>
+                <div class="nav-controls">
+                    <button class="theme-toggle" title="Cycle themes (Ctrl+T)">🌙</button>
+                    <button class="mobile-menu-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="version-badge">Current Version: v1.4.0 - Float Support & File I/O</div>
-            <h1 class="typing-effect">🍄 Myco Language</h1>
-            <p class="subtitle">A whimsical, mystical programming language rooted deep in the forest floor</p>
-            <p class="description">Think C meets Lua — but with mushrooms. A lightweight, expressive scripting language designed for simplicity, readability, and just a touch of magic. Built without AI, crafted with care and a deep love for fungi.</p>
-            
-            <div class="cta-buttons">
-                <a href="https://github.com/IvyMycelia/Myco" target="_blank" class="btn btn-primary">
-                    <span>🚀</span> View on GitHub
-                </a>
-                <a href="#getting-started" class="btn btn-secondary">
-                    <span>🌱</span> Get Started
-                </a>
-                <a href="docs.html" class="btn btn-outline">
-                    <span>📚</span> Read Docs
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="section features">
-        <div class="container">
-            <h2 class="section-title scroll-reveal">🌟 Language Features</h2>
-            <div class="features-grid">
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-icon">🌙</div>
-                    <h3>Clean, Readable Syntax</h3>
-                    <p>Intuitive syntax that's easy to read and write, making your code as clear as a forest stream. No more cryptic symbols or confusing syntax.</p>
-                    <span class="feature-status complete">✅ Complete</span>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Myco Language</h1>
+                    <p class="hero-subtitle">A lightweight scripting language designed for simplicity and readability</p>
+                    <p class="hero-description">
+                        Think C meets Lua. Myco combines the performance of C with the elegance of Lua, 
+                        creating a language that's both powerful and easy to learn.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="https://github.com/IvyMycelia/Myco" class="btn btn-primary">View on GitHub</a>
+                        <a href="docs.html" class="btn btn-secondary">Read Documentation</a>
+                    </div>
                 </div>
-                
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-icon">🔮</div>
-                    <h3>Dynamic Typing</h3>
-                    <p>Flexible type system with `let` declarations that adapt to your needs automatically. Variables grow and change like mushrooms in the wild.</p>
-                    <span class="feature-status complete">✅ Complete</span>
-                </div>
-                
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-icon">🍂</div>
-                    <h3>Control Flow & Loops</h3>
-                    <p>Complete control structures including functions, loops, and conditional statements. Navigate your code like paths through the forest.</p>
-                    <span class="feature-status complete">✅ Complete</span>
-                </div>
-                
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-icon">🌲</div>
-                    <h3>Data Structures</h3>
-                    <p>Built-in support for lists and maps with intuitive syntax and operations. Organize your data like a well-tended garden.</p>
-                    <span class="feature-status complete">✅ Complete</span>
-                </div>
-                
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-icon">🧪</div>
-                    <h3>Error Handling</h3>
-                    <p>Try-catch error handling with clear error messages and graceful fallbacks. Handle unexpected situations like a seasoned forager.</p>
-                    <span class="feature-status complete">✅ Complete</span>
-                </div>
-                
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-icon">🧮</div>
-                    <h3>Math Library</h3>
-                    <p>Comprehensive mathematical functions with full floating-point support and arithmetic operations. Calculate with precision like counting spores.</p>
-                    <span class="feature-status complete">✅ Complete</span>
-                </div>
-                
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Utility Functions</h3>
-                    <p>20+ utility functions for debugging, type checking, and object manipulation. Tools as versatile as a Swiss Army knife.</p>
-                    <span class="feature-status complete">✅ Complete</span>
-                </div>
-                
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-icon">🔀</div>
-                    <h3>Switch Statements</h3>
-                    <p>Clean switch/case syntax for handling multiple conditions elegantly. Choose your path like selecting the right mushroom.</p>
-                    <span class="feature-status complete">✅ Complete</span>
-                </div>
-                
-                <div class="feature-card scroll-reveal">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Lambda Functions</h3>
-                    <p>Functional programming support with lambda expressions and higher-order functions. Express complex ideas with simple elegance.</p>
-                    <span class="feature-status complete">✅ Complete</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Code Examples Section -->
-    <section id="examples" class="section examples">
-        <div class="container">
-            <h2 class="section-title scroll-reveal">🔧 Code Examples</h2>
-            
-            <div class="code-container scroll-reveal">
-                <div class="code-header">
-                    <span class="code-title">Basic Syntax & Functions</span>
-                    <button class="copy-btn">
-                        <span>📋</span> Copy
-                    </button>
-                </div>
-                <pre><code><span class="keyword">let</span> <span class="function">name</span> = <span class="string">"Ivy"</span>;
-
-<span class="comment"># Traditional syntax</span>
-<span class="keyword">func</span> <span class="function">greet</span>(<span class="function">person</span>):
-    <span class="function">print</span>(<span class="string">"Welcome to the woods,"</span>, <span class="function">person</span>, <span class="string">"!"</span>);
+                <div class="hero-code">
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>example.myco</span>
+                        </div>
+                        <pre><code><span class="keyword">func</span> <span class="function">fibonacci</span>(<span class="param">n</span>):
+    <span class="keyword">if</span> <span class="param">n</span> <= <span class="number">1</span>:
+        <span class="keyword">return</span> <span class="param">n</span>;
+    <span class="keyword">end</span>
+    <span class="keyword">return</span> <span class="function">fibonacci</span>(<span class="param">n</span> - <span class="number">1</span>) + 
+           <span class="function">fibonacci</span>(<span class="param">n</span> - <span class="number">2</span>);
 <span class="keyword">end</span>
 
-<span class="comment"># Arrow syntax for return types</span>
-<span class="keyword">func</span> <span class="function">calculate_power</span>(<span class="function">base</span>: <span class="keyword">int</span>, <span class="function">exponent</span>: <span class="keyword">int</span>) -> <span class="keyword">int</span>:
-    <span class="keyword">return</span> <span class="function">pow</span>(<span class="function">base</span>, <span class="function">exponent</span>);
+<span class="keyword">let</span> <span class="param">result</span> = <span class="function">fibonacci</span>(<span class="number">10</span>);
+<span class="function">print</span>(<span class="string">"Result:"</span>, <span class="param">result</span>);</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <h2 class="scroll-reveal">Language Features</h2>
+                <div class="features-grid">
+                    <div class="feature scroll-reveal">
+                        <h3>Clean Syntax</h3>
+                        <p>Intuitive syntax that's easy to read and write. No unnecessary complexity.</p>
+                    </div>
+                    <div class="feature scroll-reveal">
+                        <h3>Dynamic Typing</h3>
+                        <p>Flexible type system with automatic type inference. Variables adapt to your needs.</p>
+                    </div>
+                    <div class="feature scroll-reveal">
+                        <h3>Control Flow</h3>
+                        <p>Standard control structures: if/else, loops, functions, and error handling.</p>
+                    </div>
+                    <div class="feature scroll-reveal">
+                        <h3>Data Structures</h3>
+                        <p>Built-in support for lists, maps, and custom data types.</p>
+                    </div>
+                    <div class="feature scroll-reveal">
+                        <h3>Standard Library</h3>
+                        <p>Comprehensive library with math functions, utilities, and I/O operations.</p>
+                    </div>
+                    <div class="feature scroll-reveal">
+                        <h3>Cross Platform</h3>
+                        <p>Runs on Windows, macOS, and Linux. Write once, run anywhere.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="examples" class="examples">
+            <div class="container">
+                <h2 class="scroll-reveal">Code Examples</h2>
+                
+                <div class="example-grid">
+                    <div class="example scroll-reveal">
+                        <h3>Variables and Types</h3>
+                        <div class="code-block">
+                            <pre><code><span class="keyword">let</span> <span class="param">name</span> = <span class="string">"Alice"</span>;
+<span class="keyword">let</span> <span class="param">age</span> = <span class="number">25</span>;
+<span class="keyword">let</span> <span class="param">active</span> = <span class="number">1</span>;
+
+<span class="function">print</span>(<span class="string">"Name:"</span>, <span class="param">name</span>);
+<span class="function">print</span>(<span class="string">"Age:"</span>, <span class="param">age</span>);</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="example scroll-reveal">
+                        <h3>Functions</h3>
+                        <div class="code-block">
+                            <pre><code><span class="keyword">func</span> <span class="function">greet</span>(<span class="param">person</span>):
+    <span class="keyword">return</span> <span class="string">"Hello, "</span> + <span class="param">person</span>;
 <span class="keyword">end</span>
 
-<span class="function">greet</span>(<span class="function">name</span>);
-<span class="keyword">let</span> <span class="function">result</span> = <span class="function">calculate_power</span>(<span class="number">2</span>, <span class="number">8</span>);  <span class="comment"># 256</span></code></pre>
-            </div>
+<span class="keyword">let</span> <span class="param">message</span> = <span class="function">greet</span>(<span class="string">"World"</span>);
+<span class="function">print</span>(<span class="param">message</span>);</code></pre>
+                        </div>
+                    </div>
 
-            <div class="code-container scroll-reveal">
-                <div class="code-header">
-                    <span class="code-title">Data Structures & Loops</span>
-                    <button class="copy-btn">
-                        <span>📋</span> Copy
-                    </button>
-                </div>
-                <pre><code><span class="comment"># Lists and maps</span>
-<span class="keyword">let</span> <span class="function">user</span> = {<span class="function">name</span>: <span class="string">"Alice"</span>, <span class="function">age</span>: <span class="number">25</span>};
-<span class="function">debug</span>(<span class="function">user</span>);                    <span class="comment"># Detailed object inspection</span>
-<span class="keyword">let</span> <span class="function">user_type</span> = <span class="function">type</span>(<span class="function">user</span>);     <span class="comment"># Returns "Object"</span>
-<span class="keyword">let</span> <span class="function">has_name</span> = <span class="function">has</span>(<span class="function">user</span>, <span class="string">"name"</span>); <span class="comment"># Returns 1 (true)</span>
+                    <div class="example scroll-reveal">
+                        <h3>Control Flow</h3>
+                        <div class="code-block">
+                            <pre><code><span class="keyword">let</span> <span class="param">x</span> = <span class="number">10</span>;
 
-<span class="keyword">for</span> <span class="function">item</span> <span class="keyword">in</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]:
-    <span class="function">print</span>(<span class="string">"Found a mushroom with ID:"</span>, <span class="function">item</span>);
+<span class="keyword">if</span> <span class="param">x</span> > <span class="number">5</span>:
+    <span class="function">print</span>(<span class="string">"x is greater than 5"</span>);
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"x is 5 or less"</span>);
+<span class="keyword">end</span>
+
+<span class="keyword">for</span> <span class="param">i</span> = <span class="number">1</span> <span class="keyword">to</span> <span class="param">x</span>:
+    <span class="function">print</span>(<span class="param">i</span>);
 <span class="keyword">end</span></code></pre>
-            </div>
+                        </div>
+                    </div>
 
-            <div class="code-container scroll-reveal">
-                <div class="code-header">
-                    <span class="code-title">Control Flow & Error Handling</span>
-                    <button class="copy-btn">
-                        <span>📋</span> Copy
-                    </button>
-                </div>
-                <pre><code><span class="comment"># Switch statement</span>
-<span class="keyword">let</span> <span class="function">day</span> = <span class="number">3</span>;
-<span class="keyword">switch</span> <span class="function">day</span>:
-    <span class="keyword">case</span> <span class="number">1</span>:
-        <span class="function">print</span>(<span class="string">"Monday"</span>);
-    <span class="keyword">case</span> <span class="number">2</span>:
-        <span class="function">print</span>(<span class="string">"Tuesday"</span>);
-    <span class="keyword">case</span> <span class="number">3</span>:
-        <span class="function">print</span>(<span class="string">"Wednesday"</span>);
-    <span class="keyword">default</span>:
-        <span class="function">print</span>(<span class="string">"Weekend"</span>);
-<span class="keyword">end</span>
+                    <div class="example scroll-reveal">
+                        <h3>Data Structures</h3>
+                        <div class="code-block">
+                            <pre><code><span class="comment"># Lists</span>
+<span class="keyword">let</span> <span class="param">numbers</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];
 
-<span class="comment"># Try-catch error handling</span>
-<span class="keyword">try</span>:
-    <span class="keyword">let</span> <span class="function">result</span> = <span class="number">10</span> / <span class="number">0</span>;
-<span class="keyword">catch</span> <span class="function">error</span>:
-    <span class="function">print</span>(<span class="string">"Caught error:"</span>, <span class="function">error</span>);
-<span class="keyword">end</span></code></pre>
-            </div>
+<span class="comment"># Maps</span>
+<span class="keyword">let</span> <span class="param">user</span> = {
+    <span class="string">"name"</span>: <span class="string">"Bob"</span>,
+    <span class="string">"age"</span>: <span class="number">30</span>
+};
 
-            <div class="code-container scroll-reveal">
-                <div class="code-header">
-                    <span class="code-title">Float Support & Math</span>
-                    <button class="copy-btn">
-                        <span>📋</span> Copy
-                    </button>
-                </div>
-                <pre><code><span class="comment"># Float arithmetic examples</span>
-<span class="keyword">let</span> <span class="function">pi</span> = <span class="number">3.14159</span>;
-<span class="keyword">let</span> <span class="function">radius</span> = <span class="number">5.5</span>;
-<span class="keyword">let</span> <span class="function">area</span> = <span class="function">pi</span> * <span class="function">pow</span>(<span class="function">radius</span>, <span class="number">2</span>);  <span class="comment"># Area of circle</span>
-<span class="keyword">let</span> <span class="function">circumference</span> = <span class="number">2</span> * <span class="function">pi</span> * <span class="function">radius</span>;
-
-<span class="comment"># Mixed integer and float operations</span>
-<span class="keyword">let</span> <span class="function">mixed</span> = <span class="number">10</span> + <span class="number">3.14</span>;           <span class="comment"># 13.14</span>
-<span class="keyword">let</span> <span class="function">scaled</span> = <span class="number">5</span> * <span class="number">2.5</span>;            <span class="comment"># 12.5</span></code></pre>
-            </div>
-        </div>
-    </section>
-
-    <!-- Getting Started Section -->
-    <section id="getting-started" class="section getting-started">
-        <div class="container">
-            <h2 class="section-title scroll-reveal">🚀 Getting Started</h2>
-            <div class="steps">
-                <div class="step scroll-reveal">
-                    <div class="step-number">1</div>
-                    <h3>Clone the Repository</h3>
-                    <p>Get the latest source code from GitHub to start exploring Myco's magical world.</p>
-                    <a href="https://github.com/IvyMycelia/Myco" target="_blank" class="btn btn-outline">Clone Repo</a>
-                </div>
-                
-                <div class="step scroll-reveal">
-                    <div class="step-number">2</div>
-                    <h3>Build from Source</h3>
-                    <p>Follow the build instructions to compile Myco for your platform and bring it to life.</p>
-                    <a href="docs.html#building" class="btn btn-outline">Build Guide</a>
-                </div>
-                
-                <div class="step scroll-reveal">
-                    <div class="step-number">3</div>
-                    <h3>Write Your First Script</h3>
-                    <p>Create a simple .myco file and start coding with mushrooms! Let the magic begin.</p>
-                    <a href="docs.html#tutorial" class="btn btn-outline">Tutorial</a>
-                </div>
-                
-                <div class="step scroll-reveal">
-                    <div class="step-number">4</div>
-                    <h3>Join the Community</h3>
-                    <p>Connect with other Myco developers on Discord and GitHub. Share your discoveries!</p>
-                    <a href="https://discord.gg/CR8xcKb3zM" target="_blank" class="btn btn-outline">Join Discord</a>
+<span class="function">print</span>(<span class="param">user</span>[<span class="string">"name"</span>]);</code></pre>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <div class="text-center mt-4">
-                <a href="https://github.com/IvyMycelia/Myco" target="_blank" class="btn btn-primary">
-                    <span>🌟</span> Get Started on GitHub
-                </a>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Documentation Section -->
-    <section class="section docs-section">
-        <div class="container">
-            <h2 class="section-title scroll-reveal">📚 Documentation & Resources</h2>
-            <div class="docs-grid">
-                <div class="doc-card scroll-reveal">
-                    <h3>📖 Complete Documentation</h3>
-                    <p>Comprehensive guides covering all aspects of the Myco language, from basic syntax to advanced features.</p>
-                    <ul class="doc-links">
-                        <li><a href="docs.html#tutorial">🚀 Quick Start Tutorial</a></li>
-                        <li><a href="docs.html#syntax">📝 Language Syntax</a></li>
-                        <li><a href="docs.html#functions">⚡ Functions & Control Flow</a></li>
-                        <li><a href="docs.html#stdlib">📚 Standard Library</a></li>
-                    </ul>
-                    <a href="docs.html" class="btn btn-primary">Read Documentation</a>
-                </div>
-                
-                <div class="doc-card scroll-reveal">
-                    <h3>🔤 BNF Grammar</h3>
-                    <p>Formal language specification and grammar rules for Myco. Perfect for language enthusiasts and implementers.</p>
-                    <ul class="doc-links">
-                        <li><a href="grammar.html#bnf">📋 Complete BNF Grammar</a></li>
-                        <li><a href="grammar.html#tokens">🔍 Token Definitions</a></li>
-                        <li><a href="grammar.html#expressions">🧮 Expression Rules</a></li>
-                        <li><a href="grammar.html#statements">📝 Statement Rules</a></li>
-                    </ul>
-                    <a href="grammar.html" class="btn btn-primary">View Grammar</a>
-                </div>
-                
-                <div class="doc-card scroll-reveal">
-                    <h3>🛠️ Development Tools</h3>
-                    <p>Tools and extensions to enhance your Myco development experience.</p>
-                    <ul class="doc-links">
-                        <li><a href="https://github.com/IvyMycelia/Myco" target="_blank">🔧 Source Code</a></li>
-                        <li><a href="https://github.com/IvyMycelia/Myco/issues" target="_blank">🐛 Issue Tracker</a></li>
-                        <li><a href="https://github.com/IvyMycelia/Myco/releases" target="_blank">📦 Releases</a></li>
-                        <li><a href="https://discord.gg/CR8xcKb3zM" target="_blank">💬 Community Chat</a></li>
-                    </ul>
-                    <a href="https://github.com/IvyMycelia/Myco" target="_blank" class="btn btn-primary">Visit GitHub</a>
+        <section class="getting-started">
+            <div class="container">
+                <h2 class="scroll-reveal">Getting Started</h2>
+                <div class="steps">
+                    <div class="step scroll-reveal">
+                        <div class="step-number">1</div>
+                        <h3>Clone the Repository</h3>
+                        <p>Get the source code from GitHub</p>
+                        <a href="https://github.com/IvyMycelia/Myco" class="btn btn-outline">View Source</a>
+                    </div>
+                    <div class="step scroll-reveal">
+                        <div class="step-number">2</div>
+                        <h3>Build from Source</h3>
+                        <p>Follow the build instructions</p>
+                        <a href="docs.html" class="btn btn-outline">Build Guide</a>
+                    </div>
+                    <div class="step scroll-reveal">
+                        <div class="step-number">3</div>
+                        <h3>Write Your First Script</h3>
+                        <p>Create a .myco file and start coding</p>
+                        <a href="docs.html" class="btn btn-outline">Tutorial</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Community Section -->
-    <section class="section" style="background: var(--gradient-forest); color: white;">
-        <div class="container">
-            <h2 class="section-title scroll-reveal" style="color: white;">🌿 Join the Myco Community</h2>
-            <div class="text-center scroll-reveal">
-                <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">
-                    Connect with fellow mushroom enthusiasts and language developers. Share your code, ask questions, and contribute to the growth of Myco.
-                </p>
-                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="https://github.com/IvyMycelia/Myco" target="_blank" class="btn btn-secondary">
-                        <span>⭐</span> Star on GitHub
-                    </a>
-                    <a href="https://discord.gg/CR8xcKb3zM" target="_blank" class="btn btn-secondary">
-                        <span>💬</span> Join Discord
-                    </a>
-                    <a href="https://github.com/IvyMycelia/Myco/issues" target="_blank" class="btn btn-secondary">
-                        <span>🐛</span> Report Issues
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>🍄 Myco Language</h3>
-                    <p>A whimsical, mystical programming language rooted deep in the forest floor. Think C meets Lua — but with mushrooms. Built with care, without AI, by a developer who loves fungi.</p>
+                    <h3>Myco Language</h3>
+                    <p>A lightweight scripting language designed for simplicity and readability.</p>
                 </div>
-                
                 <div class="footer-section">
-                    <h3>🔗 Quick Links</h3>
+                    <h3>Links</h3>
                     <ul>
-                        <li><a href="/">🏠 Home</a></li>
-                        <li><a href="docs.html">📚 Documentation</a></li>
-                        <li><a href="grammar.html">🔤 Grammar</a></li>
-                        <li><a href="https://github.com/IvyMycelia/Myco" target="_blank">🐙 GitHub</a></li>
-                        <li><a href="https://discord.gg/CR8xcKb3zM" target="_blank">💬 Discord</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>📚 Resources</h3>
-                    <ul>
-                        <li><a href="https://github.com/IvyMycelia/Myco/blob/main/README.md" target="_blank">📖 README</a></li>
-                        <li><a href="https://github.com/IvyMycelia/Myco/blob/main/Documentation.md" target="_blank">📋 Full Documentation</a></li>
-                        <li><a href="https://github.com/IvyMycelia/Myco/blob/main/BNF_Grammar.md" target="_blank">🔤 BNF Grammar</a></li>
-                        <li><a href="https://github.com/IvyMycelia/Myco/blob/main/TODO.md" target="_blank">🚧 Roadmap</a></li>
-                        <li><a href="https://github.com/IvyMycelia/Myco/releases" target="_blank">📦 Releases</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>🌱 Development</h3>
-                    <ul>
-                        <li><a href="https://github.com/IvyMycelia/Myco/issues" target="_blank">🐛 Issues</a></li>
-                        <li><a href="https://github.com/IvyMycelia/Myco/pulls" target="_blank">🔀 Pull Requests</a></li>
-                        <li><a href="https://github.com/IvyMycelia/Myco/commits/main" target="_blank">📝 Commits</a></li>
-                        <li><a href="https://github.com/IvyMycelia/Myco/network" target="_blank">🌐 Network</a></li>
-                        <li><a href="https://github.com/IvyMycelia/Myco/stargazers" target="_blank">⭐ Stargazers</a></li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="docs.html">Documentation</a></li>
+                        <li><a href="grammar.html">Grammar</a></li>
+                        <li><a href="https://github.com/IvyMycelia/Myco">GitHub</a></li>
                     </ul>
                 </div>
             </div>
-            
             <div class="footer-bottom">
-                <p>&copy; 2025 Myco Language. Made with 🍄 by <a href="https://github.com/IvyMycelia" target="_blank">IvyMycelia</a>. Licensed under the <a href="https://github.com/IvyMycelia/Myco/blob/main/LICENSE" target="_blank">MIT License</a>.</p>
-                <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.7;">
-                    🌿 No AI was used in the creation of this language. Built with pure human creativity and a love for mushrooms.
-                </p>
+                <p>&copy; 2025 Myco Language. Created by <a href="https://github.com/IvyMycelia">Ivy Mycelia</a>.</p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script src="js/main.js"></script>
 </body>
 </html>

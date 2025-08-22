@@ -3,44 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📚 Myco Language Documentation</title>
+    <title>Documentation - Myco Language</title>
     <meta name="description" content="Complete documentation for the Myco programming language - syntax, functions, examples, and more.">
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
-    <!-- CSS -->
     <link rel="stylesheet" href="css/main.css">
+    <style>
+        .docs-layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .docs-sidebar {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+        
+        .docs-nav h3 {
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #2563eb;
+            padding-bottom: 0.5rem;
+        }
+        
+        .docs-nav ul {
+            list-style: none;
+        }
+        
+        .docs-nav li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .docs-nav a {
+            color: #6b7280;
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem 0;
+            transition: color 0.2s ease;
+        }
+        
+        .docs-nav a:hover {
+            color: #2563eb;
+        }
+        
+        .docs-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .docs-content h1 {
+            color: #1f2937;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+        
+        .docs-content h2 {
+            color: #374151;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .docs-content h3 {
+            color: #4b5563;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+        
+        .docs-content p {
+            color: #6b7280;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .docs-content section {
+            margin-bottom: 2.5rem;
+        }
+        
+        .docs-content code {
+            background: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            color: #2563eb;
+            font-size: 0.9rem;
+        }
+        
+        .docs-content .code-block {
+            margin: 1.5rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .docs-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .docs-sidebar {
+                position: static;
+                order: 2;
+            }
+            
+            .docs-content {
+                order: 1;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav class="container">
-            <a href="/" class="logo">🍄 Myco</a>
-            <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="/#features">Features</a></li>
-                <li><a href="/#examples">Examples</a></li>
-                <li><a href="docs.html">Documentation</a></li>
-                <li><a href="grammar.html">Grammar</a></li>
-                <li><a href="https://github.com/IvyMycelia/Myco" target="_blank">GitHub</a></li>
-            </ul>
-            <div class="mobile-menu-toggle">
-                <span></span><span></span><span></span>
-            </div>
-        </nav>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="/" class="logo">Myco</a>
+                <ul class="nav-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#features">Features</a></li>
+                    <li><a href="/#examples">Examples</a></li>
+                    <li><a href="docs.html">Documentation</a></li>
+                    <li><a href="grammar.html">Grammar</a></li>
+                    <li><a href="https://github.com/IvyMycelia/Myco" target="_blank">GitHub</a></li>
+                </ul>
+                <div class="nav-controls">
+                    <button class="theme-toggle" title="Cycle themes (Ctrl+T)">🌙</button>
+                    <button class="mobile-menu-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
     </header>
 
-    <!-- Documentation Content -->
     <main style="margin-top: 100px; padding: 2rem 0;">
         <div class="container">
             <div class="docs-layout">
-                <!-- Sidebar -->
                 <aside class="docs-sidebar">
                     <nav class="docs-nav">
-                        <h3>📚 Contents</h3>
+                        <h3>Contents</h3>
                         <ul>
                             <li><a href="#introduction">Introduction</a></li>
                             <li><a href="#installation">Installation</a></li>
@@ -56,20 +170,19 @@
                     </nav>
                 </aside>
 
-                <!-- Main Content -->
                 <div class="docs-content">
-                    <h1>📚 Myco Language Documentation</h1>
+                    <h1>Myco Language Documentation</h1>
                     
                     <section id="introduction">
                         <h2>Introduction</h2>
-                        <p>Myco is a whimsical, mystical programming language designed for simplicity, readability, and just a touch of magic. Think C meets Lua — but with mushrooms.</p>
+                        <p>Myco is a lightweight scripting language designed for simplicity and readability. It combines the performance of C with the elegance of Lua, creating a language that's both powerful and easy to learn.</p>
                         <p>This documentation covers all aspects of the Myco language, from basic syntax to advanced features.</p>
                     </section>
 
                     <section id="installation">
                         <h2>Installation</h2>
                         <p>To get started with Myco, you'll need to build it from source:</p>
-                        <div class="code-container">
+                        <div class="code-block">
                             <pre><code><span class="comment"># Clone the repository</span>
 <span class="keyword">git</span> <span class="function">clone</span> <span class="string">https://github.com/IvyMycelia/Myco.git</span>
 <span class="keyword">cd</span> <span class="function">Myco</span>
@@ -82,7 +195,7 @@
                     <section id="syntax">
                         <h2>Basic Syntax</h2>
                         <p>Myco uses a clean, readable syntax inspired by Lua and C:</p>
-                        <div class="code-container">
+                        <div class="code-block">
                             <pre><code><span class="comment"># This is a comment</span>
 <span class="keyword">let</span> <span class="function">message</span> = <span class="string">"Hello, Myco!"</span>;
 <span class="function">print</span>(<span class="function">message</span>);</code></pre>
@@ -92,7 +205,7 @@
                     <section id="variables">
                         <h2>Variables</h2>
                         <p>Variables in Myco are declared using the <code>let</code> keyword:</p>
-                        <div class="code-container">
+                        <div class="code-block">
                             <pre><code><span class="keyword">let</span> <span class="function">name</span> = <span class="string">"Alice"</span>;
 <span class="keyword">let</span> <span class="function">age</span> = <span class="number">25</span>;
 <span class="keyword">let</span> <span class="function">is_active</span> = <span class="number">1</span>;  <span class="comment"># 1 = true, 0 = false</span></code></pre>
@@ -101,14 +214,15 @@
 
                     <section id="functions">
                         <h2>Functions</h2>
-                        <p>Functions are defined using the <code>func</code> keyword:</p>
-                        <div class="code-container">
-                            <pre><code><span class="keyword">func</span> <span class="function">greet</span>(<span class="function">name</span>):
-    <span class="function">print</span>(<span class="string">"Hello,"</span>, <span class="function">name</span>);
+                        <p>Functions are defined using the <code>func</span> keyword:</p>
+                        <div class="code-block">
+                            <pre><code><span class="comment"># Traditional syntax</span>
+<span class="keyword">func</span> <span class="function">greet</span>(<span class="function">person</span>):
+    <span class="function">print</span>(<span class="string">"Hello,"</span>, <span class="function">person</span>);
 <span class="keyword">end</span>
 
 <span class="comment"># Arrow syntax for return types</span>
-<span class="keyword">func</span> <span class="function">add</span>(<span class="function">a</span>, <span class="function">b</span>) -> <span class="keyword">int</span>:
+<span class="keyword">func</span> <span class="function">add</span>(<span class="function">a</span>: <span class="keyword">int</span>, <span class="function">b</span>: <span class="keyword">int</span>) -> <span class="keyword">int</span>:
     <span class="keyword">return</span> <span class="function">a</span> + <span class="function">b</span>;
 <span class="keyword">end</span></code></pre>
                         </div>
@@ -117,7 +231,7 @@
                     <section id="control-flow">
                         <h2>Control Flow</h2>
                         <p>Myco supports standard control flow constructs:</p>
-                        <div class="code-container">
+                        <div class="code-block">
                             <pre><code><span class="comment"># If statements</span>
 <span class="keyword">if</span> <span class="function">age</span> >= <span class="number">18</span>:
     <span class="function">print</span>(<span class="string">"Adult"</span>);
@@ -135,14 +249,14 @@
                     <section id="data-structures">
                         <h2>Data Structures</h2>
                         <p>Myco provides built-in support for lists and maps:</p>
-                        <div class="code-container">
+                        <div class="code-block">
                             <pre><code><span class="comment"># Lists</span>
 <span class="keyword">let</span> <span class="function">numbers</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];
 
 <span class="comment"># Maps/Objects</span>
 <span class="keyword">let</span> <span class="function">person</span> = {
-    <span class="function">name</span>: <span class="string">"Bob"</span>,
-    <span class="function">age</span>: <span class="number">30</span>,
+    <span class="function">name</span>: <span class="string">"Alice"</span>,
+    <span class="function">age</span>: <span class="number">25</span>,
     <span class="function">city</span>: <span class="string">"Forest"</span>
 };</code></pre>
                         </div>
@@ -151,7 +265,7 @@
                     <section id="error-handling">
                         <h2>Error Handling</h2>
                         <p>Use try-catch blocks for error handling:</p>
-                        <div class="code-container">
+                        <div class="code-block">
                             <pre><code><span class="keyword">try</span>:
     <span class="keyword">let</span> <span class="function">result</span> = <span class="function">divide</span>(<span class="number">10</span>, <span class="number">0</span>);
 <span class="keyword">catch</span> <span class="function">error</span>:
@@ -163,7 +277,7 @@
                     <section id="stdlib">
                         <h2>Standard Library</h2>
                         <p>Myco includes a comprehensive standard library:</p>
-                        <div class="code-container">
+                        <div class="code-block">
                             <pre><code><span class="comment"># Math functions</span>
 <span class="keyword">let</span> <span class="function">result</span> = <span class="function">pow</span>(<span class="number">2</span>, <span class="number">8</span>);
 <span class="keyword">let</span> <span class="function">sqrt_result</span> = <span class="function">sqrt</span>(<span class="number">16</span>);
@@ -177,7 +291,7 @@
                     <section id="examples">
                         <h2>Complete Examples</h2>
                         <p>Here's a complete Myco program:</p>
-                        <div class="code-container">
+                        <div class="code-block">
                             <pre><code><span class="comment"># Simple calculator</span>
 <span class="keyword">func</span> <span class="function">calculator</span>():
     <span class="function">print</span>(<span class="string">"Myco Calculator"</span>);
@@ -198,31 +312,29 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>🍄 Myco Language</h3>
-                    <p>A whimsical, mystical programming language rooted deep in the forest floor.</p>
+                    <h3>Myco Language</h3>
+                    <p>A lightweight scripting language designed for simplicity and readability.</p>
                 </div>
                 <div class="footer-section">
-                    <h3>🔗 Quick Links</h3>
+                    <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="/">🏠 Home</a></li>
-                        <li><a href="docs.html">📚 Documentation</a></li>
-                        <li><a href="grammar.html">🔤 Grammar</a></li>
-                        <li><a href="https://github.com/IvyMycelia/Myco" target="_blank">🐙 GitHub</a></li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="docs.html">Documentation</a></li>
+                        <li><a href="grammar.html">Grammar</a></li>
+                        <li><a href="https://github.com/IvyMycelia/Myco" target="_blank">GitHub</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Myco Language. Made with 🍄 by IvyMycelia.</p>
+                <p>&copy; 2025 Myco Language. Created by <a href="https://github.com/IvyMycelia">Ivy Mycelia</a>.</p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script src="js/main.js"></script>
 </body>
 </html>
