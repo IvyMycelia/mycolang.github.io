@@ -11,118 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="css/main.css">
-    <style>
-        .docs-layout {
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            gap: 3rem;
-            margin-top: 2rem;
-        }
-        
-        .docs-sidebar {
-            background: #f8fafc;
-            padding: 2rem;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
-            height: fit-content;
-            position: sticky;
-            top: 100px;
-        }
-        
-        .docs-nav h3 {
-            color: #1f2937;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            border-bottom: 2px solid #2563eb;
-            padding-bottom: 0.5rem;
-        }
-        
-        .docs-nav ul {
-            list-style: none;
-        }
-        
-        .docs-nav li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .docs-nav a {
-            color: #6b7280;
-            text-decoration: none;
-            display: block;
-            padding: 0.5rem 0;
-            transition: color 0.2s ease;
-        }
-        
-        .docs-nav a:hover {
-            color: #2563eb;
-        }
-        
-        .docs-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
-        }
-        
-        .docs-content h1 {
-            color: #1f2937;
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-        }
-        
-        .docs-content h2 {
-            color: #374151;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
-        }
-        
-        .docs-content h3 {
-            color: #4b5563;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-        }
-        
-        .docs-content p {
-            color: #6b7280;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-        
-        .docs-content section {
-            margin-bottom: 2.5rem;
-        }
-        
-        .docs-content code {
-            background: #f1f5f9;
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-            font-family: 'JetBrains Mono', monospace;
-            color: #2563eb;
-            font-size: 0.9rem;
-        }
-        
-        .docs-content .code-block {
-            margin: 1.5rem 0;
-        }
-        
-        @media (max-width: 768px) {
-            .docs-layout {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .docs-sidebar {
-                position: static;
-                order: 2;
-            }
-            
-            .docs-content {
-                order: 1;
-            }
-        }
-    </style>
 </head>
 <body>
     <header class="header">
@@ -152,7 +40,7 @@
         </div>
     </header>
 
-    <main style="margin-top: 100px; padding: 2rem 0;">
+    <main class="docs-main">
         <div class="container">
             <div class="docs-layout">
                 <aside class="docs-sidebar">
