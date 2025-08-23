@@ -1,7 +1,7 @@
 // Enhanced JavaScript for Myco Language Website
 document.addEventListener('DOMContentLoaded', function() {
     // Theme management
-    const themes = ['dark', 'light', 'trans'];
+    const themes = ['dark', 'light'];
     let currentThemeIndex = 0;
     
     // Secret trans theme activation
@@ -183,12 +183,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const savedTheme = localStorage.getItem('myco-theme');
         if (savedTheme && themes.includes(savedTheme)) {
             setTheme(savedTheme);
-            // If trans theme was saved, show a subtle notification
-            if (savedTheme === 'trans') {
-                setTimeout(() => {
-                    showTransThemeNotification();
-                }, 1000);
-                }
         } else {
             // Default to dark theme
             setTheme('dark');
@@ -197,14 +191,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function cycleTheme() {
+        // If trans theme is currently active, switch to light theme
+        if (document.body.classList.contains('trans-theme')) {
+            setTheme('light');
+            return;
+        }
+        
+        // Normal cycling between dark and light themes
         currentThemeIndex = (currentThemeIndex + 1) % themes.length;
         const newTheme = themes[currentThemeIndex];
         setTheme(newTheme);
-        
-        // If switching to trans theme, show the secret message
-        if (newTheme === 'trans') {
-            showSecretMessage();
-        }
     }
     
     function setTheme(theme) {
@@ -219,8 +215,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         // dark theme is default (no class needed)
         
-        // Save theme preference
-        localStorage.setItem('myco-theme', theme);
+        // Save theme preference (only for dark and light themes)
+        if (theme !== 'trans') {
+            localStorage.setItem('myco-theme', theme);
+        }
         
         // Add theme change animation
         document.body.style.transition = 'all 0.5s ease';
@@ -255,9 +253,10 @@ document.addEventListener('DOMContentLoaded', function() {
             themeText.textContent = 'Dark';
             themeToggle.title = 'Switch to Dark theme (Ctrl+T)';
         } else if (document.body.classList.contains('trans-theme')) {
-            themeIcon.textContent = '★';
-            themeText.textContent = 'Secret';
-            themeToggle.title = 'Secret Trans theme active!';
+            // When trans theme is active, show next theme option
+            themeIcon.textContent = '☀';
+            themeText.textContent = 'Light';
+            themeToggle.title = 'Switch to Light theme (Ctrl+T)';
         } else {
             // Dark theme (default)
             themeIcon.textContent = '☀';
