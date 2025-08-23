@@ -585,3 +585,101 @@ function addAnimationCSS() {
     `;
     document.head.appendChild(style);
 }
+
+// Community page functionality
+function initializeCommunityPage() {
+    if (!document.querySelector('.community-main')) return;
+    
+    // Filter functionality
+    const filterSelect = document.querySelector('.filter-select');
+    if (filterSelect) {
+        filterSelect.addEventListener('change', function() {
+            const selectedCategory = this.value;
+            filterPosts(selectedCategory);
+        });
+    }
+    
+    // Category navigation
+    const categoryLinks = document.querySelectorAll('.community-nav a[href^="#"]');
+    categoryLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Remove active class from all links
+            categoryLinks.forEach(l => l.classList.remove('active'));
+            
+            // Add active class to clicked link
+            this.classList.add('active');
+            
+            // Filter posts by category
+            const category = this.getAttribute('href').substring(1);
+            filterPosts(category);
+        });
+    });
+    
+    // Post hover effects
+    const posts = document.querySelectorAll('.post');
+    posts.forEach(post => {
+        post.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-4px) scale(1.02)';
+        });
+        
+        post.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+}
+
+function filterPosts(category) {
+    const posts = document.querySelectorAll('.post');
+    const filterSelect = document.querySelector('.filter-select');
+    
+    // Update filter select if called from navigation
+    if (filterSelect && filterSelect.value !== category) {
+        filterSelect.value = category;
+    }
+    
+    posts.forEach(post => {
+        const postCategory = post.querySelector('.post-category').textContent.toLowerCase();
+        const isFeatured = post.classList.contains('post-featured');
+        
+        if (category === 'all' || category === '') {
+            post.style.display = 'block';
+        } else if (category === 'tutorials' && (postCategory === 'tutorial' || postCategory === 'featured')) {
+            post.style.display = 'block';
+        } else if (category === 'tips' && postCategory === 'tips') {
+            post.style.display = 'block';
+        } else if (category === 'projects' && postCategory === 'project') {
+            post.style.display = 'block';
+        } else if (category === 'news' && postCategory === 'news') {
+            post.style.display = 'block';
+        } else if (category === 'showcase' && postCategory === 'showcase') {
+            post.style.display = 'block';
+        } else {
+            post.style.display = 'none';
+        }
+        
+        // Always show featured posts
+        if (isFeatured) {
+            post.style.display = 'block';
+        }
+    });
+    
+    // Add smooth animation to visible posts
+    const visiblePosts = Array.from(posts).filter(post => post.style.display !== 'none');
+    visiblePosts.forEach((post, index) => {
+        post.style.opacity = '0';
+        post.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+            post.style.transition = 'all 0.5s ease';
+            post.style.opacity = '1';
+            post.style.transform = 'translateY(0)';
+        }, index * 100);
+    });
+}
+
+// Initialize community page when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initializeCommunityPage();
+});
