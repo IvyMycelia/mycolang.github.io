@@ -3,167 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Myco - Programming Language</title>
-    <meta name="description" content="A lightweight scripting language inspired by Lua and C, designed for simplicity and readability.">
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Primary SEO Meta Tags -->
+    <title>Myco Programming Language - High-Level, Expressive & Versatile | Ivy Mycelia</title>
+    <meta name="description" content="Myco is a high-level, expressive programming language designed for versatility and ease of use. Created by Ivy Mycelia, featuring modern syntax, comprehensive libraries, and powerful features for developers.">
+    <meta name="keywords" content="myco, myco lang, myco programming language, ivy mycelia, programming language, high level programming, expressive language, versatile programming, modern syntax, programming language design, software development, coding language, developer tools">
+    <meta name="author" content="Ivy Mycelia">
+    <meta name="robots" content="index, follow">
     
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mycolang.org/">
+    <meta property="og:title" content="Myco Programming Language - High-Level & Expressive">
+    <meta property="og:description" content="Discover Myco, a versatile high-level programming language with modern syntax, comprehensive libraries, and powerful features. Created by Ivy Mycelia.">
+    <meta property="og:image" content="https://mycolang.org/images/myco-logo.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://mycolang.org/">
+    <meta property="twitter:title" content="Myco Programming Language - High-Level & Expressive">
+    <meta property="twitter:description" content="Discover Myco, a versatile high-level programming language with modern syntax, comprehensive libraries, and powerful features. Created by Ivy Mycelia.">
+    <meta property="twitter:image" content="https://mycolang.org/images/myco-logo.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://mycolang.org/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- CSS -->
     <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Structured Data for Programming Language -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Myco Programming Language",
+        "description": "A high-level, expressive programming language designed for versatility and ease of use",
+        "url": "https://mycolang.org",
+        "applicationCategory": "ProgrammingLanguage",
+        "operatingSystem": "Cross-platform",
+        "author": {
+            "@type": "Person",
+            "name": "Ivy Mycelia",
+            "url": "https://github.com/IvyMycelia"
+        },
+        "creator": {
+            "@type": "Person",
+            "name": "Ivy Mycelia"
+        },
+        "softwareVersion": "1.4.0",
+        "dateCreated": "2024",
+        "dateModified": "2024-12",
+        "keywords": ["programming language", "high level", "expressive", "versatile", "modern syntax", "software development"],
+        "featureList": [
+            "High-level syntax",
+            "Expressive language features",
+            "Comprehensive standard library",
+            "Modern type system",
+            "Functional programming support",
+            "Object-oriented features",
+            "Error handling",
+            "Cross-platform compatibility"
+        ]
+    }
+    </script>
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <nav class="nav">
-                <a href="/" class="logo">Myco</a>
-                <ul class="nav-menu">
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#examples">Examples</a></li>
-                    <li><a href="docs.html">Docs</a></li>
-                    <li><a href="grammar.html">Grammar</a></li>
-                    <li><a href="https://github.com/IvyMycelia/Myco" target="_blank">GitHub</a></li>
-                </ul>
-                <div class="nav-controls">
-                    <button class="theme-toggle" title="Switch theme (Ctrl+T)">
-                        <span class="theme-icon">☾</span>
-                        <span class="theme-text">Theme</span>
-                    </button>
-                    <button class="mobile-menu-btn">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                </div>
-            </nav>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home">Myco Lang</a>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#examples" class="nav-link">Examples</a>
+                <a href="docs.html" class="nav-link">Documentation</a>
+                <a href="grammar.html" class="nav-link">Grammar</a>
+                <a href="#about" class="nav-link">About</a>
+            </div>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </div>
-    </header>
+    </nav>
 
+    <!-- Theme Selector -->
+    <div class="theme-selector">
+        <button class="theme-btn light-theme" data-theme="light">☀️ Light</button>
+        <button class="theme-btn dark-theme" data-theme="dark">🌙 Dark</button>
+    </div>
+
+    <!-- Main Content -->
     <main>
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>Myco Language</h1>
-                    <p class="hero-subtitle">A lightweight scripting language designed for simplicity and readability</p>
-                    <p class="hero-description">
-                        Think C meets Lua. Myco combines the performance of C with the elegance of Lua, 
-                        creating a language that's both powerful and easy to learn.
-                    </p>
-                    <div class="hero-actions">
-                        <a href="https://github.com/IvyMycelia/Myco" class="btn btn-primary">View on GitHub</a>
-                        <a href="docs.html" class="btn btn-secondary">Read Documentation</a>
-                    </div>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-main">Myco</span>
+                    <span class="title-sub">Programming Language</span>
+                </h1>
+                <p class="hero-description">
+                    A <strong>high-level</strong>, <strong>expressive</strong>, and <strong>versatile</strong> programming language 
+                    designed for modern software development. Created by <strong>Ivy Mycelia</strong>, 
+                    Myco combines elegant syntax with powerful features to make coding more intuitive and enjoyable.
+                </p>
+                <div class="hero-buttons">
+                    <a href="docs.html" class="btn btn-primary">Get Started</a>
+                    <a href="grammar.html" class="btn btn-secondary">View Grammar</a>
+                    <a href="https://github.com/IvyMycelia/Myco" class="btn btn-outline" target="_blank">GitHub</a>
                 </div>
-                <div class="hero-code">
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span>example.myco</span>
-                        </div>
-                        <pre><code><span class="keyword">func</span> <span class="function">fibonacci</span>(<span class="param">n</span>):
-    <span class="keyword">if</span> <span class="param">n</span> <= <span class="number">1</span>:
-        <span class="keyword">return</span> <span class="param">n</span>;
-    <span class="keyword">end</span>
-    <span class="keyword">return</span> <span class="function">fibonacci</span>(<span class="param">n</span> - <span class="number">1</span>) + <span class="function">fibonacci</span>(<span class="param">n</span> - <span class="number">2</span>);
-<span class="keyword">end</span>
-
-<span class="keyword">let</span> <span class="param">result</span> = <span class="function">fibonacci</span>(<span class="number">10</span>);
-<span class="function">print</span>(<span class="string">"Result:"</span>, <span class="param">result</span>);</code></pre>
-                    </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-elements">
+                    <div class="float-element">func</div>
+                    <div class="float-element">let</div>
+                    <div class="float-element">if</div>
+                    <div class="float-element">for</div>
+                    <div class="float-element">while</div>
                 </div>
             </div>
         </section>
 
+        <!-- Features Section -->
         <section id="features" class="features">
             <div class="container">
-                <h2 class="scroll-reveal">Language Features</h2>
+                <h2 class="section-title">Why Choose Myco Programming Language?</h2>
+                <p class="section-subtitle">
+                    Myco offers a unique combination of <strong>simplicity</strong>, <strong>power</strong>, and <strong>expressiveness</strong> 
+                    that makes it ideal for both beginners and experienced developers.
+                </p>
+                
                 <div class="features-grid">
-                    <div class="feature scroll-reveal">
-                        <div class="feature-content">
-                            <h3>Clean Syntax</h3>
-                            <p>Intuitive syntax that's easy to read and write. No unnecessary complexity.</p>
-                        </div>
+                    <div class="feature">
+                        <div class="feature-icon">🚀</div>
+                        <h3>High-Level & Expressive</h3>
+                        <p>Write clean, readable code with intuitive syntax that focuses on what you want to accomplish, not how to accomplish it.</p>
                         <div class="feature-details">
-                            <h4>Syntax Features</h4>
+                            <h4>Key Benefits:</h4>
                             <ul>
-                                <li>Minimal keywords</li>
-                                <li>Clear structure</li>
-                                <li>Readable formatting</li>
-                                <li>Consistent patterns</li>
+                                <li>Intuitive syntax similar to Python and JavaScript</li>
+                                <li>Automatic memory management</li>
+                                <li>Rich standard library</li>
+                                <li>Modern language features</li>
                             </ul>
                         </div>
                     </div>
-                    <div class="feature scroll-reveal">
-                        <div class="feature-content">
-                            <h3>Dynamic Typing</h3>
-                            <p>Flexible type system with automatic type inference. Variables adapt to your needs.</p>
-                        </div>
+                    
+                    <div class="feature">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Versatile & Powerful</h3>
+                        <p>From simple scripts to complex applications, Myco handles diverse programming tasks with ease and efficiency.</p>
                         <div class="feature-details">
-                            <h4>Type System</h4>
+                            <h4>Capabilities:</h4>
                             <ul>
-                                <li>Automatic inference</li>
-                                <li>Runtime type checking</li>
-                                <li>Flexible assignments</li>
-                                <li>Type conversion</li>
+                                <li>Functional programming support</li>
+                                <li>Object-oriented features</li>
+                                <li>Error handling and debugging</li>
+                                <li>Cross-platform compatibility</li>
                             </ul>
                         </div>
                     </div>
-                    <div class="feature scroll-reveal">
-                        <div class="feature-content">
-                            <h3>Control Flow</h3>
-                            <p>Standard control structures: if/else, loops, functions, and error handling.</p>
-                        </div>
+                    
+                    <div class="feature">
+                        <div class="feature-icon">🔧</div>
+                        <h3>Developer-Friendly</h3>
+                        <p>Built with developers in mind, featuring comprehensive tooling, clear error messages, and extensive documentation.</p>
                         <div class="feature-details">
-                            <h4>Control Structures</h4>
+                            <h4>Developer Experience:</h4>
                             <ul>
-                                <li>If/else statements</li>
-                                <li>For and while loops</li>
-                                <li>Function definitions</li>
-                                <li>Error handling</li>
+                                <li>Comprehensive error messages</li>
+                                <li>Built-in debugging tools</li>
+                                <li>Extensive documentation</li>
+                                <li>Active community support</li>
                             </ul>
                         </div>
                     </div>
-                    <div class="feature scroll-reveal">
-                        <div class="feature-content">
-                            <h3>Data Structures</h3>
-                            <p>Built-in support for lists, maps, and custom data types.</p>
-                        </div>
+                    
+                    <div class="feature">
+                        <div class="feature-icon">📚</div>
+                        <h3>Rich Standard Library</h3>
+                        <p>Access a comprehensive collection of built-in functions and utilities for common programming tasks.</p>
                         <div class="feature-details">
-                            <h4>Built-in Types</h4>
+                            <h4>Library Features:</h4>
                             <ul>
-                                <li>Dynamic arrays</li>
-                                <li>Hash maps</li>
-                                <li>Custom structs</li>
-                                <li>Type safety</li>
+                                <li>Mathematical functions and constants</li>
+                                <li>String and array manipulation</li>
+                                <li>Object and data structure utilities</li>
+                                <li>Input/output operations</li>
                             </ul>
                         </div>
                     </div>
-                    <div class="feature scroll-reveal">
-                        <div class="feature-content">
-                            <h3>Standard Library</h3>
-                            <p>Comprehensive library with math functions, utilities, and I/O operations.</p>
-                        </div>
+                    
+                    <div class="feature">
+                        <div class="feature-icon">🔄</div>
+                        <h3>Modern Language Features</h3>
+                        <p>Stay current with modern programming paradigms including lambda functions, type annotations, and functional programming.</p>
                         <div class="feature-details">
-                            <h4>Library Features</h4>
+                            <h4>Modern Features:</h4>
                             <ul>
-                                <li>Math operations</li>
-                                <li>File I/O</li>
-                                <li>String utilities</li>
-                                <li>System functions</li>
+                                <li>Lambda functions and closures</li>
+                                <li>Optional type annotations</li>
+                                <li>Switch statements and pattern matching</li>
+                                <li>Try-catch error handling</li>
                             </ul>
                         </div>
                     </div>
-                    <div class="feature scroll-reveal">
-                        <div class="feature-content">
-                            <h3>Cross Platform</h3>
-                            <p>Runs on Windows, macOS, and Linux. Write once, run anywhere.</p>
-                        </div>
+                    
+                    <div class="feature">
+                        <div class="feature-icon">🌱</div>
+                        <h3>Growing & Evolving</h3>
+                        <p>Myco is actively developed and continuously improved with new features, optimizations, and community feedback.</p>
                         <div class="feature-details">
-                            <h4>Platform Support</h4>
+                            <h4>Development Status:</h4>
                             <ul>
-                                <li>Windows 10+</li>
-                                <li>macOS 10.14+</li>
-                                <li>Linux (glibc 2.17+)</li>
-                                <li>ARM64 support</li>
+                                <li>Active development by Ivy Mycelia</li>
+                                <li>Regular updates and improvements</li>
+                                <li>Community-driven enhancements</li>
+                                <li>Open source and transparent</li>
                             </ul>
                         </div>
                     </div>
@@ -171,121 +233,223 @@
             </div>
         </section>
 
+        <!-- Examples Section -->
         <section id="examples" class="examples">
             <div class="container">
-                <h2 class="scroll-reveal">Code Examples</h2>
+                <h2 class="section-title">Myco Programming Language Examples</h2>
+                <p class="section-subtitle">
+                    See how <strong>expressive</strong> and <strong>readable</strong> Myco code can be. 
+                    These examples demonstrate the language's <strong>versatility</strong> and <strong>power</strong>.
+                </p>
                 
-                <div class="example-grid">
-                    <div class="example scroll-reveal">
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <h3>Hello World</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Basic Output</span>
+                            </div>
+                            <pre><code><span class="function">print</span>(<span class="string">"Hello, Myco World!"</span>);</code></pre>
+                        </div>
+                        <p>Simple and clean - Myco makes basic programming tasks straightforward and intuitive.</p>
+                    </div>
+                    
+                    <div class="example-card">
                         <h3>Variables and Types</h3>
                         <div class="code-block">
+                            <div class="code-header">
+                                <span>Dynamic Typing</span>
+                            </div>
                             <pre><code><span class="keyword">let</span> <span class="param">name</span> = <span class="string">"Alice"</span>;
 <span class="keyword">let</span> <span class="param">age</span> = <span class="number">25</span>;
-<span class="keyword">let</span> <span class="param">active</span> = <span class="number">1</span>;
-
-<span class="function">print</span>(<span class="string">"Name:"</span>, <span class="param">name</span>);
-<span class="function">print</span>(<span class="string">"Age:"</span>, <span class="param">age</span>);</code></pre>
+<span class="keyword">let</span> <span class="param">isActive</span> = <span class="keyword">True</span>;
+<span class="keyword">let</span> <span class="param">scores</span> = [<span class="number">95</span>, <span class="number">87</span>, <span class="number">92</span>];</code></pre>
                         </div>
+                        <p>Myco's dynamic typing system automatically handles different data types with clear, readable syntax.</p>
                     </div>
-
-                    <div class="example scroll-reveal">
+                    
+                    <div class="example-card">
                         <h3>Functions</h3>
                         <div class="code-block">
-                            <pre><code><span class="keyword">func</span> <span class="function">greet</span>(<span class="param">person</span>):
-    <span class="keyword">return</span> <span class="string">"Hello, "</span> + <span class="param">person</span>;
+                            <div class="code-header">
+                                <span>Function Definition</span>
+                            </div>
+                            <pre><code><span class="keyword">func</span> <span class="function">greet</span>(<span class="param">name</span>):
+    <span class="keyword">return</span> <span class="string">"Hello, "</span> + <span class="param">name</span> + <span class="string">"!"</span>;
 <span class="keyword">end</span>
 
-<span class="keyword">let</span> <span class="param">message</span> = <span class="function">greet</span>(<span class="string">"World"</span>);
-<span class="function">print</span>(<span class="param">message</span>);</code></pre>
+<span class="keyword">let</span> <span class="param">message</span> = <span class="function">greet</span>(<span class="string">"World"</span>);</code></pre>
                         </div>
+                        <p>Define functions with clear syntax and optional type annotations for better code clarity.</p>
                     </div>
-
-                    <div class="example scroll-reveal">
+                    
+                    <div class="example-card">
                         <h3>Control Flow</h3>
                         <div class="code-block">
-                            <pre><code><span class="keyword">let</span> <span class="param">x</span> = <span class="number">10</span>;
-
-<span class="keyword">if</span> <span class="param">x</span> > <span class="number">5</span>:
-    <span class="function">print</span>(<span class="string">"x is greater than 5"</span>);
-<span class="keyword">else</span>:
-    <span class="function">print</span>(<span class="string">"x is 5 or less"</span>);
-<span class="keyword">end</span>
-
-<span class="keyword">for</span> <span class="param">i</span> = <span class="number">1</span> <span class="keyword">to</span> <span class="param">x</span>:
-    <span class="function">print</span>(<span class="param">i</span>);
+                            <div class="code-header">
+                                <span>Conditionals and Loops</span>
+                            </div>
+                            <pre><code><span class="keyword">for</span> <span class="param">i</span> <span class="keyword">in</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]:
+    <span class="keyword">if</span> <span class="param">i</span> % <span class="number">2</span> == <span class="number">0</span>:
+        <span class="function">print</span>(<span class="param">i</span>, <span class="string">"is even"</span>);
+    <span class="keyword">end</span>
 <span class="keyword">end</span></code></pre>
                         </div>
+                        <p>Express complex logic with clean, readable control flow statements that are easy to understand and maintain.</p>
                     </div>
-
-                    <div class="example scroll-reveal">
+                    
+                    <div class="example-card">
                         <h3>Data Structures</h3>
                         <div class="code-block">
-                            <pre><code><span class="comment"># Lists</span>
-<span class="keyword">let</span> <span class="param">numbers</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];
+                            <div class="code-header">
+                                <span>Arrays and Objects</span>
+                            </div>
+                            <pre><code><span class="keyword">let</span> <span class="param">users</span> = [
+    {<span class="string">"name"</span>: <span class="string">"Alice"</span>, <span class="string">"age"</span>: <span class="number">25</span>},
+    {<span class="string">"name"</span>: <span class="string">"Bob"</span>, <span class="string">"age"</span>: <span class="number">30</span>}
+];
 
-<span class="comment"># Maps</span>
-<span class="keyword">let</span> <span class="param">user</span> = {
-    <span class="string">"name"</span>: <span class="string">"Bob"</span>,
-    <span class="string">"age"</span>: <span class="number">30</span>
-};
-
-<span class="function">print</span>(<span class="param">user</span>[<span class="string">"name"</span>]);</code></pre>
+<span class="keyword">for</span> <span class="param">user</span> <span class="keyword">in</span> <span class="param">users</span>:
+    <span class="function">print</span>(<span class="param">user</span>.<span class="string">"name"</span>, <span class="string">"is"</span>, <span class="param">user</span>.<span class="string">"age"</span>);
+<span class="keyword">end</span></code></pre>
                         </div>
+                        <p>Work with complex data structures using intuitive syntax that makes data manipulation straightforward and efficient.</p>
+                    </div>
+                    
+                    <div class="example-card">
+                        <h3>Error Handling</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Try-Catch Blocks</span>
+                            </div>
+                            <pre><code><span class="keyword">try</span>:
+    <span class="keyword">let</span> <span class="param">result</span> = <span class="number">10</span> / <span class="number">0</span>;
+<span class="keyword">catch</span> <span class="param">error</span>:
+    <span class="function">print</span>(<span class="string">"Error occurred:"</span>, <span class="param">error</span>);
+<span class="keyword">end</span></code></pre>
+                        </div>
+                        <p>Handle errors gracefully with built-in try-catch blocks that make your code more robust and reliable.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="getting-started">
+        <!-- About Section -->
+        <section id="about" class="about">
             <div class="container">
-                <h2 class="scroll-reveal">Getting Started</h2>
-                <div class="steps">
-                    <div class="step scroll-reveal">
-                        <div class="step-number">1</div>
-                        <h3>Clone the Repository</h3>
-                        <p>Get the source code from GitHub</p>
-                        <a href="https://github.com/IvyMycelia/Myco" class="btn btn-outline">View Source</a>
+                <h2 class="section-title">About Myco Programming Language</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Created by Ivy Mycelia</h3>
+                        <p>
+                            Myco is the brainchild of <strong>Ivy Mycelia</strong>, a passionate developer and programming language enthusiast. 
+                            The language was designed with a clear vision: to create a programming language that combines the 
+                            <strong>elegance</strong> of modern syntax with the <strong>power</strong> and <strong>versatility</strong> 
+                            that developers need in today's fast-paced software development environment.
+                        </p>
+                        
+                        <h3>Design Philosophy</h3>
+                        <p>
+                            Myco's design philosophy centers around <strong>expressiveness</strong>, <strong>readability</strong>, and 
+                            <strong>developer productivity</strong>. We believe that programming should be intuitive and enjoyable, 
+                            not a struggle with complex syntax or arcane language rules.
+                        </p>
+                        
+                        <h3>Key Design Principles</h3>
+                        <ul>
+                            <li><strong>Simplicity</strong>: Clean, intuitive syntax that's easy to learn and use</li>
+                            <li><strong>Expressiveness</strong>: Write clear, readable code that expresses intent</li>
+                            <li><strong>Versatility</strong>: Handle diverse programming tasks with a single language</li>
+                            <li><strong>Modernity</strong>: Incorporate contemporary programming language features and best practices</li>
+                            <li><strong>Community</strong>: Open development process with community input and feedback</li>
+                        </ul>
+                        
+                        <h3>Current Status</h3>
+                        <p>
+                            Myco is currently in active development with version <strong>1.4.0</strong> featuring float support, 
+                            library import systems, and file I/O capabilities. The language continues to evolve based on 
+                            developer feedback and emerging programming language research.
+                        </p>
+                        
+                        <div class="cta-buttons">
+                            <a href="docs.html" class="btn btn-primary">Explore Documentation</a>
+                            <a href="grammar.html" class="btn btn-secondary">View Language Grammar</a>
+                            <a href="https://github.com/IvyMycelia/Myco" class="btn btn-outline" target="_blank">Contribute on GitHub</a>
+                        </div>
                     </div>
-                    <div class="step scroll-reveal">
-                        <div class="step-number">2</div>
-                        <h3>Build from Source</h3>
-                        <p>Follow the build instructions</p>
-                        <a href="docs.html" class="btn btn-outline">Build Guide</a>
-                    </div>
-                    <div class="step scroll-reveal">
-                        <div class="step-number">3</div>
-                        <h3>Write Your First Script</h3>
-                        <p>Create a .myco file and start coding</p>
-                        <a href="docs.html" class="btn btn-outline">Tutorial</a>
+                    
+                    <div class="about-visual">
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-number">1.4.0</div>
+                                <div class="stat-label">Current Version</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">15+</div>
+                                <div class="stat-label">Math Functions</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">20+</div>
+                                <div class="stat-label">Utility Functions</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">100%</div>
+                                <div class="stat-label">Open Source</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Myco Language</h3>
-                    <p>A lightweight scripting language designed for simplicity and readability.</p>
+                    <h3>Myco Programming Language</h3>
+                    <p>A high-level, expressive, and versatile programming language designed for modern software development.</p>
+                    <p>Created with ❤️ by <strong>Ivy Mycelia</strong></p>
                 </div>
+                
                 <div class="footer-section">
-                    <h3>Links</h3>
+                    <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="/">Home</a></li>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#examples">Examples</a></li>
                         <li><a href="docs.html">Documentation</a></li>
                         <li><a href="grammar.html">Grammar</a></li>
-                        <li><a href="https://github.com/IvyMycelia/Myco">GitHub</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://github.com/IvyMycelia/Myco" target="_blank">GitHub Repository</a></li>
+                        <li><a href="https://github.com/IvyMycelia/Myco/issues" target="_blank">Report Issues</a></li>
+                        <li><a href="https://github.com/IvyMycelia/Myco/discussions" target="_blank">Community Discussions</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="https://github.com/IvyMycelia" target="_blank">Ivy Mycelia on GitHub</a></li>
+                        <li><a href="https://github.com/IvyMycelia/Myco" target="_blank">Myco Project</a></li>
                     </ul>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2025 Myco Language. Created by <a href="https://github.com/IvyMycelia">Ivy Mycelia</a>.</p>
+                <p>&copy; 2024 Myco Programming Language. All rights reserved.</p>
+                <p>Myco is an open-source project created by Ivy Mycelia.</p>
             </div>
         </div>
     </footer>
 
+    <!-- JavaScript -->
     <script src="js/main.js"></script>
 </body>
 </html>
