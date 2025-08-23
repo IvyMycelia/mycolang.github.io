@@ -132,29 +132,15 @@
                 <h2 class="scroll-reveal">Language Features</h2>
                 <div class="features-grid">
                     <div class="features-center">
-                        <div class="feature scroll-reveal" data-feature="syntax">
-                            <h3>Clean Syntax</h3>
-                            <p>Intuitive syntax that's easy to read and write. No unnecessary complexity.</p>
-                        </div>
-                        <div class="feature scroll-reveal" data-feature="typing">
-                            <h3>Dynamic Typing</h3>
-                            <p>Flexible type system with automatic type inference. Variables adapt to your needs.</p>
-                        </div>
-                        <div class="feature scroll-reveal" data-feature="control">
-                            <h3>Control Flow</h3>
-                            <p>Standard control structures: if/else, loops, functions, and error handling.</p>
-                        </div>
-                        <div class="feature scroll-reveal" data-feature="data">
-                            <h3>Data Structures</h3>
-                            <p>Built-in support for lists, maps, and custom data types.</p>
-                        </div>
-                        <div class="feature scroll-reveal" data-feature="library">
-                            <h3>Standard Library</h3>
-                            <p>Comprehensive library with math functions, utilities, and I/O operations.</p>
-                        </div>
-                        <div class="feature scroll-reveal" data-feature="platform">
-                            <h3>Cross Platform</h3>
-                            <p>Runs on Windows, macOS, and Linux. Write once, run anywhere.</p>
+                        <div class="features-card scroll-reveal">
+                            <ul class="features-list">
+                                <li data-feature="syntax">Clean Syntax</li>
+                                <li data-feature="typing">Dynamic Typing</li>
+                                <li data-feature="control">Control Flow</li>
+                                <li data-feature="data">Data Structures</li>
+                                <li data-feature="library">Standard Library</li>
+                                <li data-feature="platform">Cross Platform</li>
+                            </ul>
                         </div>
                     </div>
                     <div class="features-right">
@@ -187,6 +173,8 @@
                                 <li>For and while loops</li>
                                 <li>Function definitions</li>
                                 <li>Error handling</li>
+                                <li>Switch/case statements</li>
+                                <li>Try/catch blocks</li>
                             </ul>
                         </div>
                         <div class="feature-details" data-feature="data">
@@ -196,6 +184,8 @@
                                 <li>Hash maps</li>
                                 <li>Custom structs</li>
                                 <li>Type safety</li>
+                                <li>Pattern matching</li>
+                                <li>Generic types</li>
                             </ul>
                         </div>
                         <div class="feature-details" data-feature="library">
@@ -205,6 +195,8 @@
                                 <li>File I/O</li>
                                 <li>String utilities</li>
                                 <li>System functions</li>
+                                <li>Network support</li>
+                                <li>Database connectors</li>
                             </ul>
                         </div>
                         <div class="feature-details" data-feature="platform">
@@ -214,6 +206,8 @@
                                 <li>macOS 10.14+</li>
                                 <li>Linux (glibc 2.17+)</li>
                                 <li>ARM64 support</li>
+                                <li>Docker containers</li>
+                                <li>Cloud deployment</li>
                             </ul>
                         </div>
                     </div>
@@ -380,22 +374,15 @@
                 }
             });
             
-            // Feature hover interactions with morphing
-            const features = document.querySelectorAll('.feature');
-            const featuresGrid = document.querySelector('.features-grid');
-            const featuresCenter = document.querySelector('.features-center');
+            // Feature hover interactions with list items
+            const featureItems = document.querySelectorAll('.features-list li');
             const featuresRight = document.querySelector('.features-right');
             const featuresRightContent = document.querySelector('.features-right-content');
             const featureDetails = document.querySelectorAll('.feature-details');
             
-            features.forEach(feature => {
-                feature.addEventListener('mouseenter', function() {
+            featureItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
                     const featureType = this.getAttribute('data-feature');
-                    
-                    // Morph the layout
-                    featuresGrid.classList.add('morphed');
-                    featuresCenter.classList.add('morphed');
-                    features.forEach(f => f.classList.add('morphed'));
                     
                     // Activate right panel
                     featuresRight.classList.add('active');
@@ -413,12 +400,7 @@
                     });
                 });
                 
-                feature.addEventListener('mouseleave', function() {
-                    // Reset the layout
-                    featuresGrid.classList.remove('morphed');
-                    featuresCenter.classList.remove('morphed');
-                    features.forEach(f => f.classList.remove('morphed'));
-                    
+                item.addEventListener('mouseleave', function() {
                     // Deactivate right panel
                     featuresRight.classList.remove('active');
                     
