@@ -106,13 +106,21 @@
                         <h3>Grammar</h3>
                         <ul>
                             <li><a href="#overview">Overview</a></li>
-                            <li><a href="#tokens">Tokens</a></li>
+                            <li><a href="#program-structure">Program Structure</a></li>
+                            <li><a href="#lexical-elements">Lexical Elements</a></li>
                             <li><a href="#expressions">Expressions</a></li>
                             <li><a href="#statements">Statements</a></li>
                             <li><a href="#functions">Functions</a></li>
                             <li><a href="#control-flow">Control Flow</a></li>
-                            <li><a href="#data-types">Data Types</a></li>
-                            <li><a href="#complete-bnf">Complete BNF</a></li>
+                            <li><a href="#data-structures">Data Structures</a></li>
+                            <li><a href="#built-in-functions">Built-in Functions</a></li>
+                            <li><a href="#comments">Comments</a></li>
+                            <li><a href="#complete-program">Complete Program</a></li>
+                            <li><a href="#language-features">Language Features</a></li>
+                            <li><a href="#grammar-notes">Grammar Notes</a></li>
+                            <li><a href="#future-extensions">Future Extensions</a></li>
+                            <li><a href="#examples">Grammar Examples</a></li>
+                            <li><a href="#conclusion">Conclusion</a></li>
                         </ul>
                     </nav>
                 </aside>
@@ -120,7 +128,7 @@
                 <div class="docs-content">
                     <h1>Myco Language BNF Grammar Specification</h1>
                     
-                    <section id="overview">
+                    <section id="overview" class="content-section">
                         <h2>Grammar Overview</h2>
                         <p><strong>Version</strong>: v1.4.0 - Float Support & Library Import System & File I/O</p>
                         <p><strong>Last Updated</strong>: December 2024</p>
@@ -129,7 +137,7 @@
                         <p>Myco's grammar is designed to be simple yet expressive, with clear precedence rules and intuitive syntax.</p>
                     </section>
 
-                    <section id="program-structure">
+                    <section id="program-structure" class="content-section">
                         <h2>Program Structure</h2>
                         <div class="code-block">
                             <div class="code-header">
@@ -144,7 +152,7 @@
                         </div>
                     </section>
 
-                    <section id="lexical-elements">
+                    <section id="lexical-elements" class="content-section">
                         <h2>Lexical Elements</h2>
                         
                         <h3>Identifiers</h3>
@@ -183,7 +191,7 @@
                         </div>
                     </section>
 
-                    <section id="expressions">
+                    <section id="expressions" class="content-section">
                         <h2>Expressions</h2>
                         
                         <h3>Primary Expressions</h3>
@@ -241,7 +249,7 @@
                         </div>
                     </section>
 
-                    <section id="statements">
+                    <section id="statements" class="content-section">
                         <h2>Statements</h2>
                         
                         <h3>Expression Statements</h3>
@@ -286,7 +294,7 @@
                         </div>
                     </section>
 
-                    <section id="functions">
+                    <section id="functions" class="content-section">
                         <h2>Functions</h2>
                         
                         <h3>Function Declaration</h3>
@@ -307,7 +315,7 @@
                         <p><strong>Note</strong>: Myco supports both traditional colon syntax (<code>: int:</code>) and modern arrow syntax (<code>-&gt; int:</code>) for return types.</p>
                     </section>
 
-                    <section id="control-flow">
+                    <section id="control-flow" class="content-section">
                         <h2>Control Flow</h2>
                         
                         <h3>If Statements</h3>
@@ -367,7 +375,7 @@
                         </div>
                     </section>
 
-                    <section id="data-structures">
+                    <section id="data-structures" class="content-section">
                         <h2>Data Structures</h2>
                         
                         <h3>Arrays</h3>
@@ -393,7 +401,7 @@
                         </div>
                     </section>
 
-                    <section id="built-in-functions">
+                    <section id="built-in-functions" class="content-section">
                         <h2>Built-in Functions</h2>
                         
                         <h3>Math Library (v1.3.0)</h3>
@@ -431,7 +439,7 @@
                         </div>
                     </section>
 
-                    <section id="comments">
+                    <section id="comments" class="content-section">
                         <h2>Comments</h2>
                         
                         <h3>Single-line Comments</h3>
@@ -451,7 +459,7 @@
                         </div>
                     </section>
 
-                    <section id="complete-program">
+                    <section id="complete-program" class="content-section">
                         <h2>Complete Program Example</h2>
                         <div class="code-block">
                             <div class="code-header">
@@ -468,7 +476,7 @@
                         </div>
                     </section>
 
-                    <section id="language-features">
+                    <section id="language-features" class="content-section">
                         <h2>Language Features Summary</h2>
                         
                         <h3>✅ Implemented Features</h3>
@@ -520,7 +528,7 @@
                         </ul>
                     </section>
 
-                    <section id="grammar-notes">
+                    <section id="grammar-notes" class="content-section">
                         <h2>Grammar Notes</h2>
                         <ol>
                             <li><strong>Whitespace</strong>: Myco is whitespace-insensitive except within string literals</li>
@@ -532,7 +540,7 @@
                         </ol>
                     </section>
 
-                    <section id="future-extensions">
+                    <section id="future-extensions" class="content-section">
                         <h2>Future Extensions</h2>
                         
                         <h3>Planned for v1.4.0+</h3>
@@ -544,7 +552,7 @@
                         </ul>
                     </section>
 
-                    <section id="examples">
+                    <section id="examples" class="content-section">
                         <h2>Grammar Examples</h2>
                         
                         <h3>Variable Declaration</h3>
@@ -615,7 +623,7 @@
                         </div>
                     </section>
 
-                    <section id="conclusion">
+                    <section id="conclusion" class="content-section">
                         <h2>Conclusion</h2>
                         <p>This BNF grammar specification provides the complete syntactic foundation for the Myco programming language. It defines all valid program structures, expressions, statements, and control flow constructs.</p>
                         <p>The grammar is designed to be:</p>
