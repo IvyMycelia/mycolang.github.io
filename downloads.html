@@ -96,112 +96,90 @@
 
     <main class="downloads-main">
         <div class="container">
-            <section class="downloads-hero">
-                <div class="hero-content">
-                    <h1>Download Myco</h1>
-                    <p class="hero-subtitle">Get the latest version of the Myco programming language</p>
-                    <p class="hero-description">
-                        Choose your preferred installation method. Download pre-built binaries, 
-                        build from source, or use package managers. Myco runs on all major platforms.
-                    </p>
-                </div>
-            </section>
+            <div class="page-header">
+                <h1>Downloads</h1>
+                <p class="page-description">
+                    Get the latest version of the Myco programming language. Choose your preferred installation method.
+                </p>
+            </div>
 
             <div class="downloads-content">
                 <!-- Current Release -->
-                <section class="download-section current-release">
-                    <div class="section-header">
-                        <h2>Current Release</h2>
-                        <div class="version-info">
-                            <span class="version-badge">v1.4.0</span>
-                            <span class="release-date">December 2024</span>
-                        </div>
+                <section class="content-section">
+                    <h2>Current Release</h2>
+                    <div class="version-info">
+                        <span class="version-badge">v1.4.0</span>
+                        <span class="release-date">December 2024</span>
                     </div>
                     
-                    <div class="release-highlights">
-                        <h3>What's New in v1.4.0</h3>
-                        <ul>
-                            <li>✨ Complete float support with enhanced math operations</li>
-                            <li>📚 Library import system for modular code</li>
-                            <li>📁 File I/O operations and system integration</li>
-                            <li>🔧 Enhanced error handling and debugging</li>
-                            <li>⚡ Performance improvements and optimizations</li>
-                        </ul>
-                    </div>
+                    <h3>What's New in v1.4.0</h3>
+                    <ul>
+                        <li>Complete float support with enhanced math operations</li>
+                        <li>Library import system for modular code</li>
+                        <li>File I/O operations and system integration</li>
+                        <li>Enhanced error handling and debugging</li>
+                        <li>Performance improvements and optimizations</li>
+                    </ul>
 
-                    <div class="download-options">
-                        <h3>Download Options</h3>
-                        <div class="download-grid">
-                            <div class="download-option">
-                                <div class="option-header">
-                                    <h4>Source Code</h4>
-                                    <span class="option-type">GitHub</span>
-                                </div>
-                                <p>Build from source for maximum customization and latest features</p>
-                                <a href="https://github.com/IvyMycelia/Myco" class="btn btn-primary" target="_blank">
-                                    View Source
-                                </a>
-                            </div>
-                            
-                            <div class="download-option">
-                                <div class="option-header">
-                                    <h4>Pre-built Binaries</h4>
-                                    <span class="option-type">Coming Soon</span>
-                                </div>
-                                <p>Ready-to-use executables for Windows, macOS, and Linux</p>
-                                <button class="btn btn-secondary" disabled>
-                                    Not Available Yet
-                                </button>
-                            </div>
-                            
-                            <div class="download-option">
-                                <div class="option-header">
-                                    <h4>Package Managers</h4>
-                                    <span class="option-type">Coming Soon</span>
-                                </div>
-                                <p>Install via Homebrew, apt, yum, or other package managers</p>
-                                <button class="btn btn-secondary" disabled>
-                                    Not Available Yet
-                                </button>
-                            </div>
+                    <h3>Download Options</h3>
+                    <div class="download-grid">
+                        <div class="download-option">
+                            <h4>Source Code</h4>
+                            <p>Build from source for maximum customization and latest features</p>
+                            <a href="https://github.com/IvyMycelia/Myco" class="btn btn-primary" target="_blank">
+                                View Source
+                            </a>
+                        </div>
+                        
+                        <div class="download-option">
+                            <h4>Pre-built Binaries</h4>
+                            <p>Ready-to-use executables for Windows, macOS, and Linux</p>
+                            <button class="btn btn-secondary" disabled>
+                                Not Available Yet
+                            </button>
+                        </div>
+                        
+                        <div class="download-option">
+                            <h4>Package Managers</h4>
+                            <p>Install via Homebrew, apt, yum, or other package managers</p>
+                            <button class="btn btn-secondary" disabled>
+                                Not Available Yet
+                            </button>
                         </div>
                     </div>
                 </section>
 
                 <!-- Build from Source -->
-                <section class="download-section build-instructions">
-                    <div class="section-header">
-                        <h2>Build from Source</h2>
-                        <p>Get the latest features by building Myco from source code</p>
-                    </div>
+                <section class="content-section">
+                    <h2>Build from Source</h2>
+                    <p>Get the latest features by building Myco from source code.</p>
                     
-                    <div class="build-steps">
-                        <h3>Prerequisites</h3>
-                        <div class="prerequisites">
-                            <div class="prereq-item">
-                                <h4>Required Tools</h4>
-                                <ul>
-                                    <li>GCC compiler (version 8.0 or later)</li>
-                                    <li>Make build system</li>
-                                    <li>Git (for cloning repository)</li>
-                                </ul>
-                            </div>
-                            <div class="prereq-item">
-                                <h4>Optional Tools</h4>
-                                <ul>
-                                    <li>CMake (alternative build system)</li>
-                                    <li>Clang compiler (alternative to GCC)</li>
-                                    <li>Valgrind (for memory debugging)</li>
-                                </ul>
-                            </div>
+                    <h3>Prerequisites</h3>
+                    <div class="prerequisites">
+                        <div class="prereq-item">
+                            <h4>Required Tools</h4>
+                            <ul>
+                                <li>GCC compiler (version 8.0 or later)</li>
+                                <li>Make build system</li>
+                                <li>Git (for cloning repository)</li>
+                            </ul>
                         </div>
+                        <div class="prereq-item">
+                            <h4>Optional Tools</h4>
+                            <ul>
+                                <li>CMake (alternative build system)</li>
+                                <li>Clang compiler (alternative to GCC)</li>
+                                <li>Valgrind (for memory debugging)</li>
+                            </ul>
+                        </div>
+                    </div>
 
-                        <h3>Build Steps</h3>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span>Clone and Build</span>
-                            </div>
-                            <pre><code><span class="comment"># Clone the repository</span>
+                    <h3>Build Steps</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>Clone and Build</span>
+                        </div>
+                        <pre><code><span class="comment"># Clone the repository</span>
 git clone https://github.com/IvyMycelia/Myco.git
 cd Myco
 
@@ -216,60 +194,57 @@ sudo make install
 
 <span class="comment"># Test the installation</span>
 ./myco --version</code></pre>
-                        </div>
+                    </div>
 
-                        <h3>Platform-Specific Notes</h3>
-                        <div class="platform-notes">
-                            <div class="platform">
-                                <h4>Linux</h4>
-                                <p>Most distributions should work out of the box. Ensure you have the development tools installed.</p>
-                                <div class="code-block">
-                                    <div class="code-header">
-                                        <span>Ubuntu/Debian</span>
-                                    </div>
-                                    <pre><code>sudo apt update
-sudo apt install build-essential git</code></pre>
+                    <h3>Platform-Specific Notes</h3>
+                    <div class="platform-notes">
+                        <div class="platform">
+                            <h4>Linux</h4>
+                            <p>Most distributions should work out of the box. Ensure you have the development tools installed.</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span>Ubuntu/Debian</span>
                                 </div>
+                                <pre><code>sudo apt update
+sudo apt install build-essential git</code></pre>
                             </div>
-                            
-                            <div class="platform">
-                                <h4>macOS</h4>
-                                <p>Install Xcode Command Line Tools or use Homebrew for development dependencies.</p>
-                                <div class="code-block">
-                                    <div class="code-header">
-                                        <span>macOS Setup</span>
-                                    </div>
-                                    <pre><code><span class="comment"># Install Xcode Command Line Tools</span>
+                        </div>
+                        
+                        <div class="platform">
+                            <h4>macOS</h4>
+                            <p>Install Xcode Command Line Tools or use Homebrew for development dependencies.</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span>macOS Setup</span>
+                                </div>
+                                <pre><code><span class="comment"># Install Xcode Command Line Tools</span>
 xcode-select --install
 
 <span class="comment"># Or use Homebrew</span>
 brew install gcc make</code></pre>
-                                </div>
                             </div>
-                            
-                            <div class="platform">
-                                <h4>Windows</h4>
-                                <p>Use WSL2, MinGW, or Visual Studio for building. WSL2 is recommended for the best experience.</p>
-                                <div class="code-block">
-                                    <div class="code-header">
-                                        <span>WSL2 Setup</span>
-                                    </div>
-                                    <pre><code><span class="comment"># Install WSL2 and Ubuntu</span>
+                        </div>
+                        
+                        <div class="platform">
+                            <h4>Windows</h4>
+                            <p>Use WSL2, MinGW, or Visual Studio for building. WSL2 is recommended for the best experience.</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span>WSL2 Setup</span>
+                                </div>
+                                <pre><code><span class="comment"># Install WSL2 and Ubuntu</span>
 wsl --install -d Ubuntu
 
 <span class="comment"># Then follow Linux instructions</span></code></pre>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
                 <!-- Previous Releases -->
-                <section class="download-section previous-releases">
-                    <div class="section-header">
-                        <h2>Previous Releases</h2>
-                        <p>Access older versions and release notes</p>
-                    </div>
+                <section class="content-section">
+                    <h2>Previous Releases</h2>
+                    <p>Access older versions and release notes.</p>
                     
                     <div class="releases-list">
                         <div class="release-item">
@@ -308,11 +283,9 @@ wsl --install -d Ubuntu
                 </section>
 
                 <!-- Support & Help -->
-                <section class="download-section support">
-                    <div class="section-header">
-                        <h2>Need Help?</h2>
-                        <p>Get support with installation and troubleshooting</p>
-                    </div>
+                <section class="content-section">
+                    <h2>Need Help?</h2>
+                    <p>Get support with installation and troubleshooting.</p>
                     
                     <div class="support-options">
                         <div class="support-option">
