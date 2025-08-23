@@ -851,25 +851,50 @@ body .logo:hover .logo-img {
     padding-bottom: 0.75rem;
 }
 
-.feature-details ul {
+.feature-details .content-section {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.feature-details .content-section:last-child {
+    margin-bottom: 0;
+}
+
+.feature-details .content-section h5 {
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.feature-details .content-section p {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.feature-details .content-section ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.feature-details li {
-    margin-bottom: 1rem;
-    padding: 0;
-    text-align: left;
-    background: none;
-    border-radius: 0;
-    border: none;
-    font-size: 1rem;
+.feature-details .content-section li {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: var(--bg-secondary);
+    border-radius: 6px;
+    border-left: 3px solid var(--accent-secondary);
+    font-size: 0.9rem;
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
-.feature-details li:last-child {
+.feature-details .content-section li:last-child {
     margin-bottom: 0;
 }
 
