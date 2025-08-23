@@ -595,7 +595,7 @@ function initializeCommunityPage() {
     if (filterSelect) {
         filterSelect.addEventListener('change', function() {
             const selectedCategory = this.value;
-            filterPosts(selectedCategory);
+            filterSections(selectedCategory);
         });
     }
     
@@ -611,27 +611,55 @@ function initializeCommunityPage() {
             // Add active class to clicked link
             this.classList.add('active');
             
-            // Filter posts by category
+            // Filter sections by category
             const category = this.getAttribute('href').substring(1);
-            filterPosts(category);
+            filterSections(category);
         });
     });
     
-    // Post hover effects
-    const posts = document.querySelectorAll('.post');
-    posts.forEach(post => {
-        post.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-4px) scale(1.02)';
+    // Section hover effects and animations
+    const sections = document.querySelectorAll('.content-section');
+    sections.forEach(section => {
+        // Add intersection observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        observer.observe(section);
+        
+        // Enhanced hover effects
+        section.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-6px) scale(1.02)';
+            this.style.boxShadow = '0 16px 40px var(--shadow-medium)';
         });
         
-        post.addEventListener('mouseleave', function() {
+        section.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = '0 12px 30px var(--shadow-medium)';
+        });
+    });
+    
+    // Empty state hover effects
+    const emptyStates = document.querySelectorAll('.empty-state');
+    emptyStates.forEach(emptyState => {
+        emptyState.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.03)';
+            this.style.borderColor = 'var(--accent-primary)';
+        });
+        
+        emptyState.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+            this.style.borderColor = 'var(--border-primary)';
         });
     });
 }
 
-function filterPosts(category) {
-    const posts = document.querySelectorAll('.post');
+function filterSections(category) {
+    const sections = document.querySelectorAll('.content-section');
     const filterSelect = document.querySelector('.filter-select');
     
     // Update filter select if called from navigation
@@ -639,43 +667,35 @@ function filterPosts(category) {
         filterSelect.value = category;
     }
     
-    posts.forEach(post => {
-        const postCategory = post.querySelector('.post-category').textContent.toLowerCase();
-        const isFeatured = post.classList.contains('post-featured');
+    sections.forEach(section => {
+        const sectionId = section.getAttribute('id');
         
         if (category === 'all' || category === '') {
-            post.style.display = 'block';
-        } else if (category === 'tutorials' && (postCategory === 'tutorial' || postCategory === 'featured')) {
-            post.style.display = 'block';
-        } else if (category === 'tips' && postCategory === 'tips') {
-            post.style.display = 'block';
-        } else if (category === 'projects' && postCategory === 'project') {
-            post.style.display = 'block';
-        } else if (category === 'news' && postCategory === 'news') {
-            post.style.display = 'block';
-        } else if (category === 'showcase' && postCategory === 'showcase') {
-            post.style.display = 'block';
+            section.style.display = 'block';
+            section.style.opacity = '1';
+            section.style.transform = 'translateY(0)';
+        } else if (category === sectionId) {
+            section.style.display = 'block';
+            section.style.opacity = '1';
+            section.style.transform = 'translateY(0)';
         } else {
-            post.style.display = 'none';
-        }
-        
-        // Always show featured posts
-        if (isFeatured) {
-            post.style.display = 'block';
+            section.style.display = 'none';
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
         }
     });
     
-    // Add smooth animation to visible posts
-    const visiblePosts = Array.from(posts).filter(post => post.style.display !== 'none');
-    visiblePosts.forEach((post, index) => {
-        post.style.opacity = '0';
-        post.style.transform = 'translateY(20px)';
+    // Add smooth animation to visible sections
+    const visibleSections = Array.from(sections).filter(section => section.style.display !== 'none');
+    visibleSections.forEach((section, index) => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(20px)';
         
         setTimeout(() => {
-            post.style.transition = 'all 0.5s ease';
-            post.style.opacity = '1';
-            post.style.transform = 'translateY(0)';
-        }, index * 100);
+            section.style.transition = 'all 0.6s ease';
+            section.style.opacity = '1';
+            section.style.transform = 'translateY(0)';
+        }, index * 150);
     });
 }
 

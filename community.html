@@ -125,166 +125,99 @@
 
                 <div class="community-posts">
                     <div class="posts-header">
-                        <h2>Latest Community Posts</h2>
+                        <h2>Community Content</h2>
                         <div class="posts-filter">
                             <select class="filter-select">
-                                <option value="all">All Posts</option>
+                                <option value="all">All Content</option>
                                 <option value="tutorials">Tutorials</option>
                                 <option value="tips">Tips & Tricks</option>
                                 <option value="projects">Projects</option>
-                                <option value="news">News</option>
+                                <option value="news">News & Updates</option>
+                                <option value="showcase">Showcase</option>
                             </select>
                         </div>
                     </div>
 
-                    <div class="posts-grid">
-                        <!-- Featured Post -->
-                        <article class="post post-featured">
-                            <div class="post-meta">
-                                <span class="post-category">Featured</span>
-                                <span class="post-date">December 2024</span>
+                    <div class="community-sections">
+                        <!-- Tutorials Section -->
+                        <section class="content-section" id="tutorials">
+                            <div class="section-header">
+                                <h3>📚 Tutorials</h3>
+                                <p>Step-by-step guides to help you learn Myco programming</p>
                             </div>
-                            <h3 class="post-title">
-                                <a href="https://github.com/IvyMycelia/Myco/discussions" target="_blank">
-                                    Getting Started with Myco: A Beginner's Guide
+                            <div class="empty-state">
+                                <div class="empty-icon">📖</div>
+                                <h4>No Tutorials Yet</h4>
+                                <p>Be the first to share a tutorial with the community!</p>
+                                <a href="https://github.com/IvyMycelia/Myco/discussions" class="btn btn-outline" target="_blank">
+                                    Submit Tutorial
                                 </a>
-                            </h3>
-                            <p class="post-excerpt">
-                                Learn the basics of Myco programming language with this comprehensive beginner's guide. 
-                                From installation to your first program, we'll cover everything you need to know.
-                            </p>
-                            <div class="post-author">
-                                <span class="author-name">Ivy Mycelia</span>
-                                <span class="author-title">Creator of Myco</span>
                             </div>
-                            <div class="post-tags">
-                                <span class="tag">tutorial</span>
-                                <span class="tag">beginner</span>
-                                <span class="tag">getting-started</span>
-                            </div>
-                        </article>
+                        </section>
 
-                        <!-- Regular Posts -->
-                        <article class="post">
-                            <div class="post-meta">
-                                <span class="post-category">Tutorial</span>
-                                <span class="post-date">December 2024</span>
+                        <!-- Tips Section -->
+                        <section class="content-section" id="tips">
+                            <div class="section-header">
+                                <h3>💡 Tips & Tricks</h3>
+                                <p>Helpful advice and best practices from experienced developers</p>
                             </div>
-                            <h3 class="post-title">
-                                <a href="https://github.com/IvyMycelia/Myco/discussions" target="_blank">
-                                    Building a Simple Calculator in Myco
+                            <div class="empty-state">
+                                <div class="empty-icon">💭</div>
+                                <h4>No Tips Yet</h4>
+                                <p>Share your Myco programming wisdom with others!</p>
+                                <a href="https://github.com/IvyMycelia/Myco/discussions" class="btn btn-outline" target="_blank">
+                                    Share Tip
                                 </a>
-                            </h3>
-                            <p class="post-excerpt">
-                                Step-by-step tutorial on creating a basic calculator using Myco's math functions 
-                                and control flow structures.
-                            </p>
-                            <div class="post-author">
-                                <span class="author-name">Community Member</span>
                             </div>
-                            <div class="post-tags">
-                                <span class="tag">tutorial</span>
-                                <span class="tag">math</span>
-                                <span class="tag">calculator</span>
-                            </div>
-                        </article>
+                        </section>
 
-                        <article class="post">
-                            <div class="post-meta">
-                                <span class="post-category">Tips</span>
-                                <span class="post-date">December 2024</span>
+                        <!-- Projects Section -->
+                        <section class="content-section" id="projects">
+                            <div class="section-header">
+                                <h3>🚀 Projects</h3>
+                                <p>Showcase your Myco applications and creations</p>
                             </div>
-                            <h3 class="post-title">
-                                <a href="https://github.com/IvyMycelia/Myco/discussions" target="_blank">
-                                    Best Practices for Myco Error Handling
+                            <div class="empty-state">
+                                <div class="empty-icon">🎯</div>
+                                <h4>No Projects Yet</h4>
+                                <p>Display your Myco projects for the community to see!</p>
+                                <a href="https://github.com/IvyMycelia/Myco/discussions" class="btn btn-outline" target="_blank">
+                                    Showcase Project
                                 </a>
-                            </h3>
-                            <p class="post-excerpt">
-                                Learn how to effectively use try-catch blocks and handle errors gracefully 
-                                in your Myco applications.
-                            </p>
-                            <div class="post-author">
-                                <span class="author-name">Community Member</span>
                             </div>
-                            <div class="post-tags">
-                                <span class="tag">tips</span>
-                                <span class="tag">error-handling</span>
-                                <span class="tag">best-practices</span>
-                            </div>
-                        </article>
+                        </section>
 
-                        <article class="post">
-                            <div class="post-meta">
-                                <span class="post-category">Project</span>
-                                <span class="post-date">December 2024</span>
+                        <!-- News Section -->
+                        <section class="content-section" id="news">
+                            <div class="section-header">
+                                <h3>📰 News & Updates</h3>
+                                <p>Latest developments and announcements about Myco</p>
                             </div>
-                            <h3 class="post-title">
-                                <a href="https://github.com/IvyMycelia/Myco/discussions" target="_blank">
-                                    Creating a File Management System with Myco
+                            <div class="empty-state">
+                                <div class="empty-icon">📢</div>
+                                <h4>No News Yet</h4>
+                                <p>Stay tuned for updates about the Myco language!</p>
+                                <a href="https://github.com/IvyMycelia/Myco" class="btn btn-outline" target="_blank">
+                                    View Repository
                                 </a>
-                            </h3>
-                            <p class="post-excerpt">
-                                Explore how to build a simple file management system using Myco's 
-                                object-oriented features and data structures.
-                            </p>
-                            <div class="post-author">
-                                <span class="author-name">Community Member</span>
                             </div>
-                            <div class="post-tags">
-                                <span class="tag">project</span>
-                                <span class="tag">file-system</span>
-                                <span class="tag">objects</span>
-                            </div>
-                        </article>
+                        </section>
 
-                        <article class="post">
-                            <div class="post-meta">
-                                <span class="post-category">News</span>
-                                <span class="post-date">December 2024</span>
+                        <!-- Showcase Section -->
+                        <section class="content-section" id="showcase">
+                            <div class="section-header">
+                                <h3>⭐ Showcase</h3>
+                                <p>Highlighting exceptional Myco programming achievements</p>
                             </div>
-                            <h3 class="post-title">
-                                <a href="https://github.com/IvyMycelia/Myco/discussions" target="_blank">
-                                    Myco v1.4.0 Released: Float Support & Library Import System
+                            <div class="empty-state">
+                                <div class="empty-icon">🏆</div>
+                                <h4>No Showcase Items Yet</h4>
+                                <p>Your amazing Myco work could be featured here!</p>
+                                <a href="https://github.com/IvyMycelia/Myco/discussions" class="btn btn-outline" target="_blank">
+                                    Submit for Showcase
                                 </a>
-                            </h3>
-                            <p class="post-excerpt">
-                                Exciting new features in Myco 1.4.0 including comprehensive float support, 
-                                library import system, and enhanced math functions.
-                            </p>
-                            <div class="post-author">
-                                <span class="author-name">Ivy Mycelia</span>
-                                <span class="author-title">Creator of Myco</span>
                             </div>
-                            <div class="post-tags">
-                                <span class="tag">news</span>
-                                <span class="tag">release</span>
-                                <span class="tag">v1.4.0</span>
-                            </div>
-                        </article>
-
-                        <article class="post">
-                            <div class="post-meta">
-                                <span class="post-category">Showcase</span>
-                                <span class="post-date">December 2024</span>
-                            </div>
-                            <h3 class="post-title">
-                                <a href="https://github.com/IvyMycelia/Myco/discussions" target="_blank">
-                                    Community Project Showcase: Myco Web Scraper
-                                </a>
-                            </h3>
-                            <p class="post-excerpt">
-                                A community member shares their web scraping project built entirely in Myco, 
-                                demonstrating the language's versatility and power.
-                            </p>
-                            <div class="post-author">
-                                <span class="author-name">Community Member</span>
-                            </div>
-                            <div class="post-tags">
-                                <span class="tag">showcase</span>
-                                <span class="tag">web-scraping</span>
-                                <span class="tag">community</span>
-                            </div>
-                        </article>
+                        </section>
                     </div>
 
                     <div class="community-cta">
