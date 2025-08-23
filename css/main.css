@@ -101,6 +101,34 @@ body {
     overflow-x: hidden;
 }
 
+/* Smooth theme transitions */
+html, body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Smooth transitions for all elements when themes change */
+html.light-theme *,
+html.trans-theme *,
+body.light-theme *,
+body.trans-theme * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Ensure smooth transitions for specific elements */
+.header,
+.nav,
+.nav-menu a,
+.btn,
+.feature,
+.example,
+.step,
+.docs-sidebar,
+.docs-content,
+.code-block,
+.footer {
+    transition: all 0.3s ease;
+}
+
 .container {
     max-width: 1400px;
     margin: 0 auto;
@@ -1540,10 +1568,6 @@ body .logo:hover .logo-img {
     }
 }
 
-
-    font-size: 1.4rem;
-}
-
 .docs-content p {
     color: var(--text-secondary);
     line-height: 1.6;
@@ -1587,11 +1611,6 @@ body .logo:hover .logo-img {
     border-color: var(--accent-primary);
     box-shadow: 0 8px 25px var(--shadow-medium);
     transform: translateY(-2px);
-    transition: all var(--transition-normal);
-}
-
-.docs-content .code-block {
-    transition: all var(--transition-normal);
 }
 
 .docs-content .code-block.foldable {
