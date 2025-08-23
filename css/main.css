@@ -1095,23 +1095,37 @@ a:hover {
     align-items: start;
     max-width: 1200px;
     margin: 0 auto;
+    width: 100%;
+    position: relative;
+}
+
+/* Ensure grid items are properly sized */
+.community-sidebar {
+    grid-column: 1;
+    width: 280px;
+    min-width: 280px;
+}
+
+.community-content {
+    grid-column: 2;
+    width: 100%;
+    min-width: 0;
 }
 
 .community-content {
     width: 100%;
+    min-width: 0; /* Prevents grid overflow */
 }
 
 .community-sidebar {
     position: sticky;
     top: 2rem;
-}
-
-.community-nav h3 {
-    color: var(--text-primary);
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-    border-bottom: 2px solid var(--accent-primary);
-    padding-bottom: 0.5rem;
+    background: var(--bg-primary);
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid var(--border-primary);
+    box-shadow: 0 4px 16px var(--shadow-light);
+    height: fit-content;
 }
 
 .community-nav ul {
@@ -1147,16 +1161,7 @@ a:hover {
     margin-top: 1rem;
 }
 
-/* Clean sidebar styling */
-.community-sidebar {
-    background: var(--bg-primary);
-    border-radius: 12px;
-    padding: 2rem;
-    border: 1px solid var(--border-primary);
-    position: sticky;
-    top: 2rem;
-    box-shadow: 0 4px 16px var(--shadow-light);
-}
+/* Sidebar navigation styling */
 
 .community-nav h3 {
     position: relative;
@@ -1537,6 +1542,27 @@ a:hover {
 }
 
 /* Responsive Community Layout */
+@media (min-width: 1025px) {
+    .community-layout {
+        grid-template-columns: 280px 1fr;
+        gap: 3rem;
+    }
+    
+    .community-sidebar {
+        grid-column: 1;
+        position: sticky;
+        top: 2rem;
+        width: 280px;
+        min-width: 280px;
+    }
+    
+    .community-content {
+        grid-column: 2;
+        width: 100%;
+        min-width: 0;
+    }
+}
+
 @media (max-width: 1024px) {
     .community-layout {
         grid-template-columns: 1fr;
@@ -1544,12 +1570,17 @@ a:hover {
     }
     
     .community-sidebar {
+        grid-column: 1;
         position: static;
         order: 2;
+        width: 100%;
+        min-width: 100%;
     }
     
     .community-content {
+        grid-column: 1;
         order: 1;
+        width: 100%;
     }
     
     .content-header {
