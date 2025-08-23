@@ -1,7 +1,7 @@
 // Enhanced JavaScript for Myco Language Website
 document.addEventListener('DOMContentLoaded', function() {
     // Theme management
-    const themes = ['light', 'dark'];
+    const themes = ['dark', 'light'];
     let currentThemeIndex = 0;
     
     // Secret trans theme activation
@@ -183,6 +183,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const savedTheme = localStorage.getItem('myco-theme');
         if (savedTheme && themes.includes(savedTheme)) {
             setTheme(savedTheme);
+        } else {
+            // Default to dark theme
+            setTheme('dark');
         }
         updateThemeIcon();
     }
@@ -195,14 +198,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function setTheme(theme) {
         // Remove all theme classes
-        document.body.classList.remove('dark-theme', 'trans-theme');
+        document.body.classList.remove('light-theme', 'trans-theme');
         
         // Add new theme class
-        if (theme === 'dark') {
-            document.body.classList.add('dark-theme');
+        if (theme === 'light') {
+            document.body.classList.add('light-theme');
         } else if (theme === 'trans') {
             document.body.classList.add('trans-theme');
         }
+        // dark theme is default (no class needed)
         
         // Save theme preference
         localStorage.setItem('myco-theme', theme);
@@ -235,18 +239,19 @@ document.addEventListener('DOMContentLoaded', function() {
         const themeIcon = themeToggle.querySelector('.theme-icon');
         const themeText = themeToggle.querySelector('.theme-text');
         
-        if (document.body.classList.contains('dark-theme')) {
-            themeIcon.textContent = '☀';
-            themeText.textContent = 'Light';
-            themeToggle.title = 'Switch to Light theme (Ctrl+T)';
+        if (document.body.classList.contains('light-theme')) {
+            themeIcon.textContent = '☾';
+            themeText.textContent = 'Dark';
+            themeToggle.title = 'Switch to Dark theme (Ctrl+T)';
         } else if (document.body.classList.contains('trans-theme')) {
             themeIcon.textContent = '★';
             themeText.textContent = 'Secret';
             themeToggle.title = 'Secret Trans theme active!';
         } else {
-            themeIcon.textContent = '☾';
-            themeText.textContent = 'Dark';
-            themeToggle.title = 'Switch to Dark theme (Ctrl+T)';
+            // Dark theme (default)
+            themeIcon.textContent = '☀';
+            themeText.textContent = 'Light';
+            themeToggle.title = 'Switch to Light theme (Ctrl+T)';
         }
     }
     
