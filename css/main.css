@@ -174,11 +174,17 @@ a:hover {
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--text-primary);
+    text-decoration: none;
     position: relative;
     overflow: hidden;
+    flex-shrink: 0;
+    transition: all var(--transition-normal);
 }
 
 .logo::before {
@@ -190,6 +196,50 @@ a:hover {
     height: 100%;
     background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
     transition: left var(--transition-slow);
+}
+
+.logo-img {
+    height: 2rem;
+    width: auto;
+    max-width: 100%;
+    transition: all var(--transition-normal);
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.logo:hover .logo-img {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .logo {
+        gap: 0.4rem;
+    }
+    
+    .logo-img {
+        height: 1.5rem;
+    }
+    
+    .logo-text {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        gap: 0.3rem;
+    }
+    
+    .logo-img {
+        height: 1.25rem;
+    }
+    
+    .logo-text {
+        font-size: 1.1rem;
+    }
 }
 
 .logo:hover::before {
