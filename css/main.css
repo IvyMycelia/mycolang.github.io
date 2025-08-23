@@ -1393,38 +1393,240 @@ a:hover {
 }
 
 /* Downloads Page Specific Styles */
-.download-grid {
+.release-info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--bg-primary);
+    border-radius: 8px;
+    border: 1px solid var(--border-primary);
+}
+
+.version-badge {
+    background: var(--accent-primary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    min-width: 80px;
+    text-align: center;
+}
+
+.release-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.release-date {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.release-status {
+    background: var(--accent-secondary);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    align-self: flex-start;
+}
+
+.release-features {
+    margin-bottom: 2rem;
+}
+
+.release-features h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.release-features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.release-features li {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.release-features li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 6px;
+    height: 6px;
+    background: var(--accent-primary);
+    border-radius: 50%;
+}
+
+.download-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.install-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.install-method {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all var(--transition-fast);
+}
+
+.install-method:hover {
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px var(--shadow-medium);
+}
+
+.method-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.method-header h3 {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.method-status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.method-status.available {
+    background: var(--accent-primary);
+    color: white;
+}
+
+.method-status.coming-soon {
+    background: var(--text-muted);
+    color: white;
+}
+
+.install-method p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.method-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.quick-start {
+    margin-top: 1.5rem;
+}
+
+.quick-start h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.platform-setup {
+    margin-top: 2rem;
+}
+
+.platform-setup h3 {
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.platform-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.platform h4 {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.platform p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.code-block.small {
+    margin-top: 1rem;
+}
+
+.code-block.small pre {
+    font-size: 0.9rem;
+    padding: 1rem;
+}
+
+.releases-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
     margin-top: 1.5rem;
 }
 
-.download-option {
+.release-item {
     background: var(--bg-primary);
     border: 1px solid var(--border-primary);
     border-radius: 8px;
     padding: 1.5rem;
     transition: all var(--transition-fast);
-    text-align: center;
 }
 
-.download-option:hover {
+.release-item:hover {
     border-color: var(--accent-primary);
     transform: translateY(-2px);
     box-shadow: 0 8px 20px var(--shadow-medium);
 }
 
-.download-option h4 {
-    color: var(--text-primary);
+.release-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 1rem;
+}
+
+.release-header h3 {
+    color: var(--text-primary);
+    margin: 0;
     font-size: 1.2rem;
 }
 
-.download-option p {
+.release-item p {
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
     line-height: 1.6;
+}
+
+.btn.small {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
 }
 
 .prerequisites {
