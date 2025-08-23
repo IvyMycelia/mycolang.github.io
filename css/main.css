@@ -743,13 +743,6 @@ body .logo:hover .logo-img {
     border: 1px solid var(--border-primary);
     border-radius: 8px;
     padding: 1.5rem;
-    transition: all var(--transition-normal);
-}
-
-.features section:hover {
-    border-color: var(--accent-primary);
-    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.15);
-    transform: translateY(-2px);
 }
 
 .features section h3 {
