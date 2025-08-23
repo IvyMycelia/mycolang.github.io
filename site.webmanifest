@@ -1,7 +1,15 @@
 {
     "name": "Myco Programming Language",
     "short_name": "Myco",
-    "description": "High-level, expressive programming language created by Ivy Mycelia",
+    "description": "A lightweight scripting language inspired by Lua and C, designed for simplicity and readability",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0a0a0a",
+    "theme_color": "#8b5cf6",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "lang": "en",
+    "categories": ["developer", "education", "productivity"],
     "icons": [
         {
             "src": "Myco_Purple.ico",
@@ -19,8 +27,50 @@
             "type": "image/x-icon"
         }
     ],
-    "theme_color": "#10b981",
-    "background_color": "#ffffff",
-    "display": "standalone",
-    "start_url": "/"
+    "screenshots": [
+        {
+            "src": "myco-screenshot.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "form_factor": "wide"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Documentation",
+            "short_name": "Docs",
+            "description": "View Myco language documentation",
+            "url": "/docs.html",
+            "icons": [
+                {
+                    "src": "Myco_Transparent.ico",
+                    "sizes": "32x32"
+                }
+            ]
+        },
+        {
+            "name": "Grammar",
+            "short_name": "Grammar",
+            "description": "View Myco language grammar",
+            "url": "/grammar.html",
+            "icons": [
+                {
+                    "src": "Myco_Transparent.ico",
+                    "sizes": "32x32"
+                }
+            ]
+        },
+        {
+            "name": "Downloads",
+            "short_name": "Download",
+            "description": "Download Myco programming language",
+            "url": "/downloads.html",
+            "icons": [
+                {
+                    "src": "Myco_Transparent.ico",
+                    "sizes": "32x32"
+                }
+            ]
+        }
+    ]
 }
