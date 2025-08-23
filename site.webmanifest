@@ -9,14 +9,14 @@
             "type": "image/x-icon"
         },
         {
-            "src": "Myco_Transparent.png",
-            "sizes": "32x32",
-            "type": "image/png"
+            "src": "Myco_Transparent.ico",
+            "sizes": "16x16 32x32 48x48",
+            "type": "image/x-icon"
         },
         {
-            "src": "Myco_Purple_Background.png",
-            "sizes": "180x180",
-            "type": "image/png"
+            "src": "Myco_Purple.ico",
+            "sizes": "16x16 32x32 48x48",
+            "type": "image/x-icon"
         }
     ],
     "theme_color": "#10b981",
