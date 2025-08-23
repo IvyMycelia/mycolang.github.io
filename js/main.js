@@ -624,7 +624,7 @@ function initializeCommunityPage() {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
+                    entry.target.classList.add('revealed');
                 }
             });
         }, { threshold: 0.1 });
@@ -633,13 +633,13 @@ function initializeCommunityPage() {
         
         // Enhanced hover effects
         section.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-6px) scale(1.02)';
-            this.style.boxShadow = '0 16px 40px var(--shadow-medium)';
+            this.style.transform = 'translateY(-4px)';
+            this.style.boxShadow = '0 12px 30px var(--shadow-medium)';
         });
         
         section.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-            this.style.boxShadow = '0 12px 30px var(--shadow-medium)';
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '0 4px 16px var(--shadow-light)';
         });
     });
     
