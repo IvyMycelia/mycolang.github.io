@@ -1,155 +1,128 @@
-# 🍄 Myco Language Website
+# Myco Programming Language Website
 
-A professional, comprehensive website for the Myco programming language, built with modern web technologies and featuring beautiful animations, responsive design, and comprehensive documentation.
+A professional, responsive website for the Myco programming language, featuring modern design, dark themes, and comprehensive documentation.
 
 ## 🌟 Features
 
-- **Modern Design**: Professional layout similar to python.org with forest/mushroom aesthetic
-- **Responsive Layout**: Mobile-first design that works on all devices
-- **Interactive Animations**: Smooth scroll effects, hover animations, and entrance animations
-- **Comprehensive Documentation**: Complete language reference with examples
-- **BNF Grammar**: Formal language specification and syntax rules
-- **Code Examples**: Interactive code blocks with syntax highlighting and copy functionality
-- **Mobile Navigation**: Hamburger menu for mobile devices
-- **Performance Optimized**: Efficient CSS and JavaScript with smooth animations
+- **Responsive Design**: Works perfectly on all devices
+- **Multiple Themes**: Light, Dark, and hidden Trans theme
+- **Professional Layout**: Clean, organized structure
+- **SEO Optimized**: Meta tags, structured data, and sitemap
+- **Fast Loading**: Optimized images and CSS
+- **Accessibility**: Proper semantic HTML and ARIA labels
 
-## 📁 File Structure
+## 🏗️ Project Structure
 
 ```
 mycolang.org/
-├── index.html          # Main homepage
-├── docs.html           # Documentation page
-├── grammar.html        # BNF grammar and syntax rules
+├── index.html              # Homepage
+├── docs.html              # Documentation page
+├── grammar.html           # BNF Grammar specification
+├── downloads.html         # Downloads and installation
 ├── css/
-│   └── main.css       # Main stylesheet with all components
+│   └── main.css          # Main stylesheet
 ├── js/
-│   └── main.js        # Main JavaScript functionality
-├── README.md           # This file
-└── CNAME              # Custom domain configuration
+│   └── main.js           # JavaScript functionality
+├── images/
+│   ├── Myco_Transparent.png
+│   └── Myco_Purple_Background.png
+├── favicon.ico            # Main favicon
+├── favicon-16x16.png     # Small favicon
+├── favicon-32x32.png     # Standard favicon
+├── apple-touch-icon.png  # iOS icon
+├── site.webmanifest      # PWA manifest
+└── sitemap.xml           # SEO sitemap
 ```
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- A modern web browser
-- Basic knowledge of HTML, CSS, and JavaScript (for customization)
+- Modern web browser
+- Local web server (for development)
 
 ### Installation
-1. Clone or download the website files
-2. Open `index.html` in your web browser
-3. The website will work immediately with all features
+1. Clone the repository
+2. Open `index.html` in your browser
+3. Or serve locally with a web server
 
 ### Local Development
-For development and testing:
-1. Use a local web server (e.g., Python's `http.server` or Node.js `live-server`)
-2. Make changes to HTML, CSS, or JavaScript files
-3. Refresh your browser to see changes
+```bash
+# Using Python
+python -m http.server 8000
 
-## 🎨 Design System
+# Using Node.js
+npx serve .
 
-### Color Palette
-- **Primary**: `#8B5A2B` (Forest Brown)
-- **Secondary**: `#228B22` (Forest Green)
-- **Accent**: `#FF6B35` (Mushroom Orange)
-- **Dark**: `#2C1810` (Deep Brown)
-- **Light**: `#F5F5DC` (Cream)
+# Using PHP
+php -S localhost:8000
+```
 
-### Typography
-- **Body**: Inter (Google Fonts)
-- **Code**: JetBrains Mono (Google Fonts)
+## 🎨 Customization
 
-### Components
-- **Cards**: Feature cards, documentation cards, step cards
-- **Buttons**: Primary, secondary, and outline button styles
-- **Code Blocks**: Syntax-highlighted code containers with copy functionality
-- **Navigation**: Fixed header with smooth scrolling and mobile menu
+### Themes
+- **Light Theme**: Default professional appearance
+- **Dark Theme**: Modern dark mode
+- **Trans Theme**: Hidden theme (type "I V Y")
 
-## 🔧 Customization
+### Colors
+All colors are defined in CSS variables in `css/main.css`:
+```css
+:root {
+    --bg-primary: #ffffff;
+    --accent-primary: #10b981;
+    --text-primary: #1f2937;
+    /* ... more variables */
+}
+```
 
-### Adding New Pages
-1. Create a new HTML file (e.g., `tutorial.html`)
-2. Copy the header and footer structure from existing pages
-3. Add your content in the main section
-4. Update navigation links in all pages
-
-### Modifying Styles
-- Edit `css/main.css` to change colors, fonts, or layout
-- CSS variables are defined in `:root` for easy customization
-- Responsive breakpoints are at 768px and 480px
-
-### Adding JavaScript Features
-- Edit `js/main.js` to add new functionality
-- The `MycoWebsite` class provides a structured approach
-- All event listeners and animations are organized by feature
+### Logo
+Replace the logo images in the `images/` directory:
+- `Myco_Transparent.png` - Header logo
+- `Myco_Purple_Background.png` - Hero section logo
 
 ## 📱 Responsive Design
 
-The website is fully responsive with three main breakpoints:
-- **Desktop**: 1200px+ (full layout)
-- **Tablet**: 768px - 1199px (adjusted grid layouts)
-- **Mobile**: <768px (stacked layout, mobile menu)
+The website automatically adapts to different screen sizes:
+- **Desktop**: Full layout with sidebar navigation
+- **Tablet**: Adjusted spacing and sizing
+- **Mobile**: Single-column layout, optimized touch targets
 
-## 🎭 Animations
+## 🔧 Technical Details
 
-### Entrance Animations
-- `fade-in`: Simple fade-in effect
-- `slide-in`: Slide up from bottom
-- `scale-in`: Scale up from 90%
-- `scroll-reveal`: Reveal elements as they scroll into view
+### CSS Features
+- CSS Grid and Flexbox layouts
+- CSS Variables for theming
+- Keyframe animations
+- Media queries for responsiveness
 
-### Interactive Animations
-- Hover effects on cards and buttons
-- Smooth transitions for all interactive elements
-- Parallax scrolling effects
-- Typing animations for hero text
+### JavaScript Features
+- Theme management
+- Mobile menu toggle
+- Scroll animations
+- Code copy functionality
+- Secret theme activation
 
-## 🔍 Browser Support
+### SEO Features
+- Meta tags and descriptions
+- Open Graph and Twitter Cards
+- Structured data (JSON-LD)
+- XML sitemap
+- Canonical URLs
 
-- **Modern Browsers**: Chrome, Firefox, Safari, Edge (latest versions)
-- **Features Used**: CSS Grid, Flexbox, CSS Variables, ES6+ JavaScript
-- **Fallbacks**: Graceful degradation for older browsers
+## 🌐 Browser Support
 
-## 📚 Content Management
+- Chrome 90+
+- Firefox 88+
+- Safari 14+
+- Edge 90+
 
-### Adding Features
-1. Edit `index.html` to add new feature cards
-2. Update the features grid in the CSS if needed
-3. Add corresponding documentation in `docs.html`
+## 📄 License
 
-### Updating Code Examples
-1. Edit the code blocks in `index.html` and `docs.html`
-2. Ensure proper syntax highlighting classes are applied
-3. Test copy functionality for new code blocks
+This project is part of the Myco programming language ecosystem.
 
-### Documentation Updates
-1. Edit `docs.html` to add new sections
-2. Update the sidebar navigation
-3. Add corresponding grammar rules in `grammar.html` if needed
+## 👨‍💻 Author
 
-## 🚀 Deployment
-
-### GitHub Pages
-1. Push your website files to a GitHub repository
-2. Enable GitHub Pages in repository settings
-3. Set custom domain if desired (update CNAME file)
-
-### Other Hosting
-- Upload files to any web hosting service
-- Ensure all file paths are correct
-- Test all functionality after deployment
-
-## 🐛 Troubleshooting
-
-### Common Issues
-- **CSS not loading**: Check file paths and ensure `css/main.css` exists
-- **JavaScript errors**: Check browser console for error messages
-- **Mobile menu not working**: Ensure `js/main.js` is properly loaded
-- **Animations not working**: Check if JavaScript is enabled
-
-### Performance Issues
-- **Slow animations**: Reduce animation complexity in CSS
-- **Large file sizes**: Minify CSS and JavaScript for production
-- **Image loading**: Optimize and compress images
+**Ivy Mycelia** - Creator of the Myco programming language
 
 ## 🤝 Contributing
 
@@ -159,22 +132,12 @@ The website is fully responsive with three main breakpoints:
 4. Test thoroughly
 5. Submit a pull request
 
-## 📄 License
-
-This website is part of the Myco Language project and follows the same licensing terms.
-
-## 🙏 Acknowledgments
-
-- **IvyMycelia**: Creator of the Myco programming language
-- **Google Fonts**: Typography (Inter, JetBrains Mono)
-- **Modern Web Standards**: CSS Grid, Flexbox, ES6+
-
 ## 📞 Support
 
-- **GitHub Issues**: Report bugs or request features
-- **Discord**: Join the Myco community
-- **Documentation**: Check the docs for detailed information
+- **GitHub Issues**: [Report bugs or request features](https://github.com/IvyMycelia/Myco/issues)
+- **Documentation**: Check the docs page for language information
+- **Community**: Join discussions on GitHub
 
 ---
 
-Built with 🍄 and ❤️ for the Myco programming language community.
+Built with ❤️ for the Myco programming language community.
