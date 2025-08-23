@@ -8,8 +8,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let secretSequence = '';
     let lastKeyTime = 0;
     
-    // Initialize theme
-    initTheme();
+    // Initialize theme with a small delay to ensure CSS is loaded
+    setTimeout(() => {
+        initTheme();
+    }, 100);
     
     // Secret trans theme detection
     document.addEventListener('keydown', function(e) {
@@ -181,9 +183,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Theme functions
     function initTheme() {
         const savedTheme = localStorage.getItem('myco-theme');
+        console.log('Initializing theme. Saved theme:', savedTheme, 'Available themes:', themes);
+        
         if (savedTheme && themes.includes(savedTheme)) {
+            console.log('Applying saved theme:', savedTheme);
             setTheme(savedTheme);
         } else {
+            console.log('No saved theme found, defaulting to dark');
             // Default to dark theme
             setTheme('dark');
         }
@@ -204,20 +210,29 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function setTheme(theme) {
+        console.log('Setting theme to:', theme);
+        
         // Remove all theme classes
         document.body.classList.remove('light-theme', 'trans-theme');
         
         // Add new theme class
         if (theme === 'light') {
             document.body.classList.add('light-theme');
+            console.log('Added light-theme class');
         } else if (theme === 'trans') {
             document.body.classList.add('trans-theme');
+            console.log('Added trans-theme class');
+        } else {
+            console.log('No theme class added (dark theme)');
         }
         // dark theme is default (no class needed)
         
         // Save theme preference (only for dark and light themes)
         if (theme !== 'trans') {
             localStorage.setItem('myco-theme', theme);
+            console.log('Saved theme to localStorage:', theme);
+        } else {
+            console.log('Trans theme not saved to localStorage');
         }
         
         // Add theme change animation
@@ -225,9 +240,6 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             document.body.style.transition = '';
         }, 500);
-        
-        // Update theme indicator if exists
-        updateThemeIndicator(theme);
         
         // Update theme icon
         updateThemeIcon();
