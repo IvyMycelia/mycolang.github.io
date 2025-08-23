@@ -170,7 +170,7 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 0;
+    padding: 0.75rem 0;
     gap: 2rem;
 }
 
@@ -178,7 +178,7 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 700;
     color: var(--text-primary);
     text-decoration: none;
@@ -1417,15 +1417,15 @@ body .logo:hover .logo-img {
 
 /* Documentation Layout Styles */
 .docs-main {
-    margin-top: 80px;
-    padding: 1rem 0;
+    margin-top: 60px;
+    padding: 0.75rem 0;
 }
 
         .docs-layout {
             display: grid;
             grid-template-columns: 280px 1fr;
-            gap: 2.5rem;
-            margin-top: 1.5rem;
+            gap: 2rem;
+            margin-top: 0.75rem;
         }
 
 .docs-sidebar {
@@ -1435,7 +1435,7 @@ body .logo:hover .logo-img {
     border: 1px solid var(--border-primary);
     height: fit-content;
     position: sticky;
-    top: 100px;
+    top: 80px;
     transition: all var(--transition-normal);
 }
 
