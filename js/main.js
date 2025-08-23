@@ -8,10 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let secretSequence = '';
     let lastKeyTime = 0;
     
-    // Initialize theme with a small delay to ensure CSS is loaded
-    setTimeout(() => {
-        initTheme();
-    }, 100);
+    // Initialize theme immediately
+    initTheme();
     
     // Secret trans theme detection
     document.addEventListener('keydown', function(e) {
@@ -235,6 +233,9 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Trans theme not saved to localStorage');
         }
         
+        // Force a repaint to ensure theme is applied
+        document.body.offsetHeight;
+        
         // Add theme change animation
         document.body.style.transition = 'all 0.5s ease';
         setTimeout(() => {
@@ -243,6 +244,15 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Update theme icon
         updateThemeIcon();
+        
+        // Log current theme state for debugging
+        console.log('Current body classes:', document.body.className);
+        console.log('Current theme state - Light:', document.body.classList.contains('light-theme'), 'Trans:', document.body.classList.contains('trans-theme'));
+        
+        // Check if CSS variables are being applied
+        const computedStyle = getComputedStyle(document.body);
+        console.log('Background color:', computedStyle.backgroundColor);
+        console.log('Text color:', computedStyle.color);
     }
     
     function updateThemeIndicator(theme) {
