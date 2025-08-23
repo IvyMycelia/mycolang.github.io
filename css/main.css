@@ -712,7 +712,7 @@ body .logo:hover .logo-img {
     z-index: 1;
 }
 
-/* Centered features with single card and list */
+/* Centered features with morphing layout */
 .features {
     padding: 2.5rem 0;
     background: var(--bg-primary);
@@ -737,50 +737,65 @@ body .logo:hover .logo-img {
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
     align-items: start;
+    transition: all var(--transition-normal);
+}
+
+.features-grid.morphed {
+    grid-template-columns: 1fr 1fr;
 }
 
 .features-center {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all var(--transition-normal);
 }
 
-.features-card {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-primary);
-    border-radius: 12px;
-    padding: 2rem;
-    min-width: 400px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.features-center.morphed {
+    justify-content: flex-start;
 }
 
 .features-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
     list-style: none;
     padding: 0;
     margin: 0;
+    max-width: 800px;
+    width: 100%;
+    transition: all var(--transition-normal);
+}
+
+.features-list.morphed {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 400px;
 }
 
 .features-list li {
-    padding: 1rem 1.5rem;
-    margin-bottom: 0.5rem;
-    background: var(--bg-primary);
-    border-radius: 8px;
+    padding: 1.5rem;
+    background: var(--bg-secondary);
     border: 1px solid var(--border-primary);
+    border-radius: 12px;
     cursor: pointer;
     transition: all var(--transition-normal);
     color: var(--text-primary);
     font-weight: 500;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .features-list li:hover {
     background: var(--bg-tertiary);
     border-color: var(--accent-primary);
-    transform: translateX(8px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.features-list li:last-child {
-    margin-bottom: 0;
+.features-list.morphed li {
+    text-align: left;
+    padding: 1rem 1.5rem;
 }
 
 .features-right {
@@ -828,12 +843,12 @@ body .logo:hover .logo-img {
 
 .feature-details h4 {
     color: var(--accent-primary);
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
     text-align: center;
     font-weight: 600;
     border-bottom: 2px solid var(--accent-secondary);
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.75rem;
 }
 
 .feature-details ul {
@@ -843,14 +858,15 @@ body .logo:hover .logo-img {
 }
 
 .feature-details li {
-    margin-bottom: 0.75rem;
-    padding: 0.5rem 0.75rem;
-    text-align: center;
-    background: var(--bg-primary);
-    border-radius: 6px;
-    border-left: 3px solid var(--accent-secondary);
-    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    padding: 0;
+    text-align: left;
+    background: none;
+    border-radius: 0;
+    border: none;
+    font-size: 1rem;
     color: var(--text-secondary);
+    line-height: 1.6;
 }
 
 .feature-details li:last-child {
@@ -1930,14 +1946,14 @@ body .logo:hover .logo-img {
         order: 2;
     }
     
-    .features-card {
-        min-width: auto;
-        width: 100%;
-        padding: 1.5rem;
+    .features-list {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        max-width: 100%;
     }
     
     .features-list li {
-        padding: 0.75rem 1rem;
+        padding: 1rem;
         font-size: 0.9rem;
     }
     
@@ -1953,5 +1969,12 @@ body .logo:hover .logo-img {
     .features h2 {
         font-size: 2rem;
         margin-bottom: 2rem;
+    }
+    
+    /* Disable morphing on mobile */
+    .features-grid.morphed,
+    .features-center.morphed,
+    .features-list.morphed {
+        transform: none !important;
     }
 }

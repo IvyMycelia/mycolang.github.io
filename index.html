@@ -132,16 +132,14 @@
                 <h2 class="scroll-reveal">Language Features</h2>
                 <div class="features-grid">
                     <div class="features-center">
-                        <div class="features-card scroll-reveal">
-                            <ul class="features-list">
-                                <li data-feature="syntax">Clean Syntax</li>
-                                <li data-feature="typing">Dynamic Typing</li>
-                                <li data-feature="control">Control Flow</li>
-                                <li data-feature="data">Data Structures</li>
-                                <li data-feature="library">Standard Library</li>
-                                <li data-feature="platform">Cross Platform</li>
-                            </ul>
-                        </div>
+                        <ul class="features-list scroll-reveal">
+                            <li data-feature="syntax">Clean Syntax</li>
+                            <li data-feature="typing">Dynamic Typing</li>
+                            <li data-feature="control">Control Flow</li>
+                            <li data-feature="data">Data Structures</li>
+                            <li data-feature="library">Standard Library</li>
+                            <li data-feature="platform">Cross Platform</li>
+                        </ul>
                     </div>
                     <div class="features-right">
                         <div class="features-right-content">
@@ -374,8 +372,11 @@
                 }
             });
             
-            // Feature hover interactions with list items
+            // Feature hover interactions with morphing
             const featureItems = document.querySelectorAll('.features-list li');
+            const featuresGrid = document.querySelector('.features-grid');
+            const featuresCenter = document.querySelector('.features-center');
+            const featuresList = document.querySelector('.features-list');
             const featuresRight = document.querySelector('.features-right');
             const featuresRightContent = document.querySelector('.features-right-content');
             const featureDetails = document.querySelectorAll('.feature-details');
@@ -383,6 +384,11 @@
             featureItems.forEach(item => {
                 item.addEventListener('mouseenter', function() {
                     const featureType = this.getAttribute('data-feature');
+                    
+                    // Morph the layout
+                    featuresGrid.classList.add('morphed');
+                    featuresCenter.classList.add('morphed');
+                    featuresList.classList.add('morphed');
                     
                     // Activate right panel
                     featuresRight.classList.add('active');
@@ -401,6 +407,11 @@
                 });
                 
                 item.addEventListener('mouseleave', function() {
+                    // Reset the layout
+                    featuresGrid.classList.remove('morphed');
+                    featuresCenter.classList.remove('morphed');
+                    featuresList.classList.remove('morphed');
+                    
                     // Deactivate right panel
                     featuresRight.classList.remove('active');
                     
