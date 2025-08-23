@@ -347,8 +347,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Find all foldable code blocks
             const foldableBlocks = document.querySelectorAll('.code-block.foldable');
+            console.log('Found foldable blocks:', foldableBlocks.length);
             
-            foldableBlocks.forEach(block => {
+            foldableBlocks.forEach((block, index) => {
+                console.log('Setting up block', index);
                 const header = block.querySelector('.code-header');
                 const pre = block.querySelector('pre');
                 
@@ -357,14 +359,17 @@
                     header.addEventListener('click', function() {
                         block.classList.toggle('folded');
                         
-                        // Update arrow direction
-                        const arrow = header.querySelector('::before');
+                        // Toggle content visibility
                         if (block.classList.contains('folded')) {
                             pre.style.display = 'none';
                         } else {
                             pre.style.display = 'block';
                         }
                     });
+                    
+                    // Add visual feedback
+                    header.style.cursor = 'pointer';
+                    header.title = 'Click to expand/collapse';
                 }
             });
         });
