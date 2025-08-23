@@ -1031,7 +1031,7 @@ a:hover {
 
 .community-main .container,
 .downloads-main .container {
-    max-width: 1200px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 0 2rem;
 }
@@ -1043,20 +1043,16 @@ a:hover {
 }
 
 .page-header h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 1rem;
-    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
 
 .page-description {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: var(--text-secondary);
-    max-width: 600px;
+    max-width: 500px;
     margin: 0 auto;
     line-height: 1.6;
 }
@@ -1065,40 +1061,15 @@ a:hover {
 .downloads-content {
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 2rem;
 }
 
 .content-section {
     background: var(--bg-secondary);
     border: 1px solid var(--border-primary);
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 2rem;
-    transition: all var(--transition-fast);
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 2px 8px var(--shadow-light);
-}
-
-.content-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-    transform: scaleX(0);
-    transition: transform var(--transition-fast);
-}
-
-.content-section:hover::before {
-    transform: scaleX(1);
-}
-
-.content-section:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px var(--shadow-medium);
-    border-color: var(--accent-primary);
+    margin-bottom: 1rem;
 }
 
 .content-section h2 {
@@ -1143,18 +1114,11 @@ a:hover {
 
 .empty-state {
     text-align: center;
-    padding: 3rem 2rem;
+    padding: 2rem;
     background: var(--bg-primary);
-    border: 2px dashed var(--border-primary);
-    border-radius: 8px;
-    margin: 1.5rem 0;
-    transition: all var(--transition-fast);
-}
-
-.empty-state:hover {
-    border-color: var(--accent-primary);
-    background: var(--bg-secondary);
-    transform: translateY(-2px);
+    border: 1px solid var(--border-primary);
+    border-radius: 6px;
+    margin: 1rem 0;
 }
 
 .empty-icon {
@@ -1162,14 +1126,7 @@ a:hover {
     justify-content: center;
     align-items: center;
     color: var(--accent-primary);
-    opacity: 0.7;
-    transition: all var(--transition-fast);
     margin-bottom: 1rem;
-}
-
-.empty-state:hover .empty-icon {
-    opacity: 1;
-    transform: scale(1.1);
 }
 
 .empty-state h3 {
