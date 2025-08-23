@@ -587,31 +587,5 @@
     </footer>
 
     <script src="js/main.js"></script>
-    <script>
-        // Code block functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            // Make long code blocks expandable
-            const codeBlocks = document.querySelectorAll('pre');
-            codeBlocks.forEach(block => {
-                if (block.scrollHeight > 200) {
-                    block.classList.add('expandable');
-                    block.addEventListener('click', function() {
-                        this.classList.toggle('expanded');
-                    });
-                }
-            });
-
-            // Make code blocks with headers foldable
-            const codeBlocksWithHeaders = document.querySelectorAll('.code-block');
-            codeBlocksWithHeaders.forEach(block => {
-                if (block.querySelector('.code-header')) {
-                    block.classList.add('foldable');
-                    block.addEventListener('click', function() {
-                        this.classList.toggle('folded');
-                    });
-                }
-            });
-        });
-    </script>
 </body>
 </html>
