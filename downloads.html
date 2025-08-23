@@ -30,8 +30,8 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="Myco_Purple.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="Myco_Transparent.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="Myco_Transparent.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="Myco_Purple.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="Myco_Purple.ico">
     <link rel="apple-touch-icon" href="Myco_Purple.ico">
     <link rel="manifest" href="site.webmanifest">
     
@@ -116,21 +116,14 @@
 
                 <div class="docs-content">
                     <h1>Downloads</h1>
-                    <p class="page-description">
-                        Get the latest version of the Myco programming language and start building amazing applications.
-                    </p>
-                <!-- Current Release -->
-                <section id="current-release" class="content-section">
-                    <h2>Current Release</h2>
-                    <div class="release-info">
-                        <div class="version-badge">v1.6.0</div>
-                        <div class="release-meta">
-                            <span class="release-date">August 2025</span>
-                            <span class="release-status">Latest</span>
-                        </div>
-                    </div>
+                    <p>Get the latest version of the Myco programming language and start building amazing applications.</p>
                     
-                    <div class="release-features">
+                    <section id="current-release">
+                        <h2>Current Release</h2>
+                        <p><strong>Version:</strong> v1.6.0</p>
+                        <p><strong>Release Date:</strong> August 2025</p>
+                        <p><strong>Status:</strong> Latest stable release</p>
+                        
                         <h3>What's New</h3>
                         <ul>
                             <li>Complete float support with enhanced math operations</li>
@@ -139,68 +132,36 @@
                             <li>Enhanced error handling and debugging</li>
                             <li>Performance improvements and optimizations</li>
                         </ul>
-                    </div>
+                        
+                        <p><strong>Download:</strong> <a href="https://github.com/IvyMycelia/Myco" target="_blank">Source Code</a> | <a href="https://github.com/IvyMycelia/Myco/releases" target="_blank">All Releases</a></p>
+                    </section>
 
-                    <div class="download-actions">
-                        <a href="https://github.com/IvyMycelia/Myco" class="btn btn-primary" target="_blank">
-                            Download Source Code
-                        </a>
-                        <a href="https://github.com/IvyMycelia/Myco/releases" class="btn btn-outline" target="_blank">
-                            View All Releases
-                        </a>
-                    </div>
-                </section>
-
-                <!-- Installation Methods -->
-                <section id="installation" class="content-section">
-                    <h2>Installation Methods</h2>
-                    
-                    <div class="install-methods">
-                        <div class="install-method">
-                            <div class="method-header">
-                                <h3>Build from Source</h3>
-                                <span class="method-status available">Available</span>
-                            </div>
-                            <p>Get the latest features by building from source code. Recommended for developers and advanced users.</p>
-                            <div class="method-actions">
-                                <a href="https://github.com/IvyMycelia/Myco" class="btn btn-secondary" target="_blank">
-                                    View Source
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="install-method">
-                            <div class="method-header">
-                                <h3>Pre-built Binaries</h3>
-                                <span class="method-status coming-soon">Coming Soon</span>
-                            </div>
-                            <p>Ready-to-use executables for Windows, macOS, and Linux. Perfect for quick setup.</p>
-                            <div class="method-actions">
-                                <button class="btn btn-secondary" disabled>Not Available Yet</button>
-                            </div>
-                        </div>
-
-                        <div class="install-method">
-                            <div class="method-header">
-                                <h3>Package Managers</h3>
-                                <span class="method-status coming-soon">Coming Soon</span>
-                            </div>
-                            <p>Install via Homebrew, apt, yum, or other package managers for easy system integration.</p>
-                            <div class="method-actions">
-                                <button class="btn btn-secondary" disabled>Not Available Yet</button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Quick Start -->
-                <section id="quick-start" class="content-section">
-                    <h2>Quick Start Guide</h2>
-                    
-                    <div class="quick-start">
+                    <section id="installation">
+                        <h2>Installation Methods</h2>
+                        
                         <h3>Build from Source</h3>
+                        <p>Get the latest features by building from source code. Recommended for developers and advanced users.</p>
+                        <p><strong>Status:</strong> Available</p>
+                        <p><strong>Download:</strong> <a href="https://github.com/IvyMycelia/Myco" target="_blank">View Source</a></p>
+                        
+                        <h3>Pre-built Binaries</h3>
+                        <p>Ready-to-use executables for Windows, macOS, and Linux. Perfect for quick setup.</p>
+                        <p><strong>Status:</strong> Coming Soon</p>
+                        
+                        <h3>Package Managers</h3>
+                        <p>Install via Homebrew, apt, yum, or other package managers for easy system integration.</p>
+                        <p><strong>Status:</strong> Coming Soon</p>
+                    </section>
+
+                    <section id="quick-start">
+                        <h2>Quick Start Guide</h2>
+                        
+                        <h3>Build from Source</h3>
+                        <p>Follow these steps to build Myco from source:</p>
                         <div class="code-block">
-                            <div class="code-header">Terminal Commands</div>
+                            <div class="code-header">
+                                <span>Build Commands</span>
+                            </div>
                             <pre><code><span class="comment"># Clone the repository</span>
 git clone https://github.com/IvyMycelia/Myco.git
 cd Myco
@@ -215,102 +176,65 @@ make
 ./myco --version</code></pre>
                         </div>
 
-                        <div class="platform-setup">
-                            <h3>Platform Setup</h3>
-                            <div class="platform-grid">
-                                <div class="platform">
-                                    <h4>Linux</h4>
-                                    <p>Install development tools:</p>
-                                    <div class="code-block small">
-                                        <pre><code>sudo apt update
-sudo apt install build-essential git</code></pre>
-                                    </div>
-                                </div>
-                                
-                                <div class="platform">
-                                    <h4>macOS</h4>
-                                    <p>Install Xcode Command Line Tools:</p>
-                                    <div class="code-block small">
-                                        <pre><code>xcode-select --install</code></pre>
-                                    </div>
-                                </div>
-                                
-                                <div class="platform">
-                                    <h4>Windows</h4>
-                                    <p>Use WSL2 for best experience:</p>
-                                    <div class="code-block small">
-                                        <pre><code>wsl --install -d Ubuntu</code></pre>
-                                    </div>
-                                </div>
+                        <h3>Platform-Specific Setup</h3>
+                        <h4>Linux/macOS</h4>
+                        <p>Ensure you have GCC and Make installed:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Install Dependencies</span>
                             </div>
-                        </div>
-                    </div>
-                </section>
+                            <pre><code><span class="comment"># Ubuntu/Debian</span>
+sudo apt install build-essential
 
-                <!-- Previous Releases -->
-                <section id="previous-releases" class="content-section">
-                    <h2>Previous Releases</h2>
-                    
-                    <div class="releases-list">
-                        <div class="release-item">
-                            <div class="release-header">
-                                <h3>v1.3.2</h3>
-                                <span class="release-date">November 2024</span>
-                            </div>
-                            <p>Added switch statements, try-catch blocks, and enhanced utility library</p>
-                            <a href="https://github.com/IvyMycelia/Myco/releases/tag/v1.3.2" class="btn btn-outline small" target="_blank">
-                                View Release
-                            </a>
+<span class="comment"># macOS</span>
+xcode-select --install</code></pre>
                         </div>
                         
-                        <div class="release-item">
-                            <div class="release-header">
-                                <h3>v1.3.0</h3>
-                                <span class="release-date">October 2024</span>
+                        <h4>Windows</h4>
+                        <p>Use WSL or MinGW for building:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Windows Setup</span>
                             </div>
-                            <p>Introduced comprehensive math library and enhanced type system</p>
-                            <a href="https://github.com/IvyMycelia/Myco/releases/tag/v1.3.0" class="btn btn-outline small" target="_blank">
-                                View Release
-                            </a>
-                        </div>
-                        
-                        <div class="release-item">
-                            <div class="release-header">
-                                <h3>v1.2.4</h3>
-                                <span class="release-date">September 2024</span>
-                            </div>
-                            <p>Added implicit functions and improved error handling</p>
-                            <a href="https://github.com/IvyMycelia/Myco/releases/tag/v1.2.4" class="btn btn-outline small" target="_blank">
-                                View Release
-                            </a>
-                        </div>
-                    </div>
-                </section>
+                            <pre><code><span class="comment"># Install WSL</span>
+wsl --install
 
-                <!-- Support -->
-                <section id="support" class="content-section">
-                    <h2>Need Help?</h2>
-                    
-                    <div class="support-options">
-                        <div class="support-option">
-                            <h3>Documentation</h3>
-                            <p>Comprehensive guides and tutorials for getting started</p>
-                            <a href="docs.html" class="btn btn-outline">View Docs</a>
+<span class="comment"># Or use MinGW</span>
+<span class="comment"># Download from: https://www.mingw-w64.org/</span></code></pre>
                         </div>
+                    </section>
+
+                    <section id="previous-releases">
+                        <h2>Previous Releases</h2>
                         
-                        <div class="support-option">
-                            <h3>GitHub Discussions</h3>
-                            <p>Ask questions and get help from the Myco community</p>
-                            <a href="https://github.com/IvyMycelia/Myco/discussions" class="btn btn-outline" target="_blank">Join Discussion</a>
-                        </div>
+                        <h3>v1.3.2 - November 2024</h3>
+                        <p>Added switch statements, try-catch blocks, and enhanced utility library</p>
+                        <p><a href="https://github.com/IvyMycelia/Myco/releases/tag/v1.3.2" target="_blank">View Release</a></p>
                         
-                        <div class="support-option">
-                            <h3>Report Issues</h3>
-                            <p>Found a bug or have a feature request?</p>
-                            <a href="https://github.com/IvyMycelia/Myco/issues" class="btn btn-outline" target="_blank">Open Issue</a>
-                        </div>
-                    </div>
-                </section>
+                        <h3>v1.3.0 - October 2024</h3>
+                        <p>Introduced comprehensive math library and enhanced type system</p>
+                        <p><a href="https://github.com/IvyMycelia/Myco/releases/tag/v1.3.0" target="_blank">View Release</a></p>
+                        
+                        <h3>v1.2.4 - September 2024</h3>
+                        <p>Added implicit functions and improved error handling</p>
+                        <p><a href="https://github.com/IvyMycelia/Myco/releases/tag/v1.2.4" target="_blank">View Release</a></p>
+                    </section>
+
+                    <section id="support">
+                        <h2>Need Help?</h2>
+                        
+                        <h3>Documentation</h3>
+                        <p>Comprehensive guides and tutorials for getting started</p>
+                        <p><a href="docs.html">View Docs</a></p>
+                        
+                        <h3>GitHub Discussions</h3>
+                        <p>Ask questions and get help from the Myco community</p>
+                        <p><a href="https://github.com/IvyMycelia/Myco/discussions" target="_blank">Join Discussion</a></p>
+                        
+                        <h3>Report Issues</h3>
+                        <p>Found a bug or have a feature request?</p>
+                        <p><a href="https://github.com/IvyMycelia/Myco/issues" target="_blank">Open Issue</a></p>
+                    </section>
                 </div>
             </div>
         </div>

@@ -15,16 +15,6 @@
             "src": "Myco_Purple.ico",
             "sizes": "16x16 32x32 48x48",
             "type": "image/x-icon"
-        },
-        {
-            "src": "Myco_Transparent.ico",
-            "sizes": "16x16 32x32 48x48",
-            "type": "image/x-icon"
-        },
-        {
-            "src": "Myco_Purple.ico",
-            "sizes": "16x16 32x32 48x48",
-            "type": "image/x-icon"
         }
     ],
     "screenshots": [
@@ -43,7 +33,7 @@
             "url": "/docs.html",
             "icons": [
                 {
-                    "src": "Myco_Transparent.ico",
+                    "src": "Myco_Purple.ico",
                     "sizes": "32x32"
                 }
             ]
@@ -55,7 +45,7 @@
             "url": "/grammar.html",
             "icons": [
                 {
-                    "src": "Myco_Transparent.ico",
+                    "src": "Myco_Purple.ico",
                     "sizes": "32x32"
                 }
             ]
@@ -67,7 +57,7 @@
             "url": "/downloads.html",
             "icons": [
                 {
-                    "src": "Myco_Transparent.ico",
+                    "src": "Myco_Purple.ico",
                     "sizes": "32x32"
                 }
             ]
