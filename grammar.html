@@ -36,119 +36,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="css/main.css?v=2025-08-23-formatting-standardized">
-    <style>
-        .docs-layout {
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            gap: 3rem;
-            margin-top: 2rem;
-        }
-        
-        .docs-sidebar {
-            background: var(--bg-secondary);
-            padding: 2rem;
-            border-radius: 8px;
-            border: 1px solid var(--border-primary);
-            height: fit-content;
-            position: sticky;
-            top: 100px;
-        }
-        
-        .docs-nav h3 {
-            color: var(--text-primary);
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            border-bottom: 2px solid var(--accent-primary);
-            padding-bottom: 0.5rem;
-        }
-        
-        .docs-nav ul {
-            list-style: none;
-        }
-        
-        .docs-nav li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .docs-nav a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            display: block;
-            padding: 0.5rem 0;
-            transition: color 0.2s ease;
-        }
-        
-        .docs-nav a:hover {
-            color: var(--accent-primary);
-        }
-        
-        .docs-content {
-            background: var(--bg-primary);
-            padding: 2rem;
-            border-radius: 8px;
-            border: 1px solid var(--border-primary);
-        }
-        
-        .docs-content h1 {
-            color: var(--text-primary);
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-        }
-        
-        .docs-content h2 {
-            color: var(--text-primary);
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
-        }
-        
-        .docs-content h3 {
-            color: var(--text-secondary);
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-        }
-        
-        .docs-content p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-        
-        .docs-content section {
-            margin-bottom: 2.5rem;
-        }
-        
-        .docs-content code {
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-        }
-        
-        .docs-content .code-block {
-            margin: 1.5rem 0;
-        }
-        
-        @media (max-width: 768px) {
-            .docs-layout {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .docs-sidebar {
-                position: static;
-                order: 2;
-            }
-            
-            .docs-content {
-                order: 1;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/main.css?v=2025-08-23-all-fixed">
 
 </head>
 <body>
@@ -203,13 +91,13 @@
                 <div class="docs-content">
                     <h1>Myco Language Grammar</h1>
                     
-                    <section id="overview">
+                    <section id="overview" class="content-section">
                         <h2>Grammar Overview</h2>
                         <p>The Myco language follows a context-free grammar defined using Backus-Naur Form (BNF) notation. This grammar defines the syntax rules for valid Myco programs.</p>
                         <p>Myco's grammar is designed to be simple yet expressive, with clear precedence rules and intuitive syntax.</p>
                     </section>
 
-                    <section id="tokens">
+                    <section id="tokens" class="content-section">
                         <h2>Token Definitions</h2>
                         <p>Tokens are the basic building blocks of the Myco language:</p>
                         
@@ -258,7 +146,7 @@
                         </div>
                     </section>
 
-                    <section id="expressions">
+                    <section id="expressions" class="content-section">
                         <h2>Expression Grammar</h2>
                         <p>Expressions in Myco follow standard precedence rules:</p>
                         
@@ -298,7 +186,7 @@
                         </div>
                     </section>
 
-                    <section id="statements">
+                    <section id="statements" class="content-section">
                         <h2>Statement Grammar</h2>
                         <p>Statements are the top-level constructs in Myco programs:</p>
                         
@@ -334,7 +222,7 @@
                         </div>
                     </section>
 
-                    <section id="functions">
+                    <section id="functions" class="content-section">
                         <h2>Function Grammar</h2>
                         <p>Functions in Myco can be declared with or without type annotations:</p>
                         
@@ -364,7 +252,7 @@
                         </div>
                     </section>
 
-                    <section id="control-flow">
+                    <section id="control-flow" class="content-section">
                         <h2>Control Flow Grammar</h2>
                         <p>Control flow constructs in Myco:</p>
                         
@@ -405,7 +293,7 @@
                         </div>
                     </section>
 
-                    <section id="data-types">
+                    <section id="data-types" class="content-section">
                         <h2>Data Type Grammar</h2>
                         <p>Myco supports several built-in data types:</p>
                         
@@ -434,7 +322,7 @@
                         </div>
                     </section>
 
-                    <section id="complete-bnf">
+                    <section id="complete-bnf" class="content-section">
                         <h2>Complete BNF Grammar</h2>
                         <p>Here's the complete BNF grammar for the Myco language:</p>
                         
