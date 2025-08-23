@@ -801,9 +801,11 @@ body .logo:hover .logo-img {
 .features-right {
     position: sticky;
     top: 100px;
-    min-height: 300px;
+    height: fit-content;
+    max-height: 600px;
+    overflow: hidden;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     background: var(--bg-secondary);
     border: 1px solid var(--border-primary);
@@ -830,7 +832,7 @@ body .logo:hover .logo-img {
     transform: scale(0.9);
 }
 
-/* Feature details for right side display */
+/* Feature details for right side display - styled exactly like docs sections */
 .feature-details {
     display: none;
     width: 100%;
@@ -851,42 +853,47 @@ body .logo:hover .logo-img {
     padding-bottom: 0.75rem;
 }
 
-.feature-details .content-section {
-    background: var(--bg-primary);
-    border: 1px solid var(--border-primary);
+.feature-details section {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: var(--bg-secondary);
     border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-primary);
+    transition: all var(--transition-normal);
 }
 
-.feature-details .content-section:last-child {
+.feature-details section:last-child {
     margin-bottom: 0;
 }
 
-.feature-details .content-section h5 {
+.feature-details section:hover {
+    border-color: var(--accent-secondary);
+    box-shadow: 0 3px 10px var(--shadow-light);
+}
+
+.feature-details section h5 {
     color: var(--text-primary);
     margin-bottom: 0.75rem;
     font-size: 1.1rem;
     font-weight: 600;
 }
 
-.feature-details .content-section p {
+.feature-details section p {
     color: var(--text-secondary);
-    margin-bottom: 0.5rem;
     line-height: 1.6;
+    margin-bottom: 1rem;
 }
 
-.feature-details .content-section ul {
+.feature-details section ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.feature-details .content-section li {
+.feature-details section li {
     margin-bottom: 0.5rem;
     padding: 0.5rem 0.75rem;
-    background: var(--bg-secondary);
+    background: var(--bg-tertiary);
     border-radius: 6px;
     border-left: 3px solid var(--accent-secondary);
     font-size: 0.9rem;
@@ -894,7 +901,7 @@ body .logo:hover .logo-img {
     line-height: 1.5;
 }
 
-.feature-details .content-section li:last-child {
+.feature-details section li:last-child {
     margin-bottom: 0;
 }
 
