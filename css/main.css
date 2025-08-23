@@ -734,8 +734,9 @@ body .logo:hover .logo-img {
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: 300px 1fr;
+    gap: 3rem;
+    align-items: start;
 }
 
 .features section {
@@ -1050,12 +1051,13 @@ body .logo:hover .logo-img {
     border: 1px solid var(--border-primary);
     transition: all var(--transition-normal);
     cursor: pointer;
-    min-height: 120px;
+    text-align: left;
+    margin-bottom: 1rem;
 }
 
 .feature:hover {
     border-color: var(--accent-primary);
-    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.15);
+    background: var(--bg-tertiary);
     transform: translateX(8px);
 }
 
@@ -1110,9 +1112,39 @@ body .logo:hover .logo-img {
     transition: all var(--transition-normal);
 }
 
+/* Right side details display */
+.feature-details-container {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: 8px;
+    padding: 2rem;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-normal);
+}
+
+.feature-details-container.default-state {
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.feature-details-container.default-state h3 {
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.feature-details-container.default-state p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
 /* Feature details for right side display */
 .feature-details {
     display: none;
+    width: 100%;
 }
 
 .feature:hover .feature-details {
@@ -1429,18 +1461,16 @@ body .logo:hover .logo-img {
         gap: 1.5rem;
     }
     
-    .features-left {
-        order: 2;
-    }
-    
-    .features-right {
-        order: 1;
-        position: static;
-        min-height: auto;
-        margin-bottom: 2rem;
-    }
-    
     .feature {
+        padding: 1.5rem;
+        text-align: center;
+    }
+    
+    .feature:hover {
+        transform: none;
+    }
+    
+    .feature-details-container {
         min-height: auto;
         padding: 1.5rem;
     }
