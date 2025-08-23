@@ -1579,17 +1579,31 @@ body .logo:hover .logo-img {
 
 .docs-content .code-block:hover {
     border-color: var(--accent-primary);
-    box-shadow: 0 5px 15px var(--shadow-medium);
-    position: relative;
+    box-shadow: 0 8px 25px var(--shadow-medium);
+    transform: translateY(-2px);
+    transition: all var(--transition-normal);
+}
+
+.docs-content .code-block {
+    transition: all var(--transition-normal);
 }
 
 .docs-content .code-block.foldable {
     cursor: pointer;
+    border: 2px solid var(--border-primary);
 }
 
 .docs-content .code-block.foldable .code-header {
     cursor: pointer;
     user-select: none;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.docs-content .code-block.foldable:hover .code-header {
+    background: linear-gradient(135deg, var(--accent-secondary), var(--accent-tertiary));
+    transform: scale(1.02);
 }
 
 .docs-content .code-block.foldable .code-header::before {
@@ -1597,6 +1611,8 @@ body .logo:hover .logo-img {
     margin-right: 0.5rem;
     transition: transform var(--transition-normal);
     display: inline-block;
+    font-size: 0.8em;
+    color: var(--accent-primary);
 }
 
 .docs-content .code-block.foldable.folded .code-header::before {
@@ -1605,6 +1621,15 @@ body .logo:hover .logo-img {
 
 .docs-content .code-block.foldable.folded pre {
     display: none;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all var(--transition-normal);
+}
+
+.docs-content .code-block.foldable pre {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all var(--transition-normal);
 }
 
 .docs-content .code-header {
@@ -1613,6 +1638,24 @@ body .logo:hover .logo-img {
     padding: 0.75rem 1rem;
     font-weight: 500;
     border-bottom: 1px solid var(--border-primary);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.docs-content .code-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left var(--transition-slow);
+}
+
+.docs-content .code-header:hover::after {
+    left: 100%;
 }
 
 .docs-content pre {
