@@ -131,12 +131,54 @@
             <div class="container">
                 <h2 class="scroll-reveal">Language Features</h2>
                 <div class="features-grid">
-                    <div class="feature scroll-reveal">
-                        <div class="feature-content">
-                            <h3>Clean Syntax</h3>
-                            <p>Intuitive syntax that's easy to read and write. No unnecessary complexity.</p>
+                    <div class="features-left">
+                        <div class="feature scroll-reveal" data-feature="syntax">
+                            <div class="feature-content">
+                                <h3>Clean Syntax</h3>
+                                <p>Intuitive syntax that's easy to read and write. No unnecessary complexity.</p>
+                            </div>
                         </div>
-                        <div class="feature-details">
+                        <div class="feature scroll-reveal" data-feature="typing">
+                            <div class="feature-content">
+                                <h3>Dynamic Typing</h3>
+                                <p>Flexible type system with automatic type inference. Variables adapt to your needs.</p>
+                            </div>
+                        </div>
+                        <div class="feature scroll-reveal" data-feature="control">
+                            <div class="feature-content">
+                                <h3>Control Flow</h3>
+                                <p>Standard control structures: if/else, loops, functions, and error handling.</p>
+                            </div>
+                        </div>
+                        <div class="feature scroll-reveal" data-feature="data">
+                            <div class="feature-content">
+                                <h3>Data Structures</h3>
+                                <p>Built-in support for lists, maps, and custom data types.</p>
+                            </div>
+                        </div>
+                        <div class="feature scroll-reveal" data-feature="library">
+                            <div class="feature-content">
+                                <h3>Standard Library</h3>
+                                <p>Comprehensive library with math functions, utilities, and I/O operations.</p>
+                            </div>
+                        </div>
+                        <div class="feature scroll-reveal" data-feature="platform">
+                            <div class="feature-content">
+                                <h3>Cross Platform</h3>
+                                <p>Runs on Windows, macOS, and Linux. Write once, run anywhere.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="features-right">
+                        <div class="feature-details-container default-state">
+                            <div class="features-right-content">
+                                <h3>Hover Over a Feature</h3>
+                                <p>Select a language feature from the left to see detailed information here.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-details" data-feature="syntax">
                             <h4>Syntax Features</h4>
                             <ul>
                                 <li>Minimal keywords</li>
@@ -145,13 +187,8 @@
                                 <li>Consistent patterns</li>
                             </ul>
                         </div>
-                    </div>
-                    <div class="feature scroll-reveal">
-                        <div class="feature-content">
-                            <h3>Dynamic Typing</h3>
-                            <p>Flexible type system with automatic type inference. Variables adapt to your needs.</p>
-                        </div>
-                        <div class="feature-details">
+                        
+                        <div class="feature-details" data-feature="typing">
                             <h4>Type System</h4>
                             <ul>
                                 <li>Automatic inference</li>
@@ -160,13 +197,8 @@
                                 <li>Type conversion</li>
                             </ul>
                         </div>
-                    </div>
-                    <div class="feature scroll-reveal">
-                        <div class="feature-content">
-                            <h3>Control Flow</h3>
-                            <p>Standard control structures: if/else, loops, functions, and error handling.</p>
-                        </div>
-                        <div class="feature-details">
+                        
+                        <div class="feature-details" data-feature="control">
                             <h4>Control Structures</h4>
                             <ul>
                                 <li>If/else statements</li>
@@ -175,13 +207,8 @@
                                 <li>Error handling</li>
                             </ul>
                         </div>
-                    </div>
-                    <div class="feature scroll-reveal">
-                        <div class="feature-content">
-                            <h3>Data Structures</h3>
-                            <p>Built-in support for lists, maps, and custom data types.</p>
-                        </div>
-                        <div class="feature-details">
+                        
+                        <div class="feature-details" data-feature="data">
                             <h4>Built-in Types</h4>
                             <ul>
                                 <li>Dynamic arrays</li>
@@ -190,13 +217,8 @@
                                 <li>Type safety</li>
                             </ul>
                         </div>
-                    </div>
-                    <div class="feature scroll-reveal">
-                        <div class="feature-content">
-                            <h3>Standard Library</h3>
-                            <p>Comprehensive library with math functions, utilities, and I/O operations.</p>
-                        </div>
-                        <div class="feature-details">
+                        
+                        <div class="feature-details" data-feature="library">
                             <h4>Library Features</h4>
                             <ul>
                                 <li>Math operations</li>
@@ -205,13 +227,8 @@
                                 <li>System functions</li>
                             </ul>
                         </div>
-                    </div>
-                    <div class="feature scroll-reveal">
-                        <div class="feature-content">
-                            <h3>Cross Platform</h3>
-                            <p>Runs on Windows, macOS, and Linux. Write once, run anywhere.</p>
-                        </div>
-                        <div class="feature-details">
+                        
+                        <div class="feature-details" data-feature="platform">
                             <h4>Platform Support</h4>
                             <ul>
                                 <li>Windows 10+</li>
@@ -384,34 +401,38 @@
                 }
             });
             
-            // Feature hover effect for right side display
+            // Feature hover interactions
             const features = document.querySelectorAll('.feature');
-            const featuresRight = document.querySelector('.features-right');
+            const defaultState = document.querySelector('.feature-details-container.default-state');
+            const featureDetails = document.querySelectorAll('.feature-details');
             
-            if (featuresRight) {
-                features.forEach(feature => {
-                    feature.addEventListener('mouseenter', function() {
-                        const details = this.querySelector('.feature-details');
-                        if (details) {
-                            featuresRight.innerHTML = details.innerHTML;
-                            featuresRight.style.background = 'var(--bg-primary)';
-                            featuresRight.style.borderColor = 'var(--accent-primary)';
+            features.forEach(feature => {
+                feature.addEventListener('mouseenter', function() {
+                    const featureType = this.getAttribute('data-feature');
+                    
+                    // Hide default state
+                    defaultState.style.display = 'none';
+                    
+                    // Show corresponding feature details
+                    featureDetails.forEach(detail => {
+                        if (detail.getAttribute('data-feature') === featureType) {
+                            detail.style.display = 'block';
+                        } else {
+                            detail.style.display = 'none';
                         }
                     });
+                });
+                
+                feature.addEventListener('mouseleave', function() {
+                    // Show default state
+                    defaultState.style.display = 'flex';
                     
-                    feature.addEventListener('mouseleave', function() {
-                        // Reset to default centered content
-                        featuresRight.innerHTML = `
-                            <div class="features-right-content">
-                                <h3>Language Features</h3>
-                                <p>Hover over a feature on the left to see detailed information about Myco's capabilities.</p>
-                            </div>
-                        `;
-                        featuresRight.style.background = 'var(--bg-secondary)';
-                        featuresRight.style.borderColor = 'var(--border-primary)';
+                    // Hide all feature details
+                    featureDetails.forEach(detail => {
+                        detail.style.display = 'none';
                     });
                 });
-            }
+            });
         });
     </script>
 </body>
