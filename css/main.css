@@ -514,6 +514,25 @@ a:hover {
     z-index: 2;
 }
 
+.hero-logo {
+    margin-bottom: 2rem;
+    animation: slideInLeft 1s var(--elastic);
+}
+
+.hero-logo-img {
+    height: 4rem;
+    width: auto;
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all var(--transition-normal);
+}
+
+.hero-logo-img:hover {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
 .hero-content h1 {
     color: var(--text-primary);
     margin-bottom: 1rem;
@@ -2501,6 +2520,14 @@ a:hover {
         text-align: center;
     }
     
+    .hero-logo {
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-logo-img {
+        height: 3rem;
+    }
+    
     .hero-actions {
         justify-content: center;
         flex-wrap: wrap;
@@ -2573,6 +2600,10 @@ a:hover {
 @media (max-width: 480px) {
     .container {
         padding: 0 15px;
+    }
+    
+    .hero-logo-img {
+        height: 2.5rem;
     }
     
     .hero {
