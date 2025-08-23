@@ -246,6 +246,8 @@ a:hover {
     }
 }
 
+/* Force GitHub Pages rebuild - Logo styling updated */
+
 /* Responsive logo sizing */
 @media (max-width: 768px) {
     .logo {
