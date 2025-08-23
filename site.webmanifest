@@ -4,17 +4,17 @@
     "description": "High-level, expressive programming language created by Ivy Mycelia",
     "icons": [
         {
-            "src": "favicon-16x16.png",
-            "sizes": "16x16",
-            "type": "image/png"
+            "src": "Myco_Purple.ico",
+            "sizes": "16x16 32x32 48x48",
+            "type": "image/x-icon"
         },
         {
-            "src": "favicon-32x32.png",
+            "src": "Myco_Transparent.png",
             "sizes": "32x32",
             "type": "image/png"
         },
         {
-            "src": "apple-touch-icon.png",
+            "src": "Myco_Purple_Background.png",
             "sizes": "180x180",
             "type": "image/png"
         }

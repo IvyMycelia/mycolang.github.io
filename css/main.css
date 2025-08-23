@@ -1442,6 +1442,13 @@ a:hover {
     line-height: 1.6;
 }
 
+/* Favicon and Icon Styles */
+.favicon {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 /* Downloads Page Specific Styles */
 .release-info {
     display: flex;
