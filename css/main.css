@@ -1059,10 +1059,73 @@ body .logo:hover .logo-img {
     transition: width var(--transition-normal);
 }
 
-
+.feature:hover h3::after {
+    width: 100%;
+}
 
 .feature p {
     color: var(--text-secondary);
+    margin-bottom: 0;
+    transition: all var(--transition-normal);
+}
+
+/* Clean hover effect for feature details */
+.feature-details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    padding: 1.5rem;
+    border-radius: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(100%);
+    transition: all var(--transition-normal);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 10;
+    border: 1px solid var(--border-primary);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.feature:hover .feature-details {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.feature-details h4 {
+    color: var(--accent-primary);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    text-align: center;
+    font-weight: 600;
+    border-bottom: 1px solid var(--accent-secondary);
+    padding-bottom: 0.5rem;
+}
+
+.feature-details ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.feature-details li {
+    margin-bottom: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    text-align: center;
+    background: var(--bg-secondary);
+    border-radius: 6px;
+    border-left: 3px solid var(--accent-secondary);
+    transition: all var(--transition-normal);
+    font-size: 0.9rem;
+}
+
+.feature-details li:last-child {
     margin-bottom: 0;
 }
 
