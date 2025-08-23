@@ -298,15 +298,7 @@ body .logo:hover .logo-img {
         min-height: 60vh;
     }
     
-    .docs-layout {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .docs-sidebar {
-        position: static;
-        order: 2;
-    }
+
 }
 
 @media (max-width: 480px) {
@@ -339,9 +331,7 @@ body .logo:hover .logo-img {
         min-height: 85vh;
     }
     
-    .docs-layout {
-        gap: 3rem;
-    }
+
     
     /* Large screen code block optimizations */
     .docs-content pre {
