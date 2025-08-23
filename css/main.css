@@ -249,6 +249,21 @@ a:hover {
 /* Force GitHub Pages rebuild - Logo styling updated */
 /* CSS LOADED SUCCESSFULLY - Logo animations and sizing fixed */
 
+/* FORCE HOME PAGE LOGO STYLING - Override any cached styles */
+body .logo .logo-img {
+    height: 32px !important;
+    width: 32px !important;
+    max-width: 100% !important;
+    transition: all var(--transition-normal) !important;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1)) !important;
+    animation: logoFloat 3s ease-in-out infinite !important;
+}
+
+body .logo:hover .logo-img {
+    transform: scale(1.1) rotate(5deg) !important;
+    filter: drop-shadow(0 4px 8px rgba(139, 92, 246, 0.3)) !important;
+}
+
 /* Responsive logo sizing */
 @media (max-width: 768px) {
     .logo {
