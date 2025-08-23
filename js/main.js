@@ -210,16 +210,19 @@ document.addEventListener('DOMContentLoaded', function() {
     function setTheme(theme) {
         console.log('Setting theme to:', theme);
         
-        // Remove all theme classes
+        // Remove all theme classes from both html and body elements
+        document.documentElement.classList.remove('light-theme', 'trans-theme');
         document.body.classList.remove('light-theme', 'trans-theme');
         
-        // Add new theme class
+        // Add new theme class to both html and body elements
         if (theme === 'light') {
+            document.documentElement.classList.add('light-theme');
             document.body.classList.add('light-theme');
-            console.log('Added light-theme class');
+            console.log('Added light-theme class to html and body');
         } else if (theme === 'trans') {
+            document.documentElement.classList.add('trans-theme');
             document.body.classList.add('trans-theme');
-            console.log('Added trans-theme class');
+            console.log('Added trans-theme class to html and body');
         } else {
             console.log('No theme class added (dark theme)');
         }
