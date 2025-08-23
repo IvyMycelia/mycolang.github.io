@@ -131,7 +131,7 @@
             <div class="container">
                 <h2 class="scroll-reveal">Language Features</h2>
                 <div class="features-grid">
-                    <div class="features-left">
+                    <div class="features-center">
                         <div class="feature scroll-reveal" data-feature="syntax">
                             <h3>Clean Syntax</h3>
                             <p>Intuitive syntax that's easy to read and write. No unnecessary complexity.</p>
@@ -160,7 +160,7 @@
                     <div class="features-right">
                         <div class="features-right-content">
                             <h3>Hover over a feature</h3>
-                            <p>Select a language feature from the left to see detailed information</p>
+                            <p>Select a language feature to see detailed information</p>
                         </div>
                         <div class="feature-details" data-feature="syntax">
                             <h4>Syntax Features</h4>
@@ -380,8 +380,10 @@
                 }
             });
             
-            // Feature hover interactions
+            // Feature hover interactions with morphing
             const features = document.querySelectorAll('.feature');
+            const featuresGrid = document.querySelector('.features-grid');
+            const featuresCenter = document.querySelector('.features-center');
             const featuresRight = document.querySelector('.features-right');
             const featuresRightContent = document.querySelector('.features-right-content');
             const featureDetails = document.querySelectorAll('.feature-details');
@@ -390,26 +392,42 @@
                 feature.addEventListener('mouseenter', function() {
                     const featureType = this.getAttribute('data-feature');
                     
-                    // Hide default content
-                    featuresRightContent.style.display = 'none';
+                    // Morph the layout
+                    featuresGrid.classList.add('morphed');
+                    featuresCenter.classList.add('morphed');
+                    features.forEach(f => f.classList.add('morphed'));
+                    
+                    // Activate right panel
+                    featuresRight.classList.add('active');
+                    
+                    // Fade out default content
+                    featuresRightContent.classList.add('fade-out');
                     
                     // Show corresponding feature details
                     featureDetails.forEach(detail => {
                         if (detail.getAttribute('data-feature') === featureType) {
-                            detail.style.display = 'block';
+                            detail.classList.add('active');
                         } else {
-                            detail.style.display = 'none';
+                            detail.classList.remove('active');
                         }
                     });
                 });
                 
                 feature.addEventListener('mouseleave', function() {
-                    // Show default content
-                    featuresRightContent.style.display = 'block';
+                    // Reset the layout
+                    featuresGrid.classList.remove('morphed');
+                    featuresCenter.classList.remove('morphed');
+                    features.forEach(f => f.classList.remove('morphed'));
+                    
+                    // Deactivate right panel
+                    featuresRight.classList.remove('active');
+                    
+                    // Fade in default content
+                    featuresRightContent.classList.remove('fade-out');
                     
                     // Hide all feature details
                     featureDetails.forEach(detail => {
-                        detail.style.display = 'none';
+                        detail.classList.remove('active');
                     });
                 });
             });
