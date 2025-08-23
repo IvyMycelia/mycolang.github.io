@@ -806,7 +806,7 @@ body .logo:hover .logo-img {
     overflow: hidden;
     display: flex;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
     background: var(--bg-secondary);
     border: 1px solid var(--border-primary);
     border-radius: 8px;
@@ -814,6 +814,8 @@ body .logo:hover .logo-img {
     transition: all var(--transition-normal);
     opacity: 0;
     transform: translateX(50px);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .features-right.active {
@@ -837,6 +839,7 @@ body .logo:hover .logo-img {
     display: none;
     width: 100%;
     animation: slideInRight 0.4s ease-out;
+    box-sizing: border-box;
 }
 
 .feature-details.active {
@@ -860,6 +863,8 @@ body .logo:hover .logo-img {
     border-radius: 8px;
     border: 1px solid var(--border-primary);
     transition: all var(--transition-normal);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .feature-details section:last-child {
