@@ -1056,32 +1056,14 @@ a:hover {
     line-height: 1.6;
 }
 
-/* Enhanced community hero */
+/* Clean community hero */
 .community-hero {
-    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
-    border-radius: 20px;
+    background: var(--bg-primary);
+    border-radius: 12px;
     padding: 3rem 2rem;
     margin-bottom: 4rem;
     border: 1px solid var(--border-primary);
-    position: relative;
-    overflow: hidden;
-}
-
-.community-hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, transparent 30%, var(--accent-primary) 50%, transparent 70%);
-    opacity: 0.1;
-    animation: shimmer 3s ease-in-out infinite;
-}
-
-@keyframes shimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+    box-shadow: 0 4px 16px var(--shadow-light);
 }
 
 .community-content {
@@ -1137,15 +1119,15 @@ a:hover {
     margin-top: 1rem;
 }
 
-/* Enhanced sidebar styling */
+/* Clean sidebar styling */
 .community-sidebar {
-    background: var(--bg-secondary);
-    border-radius: 16px;
+    background: var(--bg-primary);
+    border-radius: 12px;
     padding: 2rem;
     border: 1px solid var(--border-primary);
     position: sticky;
     top: 2rem;
-    box-shadow: 0 8px 25px var(--shadow-medium);
+    box-shadow: 0 4px 16px var(--shadow-light);
 }
 
 .community-nav h3 {
@@ -1196,13 +1178,14 @@ a:hover {
 }
 
 .content-section {
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
     border: 1px solid var(--border-primary);
-    border-radius: 16px;
-    padding: 2rem;
+    border-radius: 12px;
+    padding: 2.5rem;
     transition: all var(--transition-fast);
     position: relative;
     overflow: hidden;
+    box-shadow: 0 2px 8px var(--shadow-light);
 }
 
 .content-section::before {
@@ -1229,19 +1212,16 @@ a:hover {
 
 .section-header {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     padding-bottom: 1.5rem;
-    border-bottom: 2px solid var(--border-primary);
+    border-bottom: 1px solid var(--border-primary);
 }
 
 .section-header h3 {
     font-size: 1.8rem;
     margin-bottom: 0.5rem;
     color: var(--text-primary);
-    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-weight: 600;
 }
 
 .section-header p {
@@ -1253,23 +1233,32 @@ a:hover {
 .empty-state {
     text-align: center;
     padding: 3rem 2rem;
-    background: var(--bg-primary);
-    border-radius: 12px;
-    border: 2px dashed var(--border-primary);
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--border-primary);
     transition: all var(--transition-fast);
 }
 
 .empty-state:hover {
     border-color: var(--accent-primary);
-    background: var(--bg-secondary);
-    transform: scale(1.02);
+    background: var(--bg-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px var(--shadow-medium);
 }
 
 .empty-icon {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-    display: block;
-    animation: float 3s ease-in-out infinite;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--accent-primary);
+    opacity: 0.7;
+    transition: all var(--transition-fast);
+}
+
+.empty-state:hover .empty-icon {
+    opacity: 1;
+    transform: scale(1.05);
 }
 
 .empty-state h4 {
@@ -1493,21 +1482,16 @@ a:hover {
     }
 }
 
-/* Enhanced hover effects for sections */
+/* Subtle hover effects for sections */
 .content-section:hover .section-header h3 {
-    background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--accent-primary);
 }
 
-/* Floating animation for empty state icons */
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-10px);
+/* Clean, professional animations */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
