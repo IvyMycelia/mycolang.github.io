@@ -1590,31 +1590,6 @@ body .logo:hover .logo-img {
     border: 1px solid var(--border-primary);
     overflow: hidden;
     transition: all var(--transition-normal);
-    position: relative;
-}
-
-.docs-content .code-block.foldable {
-    cursor: pointer;
-}
-
-.docs-content .code-block.foldable .code-header {
-    cursor: pointer;
-    user-select: none;
-}
-
-.docs-content .code-block.foldable .code-header::before {
-    content: '▶';
-    margin-right: 0.5rem;
-    transition: transform var(--transition-normal);
-    display: inline-block;
-}
-
-.docs-content .code-block.foldable.folded .code-header::before {
-    transform: rotate(90deg);
-}
-
-.docs-content .code-block.foldable.folded pre {
-    display: none;
 }
 
 .docs-content .code-block:hover {
@@ -1635,46 +1610,6 @@ body .logo:hover .logo-img {
     padding: 1rem;
     background: var(--bg-tertiary);
     overflow-x: auto;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    border-radius: 8px;
-    border: 1px solid var(--border-primary);
-    position: relative;
-    transition: all var(--transition-normal);
-    max-height: 400px;
-    overflow-y: auto;
-}
-
-.docs-content pre.expandable {
-    cursor: pointer;
-    max-height: 200px;
-}
-
-.docs-content pre.expandable::after {
-    content: 'Click to expand ▼';
-    position: absolute;
-    bottom: 0.5rem;
-    right: 1rem;
-    background: var(--accent-primary);
-    color: var(--bg-primary);
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    opacity: 0.8;
-    transition: opacity var(--transition-normal);
-}
-
-.docs-content pre.expandable:hover::after {
-    opacity: 1;
-}
-
-.docs-content pre.expanded {
-    max-height: none;
-}
-
-.docs-content pre.expanded::after {
-    content: 'Click to collapse ▲';
 }
 
 .docs-content pre code {
@@ -1682,8 +1617,6 @@ body .logo:hover .logo-img {
     border: none;
     padding: 0;
     color: var(--text-primary);
-    font-size: clamp(0.8rem, 2vw, 0.95rem);
-    line-height: 1.5;
 }
 
 .docs-content ul {
@@ -1776,30 +1709,5 @@ body .logo:hover .logo-img {
     
     .docs-content h2 {
         font-size: 1.5rem;
-    }
-    
-    /* Mobile code block improvements */
-    .docs-content pre {
-        padding: 0.75rem;
-        font-size: 0.85rem;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        max-height: 300px;
-    }
-    
-    .docs-content pre.expandable {
-        max-height: 150px;
-    }
-    
-    .docs-content code {
-        font-size: 0.85rem;
-        padding: 0.15rem 0.3rem;
-    }
-    
-    .docs-content pre::after {
-        font-size: 0.7rem;
-        padding: 0.2rem 0.4rem;
-        bottom: 0.25rem;
-        right: 0.75rem;
     }
 }
