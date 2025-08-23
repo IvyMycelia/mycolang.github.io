@@ -174,11 +174,21 @@ a:hover {
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--text-primary);
+    text-decoration: none;
     position: relative;
     overflow: hidden;
+    transition: all var(--transition-normal);
+}
+
+.logo:hover {
+    transform: translateY(-2px);
+    color: var(--accent-primary);
 }
 
 .logo::before {
@@ -194,6 +204,73 @@ a:hover {
 
 .logo:hover::before {
     left: 100%;
+}
+
+.logo-img {
+    height: 32px;
+    width: 32px;
+    max-width: 100%;
+    transition: all var(--transition-normal);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    animation: logoFloat 3s ease-in-out infinite;
+}
+
+.logo:hover .logo-img {
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 4px 8px rgba(139, 92, 246, 0.3));
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--text-primary), var(--accent-primary));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all var(--transition-normal);
+}
+
+.logo:hover .logo-text {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@keyframes logoFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+/* Responsive logo sizing */
+@media (max-width: 768px) {
+    .logo {
+        gap: 0.5rem;
+    }
+    
+    .logo-img {
+        height: 28px;
+        width: 28px;
+    }
+    
+    .logo-text {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-img {
+        height: 24px;
+        width: 24px;
+    }
+    
+    .logo-text {
+        font-size: 1.2rem;
+    }
 }
 
 .nav-menu {
