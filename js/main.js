@@ -1,7 +1,7 @@
 // Enhanced JavaScript for Myco Language Website
 document.addEventListener('DOMContentLoaded', function() {
     // Theme management
-    const themes = ['dark', 'light'];
+    const themes = ['dark', 'light', 'trans'];
     let currentThemeIndex = 0;
     
     // Secret trans theme activation
@@ -183,6 +183,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const savedTheme = localStorage.getItem('myco-theme');
         if (savedTheme && themes.includes(savedTheme)) {
             setTheme(savedTheme);
+            // If trans theme was saved, show a subtle notification
+            if (savedTheme === 'trans') {
+                setTimeout(() => {
+                    showTransThemeNotification();
+                }, 1000);
+                }
         } else {
             // Default to dark theme
             setTheme('dark');
@@ -194,6 +200,11 @@ document.addEventListener('DOMContentLoaded', function() {
         currentThemeIndex = (currentThemeIndex + 1) % themes.length;
         const newTheme = themes[currentThemeIndex];
         setTheme(newTheme);
+        
+        // If switching to trans theme, show the secret message
+        if (newTheme === 'trans') {
+            showSecretMessage();
+        }
     }
     
     function setTheme(theme) {
@@ -452,15 +463,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Show secret message
     function showSecretMessage() {
+        // Create overlay
+        const overlay = document.createElement('div');
+        overlay.className = 'secret-overlay';
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            animation: overlayFadeIn 0.3s ease;
+        `;
+        
+        // Create message container
         const message = document.createElement('div');
         message.className = 'secret-message';
         message.innerHTML = `
             <div class="secret-content">
-                <h3>Secret Trans Theme Activated!</h3>
-                <p>You discovered the hidden "I V Y" sequence!</p>
-                <p>This theme celebrates the creator, as well as the other Queer and Trans people in the Myco community.<br><br><i>With love from <strong>Ivy Mycelia</strong></i></p>
+                <div class="secret-header">
+                    <span class="secret-icon">✨</span>
+                    <h3>Secret Trans Theme Discovered!</h3>
+                    <span class="secret-icon">✨</span>
+                </div>
+                <div class="secret-body">
+                    <p class="secret-text">You found the hidden "I V Y" sequence!</p>
+                    <p class="secret-description">This special theme celebrates the creator and the Queer and Trans community in Myco.</p>
+                    <div class="secret-heart">
+                        <span>💖</span>
+                        <p><i>With love from <strong>Ivy Mycelia</strong></i></p>
+                        <span>💖</span>
+                    </div>
+                </div>
+                <button class="secret-close-btn">Continue</button>
             </div>
         `;
+        
         message.style.cssText = `
             position: fixed;
             top: 50%;
@@ -468,22 +508,93 @@ document.addEventListener('DOMContentLoaded', function() {
             transform: translate(-50%, -50%);
             background: linear-gradient(135deg, var(--accent-primary-trans), var(--accent-secondary-trans));
             color: var(--text-primary-trans);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6), 0 0 100px rgba(255, 105, 180, 0.3);
             z-index: 10000;
             animation: secretReveal 0.8s var(--elastic);
             text-align: center;
-            max-width: 400px;
+            max-width: 450px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
         `;
         
+        // Add close button functionality
+        const closeBtn = message.querySelector('.secret-close-btn');
+        closeBtn.addEventListener('click', () => {
+            overlay.style.animation = 'overlayFadeOut 0.3s ease forwards';
+            message.style.animation = 'secretHide 0.5s ease forwards';
+            setTimeout(() => {
+                overlay.remove();
+                message.remove();
+            }, 500);
+        });
+        
+        // Add click outside to close
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                overlay.style.animation = 'overlayFadeOut 0.3s ease forwards';
+                message.style.animation = 'secretHide 0.5s ease forwards';
+                setTimeout(() => {
+                    overlay.remove();
+                    message.remove();
+                }, 500);
+            }
+        });
+        
+        // Add to DOM
+        document.body.appendChild(overlay);
         document.body.appendChild(message);
         
-        // Remove message after 5 seconds
+        // Auto-remove after 8 seconds if not manually closed
         setTimeout(() => {
-            message.style.animation = 'secretHide 0.5s ease forwards';
-            setTimeout(() => message.remove(), 500);
-        }, 5000);
+            if (overlay.parentNode) {
+                overlay.style.animation = 'overlayFadeOut 0.3s ease forwards';
+                message.style.animation = 'secretHide 0.5s ease forwards';
+                setTimeout(() => {
+                    if (overlay.parentNode) overlay.remove();
+                    if (message.parentNode) message.remove();
+                }, 500);
+            }
+        }, 8000);
+    }
+    
+    // Show subtle notification when trans theme is loaded from localStorage
+    function showTransThemeNotification() {
+        const notification = document.createElement('div');
+        notification.className = 'trans-theme-notification';
+        notification.innerHTML = `
+            <span class="notification-icon">✨</span>
+            <span class="notification-text">Trans theme active</span>
+        `;
+        
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--accent-primary-trans), var(--accent-secondary-trans));
+            color: var(--text-primary-trans);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.4);
+            z-index: 9998;
+            animation: notificationSlideIn 0.5s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Remove notification after 3 seconds
+        setTimeout(() => {
+            notification.style.animation = 'notificationSlideOut 0.5s ease forwards';
+            setTimeout(() => {
+                if (notification.parentNode) notification.remove();
+            }, 500);
+        }, 3000);
     }
 });
 
@@ -511,22 +622,43 @@ function addAnimationCSS() {
         @keyframes secretReveal {
             0% {
                 opacity: 0;
-                transform: translate(-50%, -50%) scale(0.5);
+                transform: translate(-50%, -50%) scale(0.5) rotate(-5deg);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.05) rotate(2deg);
             }
             100% {
                 opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
+                transform: translate(-50%, -50%) scale(1) rotate(0deg);
             }
         }
         
         @keyframes secretHide {
             0% {
                 opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
+                transform: translate(-50%, -50%) scale(1) rotate(0deg);
             }
             100% {
                 opacity: 0;
-                transform: translate(-50%, -50%) scale(0.5);
+                transform: translate(-50%, -50%) scale(0.5) rotate(-5deg);
+            }
+        }
+        
+        @keyframes overlayFadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes overlayFadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
             }
         }
         
