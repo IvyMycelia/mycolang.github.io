@@ -158,7 +158,7 @@
                         
                         <h3>Build from Source</h3>
                         <p>Follow these steps to build Myco from source:</p>
-                        <div class="code-block">
+                        <div class="code-block foldable">
                             <div class="code-header">
                                 <span>Build Commands</span>
                             </div>
@@ -179,7 +179,7 @@ make
                         <h3>Platform-Specific Setup</h3>
                         <h4>Linux/macOS</h4>
                         <p>Ensure you have GCC and Make installed:</p>
-                        <div class="code-block">
+                        <div class="code-block foldable">
                             <div class="code-header">
                                 <span>Install Dependencies</span>
                             </div>
@@ -192,7 +192,7 @@ xcode-select --install</code></pre>
                         
                         <h4>Windows</h4>
                         <p>Use WSL or MinGW for building:</p>
-                        <div class="code-block">
+                        <div class="code-block foldable">
                             <div class="code-header">
                                 <span>Windows Setup</span>
                             </div>
@@ -275,5 +275,33 @@ wsl --install
     </footer>
 
     <script src="js/main.js"></script>
+    <!-- Scripts -->
+    <script>
+        // Make code blocks expandable/collapsible
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find all foldable code blocks
+            const foldableBlocks = document.querySelectorAll('.code-block.foldable');
+            
+            foldableBlocks.forEach(block => {
+                const header = block.querySelector('.code-header');
+                const pre = block.querySelector('pre');
+                
+                if (header && pre) {
+                    // Add click event to header
+                    header.addEventListener('click', function() {
+                        block.classList.toggle('folded');
+                        
+                        // Update arrow direction
+                        const arrow = header.querySelector('::before');
+                        if (block.classList.contains('folded')) {
+                            pre.style.display = 'none';
+                        } else {
+                            pre.style.display = 'block';
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

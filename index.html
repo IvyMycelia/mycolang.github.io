@@ -341,5 +341,33 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <!-- Scripts -->
+    <script>
+        // Make code blocks expandable/collapsible
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find all foldable code blocks
+            const foldableBlocks = document.querySelectorAll('.code-block.foldable');
+            
+            foldableBlocks.forEach(block => {
+                const header = block.querySelector('.code-header');
+                const pre = block.querySelector('pre');
+                
+                if (header && pre) {
+                    // Add click event to header
+                    header.addEventListener('click', function() {
+                        block.classList.toggle('folded');
+                        
+                        // Update arrow direction
+                        const arrow = header.querySelector('::before');
+                        if (block.classList.contains('folded')) {
+                            pre.style.display = 'none';
+                        } else {
+                            pre.style.display = 'block';
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
