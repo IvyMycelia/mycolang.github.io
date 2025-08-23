@@ -667,6 +667,56 @@ body .logo:hover .logo-img {
     }
 }
 
+/* Enhanced section hover effects for index.html */
+.hero-content section,
+.features section,
+.about section {
+    transition: all var(--transition-normal);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content section::before,
+.features section::before,
+.about section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+    transition: left var(--transition-slow);
+    z-index: 0;
+}
+
+.hero-content section:hover::before,
+.features section:hover::before,
+.about section:hover::before {
+    left: 100%;
+}
+
+.hero-content section:hover,
+.features section:hover,
+.about section:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--accent-primary);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+}
+
+.hero-content section > *,
+.features section > *,
+.about section > * {
+    position: relative;
+    z-index: 1;
+}
+
 /* Buttons */
 .btn {
     display: inline-block;

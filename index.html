@@ -356,20 +356,31 @@
                 
                 if (header && pre) {
                     // Add click event to header
-                    header.addEventListener('click', function() {
+                    header.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
                         block.classList.toggle('folded');
                         
-                        // Toggle content visibility
+                        // Toggle content visibility with animation
                         if (block.classList.contains('folded')) {
-                            pre.style.display = 'none';
+                            pre.style.maxHeight = '0px';
+                            pre.style.opacity = '0';
+                            pre.style.overflow = 'hidden';
                         } else {
-                            pre.style.display = 'block';
+                            pre.style.maxHeight = pre.scrollHeight + 'px';
+                            pre.style.opacity = '1';
+                            pre.style.overflow = 'visible';
                         }
                     });
                     
                     // Add visual feedback
                     header.style.cursor = 'pointer';
                     header.title = 'Click to expand/collapse';
+                    
+                    // Set initial state
+                    pre.style.maxHeight = pre.scrollHeight + 'px';
+                    pre.style.transition = 'all 0.3s ease';
                 }
             });
         });

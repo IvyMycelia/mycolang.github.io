@@ -205,7 +205,7 @@
                 <div class="docs-content">
                     <h1>Myco Language Documentation</h1>
                     
-                    <section id="overview">
+                    <section id="introduction">
                         <h2>Language Overview</h2>
                         <p>Myco is a lightweight, dynamically-typed scripting language designed for simplicity and readability. It combines the performance characteristics of C with the elegant syntax of Lua, making it ideal for embedded systems, automation scripts, and rapid prototyping.</p>
                         
@@ -218,7 +218,7 @@
                         </ul>
                     </section>
 
-                    <section id="getting-started">
+                    <section id="installation">
                         <h2>Getting Started</h2>
                         
                         <h3>Installation</h3>
@@ -248,6 +248,118 @@ sudo make install</code></pre>
                         </div>
 
                         <p>Run it with: <code>myco hello.myco</code></p>
+                    </section>
+
+                    <section id="variables">
+                        <h2>Variables and Types</h2>
+                        <p>Myco uses dynamic typing with automatic type inference:</p>
+                        <div class="code-block foldable">
+                            <div class="code-header">Variable Examples</div>
+                            <pre><code><span class="comment"># Numbers (integers and floats)</span>
+<span class="keyword">let</span> <span class="param">age</span> = <span class="number">25</span>;
+<span class="keyword">let</span> <span class="param">height</span> = <span class="number">1.75</span>;
+
+<span class="comment"># Strings</span>
+<span class="keyword">let</span> <span class="param">name</span> = <span class="string">"Alice"</span>;
+<span class="keyword">let</span> <span class="param">message</span> = <span class="string">'Hello World'</span>;
+
+<span class="comment"># Booleans</span>
+<span class="keyword">let</span> <span class="param">active</span> = <span class="number">1</span>;  <span class="comment"># true</span>
+<span class="keyword">let</span> <span class="param">inactive</span> = <span class="number">0</span>; <span class="comment"># false</span></code></pre>
+                        </div>
+                    </section>
+
+                    <section id="functions">
+                        <h2>Functions</h2>
+                        <p>Functions in Myco are first-class citizens:</p>
+                        <div class="code-block foldable">
+                            <div class="code-header">Function Examples</div>
+                            <pre><code><span class="keyword">function</span> <span class="function">greet</span>(<span class="param">name</span>) {
+    <span class="keyword">return</span> <span class="string">"Hello, "</span> + <span class="param">name</span> + <span class="string">"!"</span>;
+}
+
+<span class="comment"># Call the function</span>
+<span class="keyword">let</span> <span class="param">message</span> = <span class="function">greet</span>(<span class="string">"World"</span>);
+<span class="function">print</span>(<span class="param">message</span>);</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="control-flow">
+                        <h2>Control Flow</h2>
+                        <p>Myco provides standard control flow constructs:</p>
+                        <div class="code-block foldable">
+                            <div class="code-header">Control Flow Examples</div>
+                            <pre><code><span class="comment"># If statements</span>
+<span class="keyword">if</span> (<span class="param">age</span> >= <span class="number">18</span>) {
+    <span class="function">print</span>(<span class="string">"Adult"</span>);
+} <span class="keyword">else</span> {
+    <span class="function">print</span>(<span class="string">"Minor"</span>);
+}
+
+<span class="comment"># Loops</span>
+<span class="keyword">for</span> (<span class="keyword">let</span> <span class="param">i</span> = <span class="number">0</span>; <span class="param">i</span> < <span class="number">5</span>; <span class="param">i</span>++) {
+    <span class="function">print</span>(<span class="param">i</span>);
+}</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="data-structures">
+                        <h2>Data Structures</h2>
+                        <p>Myco supports various data structures:</p>
+                        <div class="code-block foldable">
+                            <div class="code-header">Data Structure Examples</div>
+                            <pre><code><span class="comment"># Lists (dynamic arrays)</span>
+<span class="keyword">let</span> <span class="param">numbers</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];
+
+<span class="comment"># Maps (hash tables)</span>
+<span class="keyword">let</span> <span class="param">person</span> = {
+    <span class="string">"name"</span>: <span class="string">"Bob"</span>,
+    <span class="string">"age"</span>: <span class="number">30</span>,
+    <span class="string">"city"</span>: <span class="string">"New York"</span>
+};</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="error-handling">
+                        <h2>Error Handling</h2>
+                        <p>Myco provides robust error handling:</p>
+                        <div class="code-block foldable">
+                            <div class="code-header">Error Handling Examples</div>
+                            <pre><code><span class="keyword">try</span> {
+    <span class="keyword">let</span> <span class="param">result</span> = <span class="function">divide</span>(<span class="number">10</span>, <span class="number">0</span>);
+} <span class="keyword">catch</span> (<span class="param">error</span>) {
+    <span class="function">print</span>(<span class="string">"Error: "</span> + <span class="param">error</span>);
+}</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="stdlib">
+                        <h2>Standard Library</h2>
+                        <p>Myco comes with a comprehensive standard library:</p>
+                        <div class="code-block foldable">
+                            <div class="code-header">Standard Library Examples</div>
+                            <pre><code><span class="comment"># File operations</span>
+<span class="keyword">let</span> <span class="param">content</span> = <span class="function">readFile</span>(<span class="string">"data.txt"</span>);
+<span class="function">writeFile</span>(<span class="string">"output.txt"</span>, <span class="param">content</span>);
+
+<span class="comment"># Math functions</span>
+<span class="keyword">let</span> <span class="param">sqrt</span> = <span class="function">math.sqrt</span>(<span class="number">16</span>);
+<span class="keyword">let</span> <span class="param">random</span> = <span class="function">math.random</span>();</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="examples">
+                        <h2>Complete Examples</h2>
+                        <p>Here are some complete Myco programs:</p>
+                        <div class="code-block foldable">
+                            <div class="code-header">Calculator Example</div>
+                            <pre><code><span class="keyword">function</span> <span class="function">calculator</span>() {
+    <span class="function">print</span>(<span class="string">"Simple Calculator"</span>);
+    <span class="keyword">let</span> <span class="param">a</span> = <span class="function">input</span>(<span class="string">"Enter first number: "</span>);
+    <span class="keyword">let</span> <span class="param">b</span> = <span class="function">input</span>(<span class="string">"Enter second number: "</span>);
+    <span class="function">print</span>(<span class="string">"Sum: "</span> + (<span class="param">a</span> + <span class="param">b</span>));
+}</code></pre>
+                        </div>
                     </section>
 
                     <section id="syntax">
