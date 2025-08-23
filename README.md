@@ -21,11 +21,11 @@ mycolang.org/
 ├── docs.html           # Documentation page
 ├── grammar.html        # BNF grammar and syntax rules
 ├── css/
-│   └── main.css       # Main stylesheet with all components
+│   └── main.css        # Main stylesheet with all components
 ├── js/
-│   └── main.js        # Main JavaScript functionality
+│   └── main.js         # Main JavaScript functionality
 ├── README.md           # This file
-└── CNAME              # Custom domain configuration
+└── CNAME               # Custom domain configuration
 ```
 
 ## 🚀 Getting Started
