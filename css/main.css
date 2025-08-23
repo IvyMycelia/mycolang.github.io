@@ -104,6 +104,13 @@ body.trans-theme {
     padding: 0 1.5rem;
 }
 
+/* Ensure docs pages have consistent content width */
+.docs-main .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
@@ -599,30 +606,29 @@ body .logo:hover .logo-img {
 .hero .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    gap: 4rem;
     align-items: center;
     position: relative;
     z-index: 2;
-    min-height: 80vh;
 }
 
 .hero-content h1 {
     color: var(--text-primary);
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
     animation: slideInLeft 1s var(--elastic);
 }
 
 .hero-subtitle {
     font-size: 1.25rem;
     color: var(--text-secondary);
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
     animation: slideInLeft 1s var(--elastic) 0.2s both;
 }
 
 .hero-description {
     font-size: 1.1rem;
     color: var(--text-muted);
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     animation: slideInLeft 1s var(--elastic) 0.4s both;
 }
 
@@ -1417,25 +1423,25 @@ body .logo:hover .logo-img {
 
 /* Documentation Layout Styles */
 .docs-main {
-    margin-top: 60px;
-    padding: 0.75rem 0;
+    margin-top: 40px;
+    padding: 0.5rem 0;
 }
 
         .docs-layout {
             display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 2rem;
-            margin-top: 0.75rem;
+            grid-template-columns: 300px 1fr;
+            gap: 1.5rem;
+            margin-top: 0.5rem;
         }
 
 .docs-sidebar {
     background: var(--bg-secondary);
-    padding: 1.5rem;
+    padding: 1.25rem;
     border-radius: 8px;
     border: 1px solid var(--border-primary);
     height: fit-content;
     position: sticky;
-    top: 80px;
+    top: 60px;
     transition: all var(--transition-normal);
 }
 
@@ -1479,7 +1485,7 @@ body .logo:hover .logo-img {
 
 .docs-content {
     background: var(--bg-primary);
-    padding: 1.5rem;
+    padding: 1.25rem;
     border-radius: 8px;
     border: 1px solid var(--border-primary);
     transition: all var(--transition-normal);
