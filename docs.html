@@ -68,7 +68,9 @@
                     
                     <section id="overview">
                         <h2>Language Overview</h2>
-                        <p>Myco is a lightweight, dynamically-typed scripting language designed for simplicity and readability. It combines the performance characteristics of C with the elegant syntax of Lua, making it ideal for embedded systems, automation scripts, and rapid prototyping.</p>
+                        <p><strong>Myco</strong> is a whimsical, mystical programming language rooted deep in the forest floor. Think C meets Lua — but with mushrooms. It's a lightweight, expressive scripting language designed for simplicity, readability, and just a touch of magic.</p>
+                        
+                        <p><strong>Current Version:</strong> v1.4.0 - Float Support & Library Import System</p>
                         
                         <h3>Key Design Principles</h3>
                         <ul>
@@ -76,6 +78,19 @@
                             <li><strong>Performance:</strong> Efficient execution with minimal overhead</li>
                             <li><strong>Portability:</strong> Cross-platform compatibility</li>
                             <li><strong>Embeddability:</strong> Easy integration into existing applications</li>
+                            <li><strong>Magic:</strong> Whimsical and mystical design philosophy</li>
+                        </ul>
+                        
+                        <h3>Latest Features</h3>
+                        <ul>
+                            <li><strong>Float Support:</strong> Full floating-point arithmetic and mixed operations</li>
+                            <li><strong>Library Import System:</strong> Namespace protection and modular code</li>
+                            <li><strong>True/False Keywords:</strong> Boolean literals with backward compatibility</li>
+                            <li><strong>Enhanced Math Library:</strong> 15+ mathematical functions</li>
+                            <li><strong>Utility Library:</strong> 20+ utility functions for debugging</li>
+                            <li><strong>Arrow Syntax:</strong> Modern function return type annotations</li>
+                            <li><strong>Switch/Case Statements:</strong> Expression-based case matching</li>
+                            <li><strong>Try-Catch Error Handling:</strong> Graceful error management</li>
                         </ul>
                     </section>
 
@@ -89,11 +104,16 @@
                                 <span>Build Commands</span>
                             </div>
                             <pre><code>git clone https://github.com/IvyMycelia/Myco.git
-cd Myco
-mkdir build && cd build
-cmake ..
-make
-sudo make install</code></pre>
+cd myco/myco
+make</code></pre>
+                        </div>
+
+                        <h3>Running Programs</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Execution</span>
+                            </div>
+                            <pre><code>./myco filename.myco</code></pre>
                         </div>
 
                         <h3>Your First Myco Script</h3>
@@ -102,18 +122,37 @@ sudo make install</code></pre>
                             <div class="code-header">
                                 <span>hello.myco</span>
                             </div>
-                            <pre><code><span class="keyword">print</span>(<span class="string">"Hello, Myco World!"</span>);
+                            <pre><code><span class="keyword">let</span> <span class="param">name</span> = <span class="string">"Developer"</span>;
 
-<span class="keyword">let</span> <span class="param">name</span> = <span class="string">"Developer"</span>;
-<span class="keyword">print</span>(<span class="string">"Welcome, "</span> + <span class="param">name</span> + <span class="string">"!"</span>);</code></pre>
+<span class="comment"># Traditional syntax</span>
+<span class="keyword">func</span> <span class="function">greet</span>(<span class="param">person</span>):
+    <span class="function">print</span>(<span class="string">"Welcome to the woods,"</span>, <span class="param">person</span>, <span class="string">"!"</span>);
+<span class="keyword">end</span>
+
+<span class="comment"># New arrow syntax</span>
+<span class="keyword">func</span> <span class="function">calculate_power</span>(<span class="param">base</span>: <span class="keyword">int</span>, <span class="param">exponent</span>: <span class="keyword">int</span>) -> <span class="keyword">int</span>:
+    <span class="keyword">return</span> <span class="function">pow</span>(<span class="param">base</span>, <span class="param">exponent</span>);
+<span class="keyword">end</span>
+
+<span class="function">greet</span>(<span class="param">name</span>);
+<span class="keyword">let</span> <span class="param">result</span> = <span class="function">calculate_power</span>(<span class="number">2</span>, <span class="number">8</span>);  <span class="comment"># 256</span></code></pre>
                         </div>
-
-                        <p>Run it with: <code>myco hello.myco</code></p>
                     </section>
 
                     <section id="syntax">
                         <h2>Language Syntax</h2>
                         
+                        <h3>Comments</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Comment Syntax</span>
+                            </div>
+                            <pre><code><span class="comment"># Single-line comment</span>
+<span class="comment">'''</span>
+<span class="comment">Multi-line comment</span>
+<span class="comment">'''</span></code></pre>
+                        </div>
+
                         <h3>Variables and Types</h3>
                         <p>Myco uses dynamic typing with automatic type inference:</p>
                         <div class="code-block">
@@ -123,14 +162,19 @@ sudo make install</code></pre>
                             <pre><code><span class="comment"># Numbers (integers and floats)</span>
 <span class="keyword">let</span> <span class="param">age</span> = <span class="number">25</span>;
 <span class="keyword">let</span> <span class="param">height</span> = <span class="number">1.75</span>;
+<span class="keyword">let</span> <span class="param">pi</span> = <span class="number">3.14159</span>;
 
 <span class="comment"># Strings</span>
 <span class="keyword">let</span> <span class="param">name</span> = <span class="string">"Alice"</span>;
 <span class="keyword">let</span> <span class="param">message</span> = <span class="string">'Hello World'</span>;
 
-<span class="comment"># Booleans</span>
-<span class="keyword">let</span> <span class="param">active</span> = <span class="number">1</span>;  <span class="comment"># true</span>
-<span class="keyword">let</span> <span class="param">inactive</span> = <span class="number">0</span>; <span class="comment"># false</span>
+<span class="comment"># Booleans (new keywords)</span>
+<span class="keyword">let</span> <span class="param">active</span> = <span class="keyword">True</span>;   <span class="comment"># true</span>
+<span class="keyword">let</span> <span class="param">inactive</span> = <span class="keyword">False</span>; <span class="comment"># false</span>
+
+<span class="comment"># Legacy numeric booleans (still supported)</span>
+<span class="keyword">let</span> <span class="param">is_valid</span> = <span class="number">1</span>;  <span class="comment"># true</span>
+<span class="keyword">let</span> <span class="param">is_invalid</span> = <span class="number">0</span>; <span class="comment"># false</span>
 
 <span class="comment"># Lists (dynamic arrays)</span>
 <span class="keyword">let</span> <span class="param">numbers</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];
@@ -142,61 +186,50 @@ sudo make install</code></pre>
     <span class="string">"city"</span>: <span class="string">"New York"</span>
 };</code></pre>
                         </div>
+                    </section>
 
-                        <h3>Control Flow</h3>
-                        <p>Myco provides standard control structures:</p>
+                    <section id="functions">
+                        <h2>Functions</h2>
+                        
+                        <h3>Function Definition</h3>
                         <div class="code-block">
                             <div class="code-header">
-                                <span>Control Flow Example</span>
+                                <span>Function Definition</span>
                             </div>
-                            <pre><code><span class="comment"># If statements</span>
-<span class="keyword">let</span> <span class="param">x</span> = <span class="number">10</span>;
-
-<span class="keyword">if</span> <span class="param">x</span> > <span class="number">5</span>:
-    <span class="keyword">print</span>(<span class="string">"x is greater than 5"</span>);
-<span class="keyword">else</span> <span class="keyword">if</span> <span class="param">x</span> == <span class="number">5</span>:
-    <span class="keyword">print</span>(<span class="string">"x equals 5"</span>);
-<span class="keyword">else</span>:
-    <span class="keyword">print</span>(<span class="string">"x is less than 5"</span>);
-<span class="keyword">end</span>
-
-<span class="comment"># Loops</span>
-<span class="keyword">for</span> <span class="param">i</span> = <span class="number">1</span> <span class="keyword">to</span> <span class="number">5</span>:
-    <span class="keyword">print</span>(<span class="string">"Iteration "</span> + <span class="param">i</span>);
-<span class="keyword">end</span>
-
-<span class="keyword">let</span> <span class="param">count</span> = <span class="number">0</span>;
-<span class="keyword">while</span> <span class="param">count</span> < <span class="number">3</span>:
-    <span class="keyword">print</span>(<span class="string">"Count: "</span> + <span class="param">count</span>);
-    <span class="param">count</span> = <span class="param">count</span> + <span class="number">1</span>;
-<span class="keyword">end</span></code></pre>
-                        </div>
-
-                        <h3>Functions</h3>
-                        <p>Functions are first-class citizens in Myco:</p>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span>Functions Example</span>
-                            </div>
-                            <pre><code><span class="comment"># Function definition</span>
-<span class="keyword">func</span> <span class="function">greet</span>(<span class="param">name</span>):
+                            <pre><code><span class="keyword">func</span> <span class="function">greet</span>(<span class="param">name</span>):
     <span class="keyword">return</span> <span class="string">"Hello, "</span> + <span class="param">name</span> + <span class="string">"!"</span>;
 <span class="keyword">end</span>
 
-<span class="comment"># Function call</span>
-<span class="keyword">let</span> <span class="param">message</span> = <span class="function">greet</span>(<span class="string">"World"</span>);
-<span class="keyword">print</span>(<span class="param">message</span>);
-
-<span class="comment"># Function with multiple parameters</span>
 <span class="keyword">func</span> <span class="function">add</span>(<span class="param">a</span>, <span class="param">b</span>):
     <span class="keyword">return</span> <span class="param">a</span> + <span class="param">b</span>;
 <span class="keyword">end</span>
 
+<span class="keyword">func</span> <span class="function">calculate_power</span>(<span class="param">base</span>: <span class="keyword">int</span>, <span class="param">exponent</span>: <span class="keyword">int</span>) -> <span class="keyword">int</span>:
+    <span class="keyword">return</span> <span class="function">pow</span>(<span class="param">base</span>, <span class="param">exponent</span>);
+<span class="keyword">end</span></code></pre>
+                        </div>
+
+                        <h3>Function Call</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Function Call</span>
+                            </div>
+                            <pre><code><span class="keyword">let</span> <span class="param">message</span> = <span class="function">greet</span>(<span class="string">"World"</span>);
+<span class="keyword">print</span>(<span class="param">message</span>);
+
 <span class="keyword">let</span> <span class="param">result</span> = <span class="function">add</span>(<span class="number">5</span>, <span class="number">3</span>);
 <span class="keyword">print</span>(<span class="string">"5 + 3 = "</span> + <span class="param">result</span>);
 
-<span class="comment"># Recursive function</span>
-<span class="keyword">func</span> <span class="function">factorial</span>(<span class="param">n</span>):
+<span class="keyword">let</span> <span class="param">power_result</span> = <span class="function">calculate_power</span>(<span class="number">2</span>, <span class="number">8</span>);
+<span class="keyword">print</span>(<span class="string">"2^8 = "</span> + <span class="param">power_result</span>);</code></pre>
+                        </div>
+
+                        <h3>Recursive Functions</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Recursive Function</span>
+                            </div>
+                            <pre><code><span class="keyword">func</span> <span class="function">factorial</span>(<span class="param">n</span>):
     <span class="keyword">if</span> <span class="param">n</span> <= <span class="number">1</span>:
         <span class="keyword">return</span> <span class="number">1</span>;
     <span class="keyword">end</span>
@@ -205,83 +238,157 @@ sudo make install</code></pre>
                         </div>
                     </section>
 
+                    <section id="control-flow">
+                        <h2>Control Flow</h2>
+                        
+                        <h3>If Statements</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>If Statements</span>
+                            </div>
+                            <pre><code><span class="keyword">let</span> <span class="param">x</span> = <span class="number">10</span>;
+
+<span class="keyword">if</span> <span class="param">x</span> > <span class="number">5</span>:
+    <span class="keyword">print</span>(<span class="string">"x is greater than 5"</span>);
+<span class="keyword">else</span> <span class="keyword">if</span> <span class="param">x</span> == <span class="number">5</span>:
+    <span class="keyword">print</span>(<span class="string">"x equals 5"</span>);
+<span class="keyword">else</span>:
+    <span class="keyword">print</span>(<span class="string">"x is less than 5"</span>);
+<span class="keyword">end</span></code></pre>
+                        </div>
+
+                        <h3>For Loops</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>For Loops</span>
+                            </div>
+                            <pre><code><span class="keyword">for</span> <span class="param">i</span> = <span class="number">1</span> <span class="keyword">to</span> <span class="number">5</span>:
+    <span class="keyword">print</span>(<span class="string">"Iteration "</span> + <span class="param">i</span>);
+<span class="keyword">end</span></code></pre>
+                        </div>
+
+                        <h3>While Loops</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>While Loops</span>
+                            </div>
+                            <pre><code><span class="keyword">let</span> <span class="param">count</span> = <span class="number">0</span>;
+<span class="keyword">while</span> <span class="param">count</span> < <span class="number">3</span>:
+    <span class="keyword">print</span>(<span class="string">"Count: "</span> + <span class="param">count</span>);
+    <span class="param">count</span> = <span class="param">count</span> + <span class="number">1</span>;
+<span class="keyword">end</span></code></pre>
+                        </div>
+
+                        <h3>Switch/Case Statements</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Switch/Case</span>
+                            </div>
+                            <pre><code><span class="keyword">let</span> <span class="param">choice</span> = <span class="function">input_int</span>(<span class="string">"Enter choice (1-4): "</span>);
+
+<span class="keyword">switch</span> <span class="param">choice</span>:
+    <span class="keyword">case</span> <span class="number">1</span>:
+        <span class="keyword">print</span>(<span class="string">"You chose option 1"</span>);
+    <span class="keyword">case</span> <span class="number">2</span>:
+        <span class="keyword">print</span>(<span class="string">"You chose option 2"</span>);
+    <span class="keyword">case</span> <span class="number">3</span>:
+        <span class="keyword">print</span>(<span class="string">"You chose option 3"</span>);
+    <span class="keyword">case</span> <span class="number">4</span>:
+        <span class="keyword">print</span>(<span class="string">"You chose option 4"</span>);
+    <span class="keyword">default</span>:
+        <span class="keyword">print</span>(<span class="string">"Invalid choice"</span>);
+<span class="keyword">end</span></code></pre>
+                        </div>
+                    </section>
+
                     <section id="data-structures">
                         <h2>Data Structures</h2>
                         
                         <h3>Lists</h3>
-                        <p>Lists are dynamic arrays that can hold any type of data:</p>
                         <div class="code-block">
                             <div class="code-header">
-                                <span>Lists Example</span>
+                                <span>Lists</span>
                             </div>
-                            <pre><code><span class="comment"># Creating lists</span>
-<span class="keyword">let</span> <span class="param">empty_list</span> = [];
+                            <pre><code><span class="keyword">let</span> <span class="param">empty_list</span> = [];
 <span class="keyword">let</span> <span class="param">numbers</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];
 <span class="keyword">let</span> <span class="param">mixed</span> = [<span class="string">"hello"</span>, <span class="number">42</span>, <span class="number">1</span>];
 
-<span class="comment"># Accessing elements (0-indexed)</span>
 <span class="keyword">let</span> <span class="param">first</span> = <span class="param">numbers</span>[<span class="number">0</span>];  <span class="comment"># 1</span>
 <span class="keyword">let</span> <span class="param">last</span> = <span class="param">numbers</span>[<span class="number">2</span>];   <span class="comment"># 3</span>
 
-<span class="comment"># Modifying lists</span>
 <span class="param">numbers</span>[<span class="number">1</span>] = <span class="number">99</span>;  <span class="comment"># [1, 99, 3]</span>
 <span class="param">numbers</span>.<span class="function">push</span>(<span class="number">4</span>);    <span class="comment"># [1, 99, 3, 4]</span>
 <span class="param">numbers</span>.<span class="function">pop</span>();       <span class="comment"># [1, 99, 3]</span>
 
-<span class="comment"># List operations</span>
 <span class="keyword">let</span> <span class="param">combined</span> = <span class="param">numbers</span> + [<span class="number">5</span>, <span class="number">6</span>];
 <span class="keyword">let</span> <span class="param">length</span> = <span class="param">numbers</span>.<span class="function">len</span>();</code></pre>
                         </div>
 
                         <h3>Maps</h3>
-                        <p>Maps are key-value pairs, similar to dictionaries or hash tables:</p>
                         <div class="code-block">
                             <div class="code-header">
-                                <span>Maps Example</span>
+                                <span>Maps</span>
                             </div>
-                            <pre><code><span class="comment"># Creating maps</span>
-<span class="keyword">let</span> <span class="param">empty_map</span> = {};
+                            <pre><code><span class="keyword">let</span> <span class="param">empty_map</span> = {};
 <span class="keyword">let</span> <span class="param">person</span> = {
     <span class="string">"name"</span>: <span class="string">"Alice"</span>,
     <span class="string">"age"</span>: <span class="number">30</span>,
     <span class="string">"city"</span>: <span class="string">"Boston"</span>
 };
 
-<span class="comment"># Accessing values</span>
 <span class="keyword">let</span> <span class="param">name</span> = <span class="param">person</span>[<span class="string">"name"</span>];
 <span class="keyword">let</span> <span class="param">age</span> = <span class="param">person</span>[<span class="string">"age"</span>];
 
-<span class="comment"># Modifying maps</span>
 <span class="param">person</span>[<span class="string">"age"</span>] = <span class="number">31</span>;
 <span class="param">person</span>[<span class="string">"country"</span>] = <span class="string">"USA"</span>;
 
-<span class="comment"># Checking if key exists</span>
 <span class="keyword">if</span> <span class="param">person</span>.<span class="function">has</span>(<span class="string">"email"</span>):
     <span class="keyword">print</span>(<span class="param">person</span>[<span class="string">"email"</span>]);
 <span class="keyword">end</span>
 
-<span class="comment"># Removing keys</span>
 <span class="param">person</span>.<span class="function">remove</span>(<span class="string">"city"</span>);</code></pre>
                         </div>
                     </section>
 
-                    <section id="standard-library">
-                        <h2>Standard Library</h2>
+                    <section id="error-handling">
+                        <h2>Error Handling</h2>
                         
-                        <h3>Input/Output Functions</h3>
+                        <h3>Try-Catch</h3>
                         <div class="code-block">
                             <div class="code-header">
-                                <span>I/O Functions</span>
+                                <span>Try-Catch</span>
                             </div>
-                            <pre><code><span class="comment"># Output functions</span>
-<span class="function">print</span>(<span class="string">"Hello World"</span>);
-<span class="function">println</span>(<span class="string">"With newline"</span>);
+                            <pre><code><span class="keyword">try</span>:
+    <span class="keyword">let</span> <span class="param">result</span> = <span class="function">divide</span>(<span class="number">10</span>, <span class="number">0</span>);
+<span class="keyword">catch</span> <span class="param">e</span>:
+    <span class="keyword">print</span>(<span class="string">"Error: "</span>, <span class="param">e</span>);
+<span class="keyword">end</span></code></pre>
+                        </div>
 
-<span class="comment"># Input functions</span>
+                        <h3>Error Types</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Error Types</span>
+                            </div>
+                            <pre><code><span class="keyword">let</span> <span class="param">e</span> = <span class="keyword">Error</span>(<span class="string">"Something went wrong"</span>);
+<span class="keyword">print</span>(<span class="param">e</span>.<span class="function">message</span>());</code></pre>
+                        </div>
+                    </section>
+
+                    <section id="stdlib">
+                        <h2>Standard Library</h2>
+                        
+                        <h3>Input/Output</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>I/O</span>
+                            </div>
+                            <pre><code><span class="keyword">print</span>(<span class="string">"Hello World"</span>);
+<span class="keyword">println</span>(<span class="string">"With newline"</span>);
+
 <span class="keyword">let</span> <span class="param">name</span> = <span class="function">input</span>(<span class="string">"Enter your name: "</span>);
 <span class="keyword">let</span> <span class="param">age</span> = <span class="function">input_int</span>(<span class="string">"Enter your age: "</span>);
 
-<span class="comment"># File operations</span>
 <span class="keyword">let</span> <span class="param">file</span> = <span class="function">file_open</span>(<span class="string">"data.txt"</span>, <span class="string">"r"</span>);
 <span class="keyword">let</span> <span class="param">content</span> = <span class="function">file_read</span>(<span class="param">file</span>);
 <span class="function">file_close</span>(<span class="param">file</span>);</code></pre>
@@ -290,19 +397,16 @@ sudo make install</code></pre>
                         <h3>Mathematical Functions</h3>
                         <div class="code-block">
                             <div class="code-header">
-                                <span>Math Functions</span>
+                                <span>Math</span>
                             </div>
-                            <pre><code><span class="comment"># Basic math</span>
-<span class="keyword">let</span> <span class="param">result</span> = <span class="function">abs</span>(-<span class="number">42</span>);        <span class="comment"># 42</span>
+                            <pre><code><span class="keyword">let</span> <span class="param">result</span> = <span class="function">abs</span>(-<span class="number">42</span>);        <span class="comment"># 42</span>
 <span class="keyword">let</span> <span class="param">max_val</span> = <span class="function">max</span>(<span class="number">5</span>, <span class="number">10</span>);     <span class="comment"># 10</span>
 <span class="keyword">let</span> <span class="param">min_val</span> = <span class="function">min</span>(<span class="number">3</span>, <span class="number">7</span>);      <span class="comment"># 3</span>
 
-<span class="comment"># Advanced math</span>
 <span class="keyword">let</span> <span class="param">sqrt_val</span> = <span class="function">sqrt</span>(<span class="number">16</span>);      <span class="comment"># 4.0</span>
 <span class="keyword">let</span> <span class="param">power</span> = <span class="function">pow</span>(<span class="number">2</span>, <span class="number">8</span>);        <span class="comment"># 256</span>
 <span class="keyword">let</span> <span class="param">rounded</span> = <span class="function">round</span>(<span class="number">3.7</span>);     <span class="comment"># 4</span>
 
-<span class="comment"># Random numbers</span>
 <span class="keyword">let</span> <span class="param">random</span> = <span class="function">random</span>();           <span class="comment"># 0.0 to 1.0</span>
 <span class="keyword">let</span> <span class="param">dice</span> = <span class="function">random_int</span>(<span class="number">1</span>, <span class="number">6</span>); <span class="comment"># 1 to 6</span></code></pre>
                         </div>
@@ -310,32 +414,110 @@ sudo make install</code></pre>
                         <h3>String Functions</h3>
                         <div class="code-block">
                             <div class="code-header">
-                                <span>String Functions</span>
+                                <span>String</span>
                             </div>
-                            <pre><code><span class="comment"># String manipulation</span>
-<span class="keyword">let</span> <span class="param">text</span> = <span class="string">"  Hello World  "</span>;
+                            <pre><code><span class="keyword">let</span> <span class="param">text</span> = <span class="string">"  Hello World  "</span>;
 <span class="keyword">let</span> <span class="param">trimmed</span> = <span class="function">trim</span>(<span class="param">text</span>);           <span class="comment"># "Hello World"</span>
 <span class="keyword">let</span> <span class="param">upper</span> = <span class="function">upper</span>(<span class="param">text</span>);           <span class="comment"># "  HELLO WORLD  "</span>
 <span class="keyword">let</span> <span class="param">lower</span> = <span class="function">lower</span>(<span class="param">text</span>);           <span class="comment"># "  hello world  "</span>
 
-<span class="comment"># String operations</span>
 <span class="keyword">let</span> <span class="param">length</span> = <span class="function">len</span>(<span class="param">text</span>);            <span class="comment"># 15</span>
 <span class="keyword">let</span> <span class="param">substr</span> = <span class="function">substr</span>(<span class="param">text</span>, <span class="number">2</span>, <span class="number">5</span>); <span class="comment"># "Hello"</span>
 <span class="keyword">let</span> <span class="param">replaced</span> = <span class="function">replace</span>(<span class="param">text</span>, <span class="string">"World"</span>, <span class="string">"Myco"</span>);
 
-<span class="comment"># String splitting and joining</span>
 <span class="keyword">let</span> <span class="param">parts</span> = <span class="function">split</span>(<span class="param">trimmed</span>, <span class="string">" "</span>);  <span class="comment"># ["Hello", "World"]</span>
 <span class="keyword">let</span> <span class="param">joined</span> = <span class="function">join</span>(<span class="param">parts</span>, <span class="string">"-"</span>);    <span class="comment"># "Hello-World"</span></code></pre>
                         </div>
                     </section>
 
+                    <section id="advanced-features">
+                        <h2>Advanced Features</h2>
+                        
+                        <h3>Library Import System</h3>
+                        <p>Myco v1.4.0 introduces a powerful library import system with namespace protection:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Library Imports</span>
+                            </div>
+                            <pre><code><span class="comment"># Import math library with namespace</span>
+<span class="keyword">use</span> <span class="keyword">math</span> <span class="keyword">as</span> <span class="param">m</span>;
+
+<span class="comment"># Import utility library</span>
+<span class="keyword">use</span> <span class="keyword">util</span> <span class="keyword">as</span> <span class="param">u</span>;
+
+<span class="comment"># Use math functions with namespace</span>
+<span class="keyword">let</span> <span class="param">pi</span> = <span class="param">m</span>.<span class="function">PI</span>;                  <span class="comment"># 3.14159</span>
+<span class="keyword">let</span> <span class="param">e</span> = <span class="param">m</span>.<span class="function">E</span>;                    <span class="comment"># 2.71828</span>
+<span class="keyword">let</span> <span class="param">abs_val</span> = <span class="param">m</span>.<span class="function">abs</span>(-<span class="number">5</span>);        <span class="comment"># 5</span>
+<span class="keyword">let</span> <span class="param">power</span> = <span class="param">m</span>.<span class="function">pow</span>(<span class="number">2</span>, <span class="number">8</span>);        <span class="comment"># 256</span>
+
+<span class="comment"># Use utility functions</span>
+<span class="keyword">let</span> <span class="param">user</span> = {<span class="string">"name"</span>: <span class="string">"Alice"</span>, <span class="string">"age"</span>: <span class="number">25</span>};
+<span class="param">u</span>.<span class="function">debug</span>(<span class="param">user</span>);                  <span class="comment"># Detailed object inspection</span>
+<span class="keyword">let</span> <span class="param">user_type</span> = <span class="param">u</span>.<span class="function">type</span>(<span class="param">user</span>);   <span class="comment"># Returns "Object"</span>
+<span class="keyword">let</span> <span class="param">has_name</span> = <span class="param">u</span>.<span class="function">has</span>(<span class="param">user</span>, <span class="string">"name"</span>); <span class="comment"># Returns 1 (true)</span></code></pre>
+                        </div>
+
+                        <h3>Lambda Functions</h3>
+                        <p>Myco supports lambda functions for functional programming:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Lambda Functions</span>
+                            </div>
+                            <pre><code><span class="keyword">let</span> <span class="param">numbers</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];
+
+<span class="comment"># Filter even numbers using lambda</span>
+<span class="keyword">let</span> <span class="param">isEven</span> = <span class="param">x</span> => <span class="param">x</span> % <span class="number">2</span> == <span class="number">0</span>;
+<span class="keyword">let</span> <span class="param">evens</span> = <span class="function">filter</span>(<span class="param">numbers</span>, <span class="param">isEven</span>);
+
+<span class="comment"># Transform numbers using lambda</span>
+<span class="keyword">let</span> <span class="param">double</span> = <span class="param">x</span> => <span class="param">x</span> * <span class="number">2</span>;
+<span class="keyword">let</span> <span class="param">doubled</span> = <span class="function">map</span>(<span class="param">numbers</span>, <span class="param">double</span>);
+
+<span class="comment"># Reduce array to sum</span>
+<span class="keyword">let</span> <span class="param">add</span> = (<span class="param">acc</span>, <span class="param">x</span>) => <span class="param">acc</span> + <span class="param">x</span>;
+<span class="keyword">let</span> <span class="param">sum</span> = <span class="function">reduce</span>(<span class="param">numbers</span>, <span class="number">0</span>, <span class="param">add</span>);</code></pre>
+                        </div>
+
+                        <h3>Float Support</h3>
+                        <p>Myco v1.4.0 includes comprehensive floating-point support:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Float Operations</span>
+                            </div>
+                            <pre><code><span class="comment"># Float literals</span>
+<span class="keyword">let</span> <span class="param">pi</span> = <span class="number">3.14159</span>;
+<span class="keyword">let</span> <span class="param">e</span> = <span class="number">2.71828</span>;
+<span class="keyword">let</span> <span class="param">small</span> = <span class="number">0.001</span>;
+<span class="keyword">let</span> <span class="param">large</span> = <span class="number">1000.0</span>;
+
+<span class="comment"># Leading decimal point</span>
+<span class="keyword">let</span> <span class="param">quarter</span> = <span class="number">.25</span>;
+<span class="keyword">let</span> <span class="param">half</span> = <span class="number">.5</span>;
+
+<span class="comment"># Float arithmetic</span>
+<span class="keyword">let</span> <span class="param">sum</span> = <span class="number">3.14</span> + <span class="number">2.5</span>;        <span class="comment"># 5.64</span>
+<span class="keyword">let</span> <span class="param">product</span> = <span class="number">3.14</span> * <span class="number">2.0</span>;    <span class="comment"># 6.28</span>
+<span class="keyword">let</span> <span class="param">quotient</span> = <span class="number">6.28</span> / <span class="number">2.0</span>;   <span class="comment"># 3.14</span>
+
+<span class="comment"># Mixed integer and float</span>
+<span class="keyword">let</span> <span class="param">mixed</span> = <span class="number">10</span> + <span class="number">3.14</span>;       <span class="comment"># 13.14</span>
+<span class="keyword">let</span> <span class="param">scaled</span> = <span class="number">5</span> * <span class="number">2.5</span>;        <span class="comment"># 12.5</span>
+
+<span class="comment"># Circle calculations</span>
+<span class="keyword">let</span> <span class="param">radius</span> = <span class="number">5.5</span>;
+<span class="keyword">let</span> <span class="param">area</span> = <span class="param">pi</span> * <span class="function">pow</span>(<span class="param">radius</span>, <span class="number">2</span>);  <span class="comment"># Area of circle</span>
+<span class="keyword">let</span> <span class="param">circumference</span> = <span class="number">2</span> * <span class="param">pi</span> * <span class="param">radius</span>;</code></pre>
+                        </div>
+                    </section>
+
                     <section id="examples">
-                        <h2>Practical Examples</h2>
+                        <h2>Complete Examples</h2>
                         
                         <h3>Simple Calculator</h3>
                         <div class="code-block">
                             <div class="code-header">
-                                <span>calculator.myco</span>
+                                <span>Calculator</span>
                             </div>
                             <pre><code><span class="keyword">func</span> <span class="function">calculator</span>():
     <span class="keyword">print</span>(<span class="string">"Simple Calculator"</span>);
@@ -345,119 +527,82 @@ sudo make install</code></pre>
     <span class="keyword">print</span>(<span class="string">"4. Divide"</span>);
     
     <span class="keyword">let</span> <span class="param">choice</span> = <span class="function">input_int</span>(<span class="string">"Enter choice (1-4): "</span>);
-    <span class="keyword">let</span> <span class="param">a</span> = <span class="function">input_int</span>(<span class="string">"Enter first number: "</span>);
-    <span class="keyword">let</span> <span class="param">b</span> = <span class="function">input_int</span>(<span class="string">"Enter second number: "</span>);
+    <span class="keyword">let</span> <span class="param">a</span> = <span class="function">input_float</span>(<span class="string">"Enter first number: "</span>);
+    <span class="keyword">let</span> <span class="param">b</span> = <span class="function">input_float</span>(<span class="string">"Enter second number: "</span>);
     
-    <span class="keyword">if</span> <span class="param">choice</span> == <span class="number">1</span>:
-        <span class="keyword">print</span>(<span class="string">"Result: "</span> + (<span class="param">a</span> + <span class="param">b</span>));
-    <span class="keyword">else</span> <span class="keyword">if</span> <span class="param">choice</span> == <span class="number">2</span>:
-        <span class="keyword">print</span>(<span class="string">"Result: "</span> + (<span class="param">a</span> - <span class="param">b</span>));
-    <span class="keyword">else</span> <span class="keyword">if</span> <span class="param">choice</span> == <span class="number">3</span>:
-        <span class="keyword">print</span>(<span class="string">"Result: "</span> + (<span class="param">a</span> * <span class="param">b</span>));
-    <span class="keyword">else</span> <span class="keyword">if</span> <span class="param">choice</span> == <span class="number">4</span>:
-        <span class="keyword">if</span> <span class="param">b</span> != <span class="number">0</span>:
-            <span class="keyword">print</span>(<span class="string">"Result: "</span> + (<span class="param">a</span> / <span class="param">b</span>));
-        <span class="keyword">else</span>:
-            <span class="keyword">print</span>(<span class="string">"Error: Division by zero"</span>);
-        <span class="keyword">end</span>
-    <span class="keyword">else</span>:
-        <span class="keyword">print</span>(<span class="string">"Invalid choice"</span>);
+    <span class="keyword">switch</span> <span class="param">choice</span>:
+        <span class="keyword">case</span> <span class="number">1</span>:
+            <span class="keyword">print</span>(<span class="string">"Result: "</span> + (<span class="param">a</span> + <span class="param">b</span>));
+        <span class="keyword">case</span> <span class="number">2</span>:
+            <span class="keyword">print</span>(<span class="string">"Result: "</span> + (<span class="param">a</span> - <span class="param">b</span>));
+        <span class="keyword">case</span> <span class="number">3</span>:
+            <span class="keyword">print</span>(<span class="string">"Result: "</span> + (<span class="param">a</span> * <span class="param">b</span>));
+        <span class="keyword">case</span> <span class="number">4</span>:
+            <span class="keyword">try</span>:
+                <span class="keyword">print</span>(<span class="string">"Result: "</span> + (<span class="param">a</span> / <span class="param">b</span>));
+            <span class="keyword">catch</span> <span class="param">error</span>:
+                <span class="keyword">print</span>(<span class="string">"Error: Division by zero"</span>);
+            <span class="keyword">end</span>
+        <span class="keyword">default</span>:
+            <span class="keyword">print</span>(<span class="string">"Invalid choice"</span>);
     <span class="keyword">end</span>
 <span class="keyword">end</span>
 
 <span class="function">calculator</span>();</code></pre>
                         </div>
 
-                        <h3>File Processing</h3>
+                        <h3>Data Processing</h3>
                         <div class="code-block">
                             <div class="code-header">
-                                <span>file_processor.myco</span>
+                                <span>Data Processing</span>
                             </div>
-                            <pre><code><span class="keyword">func</span> <span class="function">process_file</span>(<span class="param">filename</span>):
-    <span class="keyword">let</span> <span class="param">file</span> = <span class="function">file_open</span>(<span class="param">filename</span>, <span class="string">"r"</span>);
-    
-    <span class="keyword">if</span> <span class="param">file</span> == <span class="number">0</span>:
-        <span class="keyword">print</span>(<span class="string">"Error: Could not open file "</span> + <span class="param">filename</span>);
-        <span class="keyword">return</span>;
-    <span class="keyword">end</span>
-    
-    <span class="keyword">let</span> <span class="param">line_count</span> = <span class="number">0</span>;
-    <span class="keyword">let</span> <span class="param">word_count</span> = <span class="number">0</span>;
-    <span class="keyword">let</span> <span class="param">char_count</span> = <span class="number">0</span>;
-    
-    <span class="keyword">while</span> <span class="number">1</span>:
-        <span class="keyword">let</span> <span class="param">line</span> = <span class="function">file_read_line</span>(<span class="param">file</span>);
-        
-        <span class="keyword">if</span> <span class="param">line</span> == <span class="string">""</span>:
-            <span class="keyword">break</span>;
-        <span class="keyword">end</span>
-        
-        <span class="param">line_count</span> = <span class="param">line_count</span> + <span class="number">1</span>;
-        <span class="param">char_count</span> = <span class="param">char_count</span> + <span class="function">len</span>(<span class="param">line</span>);
-        
-        <span class="keyword">let</span> <span class="param">words</span> = <span class="function">split</span>(<span class="param">line</span>, <span class="string">" "</span>);
-        <span class="param">word_count</span> = <span class="param">word_count</span> + <span class="function">len</span>(<span class="param">words</span>);
-    <span class="keyword">end</span>
-    
-    <span class="function">file_close</span>(<span class="param">file</span>);
-    
-    <span class="keyword">print</span>(<span class="string">"File Statistics:"</span>);
-    <span class="keyword">print</span>(<span class="string">"Lines: "</span> + <span class="param">line_count</span>);
-    <span class="keyword">print</span>(<span class="string">"Words: "</span> + <span class="param">word_count</span>);
-    <span class="keyword">print</span>(<span class="string">"Characters: "</span> + <span class="param">char_count</span>);
+                            <pre><code><span class="comment"># Process user data</span>
+<span class="keyword">let</span> <span class="param">users</span> = [
+    {<span class="string">"name"</span>: <span class="string">"Alice"</span>, <span class="string">"age"</span>: <span class="number">25</span>, <span class="string">"score"</span>: <span class="number">95</span>},
+    {<span class="string">"name"</span>: <span class="string">"Bob"</span>, <span class="string">"age"</span>: <span class="number">30</span>, <span class="string">"score"</span>: <span class="number">87</span>},
+    {<span class="string">"name"</span>: <span class="string">"Charlie"</span>, <span class="string">"age"</span>: <span class="number">28</span>, <span class="string">"score"</span>: <span class="number">92</span>}
+];
+
+<span class="comment"># Filter high-scoring users</span>
+<span class="keyword">let</span> <span class="param">high_scorers</span> = <span class="function">filter</span>(<span class="param">users</span>, <span class="param">user</span> => <span class="param">user</span>[<span class="string">"score"</span>] >= <span class="number">90</span>);
+
+<span class="comment"># Calculate average age</span>
+<span class="keyword">let</span> <span class="param">total_age</span> = <span class="function">reduce</span>(<span class="param">users</span>, <span class="number">0</span>, (<span class="param">acc</span>, <span class="param">user</span>) => <span class="param">acc</span> + <span class="param">user</span>[<span class="string">"age"</span>]);
+<span class="keyword">let</span> <span class="param">avg_age</span> = <span class="param">total_age</span> / <span class="function">len</span>(<span class="param">users</span>);
+
+<span class="keyword">print</span>(<span class="string">"High scorers:"</span>);
+<span class="keyword">for</span> <span class="param">user</span> <span class="keyword">in</span> <span class="param">high_scorers</span>:
+    <span class="keyword">print</span>(<span class="string">"- "</span> + <span class="param">user</span>[<span class="string">"name"</span>] + <span class="string">" (Score: "</span> + <span class="param">user</span>[<span class="string">"score"</span>] + <span class="string">")"</span>);
 <span class="keyword">end</span>
 
-<span class="function">process_file</span>(<span class="string">"input.txt"</span>);</code></pre>
+<span class="keyword">print</span>(<span class="string">"Average age: "</span> + <span class="param">avg_age</span>);</code></pre>
                         </div>
                     </section>
 
                     <section id="best-practices">
                         <h2>Best Practices</h2>
                         
-                        <h3>Code Style</h3>
+                        <h3>Code Organization</h3>
                         <ul>
-                            <li><strong>Indentation:</strong> Use consistent indentation (2 or 4 spaces)</li>
-                            <li><strong>Naming:</strong> Use descriptive names for variables and functions</li>
-                            <li><strong>Comments:</strong> Add comments for complex logic</li>
-                            <li><strong>Functions:</strong> Keep functions small and focused</li>
-                        </ul>
-
-                        <h3>Performance Tips</h3>
-                        <ul>
-                            <li><strong>Loops:</strong> Avoid nested loops when possible</li>
-                            <li><strong>Memory:</strong> Close files and free resources</li>
-                            <li><strong>Strings:</strong> Use string concatenation sparingly in loops</li>
-                            <li><strong>Data structures:</strong> Choose appropriate data structures for your use case</li>
+                            <li><strong>Use meaningful variable names</strong> that describe their purpose</li>
+                            <li><strong>Group related functions</strong> together in logical sections</li>
+                            <li><strong>Add comments</strong> to explain complex logic</li>
+                            <li><strong>Use consistent indentation</strong> for readability</li>
                         </ul>
 
                         <h3>Error Handling</h3>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span>Error Handling Example</span>
-                            </div>
-                            <pre><code><span class="keyword">func</span> <span class="function">safe_divide</span>(<span class="param">a</span>, <span class="param">b</span>):
-    <span class="keyword">if</span> <span class="param">b</span> == <span class="number">0</span>:
-        <span class="keyword">print</span>(<span class="string">"Error: Division by zero"</span>);
-        <span class="keyword">return</span> <span class="number">0</span>;
-    <span class="keyword">end</span>
-    
-    <span class="keyword">return</span> <span class="param">a</span> / <span class="param">b</span>;
-<span class="keyword">end</span>
+                        <ul>
+                            <li><strong>Always use try-catch</strong> for operations that might fail</li>
+                            <li><strong>Provide meaningful error messages</strong> to help debugging</li>
+                            <li><strong>Handle edge cases</strong> like division by zero</li>
+                        </ul>
 
-<span class="keyword">func</span> <span class="function">safe_file_read</span>(<span class="param">filename</span>):
-    <span class="keyword">let</span> <span class="param">file</span> = <span class="function">file_open</span>(<span class="param">filename</span>, <span class="string">"r"</span>);
-    
-    <span class="keyword">if</span> <span class="param">file</span> == <span class="number">0</span>:
-        <span class="keyword">print</span>(<span class="string">"Error: Could not open file "</span> + <span class="param">filename</span>);
-        <span class="keyword">return</span> <span class="string">""</span>;
-    <span class="keyword">end</span>
-    
-    <span class="keyword">let</span> <span class="param">content</span> = <span class="function">file_read</span>(<span class="param">file</span>);
-    <span class="function">file_close</span>(<span class="param">file</span>);
-    
-    <span class="keyword">return</span> <span class="param">content</span>;
-<span class="keyword">end</span></code></pre>
-                        </div>
+                        <h3>Performance</h3>
+                        <ul>
+                            <li><strong>Use appropriate data structures</strong> for your use case</li>
+                            <li><strong>Avoid unnecessary loops</strong> when built-in functions exist</li>
+                            <li><strong>Use library functions</strong> instead of reimplementing common operations</li>
+                        </ul>
                     </section>
 
                     <section id="troubleshooting">
@@ -468,34 +613,24 @@ sudo make install</code></pre>
                             <div class="code-header">
                                 <span>Common Problems</span>
                             </div>
-                            <pre><code><span class="comment"># Issue: "Variable not defined"</span>
-<span class="comment"># Solution: Always declare variables with 'let'</span>
-<span class="keyword">let</span> <span class="param">x</span> = <span class="number">5</span>;  <span class="comment"># Correct</span>
-<span class="param">y</span> = <span class="number">10</span>;     <span class="comment"># Wrong - will cause error</span>
+                            <pre><code><span class="comment"># Missing semicolon</span>
+<span class="keyword">let</span> <span class="param">x</span> = <span class="number">5</span>  <span class="comment"># Error: missing semicolon</span>
+<span class="keyword">let</span> <span class="param">x</span> = <span class="number">5</span>; <span class="comment"># Correct</span>
 
-<span class="comment"># Issue: "Function not found"</span>
-<span class="comment"># Solution: Check function name spelling and ensure it's defined</span>
-<span class="keyword">func</span> <span class="function">my_function</span>():
-    <span class="keyword">print</span>(<span class="string">"Hello"</span>);
-<span class="keyword">end</span>
+<span class="comment"># Undefined variable</span>
+<span class="keyword">print</span>(<span class="param">undefined_var</span>);  <span class="comment"># Error: variable not defined</span>
 
-<span class="function">my_function</span>();  <span class="comment"># Correct</span>
-<span class="function">myFunction</span>();  <span class="comment"># Wrong - different name</span>
-
-<span class="comment"># Issue: "Index out of bounds"</span>
-<span class="comment"># Solution: Check array bounds before accessing</span>
-<span class="keyword">let</span> <span class="param">list</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];
-<span class="keyword">if</span> <span class="function">len</span>(<span class="param">list</span>) > <span class="number">0</span>:
-    <span class="keyword">print</span>(<span class="param">list</span>[<span class="number">0</span>]);  <span class="comment"># Safe access</span>
-<span class="keyword">end</span></code></pre>
+<span class="comment"># Type mismatch</span>
+<span class="keyword">let</span> <span class="param">result</span> = <span class="string">"5"</span> + <span class="number">3</span>;  <span class="comment"># Result: "53" (string concatenation)</span>
+<span class="keyword">let</span> <span class="param">result</span> = <span class="function">to_int</span>(<span class="string">"5"</span>) + <span class="number">3</span>;  <span class="comment"># Result: 8 (numeric addition)</span></code></pre>
                         </div>
 
                         <h3>Debugging Tips</h3>
                         <ul>
-                            <li><strong>Use print statements:</strong> Add print statements to track variable values</li>
-                            <li><strong>Check syntax:</strong> Ensure all blocks are properly closed with 'end'</li>
-                            <li><strong>Verify types:</strong> Make sure you're using the right data types</li>
-                            <li><strong>Test incrementally:</strong> Test small parts of your code before building larger programs</li>
+                            <li><strong>Use the debug() function</strong> to inspect variables and objects</li>
+                            <li><strong>Add print statements</strong> to trace program flow</li>
+                            <li><strong>Check variable types</strong> with the type() function</li>
+                            <li><strong>Use try-catch</strong> to identify where errors occur</li>
                         </ul>
                     </section>
                 </div>

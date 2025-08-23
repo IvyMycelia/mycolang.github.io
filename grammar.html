@@ -67,6 +67,9 @@
                     <section id="overview">
                         <h2>Grammar Overview</h2>
                         <p>The Myco language follows a context-free grammar defined using Backus-Naur Form (BNF) notation. This grammar defines the syntax rules for valid Myco programs.</p>
+                        <p><strong>Version:</strong> v1.4.0 - Float Support & Library Import System</p>
+                        <p><strong>Last Updated:</strong> December 2024</p>
+                        <p><strong>Status:</strong> Complete and Current</p>
                         <p>Myco's grammar is designed to be simple yet expressive, with clear precedence rules and intuitive syntax.</p>
                     </section>
 
@@ -76,6 +79,9 @@
                         
                         <h3>Keywords</h3>
                         <div class="code-block">
+                            <div class="code-header">
+                                <span>Keywords</span>
+                            </div>
                             <pre><code><span class="comment"># Control flow</span>
 <span class="keyword">if</span> <span class="keyword">else</span> <span class="keyword">for</span> <span class="keyword">while</span> <span class="keyword">switch</span> <span class="keyword">case</span> <span class="keyword">default</span>
 
@@ -86,337 +92,549 @@
 <span class="keyword">try</span> <span class="keyword">catch</span>
 
 <span class="comment"># Block delimiters</span>
-<span class="keyword">end</span> <span class="keyword">:</span></code></pre>
+<span class="keyword">end</span> <span class="keyword">:</span>
+
+<span class="comment"># Boolean literals (v1.4.0)</span>
+<span class="keyword">True</span> <span class="keyword">False</span>
+
+<span class="comment"># Library imports (v1.4.0)</span>
+<span class="keyword">use</span> <span class="keyword">as</span></code></pre>
+                        </div>
+
+                        <h3>Identifiers</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Identifiers</span>
+                            </div>
+                            <pre><code><span class="comment"># Variable and function names</span>
+<span class="param">variableName</span>
+<span class="param">function_name</span>
+<span class="param">myVariable123</span>
+<span class="param">_private_var</span></code></pre>
                         </div>
 
                         <h3>Literals</h3>
                         <div class="code-block">
+                            <div class="code-header">
+                                <span>Literals</span>
+                            </div>
                             <pre><code><span class="comment"># Numbers</span>
-<span class="number">42</span>        <span class="comment"># Integer</span>
-<span class="number">3.14</span>      <span class="comment"># Float</span>
+<span class="number">42</span>           <span class="comment"># Integer</span>
+<span class="number">3.14</span>        <span class="comment"># Float</span>
+<span class="number">.25</span>          <span class="comment"># Leading decimal</span>
+<span class="number">-17</span>          <span class="comment"># Negative</span>
 
 <span class="comment"># Strings</span>
-<span class="string">"Hello"</span>   <span class="comment"># String literal</span>
+<span class="string">"Hello World"</span>
+<span class="string">'Single quotes'</span>
 
 <span class="comment"># Booleans</span>
-<span class="number">1</span>         <span class="comment"># True</span>
-<span class="number">0</span>         <span class="comment"># False</span></code></pre>
-                        </div>
+<span class="keyword">True</span>         <span class="comment"># Boolean true</span>
+<span class="keyword">False</span>        <span class="comment"># Boolean false</span>
+<span class="number">1</span>            <span class="comment"># Numeric true (legacy)</span>
+<span class="number">0</span>            <span class="comment"># Numeric false (legacy)</span>
 
-                        <h3>Operators</h3>
-                        <div class="code-block">
-                            <pre><code><span class="comment"># Arithmetic</span>
-<span class="operator">+</span> <span class="operator">-</span> <span class="operator">*</span> <span class="operator">/</span> <span class="operator">%</span> <span class="operator">**</span>
+<span class="comment"># Arrays</span>
+[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+[<span class="string">"hello"</span>, <span class="string">"world"</span>]
 
-<span class="comment"># Comparison</span>
-<span class="operator">==</span> <span class="operator">!=</span> <span class="operator">&lt;</span> <span class="operator">&gt;</span> <span class="operator">&lt;=</span> <span class="operator">&gt;=</span>
-
-<span class="comment"># Logical</span>
-<span class="operator">and</span> <span class="operator">or</span> <span class="operator">not</span>
-
-<span class="comment"># Assignment</span>
-<span class="operator">=</span> <span class="operator">+=</span> <span class="operator">-=</span> <span class="operator">*=</span> <span class="operator">/=</span></code></pre>
+<span class="comment"># Objects</span>
+{<span class="string">"key"</span>: <span class="string">"value"</span>}
+{<span class="string">"name"</span>: <span class="string">"Alice"</span>, <span class="string">"age"</span>: <span class="number">25</span>}</code></pre>
                         </div>
                     </section>
 
                     <section id="expressions">
-                        <h2>Expression Grammar</h2>
-                        <p>Expressions in Myco follow standard precedence rules:</p>
+                        <h2>Expressions</h2>
                         
                         <h3>Primary Expressions</h3>
                         <div class="code-block">
-                            <pre><code><span class="comment"># Primary expressions</span>
-<span class="keyword">primary</span> ::= <span class="function">identifier</span>
-           | <span class="function">literal</span>
-           | <span class="function">parenthesized_expr</span>
-           | <span class="function">function_call</span>
-           | <span class="function">array_access</span>
-           | <span class="function">object_access</span>
+                            <div class="code-header">
+                                <span>Primary Expressions</span>
+                            </div>
+                            <pre><code><span class="comment"># Literals</span>
+<span class="number">42</span>
+<span class="string">"hello"</span>
+
+<span class="comment"># Variables</span>
+<span class="param">x</span>
+<span class="param">myVariable</span>
 
 <span class="comment"># Parenthesized expressions</span>
-<span class="keyword">parenthesized_expr</span> ::= <span class="string">"("</span> <span class="function">expression</span> <span class="string">")"</span>
+(<span class="param">a</span> + <span class="param">b</span>)
 
-<span class="comment"># Function calls</span>
-<span class="keyword">function_call</span> ::= <span class="function">identifier</span> <span class="string">"("</span> <span class="function">argument_list</span> <span class="string">")"</span>
+<span class="comment"># Array access</span>
+<span class="param">array</span>[<span class="param">index</span>]
 
-<span class="comment"># Argument lists</span>
-<span class="keyword">argument_list</span> ::= <span class="function">expression</span> (<span class="string">","</span> <span class="function">expression</span>)*
-                | <span class="keyword">ε</span></code></pre>
+<span class="comment"># Object access</span>
+<span class="param">object</span>.<span class="param">property</span>
+<span class="param">object</span>[<span class="string">"property"</span>]
+
+<span class="comment"># Library access</span>
+<span class="param">library</span>.<span class="function">function</span>()</code></pre>
                         </div>
 
-                        <h3>Operator Precedence</h3>
+                        <h3>Binary Expressions</h3>
                         <div class="code-block">
-                            <pre><code><span class="comment"># Precedence levels (highest to lowest)</span>
-<span class="keyword">1.</span> <span class="function">primary</span> (identifiers, literals, parentheses)
-<span class="keyword">2.</span> <span class="function">unary</span> (<span class="operator">-</span>, <span class="operator">not</span>)
-<span class="keyword">3.</span> <span class="function">multiplicative</span> (<span class="operator">*</span>, <span class="operator">/</span>, <span class="operator">%</span>)
-<span class="keyword">4.</span> <span class="function">additive</span> (<span class="operator">+</span>, <span class="operator">-</span>)
-<span class="keyword">5.</span> <span class="function">relational</span> (<span class="operator">&lt;</span>, <span class="operator">&gt;</span>, <span class="operator">&lt;=</span>, <span class="operator">&gt;=</span>)
-<span class="keyword">6.</span> <span class="function">equality</span> (<span class="operator">==</span>, <span class="operator">!=</span>)
-<span class="keyword">7.</span> <span class="function">logical_and</span> (<span class="operator">and</span>)
-<span class="keyword">8.</span> <span class="function">logical_or</span> (<span class="operator">or</span>)
-<span class="keyword">9.</span> <span class="function">assignment</span> (<span class="operator">=</span>, <span class="operator">+=</span>, etc.)</code></pre>
+                            <div class="code-header">
+                                <span>Binary Expressions</span>
+                            </div>
+                            <pre><code><span class="comment"># Arithmetic</span>
+<span class="param">a</span> + <span class="param">b</span>        <span class="comment"># Addition</span>
+<span class="param">a</span> - <span class="param">b</span>        <span class="comment"># Subtraction</span>
+<span class="param">a</span> * <span class="param">b</span>        <span class="comment"># Multiplication</span>
+<span class="param">a</span> / <span class="param">b</span>        <span class="comment"># Division</span>
+<span class="param">a</span> % <span class="param">b</span>        <span class="comment"># Modulo</span>
+
+<span class="comment"># Comparison</span>
+<span class="param">a</span> == <span class="param">b</span>       <span class="comment"># Equality</span>
+<span class="param">a</span> != <span class="param">b</span>       <span class="comment"># Inequality</span>
+<span class="param">a</span> < <span class="param">b</span>         <span class="comment"># Less than</span>
+<span class="param">a</span> > <span class="param">b</span>         <span class="comment"># Greater than</span>
+<span class="param">a</span> <= <span class="param">b</span>        <span class="comment"># Less than or equal</span>
+<span class="param">a</span> >= <span class="param">b</span>        <span class="comment"># Greater than or equal</span>
+
+<span class="comment"># Logical</span>
+<span class="param">a</span> <span class="keyword">and</span> <span class="param">b</span>      <span class="comment"># Logical AND</span>
+<span class="param">a</span> <span class="keyword">or</span> <span class="param">b</span>       <span class="comment"># Logical OR</span></code></pre>
+                        </div>
+
+                        <h3>Unary Expressions</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Unary Expressions</span>
+                            </div>
+                            <pre><code><span class="comment"># Negation</span>
+-<span class="param">x</span>             <span class="comment"># Negative number</span>
+
+<span class="comment"># Logical NOT</span>
+!<span class="param">condition</span>     <span class="comment"># Logical NOT</span></code></pre>
+                        </div>
+
+                        <h3>Assignment</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Assignment</span>
+                            </div>
+                            <pre><code><span class="comment"># Simple assignment</span>
+<span class="param">variable</span> = <span class="param">value</span>
+
+<span class="comment"># Array assignment</span>
+<span class="param">array</span>[<span class="param">index</span>] = <span class="param">value</span>
+
+<span class="comment"># Object property assignment</span>
+<span class="param">object</span>.<span class="param">property</span> = <span class="param">value</span>
+<span class="param">object</span>[<span class="string">"property"</span>] = <span class="param">value</span></code></pre>
                         </div>
                     </section>
 
                     <section id="statements">
-                        <h2>Statement Grammar</h2>
-                        <p>Statements are the top-level constructs in Myco programs:</p>
+                        <h2>Statements</h2>
                         
-                        <h3>Variable Declaration</h3>
+                        <h3>Expression Statements</h3>
                         <div class="code-block">
-                            <pre><code><span class="keyword">variable_declaration</span> ::= <span class="string">"let"</span> <span class="function">identifier</span> <span class="string">"="</span> <span class="function">expression</span> <span class="string">";"</span>
-
-<span class="comment"># Examples</span>
-<span class="keyword">let</span> <span class="function">name</span> = <span class="string">"Alice"</span>;
-<span class="keyword">let</span> <span class="function">age</span> = <span class="number">25</span>;
-<span class="keyword">let</span> <span class="function">numbers</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</code></pre>
-                        </div>
-
-                        <h3>Expression Statement</h3>
-                        <div class="code-block">
-                            <pre><code><span class="keyword">expression_statement</span> ::= <span class="function">expression</span> <span class="string">";"</span>
-
-<span class="comment"># Examples</span>
+                            <div class="code-header">
+                                <span>Expression Statements</span>
+                            </div>
+                            <pre><code><span class="comment"># Function calls</span>
 <span class="function">print</span>(<span class="string">"Hello"</span>);
-<span class="function">x</span> + <span class="function">y</span>;
-<span class="function">counter</span>++;</code></pre>
+
+<span class="comment"># Variable assignment</span>
+<span class="keyword">let</span> <span class="param">x</span> = <span class="number">42</span>;
+
+<span class="comment"># Array/object operations</span>
+<span class="param">array</span>.<span class="function">push</span>(<span class="number">5</span>);</code></pre>
                         </div>
 
-                        <h3>Block Statement</h3>
+                        <h3>Declaration Statements</h3>
                         <div class="code-block">
-                            <pre><code><span class="keyword">block</span> ::= <span class="function">statement</span>*
+                            <div class="code-header">
+                                <span>Declaration Statements</span>
+                            </div>
+                            <pre><code><span class="comment"># Variable declaration</span>
+<span class="keyword">let</span> <span class="param">variableName</span> = <span class="param">value</span>;
 
 <span class="comment"># Examples</span>
-{
-    <span class="keyword">let</span> <span class="function">x</span> = <span class="number">10</span>;
-    <span class="function">print</span>(<span class="function">x</span>);
-}</code></pre>
+<span class="keyword">let</span> <span class="param">name</span> = <span class="string">"Alice"</span>;
+<span class="keyword">let</span> <span class="param">age</span> = <span class="number">25</span>;
+<span class="keyword">let</span> <span class="param">scores</span> = [<span class="number">95</span>, <span class="number">87</span>, <span class="number">92</span>];
+<span class="keyword">let</span> <span class="param">person</span> = {<span class="string">"name"</span>: <span class="string">"Bob"</span>, <span class="string">"age"</span>: <span class="number">30</span>};</code></pre>
+                        </div>
+
+                        <h3>Library Import Statements</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Library Imports (v1.4.0)</span>
+                            </div>
+                            <pre><code><span class="comment"># Import with namespace</span>
+<span class="keyword">use</span> <span class="keyword">math</span> <span class="keyword">as</span> <span class="param">m</span>;
+<span class="keyword">use</span> <span class="keyword">util</span> <span class="keyword">as</span> <span class="param">u</span>;
+
+<span class="comment"># Usage</span>
+<span class="keyword">let</span> <span class="param">pi</span> = <span class="param">m</span>.<span class="function">PI</span>;
+<span class="keyword">let</span> <span class="param">result</span> = <span class="param">u</span>.<span class="function">type</span>(<span class="param">variable</span>);</code></pre>
+                        </div>
+
+                        <h3>Return Statements</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Return Statements</span>
+                            </div>
+                            <pre><code><span class="comment"># Return with value</span>
+<span class="keyword">return</span> <span class="param">result</span>;
+
+<span class="comment"># Return without value (returns 0)</span>
+<span class="keyword">return</span>;</code></pre>
                         </div>
                     </section>
 
                     <section id="functions">
-                        <h2>Function Grammar</h2>
-                        <p>Functions in Myco can be declared with or without type annotations:</p>
+                        <h2>Functions</h2>
                         
                         <h3>Function Declaration</h3>
                         <div class="code-block">
-                            <pre><code><span class="keyword">function_declaration</span> ::= <span class="string">"func"</span> <span class="function">identifier</span> <span class="string">"("</span> <span class="function">parameter_list</span> <span class="string">")"</span> [<span class="string">"->"</span> <span class="function">type</span>] <span class="string">":"</span> <span class="function">block</span> <span class="string">"end"</span>
-
-<span class="keyword">parameter_list</span> ::= <span class="function">parameter</span> (<span class="string">","</span> <span class="function">parameter</span>)*
-                  | <span class="keyword">ε</span>
-
-<span class="keyword">parameter</span> ::= <span class="function">identifier</span> [<span class="string">":"</span> <span class="function">type</span>]
-
-<span class="keyword">type</span> ::= <span class="string">"int"</span> | <span class="string">"float"</span> | <span class="string">"string"</span> | <span class="string">"bool"</span></code></pre>
-                        </div>
-
-                        <h3>Function Examples</h3>
-                        <div class="code-block">
-                            <pre><code><span class="comment"># Simple function</span>
-<span class="keyword">func</span> <span class="function">greet</span>(<span class="function">name</span>):
-    <span class="function">print</span>(<span class="string">"Hello,"</span>, <span class="function">name</span>);
+                            <div class="code-header">
+                                <span>Function Declaration</span>
+                            </div>
+                            <pre><code><span class="comment"># Traditional syntax</span>
+<span class="keyword">func</span> <span class="function">functionName</span>(<span class="param">param1</span>, <span class="param">param2</span>):
+    <span class="comment"># function body</span>
+    <span class="keyword">return</span> <span class="param">result</span>;
 <span class="keyword">end</span>
 
-<span class="comment"># Function with return type</span>
-<span class="keyword">func</span> <span class="function">add</span>(<span class="function">a</span>: <span class="keyword">int</span>, <span class="function">b</span>: <span class="keyword">int</span>) -> <span class="keyword">int</span>:
-    <span class="keyword">return</span> <span class="function">a</span> + <span class="function">b</span>;
+<span class="comment"># Arrow syntax (v1.3.1+)</span>
+<span class="keyword">func</span> <span class="function">functionName</span>(<span class="param">param1</span>, <span class="param">param2</span>) -> <span class="keyword">int</span>:
+    <span class="comment"># function body</span>
+    <span class="keyword">return</span> <span class="param">result</span>;
+<span class="keyword">end</span>
+
+<span class="comment"># With type annotations</span>
+<span class="keyword">func</span> <span class="function">add</span>(<span class="param">a</span>: <span class="keyword">int</span>, <span class="param">b</span>: <span class="keyword">int</span>) -> <span class="keyword">int</span>:
+    <span class="keyword">return</span> <span class="param">a</span> + <span class="param">b</span>;
 <span class="keyword">end</span></code></pre>
+                        </div>
+
+                        <h3>Function Call</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Function Call</span>
+                            </div>
+                            <pre><code><span class="comment"># Basic function call</span>
+<span class="function">functionName</span>(<span class="param">arg1</span>, <span class="param">arg2</span>);
+
+<span class="comment"># Function call with assignment</span>
+<span class="keyword">let</span> <span class="param">result</span> = <span class="function">add</span>(<span class="number">5</span>, <span class="number">3</span>);
+
+<span class="comment"># Built-in functions</span>
+<span class="function">print</span>(<span class="string">"Hello"</span>);
+<span class="function">len</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</code></pre>
+                        </div>
+
+                        <h3>Lambda Functions</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Lambda Functions (v1.2.1+)</span>
+                            </div>
+                            <pre><code><span class="comment"># Basic lambda</span>
+<span class="keyword">let</span> <span class="param">double</span> = <span class="param">x</span> => <span class="param">x</span> * <span class="number">2</span>;
+
+<span class="comment"># Lambda with multiple parameters</span>
+<span class="keyword">let</span> <span class="param">add</span> = (<span class="param">a</span>, <span class="param">b</span>) => <span class="param">a</span> + <span class="param">b</span>;
+
+<span class="comment"># Lambda in functional operations</span>
+<span class="keyword">let</span> <span class="param">evens</span> = <span class="function">filter</span>(<span class="param">numbers</span>, <span class="param">x</span> => <span class="param">x</span> % <span class="number">2</span> == <span class="number">0</span>);</code></pre>
                         </div>
                     </section>
 
                     <section id="control-flow">
-                        <h2>Control Flow Grammar</h2>
-                        <p>Control flow constructs in Myco:</p>
+                        <h2>Control Flow</h2>
                         
-                        <h3>If Statement</h3>
+                        <h3>If Statements</h3>
                         <div class="code-block">
-                            <pre><code><span class="keyword">if_statement</span> ::= <span class="string">"if"</span> <span class="function">expression</span> <span class="string">":"</span> <span class="function">block</span> [<span class="string">"else"</span> <span class="function">block</span>] <span class="string">"end"</span>
-
-<span class="comment"># Example</span>
-<span class="keyword">if</span> <span class="function">age</span> >= <span class="number">18</span>:
-    <span class="function">print</span>(<span class="string">"Adult"</span>);
-<span class="keyword">else</span>:
-    <span class="function">print</span>(<span class="string">"Minor"</span>);
-<span class="keyword">end</span></code></pre>
-                        </div>
-
-                        <h3>For Loop</h3>
-                        <div class="code-block">
-                            <pre><code><span class="keyword">for_statement</span> ::= <span class="string">"for"</span> <span class="function">identifier</span> <span class="string">"="</span> <span class="function">expression</span> <span class="string">"to"</span> <span class="function">expression</span> <span class="string">":"</span> <span class="function">block</span> <span class="string">"end"</span>
-                  | <span class="string">"for"</span> <span class="function">identifier</span> <span class="string">"in"</span> <span class="function">expression</span> <span class="string">":"</span> <span class="function">block</span> <span class="string">"end"</span>
-
-<span class="comment"># Examples</span>
-<span class="keyword">for</span> <span class="function">i</span> = <span class="number">1</span> <span class="keyword">to</span> <span class="number">10</span>:
-    <span class="function">print</span>(<span class="function">i</span>);
+                            <div class="code-header">
+                                <span>If Statements</span>
+                            </div>
+                            <pre><code><span class="comment"># Simple if</span>
+<span class="keyword">if</span> <span class="param">condition</span>:
+    <span class="comment"># code block</span>
 <span class="keyword">end</span>
 
-<span class="keyword">for</span> <span class="function">item</span> <span class="keyword">in</span> <span class="function">list</span>:
-    <span class="function">print</span>(<span class="function">item</span>);
+<span class="comment"># If-else</span>
+<span class="keyword">if</span> <span class="param">condition</span>:
+    <span class="comment"># code if true</span>
+<span class="keyword">else</span>:
+    <span class="comment"># code if false</span>
+<span class="keyword">end</span>
+
+<span class="comment"># If-else if-else</span>
+<span class="keyword">if</span> <span class="param">condition1</span>:
+    <span class="comment"># code for condition1</span>
+<span class="keyword">else if</span> <span class="param">condition2</span>:
+    <span class="comment"># code for condition2</span>
+<span class="keyword">else</span>:
+    <span class="comment"># default code</span>
 <span class="keyword">end</span></code></pre>
                         </div>
 
-                        <h3>Switch Statement</h3>
+                        <h3>Switch Statements</h3>
                         <div class="code-block">
-                            <pre><code><span class="keyword">switch_statement</span> ::= <span class="string">"switch"</span> <span class="function">expression</span> <span class="string">":"</span> <span class="function">case_list</span> [<span class="string">"default"</span> <span class="string">":"</span> <span class="function">block</span>] <span class="string">"end"</span>
+                            <div class="code-header">
+                                <span>Switch Statements (v1.3.2+)</span>
+                            </div>
+                            <pre><code><span class="keyword">switch</span> <span class="param">expression</span>:
+    <span class="keyword">case</span> <span class="param">value1</span>:
+        <span class="comment"># code for value1</span>
+    <span class="keyword">case</span> <span class="param">value2</span>:
+        <span class="comment"># code for value2</span>
+    <span class="keyword">default</span>:
+        <span class="comment"># default code</span>
+<span class="keyword">end</span>
 
-<span class="keyword">case_list</span> ::= <span class="function">case_item</span>+
+<span class="comment"># Example</span>
+<span class="keyword">switch</span> <span class="param">day</span>:
+    <span class="keyword">case</span> <span class="number">1</span>:
+        <span class="function">print</span>(<span class="string">"Monday"</span>);
+    <span class="keyword">case</span> <span class="number">2</span>:
+        <span class="function">print</span>(<span class="string">"Tuesday"</span>);
+    <span class="keyword">default</span>:
+        <span class="function">print</span>(<span class="string">"Other day"</span>);
+<span class="keyword">end</span></code></pre>
+                        </div>
 
-<span class="keyword">case_item</span> ::= <span class="string">"case"</span> <span class="function">expression</span> <span class="string">":"</span> <span class="function">block</span></code></pre>
+                        <h3>Try-Catch Statements</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Try-Catch (v1.3.2+)</span>
+                            </div>
+                            <pre><code><span class="keyword">try</span>:
+    <span class="comment"># code that might cause an error</span>
+<span class="keyword">catch</span> <span class="param">errorVariable</span>:
+    <span class="comment"># code to handle the error</span>
+<span class="keyword">end</span>
+
+<span class="comment"># Example</span>
+<span class="keyword">try</span>:
+    <span class="keyword">let</span> <span class="param">result</span> = <span class="number">10</span> / <span class="number">0</span>;
+<span class="keyword">catch</span> <span class="param">error</span>:
+    <span class="function">print</span>(<span class="string">"Caught error:"</span>, <span class="param">error</span>);
+<span class="keyword">end</span></code></pre>
+                        </div>
+
+                        <h3>Loops</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Loops</span>
+                            </div>
+                            <pre><code><span class="comment"># While loop</span>
+<span class="keyword">while</span> <span class="param">condition</span>:
+    <span class="comment"># code block</span>
+<span class="keyword">end</span>
+
+<span class="comment"># For loop</span>
+<span class="keyword">for</span> <span class="param">variable</span> <span class="keyword">in</span> <span class="param">start</span>:<span class="param">end</span>:
+    <span class="comment"># code block</span>
+<span class="keyword">end</span>
+
+<span class="comment"># Examples</span>
+<span class="keyword">let</span> <span class="param">count</span> = <span class="number">0</span>;
+<span class="keyword">while</span> <span class="param">count</span> < <span class="number">5</span>:
+    <span class="function">print</span>(<span class="string">"Count:"</span>, <span class="param">count</span>);
+    <span class="param">count</span> = <span class="param">count</span> + <span class="number">1</span>;
+<span class="keyword">end</span>
+
+<span class="keyword">for</span> <span class="param">i</span> <span class="keyword">in</span> <span class="number">1</span>:<span class="number">10</span>:
+    <span class="function">print</span>(<span class="string">"Number:"</span>, <span class="param">i</span>);
+<span class="keyword">end</span></code></pre>
                         </div>
                     </section>
 
-                    <section id="data-types">
-                        <h2>Data Type Grammar</h2>
-                        <p>Myco supports several built-in data types:</p>
+                    <section id="data-structures">
+                        <h2>Data Structures</h2>
                         
-                        <h3>Array/List</h3>
+                        <h3>Arrays</h3>
                         <div class="code-block">
-                            <pre><code><span class="keyword">array_literal</span> ::= <span class="string">"["</span> <span class="function">expression</span> (<span class="string">","</span> <span class="function">expression</span>)* <span class="string">"]"</span>
+                            <div class="code-header">
+                                <span>Arrays</span>
+                            </div>
+                            <pre><code><span class="comment"># Array creation</span>
+<span class="keyword">let</span> <span class="param">numbers</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];
+<span class="keyword">let</span> <span class="param">empty</span> = [];
 
-<span class="comment"># Examples</span>
-[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
-[<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>]
-[<span class="function">x</span>, <span class="function">y</span>, <span class="function">z</span>]</code></pre>
+<span class="comment"># Array access</span>
+<span class="keyword">let</span> <span class="param">first</span> = <span class="param">numbers</span>[<span class="number">0</span>];
+
+<span class="comment"># Array methods</span>
+<span class="param">numbers</span>.<span class="function">push</span>(<span class="number">4</span>);
+<span class="param">numbers</span>.<span class="function">pop</span>();
+<span class="keyword">let</span> <span class="param">length</span> = <span class="param">numbers</span>.<span class="function">len</span>();</code></pre>
                         </div>
 
-                        <h3>Object/Map</h3>
+                        <h3>Objects</h3>
                         <div class="code-block">
-                            <pre><code><span class="keyword">object_literal</span> ::= <span class="string">"{"</span> <span class="function">property_list</span> <span class="string">"}"</span>
+                            <div class="code-header">
+                                <span>Objects</span>
+                            </div>
+                            <pre><code><span class="comment"># Object creation</span>
+<span class="keyword">let</span> <span class="param">person</span> = {
+    <span class="string">"name"</span>: <span class="string">"Alice"</span>,
+    <span class="string">"age"</span>: <span class="number">25</span>
+};
 
-<span class="keyword">property_list</span> ::= <span class="function">property</span> (<span class="string">","</span> <span class="function">property</span>)*
-                  | <span class="keyword">ε</span>
+<span class="comment"># Property access</span>
+<span class="keyword">let</span> <span class="param">name</span> = <span class="param">person</span>.<span class="string">"name"</span>;
+<span class="keyword">let</span> <span class="param">age</span> = <span class="param">person</span>[<span class="string">"age"</span>];
 
-<span class="keyword">property</span> ::= <span class="function">identifier</span> <span class="string">":"</span> <span class="function">expression</span>
+<span class="comment"># Object methods</span>
+<span class="keyword">let</span> <span class="param">keys</span> = <span class="param">person</span>.<span class="function">keys</span>();
+<span class="keyword">let</span> <span class="param">has_name</span> = <span class="param">person</span>.<span class="function">has</span>(<span class="string">"name"</span>);</code></pre>
+                        </div>
+                    </section>
 
-<span class="comment"># Examples</span>
-{<span class="function">name</span>: <span class="string">"Alice"</span>, <span class="function">age</span>: <span class="number">25</span>}
-{<span class="function">x</span>: <span class="number">10</span>, <span class="function">y</span>: <span class="number">20</span>}</code></pre>
+                    <section id="built-in-functions">
+                        <h2>Built-in Functions</h2>
+                        
+                        <h3>Math Library</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Math Functions</span>
+                            </div>
+                            <pre><code><span class="comment"># Basic math</span>
+<span class="function">abs</span>(<span class="param">x</span>)           <span class="comment"># Absolute value</span>
+<span class="function">pow</span>(<span class="param">base</span>, <span class="param">exp</span>)    <span class="comment"># Power</span>
+<span class="function">sqrt</span>(<span class="param">x</span>)          <span class="comment"># Square root</span>
+<span class="function">floor</span>(<span class="param">x</span>)         <span class="comment"># Floor</span>
+<span class="function">ceil</span>(<span class="param">x</span>)          <span class="comment"># Ceiling</span>
+
+<span class="comment"># Comparison</span>
+<span class="function">min</span>(<span class="param">a</span>, <span class="param">b</span>)         <span class="comment"># Minimum</span>
+<span class="function">max</span>(<span class="param">a</span>, <span class="param">b</span>)         <span class="comment"># Maximum</span>
+
+<span class="comment"># Random</span>
+<span class="function">random</span>()           <span class="comment"># Random float 0.0-1.0</span>
+<span class="function">randint</span>(<span class="param">min</span>, <span class="param">max</span>) <span class="comment"># Random integer</span>
+
+<span class="comment"># Constants</span>
+<span class="function">PI</span>               <span class="comment"># π (3.14159...)</span>
+<span class="function">E</span>                <span class="comment"># e (2.71828...)</span></code></pre>
+                        </div>
+
+                        <h3>Utility Library</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Utility Functions</span>
+                            </div>
+                            <pre><code><span class="comment"># Debugging</span>
+<span class="function">debug</span>(<span class="param">value</span>)        <span class="comment"># Detailed inspection</span>
+
+<span class="comment"># Type checking</span>
+<span class="function">type</span>(<span class="param">value</span>)        <span class="comment"># Get type name</span>
+<span class="function">is_num</span>(<span class="param">value</span>)      <span class="comment"># Check if number</span>
+<span class="function">is_str</span>(<span class="param">value</span>)      <span class="comment"># Check if string</span>
+<span class="function">is_arr</span>(<span class="param">value</span>)      <span class="comment"># Check if array</span>
+<span class="function">is_obj</span>(<span class="param">value</span>)      <span class="comment"># Check if object</span>
+
+<span class="comment"># Data utilities</span>
+<span class="function">copy</span>(<span class="param">value</span>)        <span class="comment"># Deep copy</span>
+<span class="function">has</span>(<span class="param">obj</span>, <span class="param">key</span>)      <span class="comment"># Check property</span></code></pre>
+                        </div>
+
+                        <h3>Core Functions</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Core Functions</span>
+                            </div>
+                            <pre><code><span class="comment"># Output</span>
+<span class="function">print</span>(<span class="param">value</span>)        <span class="comment"># Print value</span>
+
+<span class="comment"># Input</span>
+<span class="function">input</span>(<span class="param">prompt</span>)       <span class="comment"># Get string input</span>
+<span class="function">input_int</span>(<span class="param">prompt</span>)   <span class="comment"># Get integer input</span>
+<span class="function">input_float</span>(<span class="param">prompt</span>) <span class="comment"># Get float input</span>
+
+<span class="comment"># Utilities</span>
+<span class="function">len</span>(<span class="param">collection</span>)   <span class="comment"># Get length</span>
+<span class="function">to_string</span>(<span class="param">value</span>)   <span class="comment"># Convert to string</span></code></pre>
                         </div>
                     </section>
 
                     <section id="complete-bnf">
                         <h2>Complete BNF Grammar</h2>
-                        <p>Here's the complete BNF grammar for the Myco language:</p>
                         
+                        <h3>Program Structure</h3>
                         <div class="code-block">
-                            <pre><code><span class="comment"># Program structure</span>
-<span class="keyword">program</span> ::= <span class="function">statement</span>*
+                            <div class="code-header">
+                                <span>Program Structure</span>
+                            </div>
+                            <pre><code><span class="comment"># Complete program</span>
+&lt;program&gt; ::= &lt;statement_list&gt;
 
-<span class="comment"># Statements</span>
-<span class="keyword">statement</span> ::= <span class="function">variable_declaration</span>
-              | <span class="function">function_declaration</span>
-              | <span class="function">if_statement</span>
-              | <span class="function">for_statement</span>
-              | <span class="function">while_statement</span>
-              | <span class="function">switch_statement</span>
-              | <span class="function">try_statement</span>
-              | <span class="function">return_statement</span>
-              | <span class="function">expression_statement</span>
-              | <span class="function">block</span>
+&lt;statement_list&gt; ::= &lt;statement&gt;*
+&lt;statement&gt; ::= &lt;expression_statement&gt; | &lt;declaration_statement&gt; | 
+                &lt;control_statement&gt; | &lt;function_declaration&gt; | 
+                &lt;return_statement&gt; | &lt;break_statement&gt; | 
+                &lt;continue_statement&gt; | &lt;library_import_statement&gt;
 
-<span class="comment"># Variable declaration</span>
-<span class="keyword">variable_declaration</span> ::= <span class="string">"let"</span> <span class="function">identifier</span> <span class="string">"="</span> <span class="function">expression</span> <span class="string">";"</span>
+&lt;block&gt; ::= "end" | &lt;statement_list&gt; "end"</code></pre>
+                        </div>
 
-<span class="comment"># Function declaration</span>
-<span class="keyword">function_declaration</span> ::= <span class="string">"func"</span> <span class="function">identifier</span> <span class="string">"("</span> <span class="function">parameter_list</span> <span class="string">")"</span> [<span class="string">"->"</span> <span class="function">type</span>] <span class="string">":"</span> <span class="function">block</span> <span class="string">"end"</span>
-
-<span class="comment"># Parameters</span>
-<span class="keyword">parameter_list</span> ::= <span class="function">parameter</span> (<span class="string">","</span> <span class="function">parameter</span>)*
-                  | <span class="keyword">ε</span>
-
-<span class="keyword">parameter</span> ::= <span class="function">identifier</span> [<span class="string">":"</span> <span class="function">type</span>]
-
-<span class="comment"># Types</span>
-<span class="keyword">type</span> ::= <span class="string">"int"</span> | <span class="string">"float"</span> | <span class="string">"string"</span> | <span class="string">"bool"</span>
-
-<span class="comment"># Control flow</span>
-<span class="keyword">if_statement</span> ::= <span class="string">"if"</span> <span class="function">expression</span> <span class="string">":"</span> <span class="function">block</span> [<span class="string">"else"</span> <span class="function">block</span>] <span class="string">"end"</span>
-
-<span class="keyword">for_statement</span> ::= <span class="string">"for"</span> <span class="function">identifier</span> <span class="string">"="</span> <span class="function">expression</span> <span class="string">"to"</span> <span class="function">expression</span> <span class="string">":"</span> <span class="function">block</span> <span class="string">"end"</span>
-                  | <span class="string">"for"</span> <span class="function">identifier</span> <span class="string">"in"</span> <span class="function">expression</span> <span class="string">":"</span> <span class="function">block</span> <span class="string">"end"</span>
-
-<span class="keyword">while_statement</span> ::= <span class="string">"while"</span> <span class="function">expression</span> <span class="string">":"</span> <span class="function">block</span> <span class="string">"end"</span>
-
-<span class="keyword">switch_statement</span> ::= <span class="string">"switch"</span> <span class="function">expression</span> <span class="string">":"</span> <span class="function">case_list</span> [<span class="string">"default"</span> <span class="string">":"</span> <span class="function">block</span>] <span class="string">"end"</span>
-
-<span class="keyword">case_list</span> ::= <span class="function">case_item</span>+
-
-<span class="keyword">case_item</span> ::= <span class="string">"case"</span> <span class="function">expression</span> <span class="string">":"</span> <span class="function">block</span>
-
-<span class="keyword">try_statement</span> ::= <span class="string">"try"</span> <span class="string">":"</span> <span class="function">block</span> <span class="string">"catch"</span> <span class="function">identifier</span> <span class="string">":"</span> <span class="function">block</span> <span class="string">"end"</span>
-
-<span class="keyword">return_statement</span> ::= <span class="string">"return"</span> [<span class="function">expression</span>] <span class="string">";"</span>
-
-<span class="comment"># Blocks and statements</span>
-<span class="keyword">block</span> ::= <span class="function">statement</span>*
-
-<span class="keyword">expression_statement</span> ::= <span class="function">expression</span> <span class="string">";"</span>
-
-<span class="comment"># Expressions</span>
-<span class="keyword">expression</span> ::= <span class="function">assignment</span>
-
-<span class="keyword">assignment</span> ::= <span class="function">logical_or</span> (<span class="function">assignment_operator</span> <span class="function">assignment</span>)?
-
-<span class="keyword">assignment_operator</span> ::= <span class="string">"="</span> | <span class="string">"+="</span> | <span class="string">"-="</span> | <span class="string">"*="</span> | <span class="string">"/="</span>
-
-<span class="keyword">logical_or</span> ::= <span class="function">logical_and</span> (<span class="string">"or"</span> <span class="function">logical_or</span>)?
-
-<span class="keyword">logical_and</span> ::= <span class="function">equality</span> (<span class="string">"and"</span> <span class="function">logical_and</span>)?
-
-<span class="keyword">equality</span> ::= <span class="function">relational</span> ((<span class="string">"=="</span> | <span class="string">"!="</span>) <span class="function">relational</span>)?
-
-<span class="keyword">relational</span> ::= <span class="function">additive</span> ((<span class="string">"&lt;"</span> | <span class="string">"&gt;"</span> | <span class="string">"&lt;="</span> | <span class="string">"&gt;="</span>) <span class="function">additive</span>)?
-
-<span class="keyword">additive</span> ::= <span class="function">multiplicative</span> ((<span class="string">"+"</span> | <span class="string">"-"</span>) <span class="function">multiplicative</span>)?
-
-<span class="keyword">multiplicative</span> ::= <span class="function">unary</span> ((<span class="string">"*"</span> | <span class="string">"/"</span> | <span class="string">"%"</span>) <span class="function">unary</span>)?
-
-<span class="keyword">unary</span> ::= (<span class="string">"-"</span> | <span class="string">"not"</span>)? <span class="function">primary</span>
-
-<span class="comment"># Primary expressions</span>
-<span class="keyword">primary</span> ::= <span class="function">identifier</span>
-            | <span class="function">literal</span>
-            | <span class="function">parenthesized_expr</span>
-            | <span class="function">function_call</span>
-            | <span class="function">array_access</span>
-            | <span class="function">object_access</span>
-            | <span class="function">array_literal</span>
-            | <span class="function">object_literal</span>
-
-<span class="keyword">parenthesized_expr</span> ::= <span class="string">"("</span> <span class="function">expression</span> <span class="string">")"</span>
-
-<span class="keyword">function_call</span> ::= <span class="function">identifier</span> <span class="string">"("</span> <span class="function">argument_list</span> <span class="string">")"</span>
-
-<span class="keyword">argument_list</span> ::= <span class="function">expression</span> (<span class="string">","</span> <span class="function">expression</span>)*
-                | <span class="keyword">ε</span>
-
-<span class="keyword">array_access</span> ::= <span class="function">primary</span> <span class="string">"["</span> <span class="function">expression</span> <span class="string">"]"</span>
-
-<span class="keyword">object_access</span> ::= <span class="function">primary</span> <span class="string">"."</span> <span class="function">identifier</span>
-
-<span class="keyword">array_literal</span> ::= <span class="string">"["</span> <span class="function">expression</span> (<span class="string">","</span> <span class="function">expression</span>)* <span class="string">"]"</span>
-
-<span class="keyword">object_literal</span> ::= <span class="string">"{"</span> <span class="function">property_list</span> <span class="string">"}"</span>
-
-<span class="keyword">property_list</span> ::= <span class="function">property</span> (<span class="string">","</span> <span class="function">property</span>)*
-                  | <span class="keyword">ε</span>
-
-<span class="keyword">property</span> ::= <span class="function">identifier</span> <span class="string">":"</span> <span class="function">expression</span>
+                        <h3>Lexical Elements</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Lexical Elements</span>
+                            </div>
+                            <pre><code><span class="comment"># Identifiers</span>
+&lt;identifier&gt; ::= &lt;letter&gt; (&lt;letter&gt; | &lt;digit&gt; | "_")*
+&lt;letter&gt; ::= "a" | "b" | "c" | ... | "z" | "A" | "B" | ... | "Z"
+&lt;digit&gt; ::= "0" | "1" | "2" | ... | "9"
 
 <span class="comment"># Literals</span>
-<span class="keyword">literal</span> ::= <span class="function">number</span> | <span class="function">string</span> | <span class="function">boolean</span>
+&lt;literal&gt; ::= &lt;number_literal&gt; | &lt;string_literal&gt; | 
+              &lt;boolean_literal&gt; | &lt;array_literal&gt; | &lt;object_literal&gt;
 
-<span class="keyword">number</span> ::= <span class="function">integer</span> | <span class="function">float</span>
+&lt;number_literal&gt; ::= &lt;integer&gt; | &lt;float&gt;
+&lt;integer&gt; ::= &lt;digit&gt;+ | "-" &lt;digit&gt;+
+&lt;float&gt; ::= &lt;digit&gt;+ "." &lt;digit&gt;* | "." &lt;digit&gt;+ | 
+            "-" &lt;digit&gt;+ "." &lt;digit&gt;* | "-" "." &lt;digit&gt;+
 
-<span class="keyword">boolean</span> ::= <span class="string">"1"</span> | <span class="string">"0"</span>
+&lt;string_literal&gt; ::= '"' &lt;string_content&gt;* '"'
+&lt;boolean_literal&gt; ::= "0" | "1" | "True" | "False"
 
-<span class="comment"># Identifiers</span>
-<span class="keyword">identifier</span> ::= <span class="function">letter</span> (<span class="function">letter</span> | <span class="function">digit</span> | <span class="string">"_"</span>)*
+&lt;array_literal&gt; ::= "[" &lt;expression_list&gt; "]"
+&lt;object_literal&gt; ::= "{" &lt;property_list&gt; "}"</code></pre>
+                        </div>
 
-<span class="keyword">letter</span> ::= <span class="string">"a"</span> | <span class="string">"b"</span> | ... | <span class="string">"z"</span> | <span class="string">"A"</span> | <span class="string">"B"</span> | ... | <span class="string">"Z"</span>
+                        <h3>Language Features Summary</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>Features Summary</span>
+                            </div>
+                            <pre><code><span class="comment"># ✅ Implemented Features</span>
+- Basic Syntax: Variables, expressions, statements
+- Functions: Declaration, parameters, return types (optional)
+- Control Flow: If-else, loops (for, while), switch/case, try/catch
+- Data Structures: Arrays, objects with methods
+- Math Library: 15+ mathematical functions and constants
+- Utility Library: 20+ utility functions for debugging
+- Type System: Clear type names ("Integer", "Float", "String", "Array", "Object")
+- Arrow Syntax: Modern function return type annotations (-&gt;)
+- Switch Statements: Expression-based case matching with default support
+- Error Handling: Try-catch blocks with automatic error catching
+- Lambda Functions: Functional programming support
+- Float Support: Comprehensive floating-point arithmetic
+- Library Import System: Namespace protection and modular code
+- Boolean Keywords: True/False with backward compatibility
 
-<span class="keyword">digit</span> ::= <span class="string">"0"</span> | <span class="string">"1"</span> | ... | <span class="string">"9"</span></code></pre>
+<span class="comment"># 🔄 Implicit Functions (v1.2.4)</span>
+- Optional parameter type annotations
+- Optional return type annotations
+- Implicit returns (returns 0 if no return statement)
+- Dynamic return type inference
+
+<span class="comment"># 🌊 Float System (v1.4.0)</span>
+- Float Literals: 3.14, 0.5, .25, -2.5
+- Float Arithmetic: +, -, *, / with automatic type conversion
+- Mixed Operations: Integer and float arithmetic with float result
+- Enhanced Math: All math functions support float inputs and outputs</code></pre>
                         </div>
                     </section>
                 </div>
