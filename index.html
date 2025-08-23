@@ -383,6 +383,35 @@
                     pre.style.transition = 'all 0.3s ease';
                 }
             });
+            
+            // Feature hover effect for right side display
+            const features = document.querySelectorAll('.feature');
+            const featuresRight = document.querySelector('.features-right');
+            
+            if (featuresRight) {
+                features.forEach(feature => {
+                    feature.addEventListener('mouseenter', function() {
+                        const details = this.querySelector('.feature-details');
+                        if (details) {
+                            featuresRight.innerHTML = details.innerHTML;
+                            featuresRight.style.background = 'var(--bg-primary)';
+                            featuresRight.style.borderColor = 'var(--accent-primary)';
+                        }
+                    });
+                    
+                    feature.addEventListener('mouseleave', function() {
+                        // Reset to default centered content
+                        featuresRight.innerHTML = `
+                            <div class="features-right-content">
+                                <h3>Language Features</h3>
+                                <p>Hover over a feature on the left to see detailed information about Myco's capabilities.</p>
+                            </div>
+                        `;
+                        featuresRight.style.background = 'var(--bg-secondary)';
+                        featuresRight.style.borderColor = 'var(--border-primary)';
+                    });
+                });
+            }
         });
     </script>
 </body>

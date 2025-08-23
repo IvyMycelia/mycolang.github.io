@@ -1002,20 +1002,61 @@ body .logo:hover .logo-img {
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
 }
 
-.feature {
-    padding: 2rem;
+.features-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.features-right {
+    position: sticky;
+    top: 100px;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: var(--bg-secondary);
     border-radius: 12px;
     border: 1px solid var(--border-primary);
+    padding: 2rem;
     transition: all var(--transition-normal);
-    position: relative;
-    overflow: hidden;
+}
+
+.features-right-content {
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.features-right-content h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.features-right-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.feature {
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--border-primary);
+    transition: all var(--transition-normal);
     cursor: pointer;
-    min-height: 200px;
+    min-height: 120px;
+}
+
+.feature:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.15);
+    transform: translateX(8px);
 }
 
 
@@ -1069,19 +1110,13 @@ body .logo:hover .logo-img {
     transition: all var(--transition-normal);
 }
 
-/* Clean hover effect for feature details */
+/* Feature details for right side display */
 .feature-details {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: all var(--transition-normal);
-    margin-top: 0;
+    display: none;
 }
 
 .feature:hover .feature-details {
-    max-height: 300px;
-    opacity: 1;
-    margin-top: 1rem;
+    display: block;
 }
 
 .feature-details h4 {
@@ -1394,14 +1429,24 @@ body .logo:hover .logo-img {
         gap: 1.5rem;
     }
     
+    .features-left {
+        order: 2;
+    }
+    
+    .features-right {
+        order: 1;
+        position: static;
+        min-height: auto;
+        margin-bottom: 2rem;
+    }
+    
     .feature {
         min-height: auto;
         padding: 1.5rem;
     }
     
     .feature-details {
-        max-height: none;
-        opacity: 1;
+        display: block;
         margin-top: 1rem;
     }
     
