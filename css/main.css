@@ -342,6 +342,24 @@ body .logo:hover .logo-img {
     .docs-layout {
         gap: 3rem;
     }
+    
+    /* Large screen code block optimizations */
+    .docs-content pre {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    .docs-content pre {
+        font-size: 0.75rem;
+        padding: 0.5rem;
+    }
+    
+    .docs-content .code-block {
+        margin: 1rem 0;
+    }
 }
 
 .nav-menu {
@@ -1548,7 +1566,72 @@ body .logo:hover .logo-img {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.9rem;
     border: 1px solid var(--border-primary);
-    white-space: nowrap;
+}
+
+.docs-content .code-block {
+    margin: 1.5rem 0;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--border-primary);
+    overflow: hidden;
+    transition: all var(--transition-normal);
+}
+
+.docs-content .code-block:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 5px 15px var(--shadow-medium);
+    position: relative;
+}
+
+.docs-content .code-block.foldable {
+    cursor: pointer;
+}
+
+.docs-content .code-block.foldable .code-header {
+    cursor: pointer;
+    user-select: none;
+}
+
+.docs-content .code-block.foldable .code-header::before {
+    content: '▶';
+    margin-right: 0.5rem;
+    transition: transform var(--transition-normal);
+    display: inline-block;
+}
+
+.docs-content .code-block.foldable.folded .code-header::before {
+    transform: rotate(90deg);
+}
+
+.docs-content .code-block.foldable.folded pre {
+    display: none;
+}
+
+.docs-content .code-header {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+    border-bottom: 1px solid var(--border-primary);
+}
+
+.docs-content pre {
+    margin: 0;
+    padding: 1rem;
+    background: var(--bg-tertiary);
+    overflow-x: auto;
+    white-space: pre;
+    border-radius: 8px;
+    border: 1px solid var(--border-primary);
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
+    line-height: 1.5;
+}
+
+.docs-content pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--text-primary);
 }
 
 /* Enhanced syntax highlighting */
@@ -1581,42 +1664,6 @@ body .logo:hover .logo-img {
 
 .docs-content pre code .punctuation {
     color: var(--text-muted);
-}
-
-.docs-content .code-block {
-    margin: 1.5rem 0;
-    background: var(--bg-secondary);
-    border-radius: 8px;
-    border: 1px solid var(--border-primary);
-    overflow: hidden;
-    transition: all var(--transition-normal);
-}
-
-.docs-content .code-block:hover {
-    border-color: var(--accent-primary);
-    box-shadow: 0 5px 15px var(--shadow-medium);
-}
-
-.docs-content .code-header {
-    background: var(--accent-primary);
-    color: var(--bg-primary);
-    padding: 0.75rem 1rem;
-    font-weight: 500;
-    border-bottom: 1px solid var(--border-primary);
-}
-
-.docs-content pre {
-    margin: 0;
-    padding: 1rem;
-    background: var(--bg-tertiary);
-    overflow-x: auto;
-}
-
-.docs-content pre code {
-    background: none;
-    border: none;
-    padding: 0;
-    color: var(--text-primary);
 }
 
 .docs-content ul {
@@ -1709,5 +1756,23 @@ body .logo:hover .logo-img {
     
     .docs-content h2 {
         font-size: 1.5rem;
+    }
+    
+    /* Mobile code block improvements */
+    .docs-content pre {
+        padding: 0.75rem;
+        font-size: 0.8rem;
+        white-space: pre;
+        overflow-x: auto;
+    }
+    
+    .docs-content code {
+        font-size: 0.8rem;
+        padding: 0.15rem 0.3rem;
+    }
+    
+    /* Mobile responsive font sizing */
+    .docs-content pre {
+        font-size: clamp(0.75rem, 3vw, 0.85rem);
     }
 }
