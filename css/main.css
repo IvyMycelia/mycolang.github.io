@@ -174,11 +174,29 @@ a:hover {
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--text-primary);
     position: relative;
     overflow: hidden;
+}
+
+.logo-img {
+    height: 2.5rem;
+    width: auto;
+    transition: all var(--transition-normal);
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.logo:hover .logo-img {
+    transform: scale(1.05);
 }
 
 .logo::before {
@@ -464,10 +482,28 @@ a:hover {
     z-index: 2;
 }
 
+.hero-logo {
+    margin-bottom: 2rem;
+    animation: slideInLeft 1s var(--elastic);
+}
+
+.hero-logo-img {
+    height: 8rem;
+    width: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all var(--transition-normal);
+}
+
+.hero-logo-img:hover {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
 .hero-content h1 {
     color: var(--text-primary);
     margin-bottom: 1rem;
-    animation: slideInLeft 1s var(--elastic);
+    animation: slideInLeft 1s var(--elastic) 0.1s both;
 }
 
 .hero-subtitle {
