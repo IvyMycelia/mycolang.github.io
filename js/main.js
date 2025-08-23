@@ -208,10 +208,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (savedTheme && themes.includes(savedTheme)) {
             console.log('Applying saved theme:', savedTheme);
             setTheme(savedTheme);
+            // Update currentThemeIndex to match the saved theme
+            currentThemeIndex = themes.indexOf(savedTheme);
         } else {
             console.log('No saved theme found, defaulting to dark');
             // Default to dark theme
             setTheme('dark');
+            currentThemeIndex = themes.indexOf('dark');
         }
         updateThemeIcon();
     }
@@ -223,10 +226,14 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        // Normal cycling between dark and light themes
-        currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-        const newTheme = themes[currentThemeIndex];
-        setTheme(newTheme);
+        // Determine current theme and cycle to next one
+        if (document.body.classList.contains('light-theme')) {
+            // Currently light theme, switch to dark
+            setTheme('dark');
+        } else {
+            // Currently dark theme, switch to light
+            setTheme('light');
+        }
     }
     
     function setTheme(theme) {
