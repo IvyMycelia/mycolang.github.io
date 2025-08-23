@@ -16,22 +16,25 @@ A professional, responsive website for the Myco programming language, featuring 
 ```
 mycolang.org/
 ├── index.html              # Homepage
-├── docs.html              # Documentation page
-├── grammar.html           # BNF Grammar specification
-├── downloads.html         # Downloads and installation
-├── css/
-│   └── main.css          # Main stylesheet
-├── js/
-│   └── main.js           # JavaScript functionality
-├── images/
+├── pages/                  # HTML pages
+│   ├── docs.html          # Documentation page
+│   ├── grammar.html       # BNF Grammar specification
+│   └── downloads.html     # Downloads and installation
+├── css/                    # Stylesheets
+│   └── main.css           # Main stylesheet
+├── js/                     # JavaScript
+│   └── main.js            # Main functionality
+├── images/                 # Logo and images
 │   ├── Myco_Transparent.png
 │   └── Myco_Purple.png
-├── favicon.ico            # Main favicon
-├── favicon-16x16.png     # Small favicon
-├── favicon-32x32.png     # Standard favicon
-├── apple-touch-icon.png  # iOS icon
-├── site.webmanifest      # PWA manifest
-└── sitemap.xml           # SEO sitemap
+├── assets/                 # Favicons and metadata
+│   ├── favicon.ico        # Main favicon
+│   ├── favicon-16x16.png  # Small favicon
+│   ├── favicon-32x32.png  # Standard favicon
+│   ├── apple-touch-icon.png # iOS icon
+│   ├── site.webmanifest   # PWA manifest
+│   └── sitemap.xml        # SEO sitemap
+└── README.md               # Project documentation
 ```
 
 ## 🚀 Getting Started
