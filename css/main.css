@@ -1071,31 +1071,17 @@ body .logo:hover .logo-img {
 
 /* Clean hover effect for feature details */
 .feature-details {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    padding: 1.5rem;
-    border-radius: 8px;
+    max-height: 0;
     opacity: 0;
-    visibility: hidden;
-    transform: translateY(100%);
+    overflow: hidden;
     transition: all var(--transition-normal);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    z-index: 10;
-    border: 1px solid var(--border-primary);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    margin-top: 0;
 }
 
 .feature:hover .feature-details {
+    max-height: 300px;
     opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+    margin-top: 1rem;
 }
 
 .feature-details h4 {
@@ -1414,16 +1400,9 @@ body .logo:hover .logo-img {
     }
     
     .feature-details {
-        position: relative;
-        transform: none;
+        max-height: none;
         opacity: 1;
-        visibility: visible;
-        background: var(--bg-primary);
-        color: var(--text-primary);
         margin-top: 1rem;
-        border-radius: 8px;
-        border: 1px solid var(--accent-primary);
-        box-shadow: 0 5px 15px var(--shadow-medium);
     }
     
 
