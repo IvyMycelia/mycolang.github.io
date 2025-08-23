@@ -25,7 +25,7 @@ mycolang.org/
 │   └── main.js           # JavaScript functionality
 ├── images/
 │   ├── Myco_Transparent.png
-│   └── Myco_Purple_Background.png
+│   └── Myco_Purple.png
 ├── favicon.ico            # Main favicon
 ├── favicon-16x16.png     # Small favicon
 ├── favicon-32x32.png     # Standard favicon
@@ -78,7 +78,7 @@ All colors are defined in CSS variables in `css/main.css`:
 ### Logo
 Replace the logo images in the `images/` directory:
 - `Myco_Transparent.png` - Header logo
-- `Myco_Purple_Background.png` - Hero section logo
+- `Myco_Purple.png` - Hero section logo
 
 ## 📱 Responsive Design
 
