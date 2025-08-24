@@ -38,33 +38,7 @@
     
     <link rel="stylesheet" href="css/main.css">
     
-    <!-- Apply theme immediately to prevent flickering -->
-    <script>
-        (function() {
-            function applyTheme() {
-                const savedTheme = localStorage.getItem('myco-theme');
-                if (savedTheme === 'light') {
-                    document.documentElement.classList.add('light-theme');
-                    document.body.classList.add('light-theme');
-                } else if (savedTheme === 'trans') {
-                    document.documentElement.classList.add('trans-theme');
-                    document.body.classList.add('trans-theme');
-                }
-                // dark theme is default (no class needed)
-            }
-            
-            // Try to apply theme immediately
-            applyTheme();
-            
-            // Also apply theme when CSS is fully loaded
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', applyTheme);
-            }
-            
-            // Fallback: apply theme after a short delay to ensure CSS is ready
-            setTimeout(applyTheme, 50);
-        })();
-    </script>
+
 
 </head>
 <body>

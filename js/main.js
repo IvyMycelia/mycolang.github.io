@@ -8,8 +8,16 @@ document.addEventListener('DOMContentLoaded', function() {
     let secretSequence = '';
     let lastKeyTime = 0;
     
-    // Initialize theme with smooth transitions
+    // Initialize theme immediately to prevent flickering
     initTheme();
+    
+    // Also apply theme when DOM is ready as backup
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initTheme);
+    }
+    
+    // Fallback: apply theme after a short delay to ensure CSS is ready
+    setTimeout(initTheme, 50);
     
     // Secret trans theme detection
     document.addEventListener('keydown', function(e) {
@@ -182,10 +190,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Theme functions
     function initTheme() {
+        // Check for trans theme first (separate storage)
+        const transThemeActive = localStorage.getItem('myco-trans-theme') === 'true';
         const savedTheme = localStorage.getItem('myco-theme');
-        console.log('Initializing theme. Saved theme:', savedTheme, 'Available themes:', themes);
         
-        if (savedTheme && themes.includes(savedTheme)) {
+        console.log('Initializing theme. Trans theme active:', transThemeActive, 'Saved theme:', savedTheme, 'Available themes:', themes);
+        
+        if (transThemeActive) {
+            console.log('Applying trans theme from separate storage');
+            setTheme('trans');
+            // Trans theme doesn't affect currentThemeIndex
+        } else if (savedTheme && themes.includes(savedTheme)) {
             console.log('Applying saved theme:', savedTheme);
             setTheme(savedTheme);
             // Update currentThemeIndex to match the saved theme
@@ -237,12 +252,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         // dark theme is default (no class needed)
         
-        // Save theme preference (only for dark and light themes)
-        if (theme !== 'trans') {
-            localStorage.setItem('myco-theme', theme);
-            console.log('Saved theme to localStorage:', theme);
+        // Save theme preference with separate storage for trans theme
+        if (theme === 'trans') {
+            localStorage.setItem('myco-trans-theme', 'true');
+            localStorage.removeItem('myco-theme'); // Clear regular theme storage
+            console.log('Saved trans theme to separate localStorage');
         } else {
-            console.log('Trans theme not saved to localStorage');
+            localStorage.setItem('myco-theme', theme);
+            localStorage.removeItem('myco-trans-theme'); // Clear trans theme storage
+            console.log('Saved theme to localStorage:', theme);
         }
         
         // Force a repaint to ensure theme is applied
