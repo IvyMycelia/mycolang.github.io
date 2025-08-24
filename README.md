@@ -29,16 +29,16 @@ mycolang.org/
 
 The website uses custom CSS-based syntax highlighting for Myco language code examples:
 
-- **Keywords**: `func`, `if`, `end`, `let`, `return`
-- **Functions**: Function names and calls
-- **Strings**: Text literals in quotes
-- **Numbers**: Numeric values
-- **Comments**: Code comments
-- **Parameters**: Function parameters
-- **Operators**: Mathematical and logical operators
-- **Punctuation**: Semicolons, colons, parentheses
+- **Keywords** (`func`, `if`, `end`, `let`, `return`): Purple accent color
+- **Functions**: Function names and calls in primary accent color
+- **Strings**: Text literals in quotes with string-specific color
+- **Numbers**: Numeric values in number-specific color
+- **Comments**: Code comments in muted text color
+- **Parameters**: Function parameters in parameter-specific color
+- **Operators**: Mathematical and logical operators in operator color
+- **Punctuation**: Semicolons, colons, parentheses in punctuation color
 
-Syntax highlighting is applied through CSS classes and works across all code blocks on the site.
+Syntax highlighting is applied through CSS classes and works across all code blocks on the site. Colors automatically adapt to the current theme (dark, light, or trans variants).
 
 ## Getting Started
 
