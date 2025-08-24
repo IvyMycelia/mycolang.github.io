@@ -8,16 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let secretSequence = '';
     let lastKeyTime = 0;
     
-    // Initialize theme immediately to prevent flickering
+    // Initialize theme with smooth transitions
     initTheme();
-    
-    // Also apply theme when DOM is ready as backup
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initTheme);
-    }
-    
-    // Fallback: apply theme after a short delay to ensure CSS is ready
-    setTimeout(initTheme, 50);
     
     // Secret trans theme detection
     document.addEventListener('keydown', function(e) {
@@ -190,24 +182,25 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Theme functions
     function initTheme() {
-        // Check for trans theme first (separate storage)
+        // Check for trans theme first (highest priority)
         const transThemeActive = localStorage.getItem('myco-trans-theme') === 'true';
         const savedTheme = localStorage.getItem('myco-theme');
         
-        console.log('Initializing theme. Trans theme active:', transThemeActive, 'Saved theme:', savedTheme, 'Available themes:', themes);
+        console.log('Initializing theme. Trans theme active:', transThemeActive, 'Saved theme:', savedTheme);
         
         if (transThemeActive) {
-            console.log('Applying trans theme from separate storage');
+            // Trans theme takes precedence over regular theme selection
+            console.log('Applying trans theme (overrides regular theme)');
             setTheme('trans');
-            // Trans theme doesn't affect currentThemeIndex
+            currentThemeIndex = 0; // Reset to dark for next cycle
         } else if (savedTheme && themes.includes(savedTheme)) {
+            // Apply saved regular theme
             console.log('Applying saved theme:', savedTheme);
             setTheme(savedTheme);
-            // Update currentThemeIndex to match the saved theme
             currentThemeIndex = themes.indexOf(savedTheme);
         } else {
-            console.log('No saved theme found, defaulting to dark');
             // Default to dark theme
+            console.log('No saved theme found, defaulting to dark');
             setTheme('dark');
             currentThemeIndex = themes.indexOf('dark');
         }
@@ -215,8 +208,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function cycleTheme() {
-        // If trans theme is currently active, switch to light theme
+        // If trans theme is currently active, switch to light theme and clear trans theme
         if (document.body.classList.contains('trans-theme')) {
+            localStorage.removeItem('myco-trans-theme'); // Clear trans theme
             setTheme('light');
             return;
         }
@@ -252,15 +246,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         // dark theme is default (no class needed)
         
-        // Save theme preference with separate storage for trans theme
+        // Save theme preference based on type
         if (theme === 'trans') {
+            // Trans theme gets its own storage key and overrides regular theme
             localStorage.setItem('myco-trans-theme', 'true');
-            localStorage.removeItem('myco-theme'); // Clear regular theme storage
-            console.log('Saved trans theme to separate localStorage');
+            console.log('Saved trans theme to localStorage');
         } else {
+            // Regular themes (dark/light) are stored normally
             localStorage.setItem('myco-theme', theme);
-            localStorage.removeItem('myco-trans-theme'); // Clear trans theme storage
-            console.log('Saved theme to localStorage:', theme);
+            // Clear trans theme when regular theme is selected
+            localStorage.removeItem('myco-trans-theme');
+            console.log('Saved theme to localStorage:', theme, 'and cleared trans theme');
         }
         
         // Force a repaint to ensure theme is applied

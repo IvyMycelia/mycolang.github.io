@@ -38,7 +38,37 @@
     
     <link rel="stylesheet" href="css/main.css">
     
-
+    <!-- Apply theme immediately to prevent flickering -->
+    <script>
+        (function() {
+            function applyTheme() {
+                // Check for trans theme first (highest priority)
+                const transThemeActive = localStorage.getItem('myco-trans-theme') === 'true';
+                const savedTheme = localStorage.getItem('myco-theme');
+                
+                if (transThemeActive) {
+                    // Trans theme takes precedence over regular theme selection
+                    document.documentElement.classList.add('trans-theme');
+                    document.body.classList.add('trans-theme');
+                } else if (savedTheme === 'light') {
+                    document.documentElement.classList.add('light-theme');
+                    document.body.classList.add('light-theme');
+                }
+                // dark theme is default (no class needed)
+            }
+            
+            // Try to apply theme immediately
+            applyTheme();
+            
+            // Also apply theme when CSS is fully loaded
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', applyTheme);
+            }
+            
+            // Fallback: apply theme after a short delay to ensure CSS is ready
+            setTimeout(applyTheme, 50);
+        })();
+    </script>
 
 </head>
 <body>
