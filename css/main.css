@@ -2324,6 +2324,9 @@ body .logo:hover .logo-img {
     margin-left: 8px;
     position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .trans-toggle::before {
@@ -2348,6 +2351,174 @@ body .logo:hover .logo-img {
 
 .trans-toggle:active {
     transform: translateY(0);
+}
+
+.trans-toggle .trans-icon {
+    font-size: 1.1rem;
+    animation: transIconPulse 2s ease-in-out infinite;
+    display: inline-block;
+}
+
+.trans-toggle .trans-text {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+@keyframes transIconPulse {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+    25% {
+        transform: scale(1.1) rotate(5deg);
+        opacity: 0.9;
+    }
+    50% {
+        transform: scale(1.2) rotate(0deg);
+        opacity: 1;
+    }
+    75% {
+        transform: scale(1.1) rotate(-5deg);
+        opacity: 0.9;
+    }
+}
+
+/* Enhanced theme toggle button animations */
+.theme-toggle {
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition-normal);
+}
+
+.theme-toggle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.theme-toggle:hover::before {
+    left: 100%;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 25px var(--shadow-medium);
+}
+
+.theme-toggle:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.theme-toggle .theme-icon {
+    display: inline-block;
+    transition: all var(--transition-normal);
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+.theme-toggle:hover .theme-icon {
+    animation: iconSpin 0.6s ease-in-out;
+}
+
+@keyframes iconFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-2px);
+    }
+}
+
+@keyframes iconSpin {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(180deg) scale(1.2);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+.theme-toggle .theme-text {
+    position: relative;
+    transition: all var(--transition-normal);
+}
+
+.theme-toggle:hover .theme-text {
+    transform: translateX(2px);
+    text-shadow: 0 0 8px currentColor;
+}
+
+/* Trans theme specific button styling with enhanced animations */
+.trans-theme .theme-toggle {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    border-color: var(--accent-secondary);
+    animation: transThemeGlow 3s ease-in-out infinite;
+}
+
+.trans-theme .theme-toggle:hover {
+    box-shadow: 0 4px 15px var(--shadow-medium), 0 0 10px var(--accent-primary);
+    animation: transThemeGlowHover 0.6s ease-in-out;
+}
+
+@keyframes transThemeGlow {
+    0%, 100% {
+        box-shadow: 0 0 15px var(--accent-primary);
+    }
+    50% {
+        box-shadow: 0 0 25px var(--accent-secondary);
+    }
+}
+
+@keyframes transThemeGlowHover {
+    0% {
+        box-shadow: 0 0 15px var(--accent-primary);
+    }
+    50% {
+        box-shadow: 0 0 35px var(--accent-secondary);
+    }
+    100% {
+        box-shadow: 0 4px 15px var(--shadow-medium), 0 0 10px var(--accent-primary);
+    }
+}
+
+/* Light trans theme specific styling with animations */
+.trans-theme.light-theme .theme-toggle {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    border-color: var(--accent-secondary);
+    animation: lightTransThemeGlow 3s ease-in-out infinite;
+}
+
+.trans-theme.light-theme .theme-toggle:hover {
+    box-shadow: 0 4px 15px var(--shadow-medium), 0 0 10px var(--accent-primary);
+    animation: lightTransThemeGlowHover 0.6s ease-in-out;
+}
+
+@keyframes lightTransThemeGlow {
+    0%, 100% {
+        box-shadow: 0 0 15px var(--accent-primary);
+    }
+    50% {
+        box-shadow: 0 0 25px var(--accent-secondary);
+    }
+}
+
+@keyframes lightTransThemeGlowHover {
+    0% {
+        box-shadow: 0 0 15px var(--accent-primary);
+    }
+    50% {
+        box-shadow: 0 0 35px var(--accent-secondary);
+    }
+    100% {
+        box-shadow: 0 4px 15px var(--shadow-medium), 0 0 10px var(--accent-primary);
+    }
 }
 
 /* Enhanced secret message popup with better contrast */

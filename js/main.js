@@ -323,7 +323,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!transToggle) {
                 transToggle = document.createElement('button');
                 transToggle.className = 'trans-toggle';
-                transToggle.innerHTML = '🌈 Off';
+                transToggle.innerHTML = '<span class="trans-icon">⚧</span><span class="trans-text">Off</span>';
                 transToggle.title = 'Disable Trans Theme';
                 transToggle.addEventListener('click', disableTransTheme);
                 
