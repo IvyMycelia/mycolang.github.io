@@ -64,8 +64,14 @@
                 document.addEventListener('DOMContentLoaded', applyTheme);
             }
             
-            // Fallback: apply theme after a short delay to ensure CSS is ready
+            // More aggressive fallback: apply theme multiple times to ensure it sticks
+            setTimeout(applyTheme, 10);
             setTimeout(applyTheme, 50);
+            setTimeout(applyTheme, 100);
+            setTimeout(applyTheme, 200);
+            
+            // Also apply theme when window loads
+            window.addEventListener('load', applyTheme);
         })();
     </script>
     
