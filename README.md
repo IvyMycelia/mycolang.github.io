@@ -15,7 +15,7 @@ A professional, comprehensive website for the Myco programming language, built w
 
 ## 📁 File Structure
 
-```
+```md
 mycolang.org/
 ├── index.html          # Main homepage
 ├── docs.html           # Documentation page
@@ -31,16 +31,20 @@ mycolang.org/
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - A modern web browser
 - Basic knowledge of HTML, CSS, and JavaScript (for customization)
 
 ### Installation
+
 1. Clone or download the website files
 2. Open `index.html` in your web browser
 3. The website will work immediately with all features
 
 ### Local Development
+
 For development and testing:
+
 1. Use a local web server (e.g., Python's `http.server` or Node.js `live-server`)
 2. Make changes to HTML, CSS, or JavaScript files
 3. Refresh your browser to see changes
@@ -48,6 +52,7 @@ For development and testing:
 ## 🎨 Design System
 
 ### Color Palette
+
 - **Primary**: `#8B5A2B` (Forest Brown)
 - **Secondary**: `#228B22` (Forest Green)
 - **Accent**: `#FF6B35` (Mushroom Orange)
@@ -55,10 +60,12 @@ For development and testing:
 - **Light**: `#F5F5DC` (Cream)
 
 ### Typography
+
 - **Body**: Inter (Google Fonts)
 - **Code**: JetBrains Mono (Google Fonts)
 
 ### Components
+
 - **Cards**: Feature cards, documentation cards, step cards
 - **Buttons**: Primary, secondary, and outline button styles
 - **Code Blocks**: Syntax-highlighted code containers with copy functionality
@@ -67,6 +74,7 @@ For development and testing:
 ## 🔧 Customization
 
 ### Adding New Pages
+
 1. Create a new HTML file (e.g., `tutorial.html`)
 2. Copy the header and footer structure from existing pages
 3. Add your content in the main section

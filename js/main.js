@@ -192,6 +192,11 @@ document.addEventListener('DOMContentLoaded', function() {
             // Trans theme takes precedence over regular theme selection
             console.log('Applying trans theme (overrides regular theme)');
             setTheme('trans');
+            // Keep the light theme state if it was previously active
+            if (savedTheme === 'light') {
+                document.documentElement.classList.add('light-theme');
+                document.body.classList.add('light-theme');
+            }
             currentThemeIndex = 0; // Reset to dark for next cycle
         } else if (savedTheme && themes.includes(savedTheme)) {
             // Apply saved regular theme
@@ -205,17 +210,28 @@ document.addEventListener('DOMContentLoaded', function() {
             currentThemeIndex = themes.indexOf('dark');
         }
         updateThemeIcon();
+        updateTransToggle();
     }
     
     function cycleTheme() {
-        // If trans theme is currently active, switch to light theme and clear trans theme
+        // If trans theme is currently active, cycle between light/dark trans variants
         if (document.body.classList.contains('trans-theme')) {
-            localStorage.removeItem('myco-trans-theme'); // Clear trans theme
-            setTheme('light');
+            if (document.body.classList.contains('light-theme')) {
+                // Currently light trans, switch to dark trans
+                document.documentElement.classList.remove('light-theme');
+                document.body.classList.remove('light-theme');
+                localStorage.setItem('myco-theme', 'dark');
+            } else {
+                // Currently dark trans, switch to light trans
+                document.documentElement.classList.add('light-theme');
+                document.body.classList.add('light-theme');
+                localStorage.setItem('myco-theme', 'light');
+            }
+            updateThemeIcon();
             return;
         }
         
-        // Determine current theme and cycle to next one
+        // Regular theme cycling (dark ↔ light)
         if (document.body.classList.contains('light-theme')) {
             // Currently light theme, switch to dark
             setTheme('dark');
@@ -272,8 +288,9 @@ document.addEventListener('DOMContentLoaded', function() {
             document.documentElement.style.transition = '';
         }, 300);
         
-        // Update theme icon
+        // Update theme icon and trans toggle
         updateThemeIcon();
+        updateTransToggle();
         
         // Log current theme state for debugging
         console.log('Current body classes:', document.body.className);
@@ -283,6 +300,45 @@ document.addEventListener('DOMContentLoaded', function() {
         const computedStyle = getComputedStyle(document.body);
         console.log('Background color:', computedStyle.backgroundColor);
         console.log('Text color:', computedStyle.color);
+    }
+    
+    function disableTransTheme() {
+        console.log('Disabling trans theme');
+        localStorage.removeItem('myco-trans-theme');
+        
+        // Get the last saved regular theme or default to dark
+        const savedTheme = localStorage.getItem('myco-theme') || 'dark';
+        setTheme(savedTheme);
+        
+        // Show notification
+        showNotification('Trans theme disabled', 'info');
+    }
+    
+    function updateTransToggle() {
+        const navControls = document.querySelector('.nav-controls');
+        let transToggle = document.querySelector('.trans-toggle');
+        
+        if (document.body.classList.contains('trans-theme')) {
+            // Create trans toggle button if it doesn't exist
+            if (!transToggle) {
+                transToggle = document.createElement('button');
+                transToggle.className = 'trans-toggle';
+                transToggle.innerHTML = '🌈 Off';
+                transToggle.title = 'Disable Trans Theme';
+                transToggle.addEventListener('click', disableTransTheme);
+                
+                // Insert after theme toggle
+                const themeToggle = document.querySelector('.theme-toggle');
+                if (themeToggle && themeToggle.parentNode) {
+                    themeToggle.parentNode.insertBefore(transToggle, themeToggle.nextSibling);
+                }
+            }
+        } else {
+            // Remove trans toggle button if it exists
+            if (transToggle) {
+                transToggle.remove();
+            }
+        }
     }
     
     function updateThemeIndicator(theme) {
@@ -300,21 +356,89 @@ document.addEventListener('DOMContentLoaded', function() {
         const themeIcon = themeToggle.querySelector('.theme-icon');
         const themeText = themeToggle.querySelector('.theme-text');
         
-        if (document.body.classList.contains('light-theme')) {
+        if (document.body.classList.contains('trans-theme')) {
+            // Trans theme is active - show current variant
+            if (document.body.classList.contains('light-theme')) {
+                themeIcon.textContent = '☀';
+                themeText.textContent = 'Dark Trans';
+                themeToggle.title = 'Switch to Dark Trans theme (Ctrl+T)';
+            } else {
+                themeIcon.textContent = '☾';
+                themeText.textContent = 'Light Trans';
+                themeToggle.title = 'Switch to Light Trans theme (Ctrl+T)';
+            }
+        } else if (document.body.classList.contains('light-theme')) {
+            // Regular light theme
             themeIcon.textContent = '☾';
             themeText.textContent = 'Dark';
             themeToggle.title = 'Switch to Dark theme (Ctrl+T)';
-        } else if (document.body.classList.contains('trans-theme')) {
-            // When trans theme is active, show next theme option
-            themeIcon.textContent = '☀';
-            themeText.textContent = 'Light';
-            themeToggle.title = 'Switch to Light theme (Ctrl+T)';
         } else {
-            // Dark theme (default)
+            // Regular dark theme (default)
             themeIcon.textContent = '☀';
             themeText.textContent = 'Light';
             themeToggle.title = 'Switch to Light theme (Ctrl+T)';
         }
+    }
+    
+    function showNotification(message, type = 'info') {
+        // Remove existing notifications
+        const existingNotifications = document.querySelectorAll('.notification');
+        existingNotifications.forEach(notification => notification.remove());
+        
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = `notification notification-${type}`;
+        notification.innerHTML = `
+            <span class="notification-message">${message}</span>
+            <button class="notification-close">&times;</button>
+        `;
+        
+        // Add styles
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-primary);
+            border-radius: 8px;
+            padding: 12px 20px;
+            box-shadow: 0 4px 15px var(--shadow-medium);
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: notificationSlideIn 0.3s ease;
+            max-width: 300px;
+        `;
+        
+        // Add close button functionality
+        const closeBtn = notification.querySelector('.notification-close');
+        closeBtn.style.cssText = `
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0;
+            margin-left: auto;
+        `;
+        
+        closeBtn.addEventListener('click', () => {
+            notification.style.animation = 'notificationSlideOut 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        });
+        
+        // Add to page
+        document.body.appendChild(notification);
+        
+        // Auto-remove after 3 seconds
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.style.animation = 'notificationSlideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }
+        }, 3000);
     }
     
     // Floating particles effect

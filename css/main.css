@@ -38,18 +38,31 @@
     --shadow-medium-light: rgba(0, 0, 0, 0.15);
     --shadow-heavy-light: rgba(0, 0, 0, 0.25);
     
-    /* Trans theme colors (hidden) */
-    --bg-primary-trans: #1a0b2e;
-    --bg-secondary-trans: #2d1b4e;
-    --bg-tertiary-trans: #4c2a85;
-    --text-primary-trans: #ffffff;
-    --text-secondary-trans: #f0e6ff;
-    --text-muted-trans: #d4b4ff;
-    --accent-primary-trans: #ff69b4;
-    --accent-secondary-trans: #ff1493;
-    --accent-tertiary-trans: #00d4aa;
-    --border-primary-trans: #4c2a85;
-    --border-secondary-trans: #6b46c1;
+    /* Dark Trans theme colors (default trans) */
+    --bg-primary-trans-dark: #1a0b2e;
+    --bg-secondary-trans-dark: #2d1b4e;
+    --bg-tertiary-trans-dark: #4c2a85;
+    --text-primary-trans-dark: #ffffff;
+    --text-secondary-trans-dark: #f0e6ff;
+    --text-muted-trans-dark: #d4b4ff;
+    --accent-primary-trans-dark: #ff69b4;
+    --accent-secondary-trans-dark: #ff1493;
+    --accent-tertiary-trans-dark: #00d4aa;
+    --border-primary-trans-dark: #4c2a85;
+    --border-secondary-trans-dark: #6b46c1;
+    
+    /* Light Trans theme colors */
+    --bg-primary-trans-light: #fdf2ff;
+    --bg-secondary-trans-light: #f3e8ff;
+    --bg-tertiary-trans-light: #e9d5ff;
+    --text-primary-trans-light: #581c87;
+    --text-secondary-trans-light: #7c3aed;
+    --text-muted-trans-light: #a855f7;
+    --accent-primary-trans-light: #ec4899;
+    --accent-secondary-trans-light: #be185d;
+    --accent-tertiary-trans-light: #059669;
+    --border-primary-trans-light: #c084fc;
+    --border-secondary-trans-light: #a855f7;
     
     /* Animation variables */
     --transition-fast: 0.2s ease;
@@ -77,18 +90,34 @@ body.light-theme {
     --shadow-heavy: var(--shadow-heavy-light);
 }
 
-html.trans-theme,
-body.trans-theme {
-    --bg-primary: var(--bg-primary-trans);
-    --bg-secondary: var(--bg-secondary-trans);
-    --bg-tertiary: var(--bg-tertiary-trans);
-    --text-primary: var(--text-primary-trans);
-    --text-secondary: var(--text-secondary-trans);
-    --text-muted: var(--text-muted-trans);
-    --accent-primary: var(--accent-primary-trans);
-    --accent-secondary: var(--accent-secondary-trans);
-    --border-primary: var(--border-primary-trans);
-    --border-secondary: var(--border-secondary-trans);
+/* Dark Trans theme (default trans) */
+html.trans-theme:not(.light-theme),
+body.trans-theme:not(.light-theme) {
+    --bg-primary: var(--bg-primary-trans-dark);
+    --bg-secondary: var(--bg-secondary-trans-dark);
+    --bg-tertiary: var(--bg-tertiary-trans-dark);
+    --text-primary: var(--text-primary-trans-dark);
+    --text-secondary: var(--text-secondary-trans-dark);
+    --text-muted: var(--text-muted-trans-dark);
+    --accent-primary: var(--accent-primary-trans-dark);
+    --accent-secondary: var(--accent-secondary-trans-dark);
+    --border-primary: var(--border-primary-trans-dark);
+    --border-secondary: var(--border-secondary-trans-dark);
+}
+
+/* Light Trans theme (when both trans and light are active) */
+html.trans-theme.light-theme,
+body.trans-theme.light-theme {
+    --bg-primary: var(--bg-primary-trans-light);
+    --bg-secondary: var(--bg-secondary-trans-light);
+    --bg-tertiary: var(--bg-tertiary-trans-light);
+    --text-primary: var(--text-primary-trans-light);
+    --text-secondary: var(--text-secondary-trans-light);
+    --text-muted: var(--text-muted-trans-light);
+    --accent-primary: var(--accent-primary-trans-light);
+    --accent-secondary: var(--accent-secondary-trans-light);
+    --border-primary: var(--border-primary-trans-light);
+    --border-secondary: var(--border-secondary-trans-light);
 }
 
 /* Base body styles */
@@ -2131,102 +2160,121 @@ body .logo:hover .logo-img {
     }
 }
 
-/* Enhanced Secret Trans Theme Popup Styles */
-.secret-message .secret-content {
+/* Trans theme toggle button */
+.trans-toggle {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    margin-left: 8px;
     position: relative;
+    overflow: hidden;
 }
 
-.secret-message .secret-header {
+.trans-toggle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.trans-toggle:hover::before {
+    left: 100%;
+}
+
+.trans-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px var(--shadow-medium);
+}
+
+.trans-toggle:active {
+    transform: translateY(0);
+}
+
+/* Enhanced secret message popup with better contrast */
+.secret-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+    border: 2px solid var(--accent-primary);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    z-index: 10000;
+    box-shadow: 0 20px 60px var(--shadow-heavy), 0 0 40px var(--accent-primary);
+    max-width: 400px;
+    width: 90%;
+    backdrop-filter: blur(10px);
+}
+
+.secret-header {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 20px;
+    gap: 15px;
 }
 
-.secret-message .secret-icon {
-    font-size: 1.5rem;
-    animation: sparkle 2s ease-in-out infinite;
+.secret-icon {
+    font-size: 2.5rem;
+    animation: sparkle 2s infinite;
 }
 
-.secret-message .secret-icon:nth-child(3) {
-    animation-delay: 0.5s;
+.secret-heart {
+    color: var(--accent-secondary);
+    font-size: 2rem;
+    animation: heartbeat 1.5s infinite;
 }
 
-.secret-message h3 {
-    margin: 0;
-    font-size: 1.4rem;
-    font-weight: 600;
-    background: linear-gradient(45deg, #ff69b4, #ff1493);
+.secret-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-}
-
-.secret-message .secret-body {
-    margin-bottom: 2rem;
-}
-
-.secret-message .secret-text {
-    font-size: 1.1rem;
-    font-weight: 500;
-    margin-bottom: 1rem;
-    color: var(--text-primary-trans);
-}
-
-.secret-message .secret-description {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-    color: var(--text-secondary-trans);
-}
-
-.secret-message .secret-heart {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    margin: 1.5rem 0;
-    padding: 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.secret-message .secret-heart span {
-    font-size: 1.2rem;
-    animation: heartbeat 1.5s ease-in-out infinite;
-}
-
-.secret-message .secret-heart span:nth-child(3) {
-    animation-delay: 0.75s;
-}
-
-.secret-message .secret-heart p {
     margin: 0;
-    font-style: italic;
-    color: var(--text-primary-trans);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.secret-message .secret-close-btn {
-    background: linear-gradient(45deg, #ff69b4, #ff1493);
+.secret-text {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin: 15px 0;
+    line-height: 1.6;
+}
+
+.secret-close-btn {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
     color: white;
     border: none;
-    padding: 0.75rem 2rem;
     border-radius: 25px;
+    padding: 12px 30px;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+    transition: all var(--transition-normal);
+    margin-top: 20px;
+    box-shadow: 0 4px 15px var(--shadow-medium);
 }
 
-.secret-message .secret-close-btn:hover {
+.secret-close-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.6);
+    box-shadow: 0 8px 25px var(--shadow-heavy);
 }
 
-.secret-message .secret-close-btn:active {
+.secret-close-btn:active {
     transform: translateY(0);
 }
 
@@ -2259,23 +2307,43 @@ body .logo:hover .logo-img {
 
 /* Trans theme notification animations */
 @keyframes notificationSlideIn {
-    0% {
+    from {
         transform: translateX(100%);
         opacity: 0;
     }
-    100% {
+    to {
         transform: translateX(0);
         opacity: 1;
     }
 }
 
 @keyframes notificationSlideOut {
-    0% {
+    from {
         transform: translateX(0);
         opacity: 1;
     }
-    100% {
+    to {
         transform: translateX(100%);
         opacity: 0;
     }
+}
+
+/* Trans theme specific button styling */
+.trans-theme .theme-toggle {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    border-color: var(--accent-secondary);
+}
+
+.trans-theme .theme-toggle:hover {
+    box-shadow: 0 4px 15px var(--shadow-medium), 0 0 10px var(--accent-primary);
+}
+
+/* Light trans theme specific styling */
+.trans-theme.light-theme .theme-toggle {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    border-color: var(--accent-secondary);
+}
+
+.trans-theme.light-theme .theme-toggle:hover {
+    box-shadow: 0 4px 15px var(--shadow-medium), 0 0 10px var(--accent-primary);
 }
