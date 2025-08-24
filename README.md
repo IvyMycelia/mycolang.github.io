@@ -14,7 +14,7 @@ A professional website for the Myco programming language with modern design, res
 
 ## File Structure
 
-```
+```md
 mycolang.org/
 ├── index.html          # Homepage
 ├── docs.html           # Documentation
@@ -39,8 +39,9 @@ The website uses custom CSS-based syntax highlighting for Myco language code exa
 - **Punctuation**: Semicolons, colons, parentheses in punctuation color
 
 **Specific Color Codes:**
+
 - **Keywords**: `#ec4899` (accent-secondary)
-- **Functions**: `#10b981` (accent-tertiary) 
+- **Functions**: `#10b981` (accent-tertiary)
 - **Parameters**: `#a855f7` (accent-primary)
 - **Strings**: `#f87171` (red)
 - **Numbers**: `#a78bfa` (purple)

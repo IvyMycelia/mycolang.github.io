@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let secretSequence = '';
     let lastKeyTime = 0;
     
+    // Mobile menu state
+    let isMobileMenuOpen = false;
+    
     // Initialize theme with smooth transitions
     initTheme();
     
@@ -42,15 +45,138 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Mobile menu toggle
+    // Enhanced mobile menu functionality
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navMenu = document.querySelector('.nav-menu');
+    const header = document.querySelector('.header');
     
     if (mobileMenuBtn && navMenu) {
-        mobileMenuBtn.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            mobileMenuBtn.classList.toggle('active');
+        // Mobile menu toggle
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMobileMenu();
         });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (isMobileMenuOpen && !navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+        
+        // Close mobile menu on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isMobileMenuOpen) {
+                closeMobileMenu();
+            }
+        });
+        
+        // Close mobile menu on window resize (if switching to desktop)
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768 && isMobileMenuOpen) {
+                closeMobileMenu();
+            }
+        });
+        
+        // Enhanced mobile menu navigation
+        const mobileNavLinks = navMenu.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                // Close mobile menu when a link is clicked
+                closeMobileMenu();
+                
+                // Add active state to clicked link
+                mobileNavLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    }
+    
+    function toggleMobileMenu() {
+        if (isMobileMenuOpen) {
+            closeMobileMenu();
+        } else {
+            openMobileMenu();
+        }
+    }
+    
+    function openMobileMenu() {
+        isMobileMenuOpen = true;
+        mobileMenuBtn.classList.add('active');
+        navMenu.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        header.classList.add('mobile-menu-open');
+        
+        // Add focus trap for accessibility
+        const firstLink = navMenu.querySelector('a');
+        if (firstLink) {
+            firstLink.focus();
+        }
+    }
+    
+    function closeMobileMenu() {
+        isMobileMenuOpen = false;
+        mobileMenuBtn.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+        header.classList.remove('mobile-menu-open');
+        
+        // Return focus to menu button
+        mobileMenuBtn.focus();
+    }
+    
+    // Touch-friendly interactions for mobile
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+        // Add touch feedback to buttons
+        const touchButtons = document.querySelectorAll('.btn, .theme-toggle, .nav-menu a');
+        touchButtons.forEach(button => {
+            button.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.95)';
+                this.style.transition = 'transform 0.1s ease';
+            });
+            
+            button.addEventListener('touchend', function() {
+                this.style.transform = '';
+                this.style.transition = '';
+            });
+        });
+        
+        // Prevent double-tap zoom on buttons
+        touchButtons.forEach(button => {
+            button.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                this.click();
+            });
+        });
+        
+        // Add swipe gestures for mobile menu (optional enhancement)
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        navMenu.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        navMenu.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Swipe left - could be used for additional navigation
+                    console.log('Swiped left');
+                } else {
+                    // Swipe right - close menu
+                    closeMobileMenu();
+                }
+            }
+        }
     }
     
     // Theme toggle button
@@ -59,6 +185,17 @@ document.addEventListener('DOMContentLoaded', function() {
         themeToggle.addEventListener('click', function() {
             cycleTheme();
         });
+        
+        // Add touch feedback for mobile
+        if ('ontouchstart' in window) {
+            themeToggle.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.95)';
+            });
+            
+            themeToggle.addEventListener('touchend', function() {
+                this.style.transform = '';
+            });
+        }
     }
     
     // Theme toggle functionality
@@ -76,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Smooth scrolling for anchor links
+    // Smooth scrolling for anchor links with mobile consideration
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
     anchorLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -85,8 +222,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetElement = document.querySelector(targetId);
             
             if (targetElement) {
-                const headerHeight = document.querySelector('.header').offsetHeight;
-                const targetPosition = targetElement.offsetTop - headerHeight - 20;
+                const headerHeight = header ? header.offsetHeight : 0;
+                const mobileOffset = window.innerWidth <= 768 ? 20 : 40;
+                const targetPosition = targetElement.offsetTop - headerHeight - mobileOffset;
+                
+                // Close mobile menu if open
+                if (isMobileMenuOpen) {
+                    closeMobileMenu();
+                }
                 
                 window.scrollTo({
                     top: targetPosition,
@@ -155,7 +298,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Header background on scroll
-    const header = document.querySelector('.header');
     if (header) {
         window.addEventListener('scroll', function() {
             if (window.scrollY > 50) {
