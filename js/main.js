@@ -178,8 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add copy functionality to code blocks
     initCodeCopy();
     
-    // Initialize interactive features
-    initInteractiveFeatures();
+
     
     // Theme functions
     function initTheme() {
@@ -897,58 +896,4 @@ function addAnimationCSS() {
         }
     `;
     document.head.appendChild(style);
-}
-
-// Initialize interactive features
-function initInteractiveFeatures() {
-    const features = document.querySelectorAll('.feature');
-    const detailsPanel = document.querySelector('.feature-details-panel');
-    const featureDetails = document.querySelectorAll('.feature-detail');
-    
-    if (!features.length || !detailsPanel) return;
-    
-    let currentFeature = null;
-    let hoverTimeout = null;
-    
-    features.forEach(feature => {
-        const featureType = feature.getAttribute('data-feature');
-        
-        feature.addEventListener('mouseenter', () => {
-            // Clear any existing timeout
-            if (hoverTimeout) {
-                clearTimeout(hoverTimeout);
-            }
-            
-            // Set a small delay to prevent jittery behavior
-            hoverTimeout = setTimeout(() => {
-                if (currentFeature !== featureType) {
-                    currentFeature = featureType;
-                    
-                    // Hide all feature details
-                    featureDetails.forEach(detail => {
-                        detail.classList.remove('active');
-                    });
-                    
-                    // Show the corresponding feature detail
-                    const targetDetail = document.querySelector(`[data-feature="${featureType}"]`);
-                    if (targetDetail) {
-                        targetDetail.classList.add('active');
-                    }
-                }
-            }, 150); // 150ms delay to prevent jitter
-        });
-        
-        feature.addEventListener('mouseleave', () => {
-            // Clear the timeout if mouse leaves before delay
-            if (hoverTimeout) {
-                clearTimeout(hoverTimeout);
-                hoverTimeout = null;
-            }
-        });
-    });
-    
-    // Add smooth transitions for the details panel
-    featureDetails.forEach(detail => {
-        detail.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-    });
 }
