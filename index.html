@@ -162,13 +162,43 @@
         <section id="features" class="features">
             <div class="container">
                 <h2 class="scroll-reveal">Language Features</h2>
-                <div class="features-grid">
-                    <div class="feature scroll-reveal">
-                        <div class="feature-content">
+                <div class="features-interactive">
+                    <div class="features-grid">
+                        <div class="feature" data-feature="syntax">
+                            <div class="feature-icon">📝</div>
+                            <h3>Clean Syntax</h3>
+                            <p>Intuitive syntax that's easy to read and write.</p>
+                        </div>
+                        <div class="feature" data-feature="typing">
+                            <div class="feature-icon">🔄</div>
+                            <h3>Dynamic Typing</h3>
+                            <p>Flexible type system with automatic type inference.</p>
+                        </div>
+                        <div class="feature" data-feature="control">
+                            <div class="feature-icon">⚡</div>
+                            <h3>Control Flow</h3>
+                            <p>Standard control structures and error handling.</p>
+                        </div>
+                        <div class="feature" data-feature="data">
+                            <div class="feature-icon">🗂️</div>
+                            <h3>Data Structures</h3>
+                            <p>Built-in support for lists, maps, and custom types.</p>
+                        </div>
+                        <div class="feature" data-feature="library">
+                            <div class="feature-icon">📚</div>
+                            <h3>Standard Library</h3>
+                            <p>Comprehensive library with math and I/O operations.</p>
+                        </div>
+                        <div class="feature" data-feature="platform">
+                            <div class="feature-icon">🌐</div>
+                            <h3>Cross Platform</h3>
+                            <p>Runs on Windows, macOS, and Linux.</p>
+                        </div>
+                    </div>
+                    <div class="feature-details-panel">
+                        <div class="feature-detail active" data-feature="syntax">
                             <h3>Clean Syntax</h3>
                             <p>Intuitive syntax that's easy to read and write. No unnecessary complexity.</p>
-                        </div>
-                        <div class="feature-details">
                             <h4>Syntax Features</h4>
                             <ul>
                                 <li>Minimal keywords</li>
@@ -176,14 +206,16 @@
                                 <li>Readable formatting</li>
                                 <li>Consistent patterns</li>
                             </ul>
+                            <div class="feature-code">
+                                <h5>Example:</h5>
+                                <pre><code><span class="keyword">func</span> <span class="function">hello</span>():
+    <span class="function">print</span>(<span class="string">"Hello, World!"</span>);
+<span class="keyword">end</span></code></pre>
+                            </div>
                         </div>
-                    </div>
-                    <div class="feature scroll-reveal">
-                        <div class="feature-content">
+                        <div class="feature-detail" data-feature="typing">
                             <h3>Dynamic Typing</h3>
                             <p>Flexible type system with automatic type inference. Variables adapt to your needs.</p>
-                        </div>
-                        <div class="feature-details">
                             <h4>Type System</h4>
                             <ul>
                                 <li>Automatic inference</li>
@@ -191,14 +223,16 @@
                                 <li>Flexible assignments</li>
                                 <li>Type conversion</li>
                             </ul>
+                            <div class="feature-code">
+                                <h5>Example:</h5>
+                                <pre><code><span class="keyword">let</span> <span class="param">x</span> = <span class="number">42</span>;        <span class="comment">// Number</span>
+<span class="keyword">let</span> <span class="param">y</span> = <span class="string">"Hello"</span>;   <span class="comment">// String</span>
+<span class="keyword">let</span> <span class="param">z</span> = <span class="number">3.14</span>;      <span class="comment">// Float</span></code></pre>
+                            </div>
                         </div>
-                    </div>
-                    <div class="feature scroll-reveal">
-                        <div class="feature-content">
+                        <div class="feature-detail" data-feature="control">
                             <h3>Control Flow</h3>
                             <p>Standard control structures: if/else, loops, functions, and error handling.</p>
-                        </div>
-                        <div class="feature-details">
                             <h4>Control Structures</h4>
                             <ul>
                                 <li>If/else statements</li>
@@ -206,14 +240,18 @@
                                 <li>Function definitions</li>
                                 <li>Error handling</li>
                             </ul>
+                            <div class="feature-code">
+                                <h5>Example:</h5>
+                                <pre><code><span class="keyword">if</span> <span class="param">x</span> > <span class="number">0</span>:
+    <span class="function">print</span>(<span class="string">"Positive"</span>);
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"Zero or negative"</span>);
+<span class="keyword">end</span></code></pre>
+                            </div>
                         </div>
-                    </div>
-                    <div class="feature scroll-reveal">
-                        <div class="feature-content">
+                        <div class="feature-detail" data-feature="data">
                             <h3>Data Structures</h3>
                             <p>Built-in support for lists, maps, and custom data types.</p>
-                        </div>
-                        <div class="feature-details">
                             <h4>Built-in Types</h4>
                             <ul>
                                 <li>Dynamic arrays</li>
@@ -221,14 +259,16 @@
                                 <li>Custom structs</li>
                                 <li>Type safety</li>
                             </ul>
+                            <div class="feature-code">
+                                <h5>Example:</h5>
+                                <pre><code><span class="keyword">let</span> <span class="param">list</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];
+<span class="keyword">let</span> <span class="param">map</span> = {<span class="string">"key"</span>: <span class="string">"value"</span>};
+<span class="keyword">let</span> <span class="param">item</span> = <span class="param">list</span>[<span class="number">0</span>];</code></pre>
+                            </div>
                         </div>
-                    </div>
-                    <div class="feature scroll-reveal">
-                        <div class="feature-content">
+                        <div class="feature-detail" data-feature="library">
                             <h3>Standard Library</h3>
                             <p>Comprehensive library with math functions, utilities, and I/O operations.</p>
-                        </div>
-                        <div class="feature-details">
                             <h4>Library Features</h4>
                             <ul>
                                 <li>Math operations</li>
@@ -236,14 +276,16 @@
                                 <li>String utilities</li>
                                 <li>System functions</li>
                             </ul>
+                            <div class="feature-code">
+                                <h5>Example:</h5>
+                                <pre><code><span class="function">print</span>(<span class="function">math</span>.<span class="function">sqrt</span>(<span class="number">16</span>));  <span class="comment">// 4.0</span>
+<span class="keyword">let</span> <span class="param">file</span> = <span class="function">io</span>.<span class="function">open</span>(<span class="string">"data.txt"</span>);
+<span class="keyword">let</span> <span class="param">text</span> = <span class="function">string</span>.<span class="function">upper</span>(<span class="string">"hello"</span>);</code></pre>
+                            </div>
                         </div>
-                    </div>
-                    <div class="feature scroll-reveal">
-                        <div class="feature-content">
+                        <div class="feature-detail" data-feature="platform">
                             <h3>Cross Platform</h3>
                             <p>Runs on Windows, macOS, and Linux. Write once, run anywhere.</p>
-                        </div>
-                        <div class="feature-details">
                             <h4>Platform Support</h4>
                             <ul>
                                 <li>Windows 10+</li>
@@ -251,6 +293,13 @@
                                 <li>Linux (glibc 2.17+)</li>
                                 <li>ARM64 support</li>
                             </ul>
+                            <div class="feature-code">
+                                <h5>Example:</h5>
+                                <pre><code><span class="comment"># Same code runs everywhere</span>
+<span class="keyword">func</span> <span class="function">get_platform</span>():
+    <span class="keyword">return</span> <span class="function">sys</span>.<span class="function">platform</span>();
+<span class="keyword">end</span></code></pre>
+                            </div>
                         </div>
                     </div>
                 </div>
