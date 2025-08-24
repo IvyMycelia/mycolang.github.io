@@ -185,11 +185,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const savedTheme = localStorage.getItem('myco-theme');
         console.log('Initializing theme. Saved theme:', savedTheme, 'Available themes:', themes);
         
-        if (savedTheme && themes.includes(savedTheme)) {
+        if (savedTheme && (themes.includes(savedTheme) || savedTheme === 'trans')) {
             console.log('Applying saved theme:', savedTheme);
             setTheme(savedTheme);
-            // Update currentThemeIndex to match the saved theme
-            currentThemeIndex = themes.indexOf(savedTheme);
+            // Update currentThemeIndex to match the saved theme (if it's in themes array)
+            if (themes.includes(savedTheme)) {
+                currentThemeIndex = themes.indexOf(savedTheme);
+            }
         } else {
             console.log('No saved theme found, defaulting to dark');
             // Default to dark theme
@@ -237,13 +239,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         // dark theme is default (no class needed)
         
-        // Save theme preference (only for dark and light themes)
-        if (theme !== 'trans') {
-            localStorage.setItem('myco-theme', theme);
-            console.log('Saved theme to localStorage:', theme);
-        } else {
-            console.log('Trans theme not saved to localStorage');
-        }
+        // Save theme preference (including trans theme)
+        localStorage.setItem('myco-theme', theme);
+        console.log('Saved theme to localStorage:', theme);
         
         // Force a repaint to ensure theme is applied
         document.body.offsetHeight;
