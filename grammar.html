@@ -37,6 +37,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Apply theme immediately to prevent flickering -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('myco-theme');
+            if (savedTheme === 'light') {
+                document.documentElement.classList.add('light-theme');
+                document.body.classList.add('light-theme');
+            } else if (savedTheme === 'trans') {
+                document.documentElement.classList.add('trans-theme');
+                document.body.classList.add('trans-theme');
+            }
+            // dark theme is default (no class needed)
+        })();
+    </script>
 
 </head>
 <body>

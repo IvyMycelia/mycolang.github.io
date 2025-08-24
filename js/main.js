@@ -8,9 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let secretSequence = '';
     let lastKeyTime = 0;
     
-    // Apply theme immediately to prevent flickering
-    applyThemeImmediately();
-    
     // Initialize theme with smooth transitions
     initTheme();
     
@@ -181,24 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add copy functionality to code blocks
     initCodeCopy();
     
-    // Apply theme immediately without transitions to prevent flickering
-    function applyThemeImmediately() {
-        const savedTheme = localStorage.getItem('myco-theme');
-        if (savedTheme && themes.includes(savedTheme)) {
-            // Apply theme classes without transitions
-            document.documentElement.classList.remove('light-theme', 'trans-theme');
-            document.body.classList.remove('light-theme', 'trans-theme');
-            
-            if (savedTheme === 'light') {
-                document.documentElement.classList.add('light-theme');
-                document.body.classList.add('light-theme');
-            } else if (savedTheme === 'trans') {
-                document.documentElement.classList.add('trans-theme');
-                document.body.classList.add('trans-theme');
-            }
-            // dark theme is default (no class needed)
-        }
-    }
+
     
     // Theme functions
     function initTheme() {
