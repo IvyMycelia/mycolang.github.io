@@ -81,11 +81,13 @@ For development and testing:
 4. Update navigation links in all pages
 
 ### Modifying Styles
+
 - Edit `css/main.css` to change colors, fonts, or layout
 - CSS variables are defined in `:root` for easy customization
 - Responsive breakpoints are at 768px and 480px
 
 ### Adding JavaScript Features
+
 - Edit `js/main.js` to add new functionality
 - The `MycoWebsite` class provides a structured approach
 - All event listeners and animations are organized by feature
@@ -93,6 +95,7 @@ For development and testing:
 ## 📱 Responsive Design
 
 The website is fully responsive with three main breakpoints:
+
 - **Desktop**: 1200px+ (full layout)
 - **Tablet**: 768px - 1199px (adjusted grid layouts)
 - **Mobile**: <768px (stacked layout, mobile menu)
@@ -100,12 +103,14 @@ The website is fully responsive with three main breakpoints:
 ## 🎭 Animations
 
 ### Entrance Animations
+
 - `fade-in`: Simple fade-in effect
 - `slide-in`: Slide up from bottom
 - `scale-in`: Scale up from 90%
 - `scroll-reveal`: Reveal elements as they scroll into view
 
 ### Interactive Animations
+
 - Hover effects on cards and buttons
 - Smooth transitions for all interactive elements
 - Parallax scrolling effects
@@ -120,16 +125,19 @@ The website is fully responsive with three main breakpoints:
 ## 📚 Content Management
 
 ### Adding Features
+
 1. Edit `index.html` to add new feature cards
 2. Update the features grid in the CSS if needed
 3. Add corresponding documentation in `docs.html`
 
 ### Updating Code Examples
+
 1. Edit the code blocks in `index.html` and `docs.html`
 2. Ensure proper syntax highlighting classes are applied
 3. Test copy functionality for new code blocks
 
 ### Documentation Updates
+
 1. Edit `docs.html` to add new sections
 2. Update the sidebar navigation
 3. Add corresponding grammar rules in `grammar.html` if needed
@@ -137,11 +145,13 @@ The website is fully responsive with three main breakpoints:
 ## 🚀 Deployment
 
 ### GitHub Pages
+
 1. Push your website files to a GitHub repository
 2. Enable GitHub Pages in repository settings
 3. Set custom domain if desired (update CNAME file)
 
 ### Other Hosting
+
 - Upload files to any web hosting service
 - Ensure all file paths are correct
 - Test all functionality after deployment
@@ -149,12 +159,14 @@ The website is fully responsive with three main breakpoints:
 ## 🐛 Troubleshooting
 
 ### Common Issues
+
 - **CSS not loading**: Check file paths and ensure `css/main.css` exists
 - **JavaScript errors**: Check browser console for error messages
 - **Mobile menu not working**: Ensure `js/main.js` is properly loaded
 - **Animations not working**: Check if JavaScript is enabled
 
 ### Performance Issues
+
 - **Slow animations**: Reduce animation complexity in CSS
 - **Large file sizes**: Minify CSS and JavaScript for production
 - **Image loading**: Optimize and compress images
