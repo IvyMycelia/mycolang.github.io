@@ -51,6 +51,23 @@
     --border-primary-trans-dark: #4c2a85;
     --border-secondary-trans-dark: #6b46c1;
     
+    /* Enhanced Dark Trans theme with more trans colors */
+    --bg-primary-trans-dark: #0f0a1a;
+    --bg-secondary-trans-dark: #1a0f2e;
+    --bg-tertiary-trans-dark: #2d1b4e;
+    --text-primary-trans-dark: #ffffff;
+    --text-secondary-trans-dark: #f0e6ff;
+    --text-muted-trans-dark: #d4b4ff;
+    --accent-primary-trans-dark: #ff69b4;
+    --accent-secondary-trans-dark: #ff1493;
+    --accent-tertiary-trans-dark: #00d4aa;
+    --accent-trans-pink: #ff69b4;
+    --accent-trans-blue: #87ceeb;
+    --accent-trans-white: #f0f8ff;
+    --border-primary-trans-dark: #ff69b4;
+    --border-secondary-trans-dark: #87ceeb;
+    --border-trans-accent: #f0f8ff;
+    
     /* Light Trans theme colors */
     --bg-primary-trans-light: #fdf2ff;
     --bg-secondary-trans-light: #f3e8ff;
@@ -105,19 +122,152 @@ body.trans-theme:not(.light-theme) {
     --border-secondary: var(--border-secondary-trans-dark);
 }
 
-/* Light Trans theme (when both trans and light are active) */
-html.trans-theme.light-theme,
-body.trans-theme.light-theme {
-    --bg-primary: var(--bg-primary-trans-light);
-    --bg-secondary: var(--bg-secondary-trans-light);
-    --bg-tertiary: var(--bg-tertiary-trans-light);
-    --text-primary: var(--text-primary-trans-light);
-    --text-secondary: var(--text-secondary-trans-light);
-    --text-muted: var(--text-muted-trans-light);
-    --accent-primary: var(--accent-primary-trans-light);
-    --accent-secondary: var(--accent-secondary-trans-light);
-    --border-primary: var(--border-primary-trans-light);
-    --border-secondary: var(--border-secondary-trans-light);
+/* Enhanced Dark Trans theme styling */
+html.trans-theme:not(.light-theme),
+body.trans-theme:not(.light-theme) {
+    --bg-primary: var(--bg-primary-trans-dark);
+    --bg-secondary: var(--bg-secondary-trans-dark);
+    --bg-tertiary: var(--bg-tertiary-trans-dark);
+    --text-primary: var(--text-primary-trans-dark);
+    --text-secondary: var(--text-secondary-trans-dark);
+    --text-muted: var(--text-muted-trans-dark);
+    --accent-primary: var(--accent-primary-trans-dark);
+    --accent-secondary: var(--accent-secondary-trans-dark);
+    --border-primary: var(--border-primary-trans-dark);
+    --border-secondary: var(--border-secondary-trans-dark);
+}
+
+/* Special trans theme enhancements */
+.trans-theme:not(.light-theme) .header {
+    background: linear-gradient(135deg, var(--bg-secondary-trans-dark), var(--bg-tertiary-trans-dark));
+    border-bottom: 2px solid var(--accent-trans-pink);
+    box-shadow: 0 4px 20px rgba(255, 105, 180, 0.3);
+}
+
+.trans-theme:not(.light-theme) .nav-menu a {
+    color: var(--text-secondary-trans-dark);
+    border-bottom: 2px solid transparent;
+    transition: all var(--transition-normal);
+}
+
+.trans-theme:not(.light-theme) .nav-menu a:hover,
+.trans-theme:not(.light-theme) .nav-menu a.active {
+    color: var(--accent-trans-pink);
+    border-bottom-color: var(--accent-trans-pink);
+    text-shadow: 0 0 10px var(--accent-trans-pink);
+}
+
+.trans-theme:not(.light-theme) .theme-toggle {
+    background: linear-gradient(135deg, var(--accent-trans-pink), var(--accent-trans-blue));
+    border: 2px solid var(--accent-trans-white);
+    box-shadow: 0 0 15px var(--accent-trans-pink);
+}
+
+.trans-theme:not(.light-theme) .theme-toggle:hover {
+    background: linear-gradient(135deg, var(--accent-trans-blue), var(--accent-trans-pink));
+    box-shadow: 0 0 25px var(--accent-trans-blue);
+    transform: translateY(-2px);
+}
+
+.trans-theme:not(.light-theme) .btn-primary {
+    background: linear-gradient(135deg, var(--accent-trans-pink), var(--accent-trans-blue));
+    border: 2px solid var(--accent-trans-white);
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+}
+
+.trans-theme:not(.light-theme) .btn-primary:hover {
+    background: linear-gradient(135deg, var(--accent-trans-blue), var(--accent-trans-pink));
+    box-shadow: 0 8px 25px rgba(135, 206, 235, 0.5);
+    transform: translateY(-2px);
+}
+
+.trans-theme:not(.light-theme) .btn-secondary {
+    background: transparent;
+    border: 2px solid var(--accent-trans-blue);
+    color: var(--accent-trans-blue);
+    box-shadow: 0 0 10px var(--accent-trans-blue);
+}
+
+.trans-theme:not(.light-theme) .btn-secondary:hover {
+    background: var(--accent-trans-blue);
+    color: var(--bg-primary-trans-dark);
+    box-shadow: 0 0 20px var(--accent-trans-blue);
+}
+
+.trans-theme:not(.light-theme) .feature,
+.trans-theme:not(.light-theme) .example,
+.trans-theme:not(.light-theme) .step {
+    background: linear-gradient(135deg, var(--bg-secondary-trans-dark), var(--bg-tertiary-trans-dark));
+    border: 2px solid var(--accent-trans-pink);
+    box-shadow: 0 4px 20px rgba(255, 105, 180, 0.2);
+}
+
+.trans-theme:not(.light-theme) .feature:hover,
+.trans-theme:not(.light-theme) .example:hover,
+.trans-theme:not(.light-theme) .step:hover {
+    border-color: var(--accent-trans-blue);
+    box-shadow: 0 8px 30px rgba(135, 206, 235, 0.3);
+    transform: translateY(-3px);
+}
+
+.trans-theme:not(.light-theme) .hero {
+    background: linear-gradient(135deg, var(--bg-primary-trans-dark), var(--bg-secondary-trans-dark));
+    position: relative;
+}
+
+.trans-theme:not(.light-theme) .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 105, 180, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(135, 206, 235, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(240, 248, 255, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.trans-theme:not(.light-theme) .code-block {
+    background: linear-gradient(135deg, var(--bg-tertiary-trans-dark), var(--bg-secondary-trans-dark));
+    border: 2px solid var(--accent-trans-pink);
+    box-shadow: 0 4px 20px rgba(255, 105, 180, 0.2);
+}
+
+.trans-theme:not(.light-theme) .code-block:hover {
+    border-color: var(--accent-trans-blue);
+    box-shadow: 0 8px 30px rgba(135, 206, 235, 0.3);
+}
+
+.trans-theme:not(.light-theme) .code-header {
+    background: linear-gradient(90deg, var(--accent-trans-pink), var(--accent-trans-blue));
+    color: var(--bg-primary-trans-dark);
+    font-weight: 600;
+}
+
+.trans-theme:not(.light-theme) .logo-text {
+    background: linear-gradient(135deg, var(--accent-trans-pink), var(--accent-trans-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 20px var(--accent-trans-pink);
+}
+
+.trans-theme:not(.light-theme) h1,
+.trans-theme:not(.light-theme) h2,
+.trans-theme:not(.light-theme) h3 {
+    color: var(--accent-trans-white);
+    text-shadow: 0 2px 10px rgba(255, 105, 180, 0.3);
+}
+
+.trans-theme:not(.light-theme) .hero-subtitle {
+    color: var(--accent-trans-pink);
+    text-shadow: 0 0 10px var(--accent-trans-pink);
+}
+
+.trans-theme:not(.light-theme) .hero-description {
+    color: var(--accent-trans-blue);
 }
 
 /* Base body styles */
@@ -2346,4 +2496,89 @@ body .logo:hover .logo-img {
 
 .trans-theme.light-theme .theme-toggle:hover {
     box-shadow: 0 4px 15px var(--shadow-medium), 0 0 10px var(--accent-primary);
+}
+
+/* Light Trans theme (when both trans and light are active) */
+html.trans-theme.light-theme,
+body.trans-theme.light-theme {
+    --bg-primary: var(--bg-primary-trans-light);
+    --bg-secondary: var(--bg-secondary-trans-light);
+    --bg-tertiary: var(--bg-tertiary-trans-light);
+    --text-primary: var(--text-primary-trans-light);
+    --text-secondary: var(--text-secondary-trans-light);
+    --text-muted: var(--text-muted-trans-light);
+    --accent-primary: var(--accent-primary-trans-light);
+    --accent-secondary: var(--accent-secondary-trans-light);
+    --border-primary: var(--border-primary-trans-light);
+    --border-secondary: var(--border-secondary-trans-light);
+}
+
+/* Trans theme floating particles effect */
+.trans-theme:not(.light-theme) .floating-particle {
+    background: linear-gradient(45deg, var(--accent-trans-pink), var(--accent-trans-blue));
+    box-shadow: 0 0 10px var(--accent-trans-pink);
+    animation: floatTrans 6s ease-in-out infinite;
+}
+
+.trans-theme:not(.light-theme) .floating-particle:nth-child(2n) {
+    background: linear-gradient(45deg, var(--accent-trans-blue), var(--accent-trans-white));
+    box-shadow: 0 0 10px var(--accent-trans-blue);
+    animation-delay: -2s;
+}
+
+.trans-theme:not(.light-theme) .floating-particle:nth-child(3n) {
+    background: linear-gradient(45deg, var(--accent-trans-white), var(--accent-trans-pink));
+    box-shadow: 0 0 10px var(--accent-trans-white);
+    animation-delay: -4s;
+}
+
+@keyframes floatTrans {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.7;
+    }
+    25% {
+        transform: translateY(-20px) rotate(90deg);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-40px) rotate(180deg);
+        opacity: 0.8;
+    }
+    75% {
+        transform: translateY(-20px) rotate(270deg);
+        opacity: 1;
+    }
+}
+
+/* Trans theme scrollbar styling */
+.trans-theme:not(.light-theme) ::-webkit-scrollbar {
+    width: 12px;
+}
+
+.trans-theme:not(.light-theme) ::-webkit-scrollbar-track {
+    background: var(--bg-secondary-trans-dark);
+    border-radius: 6px;
+}
+
+.trans-theme:not(.light-theme) ::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--accent-trans-pink), var(--accent-trans-blue));
+    border-radius: 6px;
+    border: 2px solid var(--bg-secondary-trans-dark);
+}
+
+.trans-theme:not(.light-theme) ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--accent-trans-blue), var(--accent-trans-pink));
+    box-shadow: 0 0 10px var(--accent-trans-blue);
+}
+
+/* Trans theme selection styling */
+.trans-theme:not(.light-theme) ::selection {
+    background: var(--accent-trans-pink);
+    color: var(--bg-primary-trans-dark);
+}
+
+.trans-theme:not(.light-theme) ::-moz-selection {
+    background: var(--accent-trans-pink);
+    color: var(--bg-primary-trans-dark);
 }
