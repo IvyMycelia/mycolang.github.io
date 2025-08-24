@@ -38,6 +38,16 @@ The website uses custom CSS-based syntax highlighting for Myco language code exa
 - **Operators**: Mathematical and logical operators in operator color
 - **Punctuation**: Semicolons, colons, parentheses in punctuation color
 
+**Specific Color Codes:**
+- **Keywords**: `#ec4899` (accent-secondary)
+- **Functions**: `#10b981` (accent-tertiary) 
+- **Parameters**: `#a855f7` (accent-primary)
+- **Strings**: `#f87171` (red)
+- **Numbers**: `#a78bfa` (purple)
+- **Comments**: `#cbd5e1` (text-muted)
+- **Operators**: `#e2e8f0` (text-secondary)
+- **Punctuation**: `#cbd5e1` (text-muted)
+
 Syntax highlighting is applied through CSS classes and works across all code blocks on the site. Colors automatically adapt to the current theme (dark, light, or trans variants).
 
 ## Getting Started
