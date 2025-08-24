@@ -5156,3 +5156,420 @@ body.trans-theme.light-theme {
         font-size: 0.65rem !important;
     }
 }
+
+/* Mobile page layout optimization - make pages thinner and match screen width */
+@media (max-width: 768px) {
+    /* Make all pages thinner and match mobile screen width */
+    .docs-main,
+    .downloads-main,
+    .grammar-main {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Optimize container widths for mobile pages */
+    .docs-main .container,
+    .downloads-main .container,
+    .grammar-main .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 0.75rem !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Make docs layout thinner and full-width */
+    .docs-layout {
+        width: 100% !important;
+        max-width: 100% !important;
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    /* Make sidebar thinner and full-width */
+    .docs-sidebar {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0.5rem !important;
+        margin: 0 0 0.75rem 0 !important;
+        border-radius: 6px !important;
+    }
+    
+    /* Make content area thinner and full-width */
+    .docs-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0.5rem !important;
+        margin: 0 !important;
+        border-radius: 6px !important;
+    }
+    
+    /* Optimize downloads page layout */
+    .downloads-content,
+    .grammar-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0.5rem !important;
+        margin: 0 !important;
+        border-radius: 6px !important;
+    }
+    
+    /* Make all sections thinner */
+    .docs-content section,
+    .downloads-content section,
+    .grammar-content section {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0.4rem !important;
+        margin: 0 0 0.5rem 0 !important;
+        border-radius: 6px !important;
+    }
+    
+    /* Optimize headings for mobile */
+    .docs-content h1,
+    .downloads-content h1,
+    .grammar-content h1 {
+        font-size: 1.4rem !important;
+        margin-bottom: 0.4rem !important;
+        line-height: 1.2 !important;
+        padding-bottom: 0.3rem !important;
+    }
+    
+    .docs-content h2,
+    .downloads-content h2,
+    .grammar-content h2 {
+        font-size: 1.2rem !important;
+        margin-top: 0.75rem !important;
+        margin-bottom: 0.4rem !important;
+        line-height: 1.2 !important;
+        padding-left: 0.5rem !important;
+    }
+    
+    .docs-content h3,
+    .downloads-content h3,
+    .grammar-content h3 {
+        font-size: 1rem !important;
+        margin-top: 0.5rem !important;
+        margin-bottom: 0.3rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    .docs-content h4,
+    .downloads-content h4,
+    .grammar-content h4 {
+        font-size: 0.9rem !important;
+        margin-top: 0.4rem !important;
+        margin-bottom: 0.2rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    /* Optimize text content */
+    .docs-content p,
+    .downloads-content p,
+    .grammar-content p {
+        font-size: 0.8rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 0.4rem !important;
+    }
+    
+    .docs-content ul,
+    .downloads-content ul,
+    .grammar-content ul {
+        padding-left: 0.6rem !important;
+        margin-bottom: 0.4rem !important;
+    }
+    
+    .docs-content li,
+    .downloads-content li,
+    .grammar-content li {
+        font-size: 0.8rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 0.15rem !important;
+    }
+    
+    /* Optimize code blocks for mobile */
+    .docs-content .code-block,
+    .downloads-content .code-block,
+    .grammar-content .code-block {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0.4rem 0 !important;
+        border-radius: 6px !important;
+        overflow: hidden !important;
+    }
+    
+    .docs-content pre,
+    .downloads-content pre,
+    .grammar-content pre {
+        padding: 0.4rem !important;
+        font-size: 0.7rem !important;
+        line-height: 1.2 !important;
+        margin: 0 !important;
+    }
+    
+    .docs-content code,
+    .downloads-content code,
+    .grammar-content code {
+        font-size: 0.7rem !important;
+        padding: 0.1rem 0.2rem !important;
+    }
+    
+    /* Optimize tables for mobile */
+    .docs-content table,
+    .downloads-content table,
+    .grammar-content table {
+        width: 100% !important;
+        max-width: 100% !important;
+        font-size: 0.75rem !important;
+        margin: 0.5rem 0 !important;
+    }
+    
+    .docs-content th,
+    .docs-content td,
+    .downloads-content th,
+    .downloads-content td,
+    .grammar-content th,
+    .grammar-content td {
+        padding: 0.3rem 0.4rem !important;
+        font-size: 0.7rem !important;
+    }
+    
+    /* Optimize navigation for mobile */
+    .docs-nav ul {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    .docs-nav li {
+        margin-bottom: 0.2rem !important;
+    }
+    
+    .docs-nav a {
+        padding: 0.3rem 0.4rem !important;
+        font-size: 0.8rem !important;
+        border-radius: 4px !important;
+    }
+    
+    /* Remove any extra margins or padding */
+    .docs-content > *:first-child,
+    .downloads-content > *:first-child,
+    .grammar-content > *:first-child {
+        margin-top: 0 !important;
+    }
+    
+    .docs-content > *:last-child,
+    .downloads-content > *:last-child,
+    .grammar-content > *:last-child {
+        margin-bottom: 0 !important;
+    }
+}
+
+/* Extra small mobile - even thinner pages */
+@media (max-width: 480px) {
+    .docs-main .container,
+    .downloads-main .container,
+    .grammar-main .container {
+        padding: 0 0.5rem !important;
+    }
+    
+    .docs-layout {
+        gap: 0.5rem !important;
+    }
+    
+    .docs-sidebar {
+        padding: 0.4rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .docs-content,
+    .downloads-content,
+    .grammar-content {
+        padding: 0.4rem !important;
+    }
+    
+    .docs-content section,
+    .downloads-content section,
+    .grammar-content section {
+        padding: 0.3rem !important;
+        margin-bottom: 0.4rem !important;
+    }
+    
+    .docs-content h1,
+    .downloads-content h1,
+    .grammar-content h1 {
+        font-size: 1.2rem !important;
+    }
+    
+    .docs-content h2,
+    .downloads-content h2,
+    .grammar-content h2 {
+        font-size: 1.1rem !important;
+        padding-left: 0.4rem !important;
+    }
+    
+    .docs-content h3,
+    .downloads-content h3,
+    .grammar-content h3 {
+        font-size: 0.9rem !important;
+    }
+    
+    .docs-content h4,
+    .downloads-content h4,
+    .grammar-content h4 {
+        font-size: 0.8rem !important;
+    }
+    
+    .docs-content p,
+    .downloads-content p,
+    .grammar-content p,
+    .docs-content li,
+    .downloads-content li,
+    .grammar-content li {
+        font-size: 0.75rem !important;
+    }
+    
+    .docs-content pre,
+    .downloads-content pre,
+    .grammar-content pre {
+        padding: 0.3rem !important;
+        font-size: 0.65rem !important;
+    }
+    
+    .docs-content code,
+    .downloads-content code,
+    .grammar-content code {
+        font-size: 0.65rem !important;
+        padding: 0.08rem 0.15rem !important;
+    }
+    
+    .docs-content table,
+    .downloads-content table,
+    .grammar-content table {
+        font-size: 0.7rem !important;
+    }
+    
+    .docs-content th,
+    .docs-content td,
+    .downloads-content th,
+    .downloads-content td,
+    .grammar-content th,
+    .grammar-content td {
+        padding: 0.25rem 0.3rem !important;
+        font-size: 0.65rem !important;
+    }
+}
+
+/* iPhone-specific ultra-thin pages */
+@media (max-width: 430px) {
+    .docs-main .container,
+    .downloads-main .container,
+    .grammar-main .container {
+        padding: 0 0.4rem !important;
+    }
+    
+    .docs-layout {
+        gap: 0.4rem !important;
+    }
+    
+    .docs-sidebar {
+        padding: 0.3rem !important;
+        margin-bottom: 0.4rem !important;
+    }
+    
+    .docs-content,
+    .downloads-content,
+    .grammar-content {
+        padding: 0.3rem !important;
+    }
+    
+    .docs-content section,
+    .downloads-content section,
+    .grammar-content section {
+        padding: 0.25rem !important;
+        margin-bottom: 0.3rem !important;
+    }
+    
+    .docs-content h1,
+    .downloads-content h1,
+    .grammar-content h1 {
+        font-size: 1.1rem !important;
+        margin-bottom: 0.3rem !important;
+    }
+    
+    .docs-content h2,
+    .downloads-content h2,
+    .grammar-content h2 {
+        font-size: 1rem !important;
+        margin-top: 0.5rem !important;
+        margin-bottom: 0.3rem !important;
+        padding-left: 0.3rem !important;
+    }
+    
+    .docs-content h3,
+    .downloads-content h3,
+    .grammar-content h3 {
+        font-size: 0.85rem !important;
+        margin-top: 0.4rem !important;
+        margin-bottom: 0.2rem !important;
+    }
+    
+    .docs-content h4,
+    .downloads-content h4,
+    .grammar-content h4 {
+        font-size: 0.75rem !important;
+        margin-top: 0.3rem !important;
+        margin-bottom: 0.15rem !important;
+    }
+    
+    .docs-content p,
+    .downloads-content p,
+    .grammar-content p,
+    .docs-content li,
+    .downloads-content li,
+    .grammar-content li {
+        font-size: 0.7rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    .docs-content pre,
+    .downloads-content pre,
+    .grammar-content pre {
+        padding: 0.25rem !important;
+        font-size: 0.6rem !important;
+        line-height: 1.1 !important;
+    }
+    
+    .docs-content code,
+    .downloads-content code,
+    .grammar-content code {
+        font-size: 0.6rem !important;
+        padding: 0.06rem 0.12rem !important;
+    }
+    
+    .docs-content table,
+    .downloads-content table,
+    .grammar-content table {
+        font-size: 0.65rem !important;
+    }
+    
+    .docs-content th,
+    .docs-content td,
+    .downloads-content th,
+    .downloads-content td,
+    .grammar-content th,
+    .grammar-content td {
+        padding: 0.2rem 0.25rem !important;
+        font-size: 0.6rem !important;
+    }
+    
+    /* Ensure navigation is ultra-compact */
+    .docs-nav a {
+        padding: 0.25rem 0.3rem !important;
+        font-size: 0.7rem !important;
+    }
+}
