@@ -101,6 +101,48 @@ body {
     overflow-x: hidden;
 }
 
+/* Ensure all elements inherit theme colors properly */
+* {
+    color: inherit;
+}
+
+/* Force theme inheritance for specific components */
+.feature,
+.example,
+.step,
+.docs-sidebar,
+.docs-content,
+.code-block,
+.btn,
+.header,
+.nav,
+.footer {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--border-primary);
+}
+
+/* Ensure borders and shadows are visible in all themes */
+.feature,
+.example,
+.step,
+.docs-sidebar,
+.docs-content,
+.code-block {
+    border: 1px solid var(--border-primary);
+    box-shadow: 0 2px 8px var(--shadow-light);
+}
+
+.feature:hover,
+.example:hover,
+.step:hover,
+.docs-sidebar:hover,
+.docs-content:hover,
+.code-block:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 4px 16px var(--shadow-medium);
+}
+
 /* Smooth theme transitions */
 html, body {
     transition: background-color 0.3s ease, color 0.3s ease;
