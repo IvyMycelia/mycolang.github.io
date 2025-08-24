@@ -4040,3 +4040,490 @@ body.trans-theme.light-theme {
         color: #333 !important;
     }
 }
+
+/* Fix mobile cutoff issues */
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+        width: 100%;
+        position: relative;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 1rem;
+        box-sizing: border-box;
+        margin: 0;
+    }
+    
+    .header .container,
+    .hero .container,
+    .features .container,
+    .examples .container,
+    .getting-started .container,
+    .footer .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 1rem;
+        box-sizing: border-box;
+        margin: 0;
+    }
+    
+    /* Ensure no horizontal overflow */
+    .hero,
+    .features,
+    .examples,
+    .getting-started,
+    .footer,
+    .docs-main {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    
+    /* Fix code block overflow */
+    .code-block {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        box-sizing: border-box;
+        overflow-x: auto;
+    }
+    
+    .code-block pre {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+    }
+    
+    /* Fix feature grid overflow */
+    .features-grid,
+    .example-grid,
+    .steps {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .feature,
+    .example,
+    .step {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        margin: 0 0 1rem 0;
+    }
+    
+    /* Fix docs layout overflow */
+    .docs-layout {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .docs-sidebar,
+    .docs-content {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        margin: 0;
+    }
+}
+
+/* Remove glowing effects and highlights for mobile */
+@media (max-width: 768px) {
+    /* Remove hover effects on mobile */
+    .btn:hover,
+    .feature:hover,
+    .example:hover,
+    .step:hover,
+    .nav-menu a:hover,
+    .theme-toggle:hover,
+    .code-block:hover,
+    .docs-content section:hover {
+        transform: none !important;
+        box-shadow: none !important;
+        border-color: var(--border-primary) !important;
+        background: var(--bg-secondary) !important;
+    }
+    
+    /* Remove glowing animations on mobile */
+    .theme-toggle .theme-icon,
+    .trans-toggle .trans-icon {
+        animation: none !important;
+    }
+    
+    /* Remove shimmer effects on mobile */
+    .btn::before,
+    .theme-toggle::before,
+    .trans-toggle::before {
+        display: none !important;
+    }
+    
+    /* Remove floating animations on mobile */
+    .hero::before,
+    .hero::after {
+        animation: none !important;
+    }
+    
+    .floating,
+    .floating-delayed {
+        animation: none !important;
+    }
+    
+    /* Remove logo float animation on mobile */
+    .logo-img {
+        animation: none !important;
+    }
+    
+    .logo:hover .logo-img {
+        transform: none !important;
+        filter: none !important;
+    }
+    
+    /* Remove hover transforms on mobile */
+    .logo:hover,
+    .btn:hover,
+    .feature:hover,
+    .example:hover,
+    .step:hover {
+        transform: none !important;
+    }
+}
+
+/* Add scroll-triggered visibility effects for mobile */
+@media (max-width: 768px) {
+    .feature,
+    .example,
+    .step,
+    .docs-content section {
+        opacity: 0.7;
+        transform: translateY(10px);
+        transition: all 0.5s ease;
+    }
+    
+    .feature.visible,
+    .example.visible,
+    .step.visible,
+    .docs-content section.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    /* Add subtle border highlight when visible */
+    .feature.visible,
+    .example.visible,
+    .step.visible {
+        border-color: var(--accent-primary);
+        box-shadow: 0 2px 8px var(--shadow-light);
+    }
+    
+    /* Add subtle background change when visible */
+    .docs-content section.visible {
+        background: var(--bg-secondary);
+        border-color: var(--accent-secondary);
+    }
+}
+
+/* Extra small mobile fixes */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 0.75rem;
+    }
+    
+    .header .container,
+    .hero .container,
+    .features .container,
+    .examples .container,
+    .getting-started .container,
+    .footer .container {
+        padding: 0 0.75rem;
+    }
+    
+    /* Ensure buttons don't overflow */
+    .btn {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        margin: 0.25rem 0;
+    }
+    
+    .hero-actions {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    
+    /* Fix code block on very small screens */
+    .code-block {
+        margin: 0;
+        border-radius: 6px;
+    }
+    
+    .code-block pre {
+        padding: 0.5rem;
+        font-size: 0.7rem;
+    }
+    
+    .code-header {
+        padding: 0.4rem 0.6rem;
+    }
+    
+    .code-header span {
+        font-size: 0.7rem;
+    }
+}
+
+/* Landscape mobile fixes */
+@media (max-width: 768px) and (orientation: landscape) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .hero {
+        padding: 1rem 0;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.85rem;
+    }
+    
+    .hero-description {
+        font-size: 0.8rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .features,
+    .examples,
+    .getting-started {
+        padding: 1rem 0;
+    }
+    
+    .feature,
+    .example,
+    .step {
+        padding: 1rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .docs-main {
+        margin-top: 15px;
+    }
+}
+
+/* Additional mobile cutoff prevention */
+@media (max-width: 768px) {
+    /* Force all elements to respect container bounds */
+    * {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Ensure HTML and body don't overflow */
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+        position: relative;
+    }
+    
+    /* Fix any potential absolute positioning issues */
+    .header,
+    .hero,
+    .features,
+    .examples,
+    .getting-started,
+    .footer,
+    .docs-main {
+        position: relative;
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    /* Ensure navigation stays within bounds */
+    .nav {
+        width: 100%;
+        max-width: 100%;
+        position: relative;
+    }
+    
+    .nav-menu.active {
+        width: 100%;
+        max-width: 100%;
+        left: 0;
+        right: 0;
+        position: absolute;
+    }
+    
+    /* Fix any grid issues */
+    .features-grid,
+    .example-grid,
+    .steps {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        max-width: 100%;
+        gap: 1rem;
+        margin: 0;
+        padding: 0;
+    }
+    
+    /* Ensure buttons and interactive elements don't overflow */
+    .btn,
+    .theme-toggle,
+    .mobile-menu-btn {
+        max-width: 100%;
+        box-sizing: border-box;
+        position: relative;
+    }
+    
+    /* Fix any potential transform issues */
+    .feature,
+    .example,
+    .step {
+        transform: none;
+        position: relative;
+    }
+    
+    /* Ensure code blocks don't cause horizontal scroll */
+    .code-block,
+    .code-block pre,
+    .code-block code {
+        max-width: 100%;
+        overflow-x: auto;
+        word-break: break-word;
+        white-space: pre-wrap;
+    }
+    
+    /* Fix table overflow on mobile */
+    .docs-content table {
+        max-width: 100%;
+        overflow-x: auto;
+        display: block;
+    }
+    
+    /* Ensure images don't overflow */
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+    
+    /* Fix any potential margin/padding issues */
+    .container > * {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    /* Ensure proper spacing without overflow */
+    .hero-content,
+    .feature-content,
+    .example-content,
+    .step-content {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+/* iPhone-specific fixes */
+@media (max-width: 430px) {
+    /* iPhone 12/13/14/15/16 specific adjustments */
+    .container {
+        padding: 0 0.5rem;
+    }
+    
+    .header .container,
+    .hero .container,
+    .features .container,
+    .examples .container,
+    .getting-started .container,
+    .footer .container {
+        padding: 0 0.5rem;
+    }
+    
+    /* Ensure no horizontal scroll on iPhone */
+    body {
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Fix any potential viewport issues */
+    .hero,
+    .features,
+    .examples,
+    .getting-started,
+    .footer {
+        width: 100vw;
+        max-width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        margin-right: calc(-50vw + 50%);
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        box-sizing: border-box;
+    }
+    
+    /* Ensure content doesn't overflow iPhone screen */
+    .hero-content h1 {
+        font-size: 1.8rem;
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.85rem;
+        word-wrap: break-word;
+    }
+    
+    .hero-description {
+        font-size: 0.8rem;
+        word-wrap: break-word;
+    }
+    
+    /* Fix button sizing on iPhone */
+    .btn {
+        width: 100%;
+        max-width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+        margin: 0.25rem 0;
+    }
+    
+    /* Ensure code blocks fit iPhone screen */
+    .code-block {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        border-radius: 6px;
+        overflow: hidden;
+    }
+    
+    .code-block pre {
+        width: 100%;
+        max-width: 100%;
+        padding: 0.5rem;
+        font-size: 0.7rem;
+        line-height: 1.3;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .code-header {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.7rem;
+    }
+}
