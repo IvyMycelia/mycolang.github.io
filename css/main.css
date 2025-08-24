@@ -5,9 +5,8 @@
     box-sizing: border-box;
 }
 
-/* Force theme application - prevent any default theme from showing */
-html:not(.light-theme):not(.trans-theme) {
-    /* Dark theme is default - ensure it's applied immediately */
+:root {
+    /* Dark theme colors (default) */
     --bg-primary: #0f172a;
     --bg-secondary: #1e293b;
     --bg-tertiary: #334155;
