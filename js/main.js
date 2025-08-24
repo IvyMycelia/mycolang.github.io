@@ -320,46 +320,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add copy functionality to code blocks
     initCodeCopy();
     
-    // Mobile scroll-triggered visibility effects
+    // Mobile scroll-triggered visibility effects - DISABLED
+    // No effects or highlights on mobile - clean and simple
     if (window.innerWidth <= 768) {
+        // Remove any existing visible classes
         const mobileElements = document.querySelectorAll('.feature, .example, .step, .docs-content section');
-        
-        // Create intersection observer for mobile visibility effects
-        const mobileObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                } else {
-                    // Optional: remove visible class when out of view
-                    // entry.target.classList.remove('visible');
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
-        
-        // Observe all mobile elements
         mobileElements.forEach(el => {
-            mobileObserver.observe(el);
-        });
-        
-        // Handle window resize
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 768) {
-                // Remove mobile effects on larger screens
-                mobileElements.forEach(el => {
-                    el.classList.remove('visible');
-                    el.style.opacity = '';
-                    el.style.transform = '';
-                });
-                mobileObserver.disconnect();
-            } else if (window.innerWidth <= 768) {
-                // Re-enable mobile effects
-                mobileElements.forEach(el => {
-                    mobileObserver.observe(el);
-                });
-            }
+            el.classList.remove('visible');
+            el.style.opacity = '';
+            el.style.transform = '';
         });
     }
     

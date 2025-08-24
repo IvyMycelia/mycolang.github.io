@@ -4527,3 +4527,632 @@ body.trans-theme.light-theme {
         font-size: 0.7rem;
     }
 }
+
+/* Mobile compact layout and remove all highlights/effects */
+@media (max-width: 768px) {
+    /* Remove all purple highlights and weird effects */
+    .feature,
+    .example,
+    .step,
+    .docs-content section {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        border: 1px solid var(--border-primary) !important;
+        box-shadow: none !important;
+        background: var(--bg-secondary) !important;
+    }
+    
+    .feature.visible,
+    .example.visible,
+    .step.visible,
+    .docs-content section.visible {
+        opacity: 1 !important;
+        transform: none !important;
+        border-color: var(--border-primary) !important;
+        box-shadow: none !important;
+        background: var(--bg-secondary) !important;
+    }
+    
+    /* Remove all hover effects and highlights */
+    .feature:hover,
+    .example:hover,
+    .step:hover,
+    .docs-content section:hover,
+    .btn:hover,
+    .nav-menu a:hover,
+    .theme-toggle:hover,
+    .code-block:hover {
+        transform: none !important;
+        box-shadow: none !important;
+        border-color: var(--border-primary) !important;
+        background: var(--bg-secondary) !important;
+        color: var(--text-primary) !important;
+    }
+    
+    /* Remove all animations and effects */
+    .feature::before,
+    .example::before,
+    .step::before,
+    .btn::before,
+    .theme-toggle::before,
+    .trans-toggle::before {
+        display: none !important;
+    }
+    
+    /* Remove all glowing and shimmer effects */
+    .theme-toggle .theme-icon,
+    .trans-toggle .trans-icon {
+        animation: none !important;
+    }
+    
+    /* Remove floating animations */
+    .hero::before,
+    .hero::after {
+        display: none !important;
+    }
+    
+    .floating,
+    .floating-delayed {
+        display: none !important;
+    }
+    
+    /* Remove logo animations */
+    .logo-img {
+        animation: none !important;
+    }
+    
+    .logo:hover .logo-img {
+        transform: none !important;
+        filter: none !important;
+    }
+    
+    /* Make mobile layout extremely compact */
+    .hero {
+        padding: 1.5rem 0 !important;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.8rem !important;
+        margin-bottom: 0.5rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.9rem !important;
+        margin-bottom: 0.5rem !important;
+        line-height: 1.3 !important;
+    }
+    
+    .hero-description {
+        font-size: 0.8rem !important;
+        margin-bottom: 1rem !important;
+        line-height: 1.4 !important;
+    }
+    
+    .hero-actions {
+        gap: 0.5rem !important;
+        margin-top: 0.5rem !important;
+    }
+    
+    .btn {
+        padding: 0.5rem 1rem !important;
+        font-size: 0.85rem !important;
+        margin: 0.25rem 0 !important;
+        min-height: 36px !important;
+    }
+    
+    /* Compact features section */
+    .features {
+        padding: 1.5rem 0 !important;
+    }
+    
+    .features h2 {
+        font-size: 1.5rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .features-grid {
+        gap: 0.75rem !important;
+    }
+    
+    .feature {
+        padding: 0.75rem !important;
+        margin-bottom: 0.75rem !important;
+        min-height: auto !important;
+    }
+    
+    .feature h3 {
+        font-size: 1rem !important;
+        margin-bottom: 0.5rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    .feature p {
+        font-size: 0.8rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 0 !important;
+    }
+    
+    /* Compact examples section */
+    .examples {
+        padding: 1.5rem 0 !important;
+    }
+    
+    .examples h2 {
+        font-size: 1.5rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .example-grid {
+        gap: 0.75rem !important;
+    }
+    
+    .example {
+        padding: 0.75rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .example h3 {
+        font-size: 1rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    /* Compact getting started section */
+    .getting-started {
+        padding: 1.5rem 0 !important;
+    }
+    
+    .getting-started h2 {
+        font-size: 1.5rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .steps {
+        gap: 0.75rem !important;
+    }
+    
+    .step {
+        padding: 0.75rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .step-number {
+        width: 2rem !important;
+        height: 2rem !important;
+        font-size: 0.9rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .step h3 {
+        font-size: 1rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .step p {
+        font-size: 0.8rem !important;
+        line-height: 1.3 !important;
+    }
+    
+    /* Compact footer */
+    .footer {
+        padding: 1.5rem 0 1rem !important;
+    }
+    
+    .footer-content {
+        gap: 1rem !important;
+    }
+    
+    .footer-section h3 {
+        font-size: 1rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .footer-section p,
+    .footer-section a {
+        font-size: 0.8rem !important;
+    }
+    
+    /* Compact docs layout */
+    .docs-main {
+        margin-top: 20px !important;
+        padding: 0.2rem 0 !important;
+    }
+    
+    .docs-layout {
+        gap: 1rem !important;
+        margin-top: 0.2rem !important;
+    }
+    
+    .docs-sidebar {
+        padding: 0.75rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .docs-content {
+        padding: 0.75rem !important;
+    }
+    
+    .docs-content h1 {
+        font-size: 1.5rem !important;
+        margin-bottom: 0.5rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    .docs-content h2 {
+        font-size: 1.3rem !important;
+        margin-top: 1rem !important;
+        margin-bottom: 0.5rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    .docs-content h3 {
+        font-size: 1.1rem !important;
+        margin-top: 0.75rem !important;
+        margin-bottom: 0.4rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    .docs-content h4 {
+        font-size: 1rem !important;
+        margin-top: 0.5rem !important;
+        margin-bottom: 0.3rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    .docs-content p {
+        margin-bottom: 0.5rem !important;
+        line-height: 1.4 !important;
+        font-size: 0.85rem !important;
+    }
+    
+    .docs-content section {
+        padding: 0.5rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .docs-content ul {
+        padding-left: 0.75rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .docs-content li {
+        margin-bottom: 0.2rem !important;
+        font-size: 0.85rem !important;
+        line-height: 1.3 !important;
+    }
+    
+    /* Compact code blocks */
+    .code-block {
+        margin: 0.5rem 0 !important;
+        border-radius: 6px !important;
+    }
+    
+    .code-block pre {
+        padding: 0.5rem !important;
+        font-size: 0.75rem !important;
+        line-height: 1.3 !important;
+    }
+    
+    .code-header {
+        padding: 0.4rem 0.6rem !important;
+    }
+    
+    .code-header span {
+        font-size: 0.75rem !important;
+    }
+    
+    /* Compact navigation */
+    .nav {
+        padding: 0.4rem 0 !important;
+    }
+    
+    .logo-img {
+        height: 24px !important;
+        width: 24px !important;
+    }
+    
+    .logo-text {
+        font-size: 1.1rem !important;
+    }
+    
+    .theme-toggle {
+        min-width: 80px !important;
+        height: 32px !important;
+        padding: 0.4rem 0.75rem !important;
+        font-size: 0.75rem !important;
+    }
+    
+    .theme-toggle .theme-text {
+        font-size: 0.65rem !important;
+    }
+    
+    /* Compact mobile menu */
+    .mobile-menu-btn {
+        padding: 4px !important;
+    }
+    
+    .mobile-menu-btn span {
+        width: 18px !important;
+        height: 2px !important;
+    }
+    
+    .nav-menu.active {
+        padding: 0.75rem !important;
+    }
+    
+    .nav-menu a {
+        padding: 0.5rem 0.75rem !important;
+        margin: 0.2rem 0 !important;
+        font-size: 0.85rem !important;
+    }
+    
+    /* Compact container spacing */
+    .container {
+        padding: 0 0.75rem !important;
+    }
+    
+    /* Remove all margins and extra spacing */
+    .hero .container,
+    .features .container,
+    .examples .container,
+    .getting-started .container,
+    .footer .container {
+        padding: 0 0.75rem !important;
+    }
+    
+    /* Compact typography */
+    h1 {
+        font-size: 1.8rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    h2 {
+        font-size: 1.5rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    h3 {
+        font-size: 1.2rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    p {
+        font-size: 0.85rem !important;
+        line-height: 1.4 !important;
+    }
+}
+
+/* Extra small mobile - even more compact */
+@media (max-width: 480px) {
+    .hero {
+        padding: 1rem 0 !important;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.6rem !important;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.8rem !important;
+    }
+    
+    .hero-description {
+        font-size: 0.75rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .features,
+    .examples,
+    .getting-started {
+        padding: 1rem 0 !important;
+    }
+    
+    .features h2,
+    .examples h2,
+    .getting-started h2 {
+        font-size: 1.3rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .feature,
+    .example,
+    .step {
+        padding: 0.5rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .feature h3,
+    .example h3,
+    .step h3 {
+        font-size: 0.9rem !important;
+        margin-bottom: 0.4rem !important;
+    }
+    
+    .feature p,
+    .step p {
+        font-size: 0.75rem !important;
+    }
+    
+    .step-number {
+        width: 1.75rem !important;
+        height: 1.75rem !important;
+        font-size: 0.8rem !important;
+    }
+    
+    .btn {
+        padding: 0.4rem 0.75rem !important;
+        font-size: 0.8rem !important;
+        min-height: 32px !important;
+    }
+    
+    .container {
+        padding: 0 0.5rem !important;
+    }
+    
+    .header .container,
+    .hero .container,
+    .features .container,
+    .examples .container,
+    .getting-started .container,
+    .footer .container {
+        padding: 0 0.5rem !important;
+    }
+    
+    .docs-main {
+        margin-top: 15px !important;
+    }
+    
+    .docs-content h1 {
+        font-size: 1.3rem !important;
+    }
+    
+    .docs-content h2 {
+        font-size: 1.1rem !important;
+    }
+    
+    .docs-content h3 {
+        font-size: 1rem !important;
+    }
+    
+    .docs-content h4 {
+        font-size: 0.9rem !important;
+    }
+    
+    .docs-content p,
+    .docs-content li {
+        font-size: 0.8rem !important;
+    }
+    
+    .code-block pre {
+        padding: 0.4rem !important;
+        font-size: 0.7rem !important;
+    }
+    
+    .code-header {
+        padding: 0.3rem 0.5rem !important;
+    }
+    
+    .code-header span {
+        font-size: 0.7rem !important;
+    }
+}
+
+/* iPhone-specific ultra-compact layout */
+@media (max-width: 430px) {
+    .hero {
+        padding: 0.75rem 0 !important;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.5rem !important;
+        margin-bottom: 0.4rem !important;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.75rem !important;
+        margin-bottom: 0.4rem !important;
+    }
+    
+    .hero-description {
+        font-size: 0.7rem !important;
+        margin-bottom: 0.6rem !important;
+    }
+    
+    .features,
+    .examples,
+    .getting-started {
+        padding: 0.75rem 0 !important;
+    }
+    
+    .features h2,
+    .examples h2,
+    .getting-started h2 {
+        font-size: 1.2rem !important;
+        margin-bottom: 0.6rem !important;
+    }
+    
+    .feature,
+    .example,
+    .step {
+        padding: 0.4rem !important;
+        margin-bottom: 0.4rem !important;
+    }
+    
+    .feature h3,
+    .example h3,
+    .step h3 {
+        font-size: 0.85rem !important;
+        margin-bottom: 0.3rem !important;
+    }
+    
+    .feature p,
+    .step p {
+        font-size: 0.7rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    .step-number {
+        width: 1.5rem !important;
+        height: 1.5rem !important;
+        font-size: 0.75rem !important;
+        margin-bottom: 0.4rem !important;
+    }
+    
+    .btn {
+        padding: 0.35rem 0.6rem !important;
+        font-size: 0.75rem !important;
+        min-height: 28px !important;
+    }
+    
+    .container {
+        padding: 0 0.4rem !important;
+    }
+    
+    .header .container,
+    .hero .container,
+    .features .container,
+    .examples .container,
+    .getting-started .container,
+    .footer .container {
+        padding: 0 0.4rem !important;
+    }
+    
+    .docs-main {
+        margin-top: 12px !important;
+    }
+    
+    .docs-content h1 {
+        font-size: 1.2rem !important;
+    }
+    
+    .docs-content h2 {
+        font-size: 1rem !important;
+    }
+    
+    .docs-content h3 {
+        font-size: 0.9rem !important;
+    }
+    
+    .docs-content h4 {
+        font-size: 0.8rem !important;
+    }
+    
+    .docs-content p,
+    .docs-content li {
+        font-size: 0.75rem !important;
+    }
+    
+    .code-block pre {
+        padding: 0.3rem !important;
+        font-size: 0.65rem !important;
+    }
+    
+    .code-header {
+        padding: 0.25rem 0.4rem !important;
+    }
+    
+    .code-header span {
+        font-size: 0.65rem !important;
+    }
+}
