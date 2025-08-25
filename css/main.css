@@ -5934,6 +5934,11 @@ body.trans-theme.light-theme {
     margin-bottom: 0 !important; /* No extra bottom margin */
 }
 
+/* Reduce spacing below the "Stay informed..." paragraph */
+#latest-updates > p {
+    margin-bottom: 0.25rem !important; /* Minimal spacing below paragraph */
+}
+
 /* Reduce spacing above pagination */
 .pagination {
     margin-top: 0.5rem !important; /* Reduced spacing above pagination */
@@ -5948,16 +5953,14 @@ body.trans-theme.light-theme {
     margin-bottom: 0.5rem !important; /* Reduced spacing below nav headers */
 }
 
-/* Simple, working post body layout */
+/* Post body container for text and image side by side */
 #posts-container .content-section .post-body {
     margin-top: 0.5rem !important; /* Reduced spacing below post-content */
     overflow: hidden !important; /* Clear floats */
 }
 
+/* Post content (header, date, author) */
 #posts-container .content-section .post-content {
-    /* Post content now contains header, date, author, and buttons */
-    display: block !important;
-    width: 100% !important; /* Take full width */
     margin-bottom: 0 !important;
 }
 
@@ -5974,11 +5977,10 @@ body.trans-theme.light-theme {
     text-align: center !important;
 }
 
-/* Clear floats and position buttons below */
-#posts-container .content-section .post-body .post-actions {
+/* Post actions below text/image */
+#posts-container .content-section .post-actions {
     clear: both !important; /* Clear the floats */
     margin-top: 1rem !important; /* Space above buttons */
-    padding-top: 0.5rem !important; /* Extra padding above buttons */
 }
 
 /* Fallback for posts without images - text takes full width - ONLY for community posts */
