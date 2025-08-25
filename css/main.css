@@ -5948,12 +5948,10 @@ body.trans-theme.light-theme {
     margin-bottom: 0.5rem !important; /* Reduced spacing below nav headers */
 }
 
-/* Post body container - now contains text/image side by side + buttons below */
+/* Simple, working post body layout */
 #posts-container .content-section .post-body {
-    display: flex !important; /* Force flexbox layout */
-    flex-direction: column !important; /* Stack content vertically */
-    gap: 1rem !important; /* Gap between elements */
     margin-top: 0.5rem !important; /* Reduced spacing below post-content */
+    overflow: hidden !important; /* Clear floats */
 }
 
 #posts-container .content-section .post-content {
@@ -5963,27 +5961,24 @@ body.trans-theme.light-theme {
     margin-bottom: 0 !important;
 }
 
-/* Text and image row within post-body */
-#posts-container .content-section .post-body .post-text,
-#posts-container .content-section .post-body .post-image {
-    display: inline-block !important;
-    vertical-align: top !important;
-}
-
+/* Text and image side by side using simple float */
 #posts-container .content-section .post-body .post-text {
+    float: left !important;
     width: 50% !important; /* Text takes up left half */
     padding-right: 1rem !important; /* Breathing room from image */
 }
 
 #posts-container .content-section .post-body .post-image {
+    float: right !important;
     width: 50% !important; /* Image takes up right half */
     text-align: center !important;
 }
 
-/* Post actions below text/image */
+/* Clear floats and position buttons below */
 #posts-container .content-section .post-body .post-actions {
-    margin-top: 0.5rem !important; /* Space above buttons */
-    clear: both !important; /* Ensure buttons are below the text/image row */
+    clear: both !important; /* Clear the floats */
+    margin-top: 1rem !important; /* Space above buttons */
+    padding-top: 0.5rem !important; /* Extra padding above buttons */
 }
 
 /* Fallback for posts without images - text takes full width - ONLY for community posts */
