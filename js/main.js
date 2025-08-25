@@ -1149,6 +1149,13 @@ function initCommunityPagination() {
             changePage(currentPage + 1);
         }
     });
+    
+    // Add resize listener to update pagination layout on screen size change
+    window.addEventListener('resize', () => {
+        if (window.allPosts && window.allPosts.length > 0) {
+            updatePagination();
+        }
+    });
 }
 
 function changePage(page) {
@@ -1253,18 +1260,68 @@ function updatePagination() {
     // Clear existing page numbers
     paginationNumbers.innerHTML = '';
     
-    // Create page numbers dynamically
-    for (let i = 1; i <= totalPages; i++) {
-        const pageNumber = document.createElement('span');
-        pageNumber.className = 'page-number';
-        pageNumber.dataset.page = i;
-        pageNumber.textContent = i;
-        pageNumber.classList.toggle('active', i === currentPage);
+    // Check if we're on mobile (window width <= 768px)
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile && totalPages > 3) {
+        // Mobile pagination: Previous | [Most Recent] | [Current] | [Oldest] | Next
+        // Most recent page (page 1)
+        if (currentPage !== 1) {
+            const mostRecentPage = document.createElement('span');
+            mostRecentPage.className = 'page-number';
+            mostRecentPage.dataset.page = 1;
+            mostRecentPage.textContent = 1;
+            mostRecentPage.addEventListener('click', () => changePage(1));
+            paginationNumbers.appendChild(mostRecentPage);
+        }
         
-        // Add click event listener
-        pageNumber.addEventListener('click', () => changePage(i));
+        // Ellipsis if there's a gap
+        if (currentPage > 3) {
+            const ellipsis1 = document.createElement('span');
+            ellipsis1.className = 'pagination-ellipsis';
+            ellipsis1.textContent = '...';
+            paginationNumbers.appendChild(ellipsis1);
+        }
         
-        paginationNumbers.appendChild(pageNumber);
+        // Current page
+        const currentPageNum = document.createElement('span');
+        currentPageNum.className = 'page-number active';
+        currentPageNum.dataset.page = currentPage;
+        currentPageNum.textContent = currentPage;
+        currentPageNum.addEventListener('click', () => changePage(currentPage));
+        paginationNumbers.appendChild(currentPageNum);
+        
+        // Ellipsis if there's a gap
+        if (currentPage < totalPages - 2) {
+            const ellipsis2 = document.createElement('span');
+            ellipsis2.className = 'pagination-ellipsis';
+            ellipsis2.textContent = '...';
+            paginationNumbers.appendChild(ellipsis2);
+        }
+        
+        // Oldest page (last page)
+        if (currentPage !== totalPages) {
+            const oldestPage = document.createElement('span');
+            oldestPage.className = 'page-number';
+            oldestPage.dataset.page = totalPages;
+            oldestPage.textContent = totalPages;
+            oldestPage.addEventListener('click', () => changePage(totalPages));
+            paginationNumbers.appendChild(oldestPage);
+        }
+    } else {
+        // Desktop pagination: show all page numbers
+        for (let i = 1; i <= totalPages; i++) {
+            const pageNumber = document.createElement('span');
+            pageNumber.className = 'page-number';
+            pageNumber.dataset.page = i;
+            pageNumber.textContent = i;
+            pageNumber.classList.toggle('active', i === currentPage);
+            
+            // Add click event listener
+            pageNumber.addEventListener('click', () => changePage(i));
+            
+            paginationNumbers.appendChild(pageNumber);
+        }
     }
 }
 

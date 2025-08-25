@@ -256,13 +256,23 @@
     </div>
     
     <script>
-        // Redirect to community page if accessed directly (not embedded)
-        if (window.self === window.top) {
-            // Not embedded, redirect to community page
-            window.location.href = 'https://mycolang.org/community.html#post-2';
+        // Check if we're being embedded or accessed directly
+        function isEmbedded() {
+            return window.self !== window.top;
         }
         
-        // sharePost function is now handled centrally in community.html
+        function isMobileDiscord() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            return userAgent.includes('discord') && (userAgent.includes('mobile') || userAgent.includes('android') || userAgent.includes('iphone') || userAgent.includes('ipad'));
+        }
+        
+        // Only redirect if not embedded and not on mobile Discord
+        if (!isEmbedded() && !isMobileDiscord()) {
+            // Small delay to prevent immediate redirect loop
+            setTimeout(() => {
+                window.location.href = 'https://mycolang.org/community.html#post-2';
+            }, 100);
+        }
     </script>
 </body>
 </html>
