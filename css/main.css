@@ -144,6 +144,25 @@ body.trans-theme:not(.light-theme) {
     box-shadow: 0 4px 20px rgba(255, 105, 180, 0.3);
 }
 
+/* Light trans theme header */
+.trans-theme.light-theme .header {
+    background: linear-gradient(135deg, var(--bg-secondary-trans-light), var(--bg-tertiary-trans-light));
+    border-bottom: 2px solid var(--accent-primary-trans-light);
+    box-shadow: 0 4px 20px rgba(236, 72, 153, 0.3);
+}
+
+/* Light theme header */
+.light-theme .header {
+    background: var(--bg-primary-light);
+    border-bottom: 1px solid var(--border-primary-light);
+}
+
+/* Dark theme header (default) */
+.header {
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-primary);
+}
+
 .trans-theme:not(.light-theme) .nav-menu a {
     color: var(--text-secondary-trans-dark);
     border-bottom: 2px solid transparent;
@@ -155,6 +174,33 @@ body.trans-theme:not(.light-theme) {
     color: var(--accent-trans-pink);
     border-bottom-color: var(--accent-trans-pink);
     text-shadow: 0 0 10px var(--accent-trans-pink);
+}
+
+/* Light trans theme nav links */
+.trans-theme.light-theme .nav-menu a {
+    color: var(--text-secondary-trans-light);
+    border-bottom: 2px solid transparent;
+    transition: all var(--transition-normal);
+}
+
+.trans-theme.light-theme .nav-menu a:hover,
+.trans-theme.light-theme .nav-menu a.active {
+    color: var(--accent-primary-trans-light);
+    border-bottom-color: var(--accent-primary-trans-light);
+    text-shadow: 0 0 10px var(--accent-primary-trans-light);
+}
+
+/* Light theme nav links */
+.light-theme .nav-menu a {
+    color: var(--text-secondary-light);
+    border-bottom: 2px solid transparent;
+    transition: all var(--transition-normal);
+}
+
+.light-theme .nav-menu a:hover,
+.light-theme .nav-menu a.active {
+    color: var(--accent-primary-light);
+    border-bottom-color: var(--accent-primary-light);
 }
 
 .trans-theme:not(.light-theme) .theme-toggle {
@@ -169,6 +215,32 @@ body.trans-theme:not(.light-theme) {
     transform: translateY(-2px);
 }
 
+/* Light trans theme toggle */
+.trans-theme.light-theme .theme-toggle {
+    background: linear-gradient(135deg, var(--accent-primary-trans-light), var(--accent-secondary-trans-light));
+    border: 2px solid var(--accent-tertiary-trans-light);
+    box-shadow: 0 0 15px var(--accent-primary-trans-light);
+}
+
+.trans-theme.light-theme .theme-toggle:hover {
+    background: linear-gradient(135deg, var(--accent-secondary-trans-light), var(--accent-primary-trans-light));
+    box-shadow: 0 0 25px var(--accent-secondary-trans-light);
+    transform: translateY(-2px);
+}
+
+/* Light theme toggle */
+.light-theme .theme-toggle {
+    background: linear-gradient(135deg, var(--accent-primary-light), var(--accent-secondary-light));
+    border: 2px solid var(--accent-tertiary-light);
+    box-shadow: 0 0 15px var(--accent-primary-light);
+}
+
+.light-theme .theme-toggle:hover {
+    background: linear-gradient(135deg, var(--accent-secondary-light), var(--accent-primary-light));
+    box-shadow: 0 0 25px var(--accent-secondary-light);
+    transform: translateY(-2px);
+}
+
 .trans-theme:not(.light-theme) .btn-primary {
     background: linear-gradient(135deg, var(--accent-trans-pink), var(--accent-trans-blue));
     border: 2px solid var(--accent-trans-white);
@@ -177,8 +249,30 @@ body.trans-theme:not(.light-theme) {
 
 .trans-theme:not(.light-theme) .btn-primary:hover {
     background: linear-gradient(135deg, var(--accent-trans-blue), var(--accent-trans-pink));
-    box-shadow: 0 8px 25px rgba(135, 206, 235, 0.5);
-    transform: translateY(-2px);
+}
+
+/* Light trans theme primary button */
+.trans-theme.light-theme .btn-primary {
+    background: linear-gradient(135deg, var(--accent-primary-trans-light), var(--accent-secondary-trans-light));
+    border: 2px solid var(--accent-tertiary-trans-light);
+    box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4);
+}
+
+.trans-theme.light-theme .btn-primary:hover {
+    background: linear-gradient(135deg, var(--accent-secondary-trans-light), var(--accent-primary-trans-light));
+}
+
+/* Light theme primary button */
+.light-theme .btn-primary {
+    background: var(--accent-primary-light);
+    color: var(--bg-primary-light);
+    box-shadow: 0 4px 15px var(--shadow-medium-light);
+}
+
+.light-theme .btn-primary:hover {
+    background: var(--accent-secondary-light);
+    color: var(--bg-primary-light);
+    box-shadow: 0 8px 25px var(--shadow-heavy-light);
 }
 
 .trans-theme:not(.light-theme) .btn-secondary {
@@ -417,11 +511,11 @@ a:hover {
     z-index: 100;
     backdrop-filter: blur(10px);
     transition: all var(--transition-normal);
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
-    position: relative;
-    overflow: hidden;
+    width: 100%;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
 }
 
 /* Ensure header background extends full width */
