@@ -1074,6 +1074,9 @@ function initCommunityPagination() {
     // Get all posts (now using content-section instead of .post class)
     allPosts = Array.from(postsContainer.querySelectorAll('.content-section'));
     
+    console.log('Found posts:', allPosts.map(p => p.id));
+    console.log('Total posts found:', allPosts.length);
+    
     // Initialize pagination
     updatePagination();
     showPage(1);
@@ -1138,6 +1141,9 @@ function showPage(page) {
         const bId = parseInt(b.id.replace('post-', ''));
         return bId - aId; // Descending order
     });
+    
+    console.log('Sorted posts by ID:', sortedPosts.map(p => p.id));
+    console.log('Page requested:', page);
     
     // Page 1 shows the first post (highest ID), Page 2 shows the second post (second highest ID)
     const postToShow = sortedPosts[page - 1];
