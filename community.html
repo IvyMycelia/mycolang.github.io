@@ -159,77 +159,6 @@
     <script>
         // Simple iframe-based navigation
         function loadPost(postNumber) {
-            // Find the post data from the global allPosts array
-            if (!window.allPosts) {
-                console.log('allPosts not available yet, skipping meta tag update');
-                return;
-            }
-            
-            const post = window.allPosts.find(p => p.id === postId);
-            if (!post) {
-                console.log(`Post ${postId} not found in allPosts, skipping meta tag update`);
-                return;
-            }
-            
-            console.log(`Updating meta tags for post: ${post.id} - ${post.title}`);
-            
-            const postTitle = post.title;
-            
-            // Extract date - look for the paragraph containing "Date:"
-            const dateParagraph = Array.from(postElement.querySelectorAll('p')).find(p => 
-                p.textContent.includes('Date:')
-            );
-            const postDate = dateParagraph ? 
-                dateParagraph.textContent.replace('Date:', '').trim() : 
-                '24th August 2025';
-            
-            // Extract author - look for the paragraph containing "Author:"
-            const authorParagraph = Array.from(postElement.querySelectorAll('p')).find(p => 
-                p.textContent.includes('Author:')
-            );
-            const postAuthor = authorParagraph ? 
-                authorParagraph.textContent.replace('Author:', '').trim() : 
-                'Ivy Mycelia';
-            
-            // Get post image if available
-            const postImage = postElement.querySelector('.post-attachment');
-            const imageUrl = postImage ? postImage.src : 'https://mycolang.org/Assets/Myco_Purple.png';
-            const imageAlt = postImage ? postImage.alt : 'Myco Programming Language Logo';
-            
-            // Update page title
-            document.title = `${postTitle} - Myco Community`;
-            
-            // Update Open Graph tags
-            const ogTitle = document.getElementById('dynamic-og-title');
-            const ogDescription = document.getElementById('dynamic-og-description');
-            const ogUrl = document.getElementById('dynamic-og-url');
-            
-            if (ogTitle) ogTitle.setAttribute('content', `${postTitle} - Myco Community`);
-            if (ogDescription) ogDescription.setAttribute('content', `Read "${postTitle}" by ${postAuthor} on ${postDate}. Join the Myco programming language community for development updates and discussions.`);
-            if (ogUrl) ogUrl.setAttribute('content', `https://mycolang.org/community.html#${postId}`);
-            
-            // Update Open Graph image
-            const ogImage = document.querySelector('meta[property="og:image"]');
-            if (ogImage) ogImage.setAttribute('content', imageUrl);
-            
-            // Update Twitter tags
-            const twitterTitle = document.getElementById('dynamic-twitter-title');
-            const twitterDescription = document.getElementById('dynamic-twitter-description');
-            const twitterUrl = document.getElementById('dynamic-twitter-url');
-            
-            if (twitterTitle) twitterTitle.setAttribute('content', `${postTitle} - Myco Community`);
-            if (twitterDescription) twitterDescription.setAttribute('content', `Read "${postTitle}" by ${postAuthor} on ${postDate}. Join the Myco programming language community.`);
-            if (twitterUrl) twitterUrl.setAttribute('content', `https://mycolang.org/community.html#${postId}`);
-            
-            // Update Twitter image
-            const twitterImage = document.querySelector('meta[name="twitter:image"]');
-            if (twitterImage) twitterImage.setAttribute('content', imageUrl);
-            
-            console.log(`Updated meta tags for post: ${postId} - ${postTitle} with image: ${imageUrl}`);
-        }
-        
-        // Simple iframe-based navigation
-        function loadPost(postNumber) {
             const iframe = document.getElementById('post-iframe');
             if (iframe) {
                 iframe.src = `community/post-${postNumber}.html`;
@@ -245,8 +174,8 @@
         
         function updateActivePage(activePage) {
             // Remove active class from all page numbers
-            document.querySelectorAll('.page-number').forEach(page => {
-                page.classList.remove('active');
+            document.querySelectorAll('.pagination-btn').forEach(btn => {
+                btn.classList.remove('active');
             });
             
             // Add active class to current page

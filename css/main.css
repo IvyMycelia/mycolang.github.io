@@ -6112,6 +6112,13 @@ body.trans-theme.light-theme {
     cursor: not-allowed;
 }
 
+.pagination-btn.active {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    border-color: var(--accent-primary);
+    font-weight: 600;
+}
+
 .pagination-numbers {
     display: flex;
     gap: 0.5rem;
