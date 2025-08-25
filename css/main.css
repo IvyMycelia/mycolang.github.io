@@ -5909,30 +5909,49 @@ body.trans-theme.light-theme {
     flex-direction: row !important; /* Ensure horizontal layout */
     margin-bottom: 2rem !important; /* Reduced from 3rem to 2rem */
     flex-wrap: nowrap !important; /* Prevent wrapping */
+    /* Override conflicting general content-section rules */
+    padding: 1.5rem !important;
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-primary) !important;
+    border-radius: 12px !important;
 }
 
 #posts-container .content-section .post-content {
     flex: 1 !important; /* Force flex grow */
-    min-width: 0; /* Allow text to shrink */
-    padding-right: 1rem; /* Increased breathing room */
+    min-width: 0 !important; /* Allow text to shrink */
+    padding-right: 1rem !important; /* Increased breathing room */
     max-width: 50% !important; /* Text takes up left half */
     flex-shrink: 0 !important; /* Prevent text from shrinking */
     order: 1 !important; /* Ensure text appears first */
+    /* Override any conflicting styles */
+    display: block !important;
+    width: auto !important;
 }
 
 #posts-container .content-section .post-image {
     flex-shrink: 0 !important; /* Prevent image from shrinking */
     width: 50% !important; /* Image takes up right half */
-    margin-left: auto; /* Push image to the right */
+    margin-left: auto !important; /* Push image to the right */
     display: flex !important;
     justify-content: center !important;
     align-items: flex-start !important;
     order: 2 !important; /* Ensure image appears after text */
+    /* Override any conflicting styles */
+    text-align: center !important;
 }
 
 /* Fallback for posts without images - text takes full width - ONLY for community posts */
 #posts-container .content-section:not(:has(.post-image)) .post-content {
-    width: 100%;
+    width: 100% !important;
+}
+
+/* Force flexbox layout for community posts - highest specificity */
+#posts-container .content-section {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 2rem !important;
+    flex-wrap: nowrap !important;
 }
 
 /* Alternative fallback for browsers that don't support :has() - ONLY for community posts */
