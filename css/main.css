@@ -5847,8 +5847,41 @@ body.trans-theme.light-theme {
     background: var(--bg-secondary);
     border: 1px solid var(--border-primary);
     border-radius: 12px;
-    box-shadow: 0 2px 8px var(--shadow-light);
+}
+
+/* Post image attachments - compact and neat */
+.post-image {
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.post-attachment {
+    max-width: 100%;
+    height: auto;
+    max-height: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--shadow-medium);
+    border: 1px solid var(--border-primary);
     transition: all 0.3s ease;
+    object-fit: cover;
+}
+
+.post-attachment:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px var(--shadow-medium);
+    border-color: var(--accent-primary);
+}
+
+/* Mobile responsive post images */
+@media (max-width: 768px) {
+    .post-attachment {
+        max-height: 200px;
+        border-radius: 6px;
+    }
+    
+    .post-image {
+        margin: 0.75rem 0;
+    }
 }
 
 .content-section:hover {
