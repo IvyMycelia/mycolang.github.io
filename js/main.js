@@ -1093,8 +1093,9 @@ function changePage(page) {
     showPage(page);
     updatePagination();
     
-    // Update URL hash to reflect the current post
-    const startIndex = (page - 1) * postsPerPage;
+    // Update URL hash to reflect the current post (using reversed order)
+    const totalPosts = allPosts.length;
+    const startIndex = totalPosts - (page * postsPerPage);
     const currentPost = allPosts[startIndex];
     if (currentPost) {
         // Update URL without triggering hashchange event
@@ -1112,10 +1113,12 @@ function changePage(page) {
 }
 
 function showPage(page) {
-    const startIndex = (page - 1) * postsPerPage;
-    const endIndex = startIndex + postsPerPage;
+    // Reverse the order: highest ID (most recent) on page 1, lowest ID (oldest) on last page
+    const totalPosts = allPosts.length;
+    const startIndex = totalPosts - (page * postsPerPage);
+    const endIndex = totalPosts - ((page - 1) * postsPerPage);
     
-    console.log(`Showing page ${page}, posts ${startIndex} to ${endIndex - 1}`); // Debug log
+    console.log(`Showing page ${page}, posts ${startIndex} to ${endIndex - 1} (reversed order)`); // Debug log
     
     allPosts.forEach((post, index) => {
         if (index >= startIndex && index < endIndex) {
@@ -1164,27 +1167,31 @@ function updatePagination() {
 if (document.getElementById('posts-container')) {
     initCommunityPagination();
     
-    // Check if there's a hash in the URL and navigate to the correct page
+    // Check if there's a hash in the URL and navigate to the correct page (using reversed order)
     if (window.location.hash) {
         const postId = window.location.hash.substring(1); // Remove the #
         const postIndex = allPosts.findIndex(post => post.id === postId);
         
         if (postIndex !== -1) {
-            const targetPage = Math.floor(postIndex / postsPerPage) + 1;
-            console.log(`Hash detected: ${postId}, navigating to page ${targetPage}`); // Debug log
+            // Calculate page for reversed order: highest ID = page 1, lowest ID = last page
+            const totalPosts = allPosts.length;
+            const targetPage = Math.ceil((totalPosts - postIndex) / postsPerPage);
+            console.log(`Hash detected: ${postId}, navigating to page ${targetPage} (reversed order)`); // Debug log
             changePage(targetPage);
         }
     }
     
-    // Listen for hash changes (browser back/forward buttons)
+    // Listen for hash changes (browser back/forward buttons) (using reversed order)
     window.addEventListener('hashchange', function() {
         if (window.location.hash) {
             const postId = window.location.hash.substring(1);
             const postIndex = allPosts.findIndex(post => post.id === postId);
             
             if (postIndex !== -1) {
-                const targetPage = Math.floor(postIndex / postsPerPage) + 1;
-                console.log(`Hash changed to: ${postId}, navigating to page ${targetPage}`); // Debug log
+                // Calculate page for reversed order: highest ID = page 1, lowest ID = last page
+                const totalPosts = allPosts.length;
+                const targetPage = Math.ceil((totalPosts - postIndex) / postsPerPage);
+                console.log(`Hash changed to: ${postId}, navigating to page ${targetPage} (reversed order)`); // Debug log
                 changePage(targetPage);
             }
         }
