@@ -161,6 +161,10 @@
         function loadPost(postNumber) {
             const iframe = document.getElementById('post-iframe');
             if (iframe) {
+                // Add loading state
+                iframe.classList.add('loading');
+                
+                // Update iframe source
                 iframe.src = `community/post-${postNumber}.html`;
                 
                 // Update URL without hash for clean social media embeds
@@ -169,6 +173,11 @@
                 
                 // Update active page indicator
                 updateActivePage(postNumber);
+                
+                // Remove loading state when iframe loads
+                iframe.onload = function() {
+                    iframe.classList.remove('loading');
+                };
             }
         }
         

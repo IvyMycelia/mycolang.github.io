@@ -6152,6 +6152,20 @@ body.trans-theme.light-theme {
     border-color: var(--accent-primary);
 }
 
+/* Iframe post embedding */
+#post-iframe {
+    width: 100%;
+    min-height: 600px;
+    border: none;
+    border-radius: 12px;
+    background: transparent;
+    transition: opacity 0.3s ease;
+}
+
+#post-iframe.loading {
+    opacity: 0.7;
+}
+
 /* Mobile responsive for community page */
 @media (max-width: 768px) {
     .post-actions {
