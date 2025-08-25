@@ -6271,6 +6271,29 @@ body.trans-theme.light-theme {
     margin: 0 !important;
 }
 
+/* Force Discord button to not wrap - add to main CSS for maximum override power */
+.post-actions {
+    flex-wrap: nowrap !important;
+    overflow: visible !important;
+    display: flex !important;
+    gap: 12px !important;
+    align-items: center !important;
+}
+
+.post-actions .btn-outline {
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    min-width: fit-content !important;
+    width: auto !important;
+    flex: 0 0 auto !important;
+}
+
+.post-actions .share-btn {
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    flex: 0 0 auto !important;
+}
+
 /* Additional comprehensive spacing overrides */
 #post-embed .post-content,
 #post-embed .post-body,

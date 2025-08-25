@@ -262,28 +262,7 @@
             window.location.href = 'https://mycolang.org/community.html#post-2';
         }
         
-        function sharePost() {
-            const url = 'https://mycolang.org/community/post-2.html';
-            const title = 'Codebase Refactor - Splitting Up eval.c - Myco Community';
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: title,
-                    url: url
-                });
-            } else {
-                // Fallback: copy to clipboard
-                navigator.clipboard.writeText(url).then(() => {
-                    // Since posts are now loaded directly into the DOM, we can use the notification system directly
-                    if (typeof showNotification === 'function') {
-                        showNotification('Link copied to clipboard!', 'success');
-                    } else {
-                        // Fallback to alert if notification system not available
-                        alert('Link copied to clipboard!');
-                    }
-                });
-            }
-        }
+        // sharePost function is now handled centrally in community.html
     </script>
 </body>
 </html>
