@@ -196,258 +196,47 @@
             const paginationNumbers = document.querySelector('.pagination-numbers');
             paginationNumbers.innerHTML = '';
             
-            // Smart pagination: show only 4 numbers at a time
-            const totalPosts = allPosts.length;
-            const currentPageIndex = 0; // Start with first post
-            
-            // Calculate which numbers to show
-            let startPage = Math.max(1, currentPageIndex - 1);
-            let endPage = Math.min(totalPosts, startPage + 3);
-            
-            // Adjust start if we're near the end
-            if (endPage - startPage < 3 && totalPosts > 4) {
-                startPage = Math.max(1, endPage - 3);
-            }
-            
-            // Add first page if not included
-            if (startPage > 1) {
-                addPageButton(1, paginationNumbers);
-                if (startPage > 2) {
-                    addEllipsis(paginationNumbers);
-                }
-            }
-            
-            // Add visible page numbers
-            for (let i = startPage; i <= endPage; i++) {
-                addPageButton(i, paginationNumbers, i === allPosts[0]);
-            }
-            
-            // Add last page if not included
-            if (endPage < totalPosts) {
-                if (endPage < totalPosts - 1) {
-                    addEllipsis(paginationNumbers);
-                }
-                addPageButton(totalPosts, paginationNumbers);
-            }
+            allPosts.forEach((postNumber, index) => {
+                const pageButton = document.createElement('button');
+                pageButton.className = 'pagination-btn page-number';
+                pageButton.textContent = postNumber;
+                pageButton.setAttribute('data-page', postNumber);
+                pageButton.setAttribute('data-index', index);
+                pageButton.onclick = () => loadPost(postNumber);
+                paginationNumbers.appendChild(pageButton);
+            });
             
             // Update navigation button states
             updateNavigationButtons();
-        }
-        
-        // Add a page button with animation
-        function addPageButton(postNumber, container, isActive = false) {
-            const pageButton = document.createElement('button');
-            pageButton.className = 'pagination-btn page-number';
-            pageButton.textContent = postNumber;
-            pageButton.setAttribute('data-page', postNumber);
-            pageButton.setAttribute('data-index', allPosts.indexOf(postNumber));
-            
-            if (isActive) {
-                pageButton.classList.add('active');
-            }
-            
-            pageButton.onclick = () => loadPost(postNumber);
-            
-            // Add entrance animation
-            pageButton.style.opacity = '0';
-            pageButton.style.transform = 'scale(0.8)';
-            container.appendChild(pageButton);
-            
-            // Animate in
-            setTimeout(() => {
-                pageButton.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-                pageButton.style.opacity = '1';
-                pageButton.style.transform = 'scale(1)';
-            }, 50);
-        }
-        
-        // Add ellipsis with animation
-        function addEllipsis(container) {
-            const ellipsis = document.createElement('span');
-            ellipsis.className = 'pagination-ellipsis';
-            ellipsis.innerHTML = '&hellip;';
-            ellipsis.onclick = () => showPageJumpDialog();
-            
-            // Add entrance animation
-            ellipsis.style.opacity = '0';
-            ellipsis.style.transform = 'scale(0.8)';
-            container.appendChild(ellipsis);
-            
-            // Animate in
-            setTimeout(() => {
-                ellipsis.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-                ellipsis.style.opacity = '1';
-                ellipsis.style.transform = 'scale(1)';
-            }, 100);
-        }
-        
-        // Show dialog to jump to specific page
-        function showPageJumpDialog() {
-            const dialog = document.createElement('div');
-            dialog.className = 'page-jump-dialog';
-            dialog.innerHTML = `
-                <div class="page-jump-content">
-                    <h3>Go to Page</h3>
-                    <p>Enter a page number (1-${allPosts.length}):</p>
-                    <input type="number" min="1" max="${allPosts.length}" class="page-jump-input" placeholder="Page number">
-                    <div class="page-jump-buttons">
-                        <button class="btn btn-outline" onclick="this.closest('.page-jump-dialog').remove()">Cancel</button>
-                        <button class="btn btn-primary" onclick="jumpToPage(this)">Go</button>
-                    </div>
-                </div>
-            `;
-            
-            document.body.appendChild(dialog);
-            
-            // Focus input and add enter key support
-            const input = dialog.querySelector('.page-jump-input');
-            input.focus();
-            input.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    jumpToPage(input);
-                }
-            });
-            
-            // Animate in
-            setTimeout(() => {
-                dialog.style.opacity = '1';
-                dialog.style.transform = 'scale(1)';
-            }, 50);
-        }
-        
-        // Jump to specific page
-        function jumpToPage(element) {
-            const input = element.closest('.page-jump-content').querySelector('.page-jump-input');
-            const pageNumber = parseInt(input.value);
-            
-            if (pageNumber >= 1 && pageNumber <= allPosts.length) {
-                loadPost(pageNumber);
-                element.closest('.page-jump-dialog').remove();
-            } else {
-                input.style.borderColor = 'var(--error-color)';
-                input.placeholder = `Please enter 1-${allPosts.length}`;
-            }
         }
         
         // Load a specific post
         function loadPost(postNumber) {
             const embed = document.getElementById('post-embed');
             if (embed) {
-                // Add fancy loading state with animation
+                // Add loading state
                 embed.classList.add('loading');
-                embed.style.transform = 'scale(0.98)';
-                embed.style.opacity = '0.7';
-                
-                // Add loading spinner
-                addLoadingSpinner();
                 
                 // Update embed source
                 embed.src = `community/post-${postNumber}.html`;
                 
-                // Update URL with hash for internal navigation (keeps main page URL)
-                const newUrl = `community.html#post-${postNumber}`;
-                window.history.pushState({postNumber: postNumber}, '', newUrl);
+                // Update URL for clean social media embeds
+                const newUrl = `https://mycolang.org/community/post-${postNumber}.html`;
+                window.history.pushState({}, '', newUrl);
                 
                 // Update current post index
                 currentPostIndex = allPosts.indexOf(postNumber);
                 
-                // Update pagination with new active state
-                updatePaginationForPost(postNumber);
+                // Update active page indicator
+                updateActivePage(postNumber);
                 
                 // Update navigation button states
                 updateNavigationButtons();
                 
                 // Remove loading state when embed loads
                 embed.onload = function() {
-                    // Animate out loading state
-                    embed.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
-                    embed.style.transform = 'scale(1)';
-                    embed.style.opacity = '1';
                     embed.classList.remove('loading');
-                    
-                    // Remove loading spinner
-                    removeLoadingSpinner();
-                    
-                    // Add entrance animation for new content
-                    embed.style.animation = 'postEntrance 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
                 };
-            }
-        }
-        
-        // Add loading spinner
-        function addLoadingSpinner() {
-            const container = document.getElementById('posts-container');
-            let spinner = document.getElementById('loading-spinner');
-            
-            if (!spinner) {
-                spinner = document.createElement('div');
-                spinner.id = 'loading-spinner';
-                spinner.className = 'loading-spinner';
-                spinner.innerHTML = `
-                    <div class="spinner-ring"></div>
-                    <div class="spinner-text">Loading post...</div>
-                `;
-            }
-            
-            container.appendChild(spinner);
-            
-            // Animate in
-            setTimeout(() => {
-                spinner.style.opacity = '1';
-                spinner.style.transform = 'scale(1)';
-            }, 50);
-        }
-        
-        // Remove loading spinner
-        function removeLoadingSpinner() {
-            const spinner = document.getElementById('loading-spinner');
-            if (spinner) {
-                spinner.style.opacity = '0';
-                spinner.style.transform = 'scale(0.8)';
-                setTimeout(() => {
-                    if (spinner.parentNode) {
-                        spinner.parentNode.removeChild(spinner);
-                    }
-                }, 300);
-            }
-        }
-        
-        // Update pagination to show current post in context
-        function updatePaginationForPost(activePostNumber) {
-            const paginationNumbers = document.querySelector('.pagination-numbers');
-            paginationNumbers.innerHTML = '';
-            
-            const totalPosts = allPosts.length;
-            const activeIndex = allPosts.indexOf(activePostNumber);
-            
-            // Calculate which numbers to show (keep active post centered when possible)
-            let startPage = Math.max(1, activeIndex - 1);
-            let endPage = Math.min(totalPosts, startPage + 3);
-            
-            // Adjust start if we're near the end
-            if (endPage - startPage < 3 && totalPosts > 4) {
-                startPage = Math.max(1, endPage - 3);
-            }
-            
-            // Add first page if not included
-            if (startPage > 1) {
-                addPageButton(1, paginationNumbers);
-                if (startPage > 2) {
-                    addEllipsis(paginationNumbers);
-                }
-            }
-            
-            // Add visible page numbers
-            for (let i = startPage; i <= endPage; i++) {
-                addPageButton(i, paginationNumbers, i === activePostNumber);
-            }
-            
-            // Add last page if not included
-            if (endPage < totalPosts) {
-                if (endPage < totalPosts - 1) {
-                    addEllipsis(paginationNumbers);
-                }
-                addPageButton(totalPosts, paginationNumbers);
             }
         }
         
@@ -495,10 +284,10 @@
             }
         }
         
-        // Load initial post based on URL hash or default to first
+        // Load initial post based on URL or default to first
         function loadInitialPost() {
-            const hash = window.location.hash;
-            const postMatch = hash.match(/#post-(\d+)/);
+            const url = window.location.href;
+            const postMatch = url.match(/post-(\d+)\.html/);
             
             if (postMatch) {
                 const postNumber = parseInt(postMatch[1]);
@@ -519,39 +308,9 @@
             loadInitialPost();
         });
         
-        // Check if this is a social media crawler
-        function isSocialMediaCrawler() {
-            const userAgent = navigator.userAgent.toLowerCase();
-            return userAgent.includes('facebookexternalhit') || 
-                   userAgent.includes('twitterbot') || 
-                   userAgent.includes('discord') ||
-                   userAgent.includes('whatsapp') ||
-                   userAgent.includes('telegram') ||
-                   userAgent.includes('slack') ||
-                   userAgent.includes('linkedin');
-        }
-        
-        // Handle social media crawlers by redirecting to individual post
-        function handleSocialMediaCrawler() {
-            const hash = window.location.hash;
-            const postMatch = hash.match(/#post-(\d+)/);
-            
-            if (postMatch && isSocialMediaCrawler()) {
-                const postNumber = parseInt(postMatch[1]);
-                // Redirect to individual post for perfect social media embeds
-                window.location.href = `community/post-${postNumber}.html`;
-                return true;
-            }
-            return false;
-        }
-        
         // Initialize when DOM is ready
         document.addEventListener('DOMContentLoaded', function() {
-            // Check if we need to redirect for social media
-            if (!handleSocialMediaCrawler()) {
-                // Normal initialization for regular users
-                detectPosts();
-            }
+            detectPosts();
         });
     </script>
 </head>
