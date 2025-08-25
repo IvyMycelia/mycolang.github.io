@@ -1109,15 +1109,19 @@ function changePage(page) {
     updatePagination();
     
     // Update URL hash to reflect the current post
-    const totalPosts = allPosts.length;
-    const postIndex = totalPosts - page; // Page 1 shows last post (highest ID)
-    const currentPost = allPosts[postIndex];
+    const sortedPosts = [...allPosts].sort((a, b) => {
+        const aId = parseInt(a.id.replace('post-', ''));
+        const bId = parseInt(b.id.replace('post-', ''));
+        return bId - aId; // Descending order
+    });
+    
+    const currentPost = sortedPosts[page - 1];
     if (currentPost) {
         // Update URL without triggering hashchange event
         const newHash = `#${currentPost.id}`;
         if (window.location.hash !== newHash) {
             window.history.replaceState(null, null, newHash);
-            console.log(`URL updated to: ${newHash}`); // Debug log
+            console.log(`URL updated to: ${newHash}`);
         }
     }
     
@@ -1127,21 +1131,30 @@ function changePage(page) {
 function showPage(page) {
     // Show one post per page: highest ID (most recent) on page 1, lowest ID (oldest) on last page
     const totalPosts = allPosts.length;
-    const postIndex = totalPosts - page; // Page 1 shows last post (highest ID), Page 2 shows second-to-last post
     
-    console.log(`Showing page ${page}, post index ${postIndex} (post ${postIndex + 1})`); // Debug log
+    // Sort posts by ID in descending order (highest ID first)
+    const sortedPosts = [...allPosts].sort((a, b) => {
+        const aId = parseInt(a.id.replace('post-', ''));
+        const bId = parseInt(b.id.replace('post-', ''));
+        return bId - aId; // Descending order
+    });
     
-    allPosts.forEach((post, index) => {
-        if (index === postIndex) {
+    // Page 1 shows the first post (highest ID), Page 2 shows the second post (second highest ID)
+    const postToShow = sortedPosts[page - 1];
+    
+    console.log(`Showing page ${page}, post: ${postToShow ? postToShow.id : 'none'}`);
+    
+    allPosts.forEach((post) => {
+        if (post === postToShow) {
             post.style.display = 'block';
             post.style.visibility = 'visible';
             post.style.opacity = '1';
-            console.log(`Showing post ${index + 1}: ${post.querySelector('h3').textContent}`); // Debug log
+            console.log(`Showing post ${post.id}: ${post.querySelector('h3').textContent}`);
         } else {
             post.style.display = 'none';
             post.style.visibility = 'hidden';
             post.style.opacity = '0';
-            console.log(`Hiding post ${index + 1}: ${post.querySelector('h3').textContent}`); // Debug log
+            console.log(`Hiding post ${post.id}: ${post.querySelector('h3').textContent}`);
         }
     });
 }
@@ -1181,13 +1194,20 @@ if (document.getElementById('posts-container')) {
     // Check if there's a hash in the URL and navigate to the correct page
     if (window.location.hash) {
         const postId = window.location.hash.substring(1); // Remove the #
-        const postIndex = allPosts.findIndex(post => post.id === postId);
+        
+        // Sort posts by ID in descending order to find the correct page
+        const sortedPosts = [...allPosts].sort((a, b) => {
+            const aId = parseInt(a.id.replace('post-', ''));
+            const bId = parseInt(b.id.replace('post-', ''));
+            return bId - aId; // Descending order
+        });
+        
+        const postIndex = sortedPosts.findIndex(post => post.id === postId);
         
         if (postIndex !== -1) {
-            // Calculate page: highest ID = page 1, lowest ID = last page
-            const totalPosts = allPosts.length;
-            const targetPage = totalPosts - postIndex; // Page 1 shows last post (highest ID)
-            console.log(`Hash detected: ${postId}, navigating to page ${targetPage}`); // Debug log
+            // Page 1 shows highest ID, Page 2 shows second highest ID, etc.
+            const targetPage = postIndex + 1;
+            console.log(`Hash detected: ${postId}, navigating to page ${targetPage}`);
             changePage(targetPage);
         }
     }
@@ -1196,13 +1216,20 @@ if (document.getElementById('posts-container')) {
     window.addEventListener('hashchange', function() {
         if (window.location.hash) {
             const postId = window.location.hash.substring(1);
-            const postIndex = allPosts.findIndex(post => post.id === postId);
+            
+            // Sort posts by ID in descending order to find the correct page
+            const sortedPosts = [...allPosts].sort((a, b) => {
+                const aId = parseInt(a.id.replace('post-', ''));
+                const bId = parseInt(b.id.replace('post-', ''));
+                return bId - aId; // Descending order
+            });
+            
+            const postIndex = sortedPosts.findIndex(post => post.id === postId);
             
             if (postIndex !== -1) {
-                // Calculate page: highest ID = page 1, lowest ID = last page
-                const totalPosts = allPosts.length;
-                const targetPage = totalPosts - postIndex; // Page 1 shows last post (highest ID)
-                console.log(`Hash changed to: ${postId}, navigating to page ${targetPage}`); // Debug log
+                // Page 1 shows highest ID, Page 2 shows second highest ID, etc.
+                const targetPage = postIndex + 1;
+                console.log(`Hash changed to: ${postId}, navigating to page ${targetPage}`);
                 
                 // Only change page if it's different from current page to avoid loops
                 if (targetPage !== currentPage) {
