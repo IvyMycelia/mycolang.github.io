@@ -1138,3 +1138,75 @@ function updatePagination() {
 if (document.getElementById('posts-container')) {
     initCommunityPagination();
 }
+
+// Share post functionality
+function sharePost(postId, postTitle) {
+    const postUrl = `${window.location.origin}${window.location.pathname}#${postId}`;
+    
+    // Try to use native sharing if available (mobile)
+    if (navigator.share) {
+        navigator.share({
+            title: `${postTitle} - Myco Community`,
+            text: `Check out this post from the Myco Community: ${postTitle}`,
+            url: postUrl
+        }).catch(err => {
+            // Fallback to clipboard if sharing fails
+            copyToClipboard(postUrl, postTitle);
+        });
+    } else {
+        // Fallback for desktop - copy to clipboard
+        copyToClipboard(postUrl, postTitle);
+    }
+}
+
+function copyToClipboard(url, title) {
+    navigator.clipboard.writeText(url).then(() => {
+        // Show success message
+        showShareMessage('Link copied to clipboard!');
+    }).catch(err => {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = url;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        showShareMessage('Link copied to clipboard!');
+    });
+}
+
+function showShareMessage(message) {
+    // Create or update message element
+    let messageEl = document.getElementById('share-message');
+    if (!messageEl) {
+        messageEl = document.createElement('div');
+        messageEl.id = 'share-message';
+        messageEl.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px var(--shadow-medium);
+            z-index: 1000;
+            font-size: 0.9rem;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s ease;
+        `;
+        document.body.appendChild(messageEl);
+    }
+    
+    messageEl.textContent = message;
+    messageEl.style.opacity = '1';
+    messageEl.style.transform = 'translateX(0)';
+    
+    // Hide message after 3 seconds
+    setTimeout(() => {
+        messageEl.style.opacity = '0';
+        messageEl.style.transform = 'translateX(100%)';
+    }, 3000);
+}

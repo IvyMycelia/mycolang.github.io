@@ -5764,6 +5764,30 @@ body.trans-theme.light-theme {
     font-size: 0.8rem;
 }
 
+.share-btn {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-primary);
+    color: var(--text-secondary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.8rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.5rem;
+}
+
+.share-btn:hover {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    border-color: var(--accent-primary);
+    transform: scale(1.1);
+}
+
 .post-content {
     margin-bottom: 1.5rem;
     line-height: 1.6;
@@ -5866,6 +5890,11 @@ body.trans-theme.light-theme {
     .post-meta {
         flex-direction: column;
         gap: 0.5rem;
+    }
+    
+    .share-btn {
+        margin-left: 0;
+        margin-top: 0.25rem;
     }
     
     .post-actions {
