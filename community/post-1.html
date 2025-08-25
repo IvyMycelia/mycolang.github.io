@@ -230,8 +230,14 @@
     </div>
     
     <script>
+        // Redirect to community page if accessed directly (not embedded)
+        if (window.self === window.top) {
+            // Not embedded, redirect to community page
+            window.location.href = 'https://mycolang.org/community.html#post-1';
+        }
+        
         function sharePost() {
-            const url = 'https://mycolang.org/community/post-1.html';
+            const url = 'https://mycolang.org/community.html#post-1';
             const title = 'Welcome to the Myco Community - Myco Community';
             
             if (navigator.share) {

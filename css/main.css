@@ -6196,6 +6196,27 @@ body.trans-theme.light-theme {
     background: transparent !important;
 }
 
+/* Remove excess spacing from embedded posts */
+#post-embed .post-content {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#post-embed .post-body {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#post-embed .post-text {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#post-embed .post-actions {
+    margin-top: 16px !important;
+    padding: 0 !important;
+}
+
 #post-embed.loading {
     opacity: 0.7;
     transform: scale(0.98);

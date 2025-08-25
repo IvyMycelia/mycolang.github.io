@@ -238,8 +238,14 @@
     </div>
     
     <script>
+        // Redirect to community page if accessed directly (not embedded)
+        if (window.self === window.top) {
+            // Not embedded, redirect to community page
+            window.location.href = 'https://mycolang.org/community.html#post-2';
+        }
+        
         function sharePost() {
-            const url = 'https://mycolang.org/community/post-2.html';
+            const url = 'https://mycolang.org/community.html#post-2';
             const title = 'Codebase Refactor - Splitting Up eval.c - Myco Community';
             
             if (navigator.share) {
@@ -248,7 +254,6 @@
                     url: url
                 });
             } else {
-                // Fallback: copy to clipboard
                 navigator.clipboard.writeText(url).then(() => {
                     alert('Link copied to clipboard!');
                 });
