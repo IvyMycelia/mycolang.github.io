@@ -1152,6 +1152,32 @@ function updatePagination() {
 // Initialize community pagination when page loads
 if (document.getElementById('posts-container')) {
     initCommunityPagination();
+    
+    // Check if there's a hash in the URL and navigate to the correct page
+    if (window.location.hash) {
+        const postId = window.location.hash.substring(1); // Remove the #
+        const postIndex = allPosts.findIndex(post => post.id === postId);
+        
+        if (postIndex !== -1) {
+            const targetPage = Math.floor(postIndex / postsPerPage) + 1;
+            console.log(`Hash detected: ${postId}, navigating to page ${targetPage}`); // Debug log
+            changePage(targetPage);
+        }
+    }
+    
+    // Listen for hash changes (browser back/forward buttons)
+    window.addEventListener('hashchange', function() {
+        if (window.location.hash) {
+            const postId = window.location.hash.substring(1);
+            const postIndex = allPosts.findIndex(post => post.id === postId);
+            
+            if (postIndex !== -1) {
+                const targetPage = Math.floor(postIndex / postsPerPage) + 1;
+                console.log(`Hash changed to: ${postId}, navigating to page ${targetPage}`); // Debug log
+                changePage(targetPage);
+            }
+        }
+    });
 }
 
 // Share post functionality
