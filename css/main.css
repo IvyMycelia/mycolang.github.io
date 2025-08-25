@@ -6168,6 +6168,34 @@ body.trans-theme.light-theme {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Override embedded page backgrounds */
+#post-embed[src*="community/post-"] {
+    background: transparent !important;
+}
+
+/* Ensure embedded content has no background */
+#post-embed body {
+    background: transparent !important;
+}
+
+/* Override any embedded page background colors */
+#post-embed html {
+    background: transparent !important;
+}
+
+#post-embed * {
+    background-color: transparent !important;
+}
+
+/* Only allow specific elements to have backgrounds */
+#post-embed .content-section {
+    background: var(--card-bg) !important;
+}
+
+#post-embed .post-image {
+    background: transparent !important;
+}
+
 #post-embed.loading {
     opacity: 0.7;
     transform: scale(0.98);
