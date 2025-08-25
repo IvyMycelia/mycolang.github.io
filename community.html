@@ -344,9 +344,9 @@
                 // Update embed source
                 embed.src = `community/post-${postNumber}.html`;
                 
-                // Update URL for clean social media embeds
-                const newUrl = `https://mycolang.org/community/post-${postNumber}.html`;
-                window.history.pushState({}, '', newUrl);
+                // Update URL with hash for internal navigation (keeps main page URL)
+                const newUrl = `community.html#post-${postNumber}`;
+                window.history.pushState({postNumber: postNumber}, '', newUrl);
                 
                 // Update current post index
                 currentPostIndex = allPosts.indexOf(postNumber);
@@ -495,10 +495,10 @@
             }
         }
         
-        // Load initial post based on URL or default to first
+        // Load initial post based on URL hash or default to first
         function loadInitialPost() {
-            const url = window.location.href;
-            const postMatch = url.match(/post-(\d+)\.html/);
+            const hash = window.location.hash;
+            const postMatch = hash.match(/#post-(\d+)/);
             
             if (postMatch) {
                 const postNumber = parseInt(postMatch[1]);
@@ -519,9 +519,39 @@
             loadInitialPost();
         });
         
+        // Check if this is a social media crawler
+        function isSocialMediaCrawler() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            return userAgent.includes('facebookexternalhit') || 
+                   userAgent.includes('twitterbot') || 
+                   userAgent.includes('discord') ||
+                   userAgent.includes('whatsapp') ||
+                   userAgent.includes('telegram') ||
+                   userAgent.includes('slack') ||
+                   userAgent.includes('linkedin');
+        }
+        
+        // Handle social media crawlers by redirecting to individual post
+        function handleSocialMediaCrawler() {
+            const hash = window.location.hash;
+            const postMatch = hash.match(/#post-(\d+)/);
+            
+            if (postMatch && isSocialMediaCrawler()) {
+                const postNumber = parseInt(postMatch[1]);
+                // Redirect to individual post for perfect social media embeds
+                window.location.href = `community/post-${postNumber}.html`;
+                return true;
+            }
+            return false;
+        }
+        
         // Initialize when DOM is ready
         document.addEventListener('DOMContentLoaded', function() {
-            detectPosts();
+            // Check if we need to redirect for social media
+            if (!handleSocialMediaCrawler()) {
+                // Normal initialization for regular users
+                detectPosts();
+            }
         });
     </script>
 </head>
