@@ -453,6 +453,15 @@ a:hover {
     right: 0 !important;
     margin: 0 !important;
     padding: 0 !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+}
+
+/* Ensure header container takes full width */
+.header > .container {
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+    max-width: none !important;
 }
 
 /* Force header to span full viewport width */
