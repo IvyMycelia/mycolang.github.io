@@ -6420,15 +6420,15 @@ body.trans-theme.light-theme {
 }
 
 .notification.bob {
-    animation: notificationBob 0.4s ease-in-out;
+    animation: notificationBob 0.4s ease-in-out !important;
 }
 
 @keyframes notificationBob {
     0%, 100% {
-        transform: translateX(0) translateY(0);
+        transform: translateX(0) translateY(0) !important;
     }
     50% {
-        transform: translateX(0) translateY(-8px);
+        transform: translateX(0) translateY(-8px) !important;
     }
 }
 
