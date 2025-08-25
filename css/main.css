@@ -139,21 +139,21 @@ body.trans-theme:not(.light-theme) {
 
 /* Special trans theme enhancements */
 .trans-theme:not(.light-theme) .header {
-    background: linear-gradient(135deg, var(--bg-secondary-trans-dark), var(--bg-tertiary-trans-dark));
+    background: var(--bg-primary); /* Same as body background */
     border-bottom: 2px solid var(--accent-trans-pink);
     box-shadow: 0 4px 20px rgba(255, 105, 180, 0.3);
 }
 
 /* Light trans theme header */
 .trans-theme.light-theme .header {
-    background: linear-gradient(135deg, var(--bg-secondary-trans-light), var(--bg-tertiary-trans-light));
+    background: var(--bg-primary); /* Same as body background */
     border-bottom: 2px solid var(--accent-primary-trans-light);
     box-shadow: 0 4px 20px rgba(236, 72, 153, 0.3);
 }
 
 /* Light theme header */
 .light-theme .header {
-    background: var(--bg-primary-light);
+    background: var(--bg-primary); /* Same as body background */
     border-bottom: 1px solid var(--border-primary-light);
 }
 
@@ -177,7 +177,7 @@ body.trans-theme:not(.light-theme) {
 
 /* Dark theme header (default) */
 .header {
-    background: var(--bg-primary);
+    background: var(--bg-primary); /* Same as body background */
     border-bottom: 1px solid var(--border-primary);
 }
 
