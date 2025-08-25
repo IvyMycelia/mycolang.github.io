@@ -1108,38 +1108,13 @@ function changePage(page) {
     if (page < 1 || page > Math.ceil(allPosts.length / postsPerPage)) return;
     
     currentPage = page;
-    showPage(page);
+    loadAndShowPage(page);
     updatePagination();
-    
-    // Update URL hash to reflect the current post
-    const sortedPosts = [...allPosts].sort((a, b) => {
-        const aId = parseInt(a.id.replace('post-', ''));
-        const bId = parseInt(b.id.replace('post-', ''));
-        return bId - aId; // Descending order
-    });
-    
-    const currentPost = sortedPosts[page - 1];
-    if (currentPost) {
-        // Update URL without triggering hashchange event
-        const newHash = `#${currentPost.id}`;
-        if (window.location.hash !== newHash) {
-            window.history.replaceState(null, null, newHash);
-            console.log(`URL updated to: ${newHash}`);
-        }
-        
-        // Update meta tags for Discord/Google embeds
-        if (typeof updateMetaTagsForPost === 'function') {
-            updateMetaTagsForPost(currentPost.id);
-        }
-    }
     
     // Don't change user's scroll position - let them stay where they are
 }
 
-function showPage(page) {
-    // Show one post per page: highest ID (most recent) on page 1, lowest ID (oldest) on last page
-    const totalPosts = allPosts.length;
-    
+function loadAndShowPage(page) {
     // Sort posts by ID in descending order (highest ID first)
     const sortedPosts = [...allPosts].sort((a, b) => {
         const aId = parseInt(a.id.replace('post-', ''));
@@ -1147,27 +1122,30 @@ function showPage(page) {
         return bId - aId; // Descending order
     });
     
-    console.log('Sorted posts by ID:', sortedPosts.map(p => p.id));
-    console.log('Page requested:', page);
-    
-    // Page 1 shows the first post (highest ID), Page 2 shows the second post (second highest ID)
     const postToShow = sortedPosts[page - 1];
+    if (!postToShow) return;
     
-    console.log(`Showing page ${page}, post: ${postToShow ? postToShow.id : 'none'}`);
+    console.log(`Loading page ${page}, post: ${postToShow.id}`);
     
-    allPosts.forEach((post) => {
-        if (post === postToShow) {
-            post.style.display = 'block';
-            post.style.visibility = 'visible';
-            post.style.opacity = '1';
-            console.log(`Showing post ${post.id}: ${post.querySelector('h3').textContent}`);
-        } else {
-            post.style.display = 'none';
-            post.style.visibility = 'hidden';
-            post.style.opacity = '0';
-            console.log(`Hiding post ${post.id}: ${post.querySelector('h3').textContent}`);
-        }
-    });
+    // Clear the container and load only this post
+    const container = document.getElementById('posts-container');
+    container.innerHTML = '';
+    
+    // Create and display only this post
+    const postElement = createPostElement(postToShow);
+    container.appendChild(postElement);
+    
+    // Update URL hash to reflect the current post
+    const newHash = `#${postToShow.id}`;
+    if (window.location.hash !== newHash) {
+        window.history.replaceState(null, null, newHash);
+        console.log(`URL updated to: ${newHash}`);
+    }
+    
+    // Update meta tags for Discord/Google embeds
+    if (typeof updateMetaTagsForPost === 'function') {
+        updateMetaTagsForPost(postToShow.id);
+    }
 }
 
 function updatePagination() {
@@ -1212,13 +1190,10 @@ async function loadPostsFromJSON() {
         // Store posts globally
         window.allPosts = data.posts;
         
-        // Render all posts initially
-        renderAllPosts();
-        
         // Initialize pagination
         initCommunityPagination();
         
-        // Check for hash navigation after posts are loaded
+        // Check for hash navigation or default to page 1
         if (window.location.hash) {
             const postId = window.location.hash.substring(1);
             const postIndex = window.allPosts.findIndex(post => post.id === postId);
@@ -1226,8 +1201,11 @@ async function loadPostsFromJSON() {
             if (postIndex !== -1) {
                 const targetPage = postIndex + 1;
                 console.log(`Hash detected: ${postId}, navigating to page ${targetPage}`);
-                setTimeout(() => changePage(targetPage), 100);
+                changePage(targetPage);
             }
+        } else {
+            // Default to page 1 (most recent post)
+            changePage(1);
         }
         
         // Listen for hash changes
@@ -1256,16 +1234,7 @@ function handleHashChange() {
     }
 }
 
-// Render all posts to the container
-function renderAllPosts() {
-    const container = document.getElementById('posts-container');
-    container.innerHTML = '';
-    
-    window.allPosts.forEach(post => {
-        const postElement = createPostElement(post);
-        container.appendChild(postElement);
-    });
-}
+
 
 // Create a post element from post data
 function createPostElement(post) {
