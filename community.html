@@ -326,109 +326,86 @@
         
         // Load a specific post
         function loadPost(postNumber) {
-            const embed = document.getElementById('post-embed');
-            if (embed) {
-                // Add fancy loading state with animation
-                embed.classList.add('loading');
-                embed.style.transform = 'scale(0.98)';
-                embed.style.opacity = '0.7';
+            // Add fancy loading state with animation
+            const postContainer = document.getElementById('post-content');
+            postContainer.style.transform = 'scale(0.98)';
+            postContainer.style.opacity = '0.7';
+            postContainer.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+            
+            // Update URL with hash for internal navigation (keeps main page URL)
+            const newUrl = `community.html#post-${postNumber}`;
+            window.history.pushState({postNumber: postNumber}, '', newUrl);
+            
+            // Update current post index
+            currentPostIndex = allPosts.indexOf(postNumber);
+            
+            // Update pagination with new active state
+            updatePaginationForPost(postNumber);
+            
+            // Update navigation button states
+            updateNavigationButtons();
+            
+            // Load the post content directly into the DOM
+            loadPostContent(postNumber).then(() => {
+                // Restore normal state after loading
+                postContainer.style.transform = 'scale(1)';
+                postContainer.style.opacity = '1';
+            });
+        }
+        
+        // Post loading is now handled directly by loadPostContent function
+        // No more embed-related complexity needed
+        
+        // Parse and load post content directly into DOM
+        async function loadPostContent(postNumber) {
+            try {
+                // Show loading state
+                const postContainer = document.getElementById('post-content');
+                postContainer.innerHTML = '<div class="loading-spinner"><div class="spinner-ring"></div><div class="spinner-text">Loading post...</div></div>';
                 
-                // Add loading spinner
-                addLoadingSpinner();
+                // Fetch the post HTML file
+                const response = await fetch(`community/post-${postNumber}.html`);
+                if (!response.ok) {
+                    throw new Error(`Failed to load post ${postNumber}`);
+                }
                 
-                // Store the target post number for the onload handler
-                embed.dataset.targetPost = postNumber;
+                const html = await response.text();
                 
-                // Update embed source
-                embed.src = `community/post-${postNumber}.html`;
+                // Parse the HTML to extract the post content
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
                 
-                // Update URL with hash for internal navigation (keeps main page URL)
-                const newUrl = `community.html#post-${postNumber}`;
-                window.history.pushState({postNumber: postNumber}, '', newUrl);
+                // Extract the post content from the parsed document
+                const postContent = doc.querySelector('.post-content');
+                if (!postContent) {
+                    throw new Error('Post content not found');
+                }
                 
-                // Update current post index
-                currentPostIndex = allPosts.indexOf(postNumber);
+                // Inject the post content into the container
+                postContainer.innerHTML = postContent.innerHTML;
                 
-                // Update pagination with new active state
-                updatePaginationForPost(postNumber);
+                // Add entrance animation
+                postContainer.style.animation = 'postEntrance 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                setTimeout(() => {
+                    postContainer.style.animation = '';
+                }, 600);
                 
-                // Update navigation button states
-                updateNavigationButtons();
+                console.log(`Post ${postNumber} loaded successfully`);
                 
-                // Set up a more robust loading completion handler
-                setupEmbedLoadHandler(embed, postNumber);
+            } catch (error) {
+                console.error('Error loading post:', error);
+                const postContainer = document.getElementById('post-content');
+                postContainer.innerHTML = `
+                    <div class="content-section">
+                        <h3>Error Loading Post</h3>
+                        <p>Sorry, there was an error loading this post. Please try again.</p>
+                        <button onclick="loadPostContent(${postNumber})" class="btn btn-outline">Retry</button>
+                    </div>
+                `;
             }
         }
         
-        // Set up embed load handler with fallback timing
-        function setupEmbedLoadHandler(embed, postNumber) {
-            let loadCompleted = false;
-            
-            // Primary onload handler
-            embed.onload = function() {
-                if (!loadCompleted) {
-                    loadCompleted = true;
-                    completePostLoad(embed, postNumber);
-                }
-            };
-            
-            // Fallback: if onload doesn't fire within 1 second, complete anyway
-            setTimeout(() => {
-                if (!loadCompleted) {
-                    loadCompleted = true;
-                    completePostLoad(embed, postNumber);
-                }
-            }, 1000);
-            
-            // Additional check: monitor for content changes
-            const checkContent = setInterval(() => {
-                if (embed.contentDocument && embed.contentDocument.body) {
-                    const content = embed.contentDocument.body.textContent;
-                    if (content && content.length > 50) { // Basic content check
-                        if (!loadCompleted) {
-                            loadCompleted = true;
-                            clearInterval(checkContent);
-                            completePostLoad(embed, postNumber);
-                        }
-                    }
-                }
-            }, 100);
-            
-            // Clean up interval after 2 seconds
-            setTimeout(() => clearInterval(checkContent), 2000);
-        }
-        
-        // Minimal height adjustment for embedded posts
-        function adjustEmbedHeight() {
-            const embed = document.getElementById('post-embed');
-            if (embed && embed.contentDocument && embed.contentDocument.body) {
-                const contentHeight = embed.contentDocument.body.scrollHeight;
-                embed.style.height = `${contentHeight}px`;
-            }
-        }
-        
-        // Complete the post loading process
-        function completePostLoad(embed, postNumber) {
-            // Animate out loading state
-            embed.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
-            embed.style.transform = 'scale(1)';
-            embed.style.opacity = '1';
-            embed.classList.remove('loading');
-            
-            // Remove loading spinner
-            removeLoadingSpinner();
-            
-            // Add entrance animation for new content
-            embed.style.animation = 'postEntrance 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-            
-            // Clear the animation after it completes
-            setTimeout(() => {
-                embed.style.animation = '';
-            }, 600);
-            
-            // Adjust height to fit content
-            setTimeout(adjustEmbedHeight, 100);
-        }
+        // Post loading completion is now handled within loadPostContent function
         
         // Add loading spinner
         function addLoadingSpinner() {
@@ -694,8 +671,10 @@
                         
                         <!-- Posts Container - Dynamically populated by JavaScript -->
                         <div id="posts-container">
-                            <!-- Posts are embedded dynamically for perfect social media embeds -->
-                            <embed id="post-embed" type="text/html" style="width: 100%; min-height: 600px; border: none; border-radius: 12px;"></embed> 
+                            <!-- Posts will be loaded directly into the DOM for perfect styling control -->
+                            <div id="post-content" class="content-section">
+                                <!-- Post content will be injected here -->
+                            </div>
                         </div>
                         
                         <!-- Pagination -->
