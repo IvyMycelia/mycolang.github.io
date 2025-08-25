@@ -435,7 +435,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Saved trans theme to localStorage');
         } else {
             // Regular themes (dark/light) are stored normally
-            localStorage.setItem('myco-theme', theme);
+        localStorage.setItem('myco-theme', theme);
             // Clear trans theme when regular theme is selected
             localStorage.removeItem('myco-trans-theme');
             console.log('Saved theme to localStorage:', theme, 'and cleared trans theme');
@@ -525,10 +525,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (document.body.classList.contains('trans-theme')) {
             // Trans theme is active - show current variant
             if (document.body.classList.contains('light-theme')) {
-                themeIcon.textContent = '☀';
+            themeIcon.textContent = '☀';
                 themeText.textContent = 'Dark Trans';
                 themeToggle.title = 'Switch to Dark Trans theme (Ctrl+T)';
-            } else {
+        } else {
                 themeIcon.textContent = '☾';
                 themeText.textContent = 'Light Trans';
                 themeToggle.title = 'Switch to Light Trans theme (Ctrl+T)';
@@ -890,7 +890,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             if (overlay.parentNode) {
                 overlay.style.animation = 'overlayFadeOut 0.3s ease forwards';
-                message.style.animation = 'secretHide 0.5s ease forwards';
+            message.style.animation = 'secretHide 0.5s ease forwards';
                 setTimeout(() => {
                     if (overlay.parentNode) overlay.remove();
                     if (message.parentNode) message.remove();
