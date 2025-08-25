@@ -1093,10 +1093,10 @@ function changePage(page) {
     showPage(page);
     updatePagination();
     
-    // Update URL hash for direct linking
-    const activePost = allPosts[(page - 1) * postsPerPage];
-    if (activePost) {
-        window.location.hash = activePost.id;
+    // Smooth scroll to top of posts container instead of jumping to hash
+    const postsContainer = document.getElementById('posts-container');
+    if (postsContainer) {
+        postsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 }
 

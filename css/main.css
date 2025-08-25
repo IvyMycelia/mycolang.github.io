@@ -5744,6 +5744,8 @@ body.trans-theme.light-theme {
     align-items: center;
     flex-wrap: wrap;
     margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
 }
 
 /* Ensure hidden posts are completely hidden */
@@ -5757,21 +5759,28 @@ body.trans-theme.light-theme {
     padding: 0 !important;
 }
 
+/* Ensure visible posts have proper spacing */
+.content-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+}
+
 .share-btn {
     background: var(--bg-tertiary);
     border: 1px solid var(--border-primary);
     color: var(--text-secondary);
     padding: 0.25rem 0.5rem;
-    border-radius: 50%;
+    border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 0.8rem;
-    width: 1.8rem;
-    height: 1.8rem;
+    font-size: 1rem;
+    width: 2rem;
+    height: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-left: 0.5rem;
+    font-weight: 500;
 }
 
 .share-btn:hover {
