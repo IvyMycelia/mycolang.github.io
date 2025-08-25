@@ -200,7 +200,6 @@
             const paginationNumbers = document.querySelector('.pagination-numbers');
             paginationNumbers.innerHTML = '';
             
-            // Smart pagination: show only 4 numbers at a time
             const totalPosts = allPosts.length;
             
             // allPosts is sorted with newest first (highest ID), so:
@@ -208,28 +207,34 @@
             // allPosts[1] = second newest (should be page 2)
             // etc.
             
-            // Calculate which page numbers to show
-            let startPage = 1;
-            let endPage = Math.min(totalPosts, 4);
-            
-            // If we have more than 4 posts, show ellipsis
-            if (totalPosts > 4) {
-                endPage = 4;
-            }
-            
-            // Add visible page numbers (1, 2, 3, 4...)
-            for (let i = startPage; i <= endPage; i++) {
-                // Map page number to post ID: page 1 = newest post, page 2 = second newest, etc.
-                const postId = allPosts[i - 1]; // i-1 because arrays are 0-indexed
-                const isActive = i === 1; // Page 1 (newest post) is always active initially
-                addPageButton(postId, paginationNumbers, isActive);
-            }
-            
-            // Add ellipsis if we have more than 4 posts
-            if (totalPosts > 4) {
-                addEllipsis(paginationNumbers);
-                // Add last page number
-                addPageButton(allPosts[totalPosts - 1], paginationNumbers);
+            // Always show exactly 3 page numbers
+            if (totalPosts <= 3) {
+                // If 3 or fewer posts, show all pages
+                for (let i = 1; i <= totalPosts; i++) {
+                    const postId = allPosts[i - 1];
+                    const isActive = i === 1; // Page 1 (newest post) is always active initially
+                    addPageButton(postId, paginationNumbers, isActive);
+                }
+            } else {
+                // If more than 3 posts, show 3 pages with ellipsis
+                // Always show page 1 (newest)
+                addPageButton(allPosts[0], paginationNumbers, true);
+                
+                // Show ellipsis if there are posts before page 2
+                if (totalPosts > 3) {
+                    addEllipsis(paginationNumbers);
+                }
+                
+                // Show middle page (page 2)
+                addPageButton(allPosts[1], paginationNumbers, false);
+                
+                // Show ellipsis if there are posts after page 2
+                if (totalPosts > 3) {
+                    addEllipsis(paginationNumbers);
+                }
+                
+                // Always show last page (oldest)
+                addPageButton(allPosts[totalPosts - 1], paginationNumbers, false);
             }
             
             // Update navigation button states
@@ -475,39 +480,37 @@
             const totalPosts = allPosts.length;
             const activeIndex = allPosts.indexOf(activePostNumber);
             
-            // Calculate which page numbers to show around the active post
-            // We want to show 4 page numbers when possible
-            let startPage = Math.max(1, activeIndex + 1 - 2); // Center around active post
-            let endPage = Math.min(totalPosts, startPage + 3);
-            
-            // Adjust start if we're near the end
-            if (endPage - startPage < 3 && totalPosts > 4) {
-                startPage = Math.max(1, endPage - 3);
-            }
-            
-            // Add first page if not included
-            if (startPage > 1) {
-                const firstPostId = allPosts[0]; // Newest post
-                addPageButton(firstPostId, paginationNumbers);
-                if (startPage > 2) {
+            // Always show exactly 3 page numbers with ellipsis as needed
+            if (totalPosts <= 3) {
+                // If 3 or fewer posts, show all pages
+                for (let i = 1; i <= totalPosts; i++) {
+                    const postId = allPosts[i - 1];
+                    const isActive = postId === activePostNumber;
+                    addPageButton(postId, paginationNumbers, isActive);
+                }
+            } else {
+                // If more than 3 posts, show 3 pages with ellipsis
+                // Always show page 1 (newest)
+                const firstPostId = allPosts[0];
+                addPageButton(firstPostId, paginationNumbers, firstPostId === activePostNumber);
+                
+                // Show ellipsis if there are posts before page 2
+                if (totalPosts > 3) {
                     addEllipsis(paginationNumbers);
                 }
-            }
-            
-            // Add visible page numbers
-            for (let i = startPage; i <= endPage; i++) {
-                const postId = allPosts[i - 1]; // i-1 because arrays are 0-indexed
-                const isActive = postId === activePostNumber;
-                addPageButton(postId, paginationNumbers, isActive);
-            }
-            
-            // Add last page if not included
-            if (endPage < totalPosts) {
-                if (endPage < totalPosts - 1) {
+                
+                // Show middle page (page 2)
+                const middlePostId = allPosts[1];
+                addPageButton(middlePostId, paginationNumbers, middlePostId === activePostNumber);
+                
+                // Show ellipsis if there are posts after page 2
+                if (totalPosts > 3) {
                     addEllipsis(paginationNumbers);
                 }
-                const lastPostId = allPosts[totalPosts - 1]; // Oldest post
-                addPageButton(lastPostId, paginationNumbers);
+                
+                // Always show last page (oldest)
+                const lastPostId = allPosts[totalPosts - 1];
+                addPageButton(lastPostId, paginationNumbers, lastPostId === activePostNumber);
             }
         }
         
