@@ -1086,7 +1086,7 @@ function initCommunityPagination() {
     
     if (nextBtn) nextBtn.addEventListener('click', () => {
         console.log('Next button clicked, current page:', currentPage);
-        if (currentPage < allPosts.length) {
+        if (currentPage < window.allPosts.length) {
             changePage(currentPage + 1);
         }
     });
@@ -1095,13 +1095,13 @@ function initCommunityPagination() {
 function changePage(page) {
     console.log(`changePage called with page: ${page}`);
     
-    if (!allPosts || allPosts.length === 0) {
+    if (!window.allPosts || window.allPosts.length === 0) {
         console.error('allPosts is not available');
         return;
     }
     
-    if (page < 1 || page > allPosts.length) {
-        console.log(`Page ${page} is out of range (1-${allPosts.length})`);
+    if (page < 1 || page > window.allPosts.length) {
+        console.log(`Page ${page} is out of range (1-${window.allPosts.length})`);
         return;
     }
     
@@ -1121,7 +1121,7 @@ function loadAndShowPage(page) {
     console.log(`loadAndShowPage called with page: ${page}`);
     
     // Sort posts by ID in descending order (highest ID first)
-    const sortedPosts = [...allPosts].sort((a, b) => {
+    const sortedPosts = [...window.allPosts].sort((a, b) => {
         const aId = parseInt(a.id.replace('post-', ''));
         const bId = parseInt(b.id.replace('post-', ''));
         return bId - aId; // Descending order
@@ -1177,7 +1177,7 @@ function loadAndShowPage(page) {
 }
 
 function updatePagination() {
-    const totalPages = allPosts.length;
+    const totalPages = window.allPosts.length;
     const prevBtn = document.getElementById('prev-page');
     const nextBtn = document.getElementById('next-page');
     const paginationNumbers = document.querySelector('.pagination-numbers');
