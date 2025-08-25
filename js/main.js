@@ -408,6 +408,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function showNotification(message, type = 'info', duration = 5000) {
+        console.log('Showing notification:', message, 'for', duration, 'ms');
+        
         // Remove any existing notifications
         const existingNotifications = document.querySelectorAll('.notification');
         existingNotifications.forEach(notification => {
@@ -424,27 +426,33 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Trigger smooth float-in animation
         setTimeout(() => {
+            console.log('Adding show class');
             notification.classList.add('show');
         }, 10);
         
         // Add gentle bob effect after floating in
         setTimeout(() => {
+            console.log('Adding bob effect');
             notification.classList.add('bob');
         }, 400);
         
         // Remove bob effect
         setTimeout(() => {
+            console.log('Removing bob effect');
             notification.classList.remove('bob');
         }, 800);
         
         // Auto-remove after duration with smooth float-out
         setTimeout(() => {
+            console.log('Starting exit animation');
             notification.classList.remove('show');
+            // Wait for exit animation to complete before removing from DOM
             setTimeout(() => {
+                console.log('Removing notification from DOM');
                 if (notification.parentNode) {
                     notification.remove();
                 }
-            }, 600); // Longer exit animation
+            }, 800); // Longer exit animation to ensure smooth transition
         }, duration);
         
         return notification;
