@@ -5892,7 +5892,8 @@ body.trans-theme.light-theme {
     border: 1px solid var(--border-primary);
     transition: all 0.3s ease;
     object-fit: cover;
-    width: 100%; /* Ensure image fills the container */
+    width: 100% !important; /* Ensure image fills the container */
+    display: block !important; /* Ensure proper display */
 }
 
 .post-attachment:hover {
@@ -5916,28 +5917,34 @@ body.trans-theme.light-theme {
     border-radius: 12px !important;
 }
 
+/* Reduce spacing between header and first post */
+#posts-container .content-section:first-child {
+    margin-top: 1rem !important; /* Reduced spacing from header */
+}
+
 #posts-container .content-section .post-content {
     flex: 1 !important; /* Force flex grow */
     min-width: 0 !important; /* Allow text to shrink */
     padding-right: 1rem !important; /* Increased breathing room */
-    max-width: 50% !important; /* Text takes up left half */
+    width: 50% !important; /* Text takes up exactly left half */
     flex-shrink: 0 !important; /* Prevent text from shrinking */
     order: 1 !important; /* Ensure text appears first */
     /* Override any conflicting styles */
     display: block !important;
-    width: auto !important;
+    max-width: none !important; /* Remove max-width constraint */
 }
 
 #posts-container .content-section .post-image {
     flex-shrink: 0 !important; /* Prevent image from shrinking */
-    width: 50% !important; /* Image takes up right half */
-    margin-left: auto !important; /* Push image to the right */
+    width: 50% !important; /* Image takes up exactly right half */
+    margin-left: 0 !important; /* Remove auto margin */
     display: flex !important;
     justify-content: center !important;
     align-items: flex-start !important;
     order: 2 !important; /* Ensure image appears after text */
     /* Override any conflicting styles */
     text-align: center !important;
+    padding-left: 0.5rem !important; /* Add some spacing from text */
 }
 
 /* Fallback for posts without images - text takes full width - ONLY for community posts */
@@ -5952,6 +5959,7 @@ body.trans-theme.light-theme {
     align-items: flex-start !important;
     gap: 2rem !important;
     flex-wrap: nowrap !important;
+    justify-content: space-between !important; /* Ensure proper distribution */
 }
 
 /* Alternative fallback for browsers that don't support :has() - ONLY for community posts */
