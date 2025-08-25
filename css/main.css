@@ -5977,7 +5977,7 @@ body.trans-theme.light-theme {
 /* Text and image side by side using simple float */
 #posts-container .content-section .post-body .post-text {
     float: left !important;
-    width: 50% !important; /* Text takes up left half */
+    width: 50% !important; /* Text takes up left half when image exists */
     padding-right: 1rem !important; /* Breathing room from image */
 }
 
@@ -5987,6 +5987,13 @@ body.trans-theme.light-theme {
     text-align: center !important;
 }
 
+/* When no image exists, text takes full width */
+#posts-container .content-section .post-body:not(:has(.post-image)) .post-text {
+    float: none !important;
+    width: 100% !important;
+    padding-right: 0 !important;
+}
+
 /* Post actions below text/image - MAXIMUM SPECIFICITY */
 #posts-container .content-section .post-actions {
     clear: both !important; /* Clear the floats */
@@ -5994,17 +6001,7 @@ body.trans-theme.light-theme {
     margin-bottom: 0 !important; /* No bottom margin */
 }
 
-/* Fallback for posts without images - text takes full width - ONLY for community posts */
-#posts-container .content-section:not(:has(.post-image)) .post-content {
-    width: 100% !important;
-}
 
-/* Remove conflicting flexbox rules - use simple float layout */
-
-/* Alternative fallback for browsers that don't support :has() - ONLY for community posts */
-#posts-container .content-section.no-image .post-content {
-    width: 100%;
-}
 
 /* Mobile responsive post images and layout */
 @media (max-width: 768px) {
@@ -6015,6 +6012,7 @@ body.trans-theme.light-theme {
     }
     
     #posts-container .content-section .post-body .post-text {
+        float: none !important;
         width: 100% !important;
         padding-right: 0 !important;
     }
