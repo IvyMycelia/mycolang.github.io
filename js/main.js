@@ -3,7 +3,6 @@
 // Community posts pagination - Global scope
 let currentPage = 1;
 const postsPerPage = 1; // Show only one post at a time
-let allPosts = [];
 
 document.addEventListener('DOMContentLoaded', function() {
     // Theme management
@@ -1239,6 +1238,11 @@ async function loadPostsFromJSON() {
         console.log('window.allPosts type:', typeof window.allPosts);
         console.log('window.allPosts length:', window.allPosts ? window.allPosts.length : 'undefined');
         
+        // Test immediate access
+        console.log('Immediate test - window.allPosts:', window.allPosts);
+        console.log('Immediate test - typeof:', typeof window.allPosts);
+        console.log('Immediate test - length:', window.allPosts ? window.allPosts.length : 'undefined');
+        
         // Initialize pagination
         initCommunityPagination();
         
@@ -1264,6 +1268,9 @@ async function loadPostsFromJSON() {
         // Show the target page
         console.log(`Loading page ${targetPage}...`);
         console.log('About to call changePage, window.allPosts available:', !!window.allPosts);
+        console.log('Final test before changePage - window.allPosts:', window.allPosts);
+        console.log('Final test before changePage - typeof:', typeof window.allPosts);
+        console.log('Final test before changePage - length:', window.allPosts ? window.allPosts.length : 'undefined');
         changePage(targetPage);
         
         // Listen for hash changes
