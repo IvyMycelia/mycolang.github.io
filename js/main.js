@@ -1075,12 +1075,19 @@ function initCommunityPagination() {
     const nextBtn = document.getElementById('next-page');
     const pageNumbers = document.querySelectorAll('.page-number');
     
-    if (prevBtn) prevBtn.addEventListener('click', () => changePage(currentPage - 1));
-    if (nextBtn) nextBtn.addEventListener('click', () => changePage(currentPage + 1));
+    if (prevBtn) prevBtn.addEventListener('click', () => {
+        console.log('Previous button clicked, current page:', currentPage);
+        changePage(currentPage - 1);
+    });
+    if (nextBtn) nextBtn.addEventListener('click', () => {
+        console.log('Next button clicked, current page:', currentPage);
+        changePage(currentPage + 1);
+    });
     
     pageNumbers.forEach(number => {
         number.addEventListener('click', () => {
             const page = parseInt(number.dataset.page);
+            console.log('Page number clicked:', page, 'current page:', currentPage);
             changePage(page);
         });
     });
@@ -1102,14 +1109,11 @@ function changePage(page) {
         const newHash = `#${currentPost.id}`;
         if (window.location.hash !== newHash) {
             window.history.replaceState(null, null, newHash);
+            console.log(`URL updated to: ${newHash}`); // Debug log
         }
     }
     
-    // Smooth scroll to top of posts container
-    const postsContainer = document.getElementById('posts-container');
-    if (postsContainer) {
-        postsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    // Don't change user's scroll position - let them stay where they are
 }
 
 function showPage(page) {
@@ -1192,7 +1196,11 @@ if (document.getElementById('posts-container')) {
                 const totalPosts = allPosts.length;
                 const targetPage = Math.ceil((totalPosts - postIndex) / postsPerPage);
                 console.log(`Hash changed to: ${postId}, navigating to page ${targetPage} (reversed order)`); // Debug log
-                changePage(targetPage);
+                
+                // Only change page if it's different from current page to avoid loops
+                if (targetPage !== currentPage) {
+                    changePage(targetPage);
+                }
             }
         }
     });
