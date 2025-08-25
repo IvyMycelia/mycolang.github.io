@@ -1200,59 +1200,127 @@ function updatePagination() {
 
 // Initialize community pagination when page loads
 if (document.getElementById('posts-container')) {
-    initCommunityPagination();
-    
-    // Check if there's a hash in the URL and navigate to the correct page
-    if (window.location.hash) {
-        const postId = window.location.hash.substring(1); // Remove the #
+    loadPostsFromJSON();
+}
+
+// Load posts from JSON and initialize community pagination
+async function loadPostsFromJSON() {
+    try {
+        const response = await fetch('Assets/posts.json');
+        const data = await response.json();
         
-        // Sort posts by ID in descending order to find the correct page
-        const sortedPosts = [...allPosts].sort((a, b) => {
-            const aId = parseInt(a.id.replace('post-', ''));
-            const bId = parseInt(b.id.replace('post-', ''));
-            return bId - aId; // Descending order
-        });
+        // Store posts globally
+        window.allPosts = data.posts;
         
-        const postIndex = sortedPosts.findIndex(post => post.id === postId);
+        // Render all posts initially
+        renderAllPosts();
         
-        if (postIndex !== -1) {
-            // Page 1 shows highest ID, Page 2 shows second highest ID, etc.
-            const targetPage = postIndex + 1;
-            console.log(`Hash detected: ${postId}, navigating to page ${targetPage}`);
-            
-            // Don't change page immediately - let the initial page load complete first
-            setTimeout(() => {
-                changePage(targetPage);
-            }, 100);
-        }
-    }
-    
-    // Listen for hash changes (browser back/forward buttons)
-    window.addEventListener('hashchange', function() {
+        // Initialize pagination
+        initCommunityPagination();
+        
+        // Check for hash navigation after posts are loaded
         if (window.location.hash) {
             const postId = window.location.hash.substring(1);
-            
-            // Sort posts by ID in descending order to find the correct page
-            const sortedPosts = [...allPosts].sort((a, b) => {
-                const aId = parseInt(a.id.replace('post-', ''));
-                const bId = parseInt(b.id.replace('post-', ''));
-                return bId - aId; // Descending order
-            });
-            
-            const postIndex = sortedPosts.findIndex(post => post.id === postId);
+            const postIndex = window.allPosts.findIndex(post => post.id === postId);
             
             if (postIndex !== -1) {
-                // Page 1 shows highest ID, Page 2 shows second highest ID, etc.
                 const targetPage = postIndex + 1;
-                console.log(`Hash changed to: ${postId}, navigating to page ${targetPage}`);
-                
-                // Only change page if it's different from current page to avoid loops
-                if (targetPage !== currentPage) {
-                    changePage(targetPage);
-                }
+                console.log(`Hash detected: ${postId}, navigating to page ${targetPage}`);
+                setTimeout(() => changePage(targetPage), 100);
             }
         }
+        
+        // Listen for hash changes
+        window.addEventListener('hashchange', handleHashChange);
+        
+    } catch (error) {
+        console.error('Error loading posts:', error);
+        document.getElementById('posts-container').innerHTML = '<p>Error loading posts. Please refresh the page.</p>';
+    }
+}
+
+// Handle hash changes for browser navigation
+function handleHashChange() {
+    if (window.location.hash) {
+        const postId = window.location.hash.substring(1);
+        const postIndex = window.allPosts.findIndex(post => post.id === postId);
+        
+        if (postIndex !== -1) {
+            const targetPage = postIndex + 1;
+            console.log(`Hash changed to: ${postId}, navigating to page ${targetPage}`);
+            
+            if (targetPage !== currentPage) {
+                changePage(targetPage);
+            }
+        }
+    }
+}
+
+// Render all posts to the container
+function renderAllPosts() {
+    const container = document.getElementById('posts-container');
+    container.innerHTML = '';
+    
+    window.allPosts.forEach(post => {
+        const postElement = createPostElement(post);
+        container.appendChild(postElement);
     });
+}
+
+// Create a post element from post data
+function createPostElement(post) {
+    const postDiv = document.createElement('div');
+    postDiv.id = post.id;
+    postDiv.className = 'content-section';
+    
+    // Post header
+    const postContent = document.createElement('div');
+    postContent.className = 'post-content';
+    postContent.innerHTML = `
+        <h3>${post.title}</h3>
+        <p><strong>Date:</strong> ${post.date}</p>
+        <p><strong>Author:</strong> ${post.author}</p>
+    `;
+    
+    // Post body with text and optional image
+    const postBody = document.createElement('div');
+    postBody.className = 'post-body';
+    
+    const postText = document.createElement('div');
+    postText.className = 'post-text';
+    post.content.forEach(paragraph => {
+        const p = document.createElement('p');
+        p.innerHTML = paragraph;
+        postText.appendChild(p);
+    });
+    
+    postBody.appendChild(postText);
+    
+    // Add image if present
+    if (post.image) {
+        const postImage = document.createElement('div');
+        postImage.className = 'post-image';
+        const img = document.createElement('img');
+        img.src = post.image;
+        img.alt = post.imageAlt || post.title;
+        img.className = 'post-attachment';
+        postImage.appendChild(img);
+        postBody.appendChild(postImage);
+    }
+    
+    // Post actions
+    const postActions = document.createElement('div');
+    postActions.className = 'post-actions';
+    postActions.innerHTML = `
+        <a href="https://discord.gg/CR8xcKb3zM" target="_blank" rel="noopener" class="btn btn-outline">Discuss on Discord</a>
+        <button class="share-btn" title="Share this post" onclick="sharePost('${post.id}', '${post.shareTitle}')">↗ Share</button>
+    `;
+    
+    postDiv.appendChild(postContent);
+    postDiv.appendChild(postBody);
+    postDiv.appendChild(postActions);
+    
+    return postDiv;
 }
 
 // Share post functionality

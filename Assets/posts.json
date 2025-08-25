@@ -1,0 +1,43 @@
+{
+  "posts": [
+    {
+      "id": "post-3",
+      "title": "Development Update - Continuing Without Modularization",
+      "date": "25th August 2025",
+      "author": "Ivy Mycelia",
+      "content": [
+        "After attempting to split up and modularize eval.c, I've found that properly linking everything together is proving more challenging than expected. For now, I'll be continuing Myco development without the modularization approach.",
+        "Currently working on getting memory management to be completely working and safe. This includes proper memory allocation, deallocation, and ensuring there are no memory leaks or unsafe memory access patterns.",
+        "The focus is on stability and reliability rather than code organization for the time being."
+      ],
+      "image": null,
+      "shareTitle": "Development Update - Continuing Without Modularization"
+    },
+    {
+      "id": "post-2",
+      "title": "Codebase Refactor - Splitting Up eval.c",
+      "date": "24th August 2025",
+      "author": "Ivy Mycelia",
+      "content": [
+        "I've been working on refactoring the codebase to make it more modular and easier to maintain. I've split up eval.c into multiple files, and I'm currently working on bringing Myco back to full functionality.",
+        "Once I've finished this refactor, I'll begin working on v1.7.x."
+      ],
+      "image": "https://mycolang.org/Assets/post-2.png",
+      "imageAlt": "LoC of eval.c - Codebase Refactor",
+      "shareTitle": "Codebase Refactor - Splitting Up eval.c"
+    },
+    {
+      "id": "post-1",
+      "title": "Welcome to the Myco Community",
+      "date": "21th August 2025",
+      "author": "Ivy Mycelia",
+      "content": [
+        "Welcome to the Myco programming language community! This is where you'll find the latest updates on development progress, new features, and community discussions.",
+        "Feel free to join our Discord server to connect with other developers and stay updated on all things Myco!"
+      ],
+      "image": "https://mycolang.org/Assets/Myco_Purple.png",
+      "imageAlt": "Myco Programming Language Logo",
+      "shareTitle": "Welcome to the Myco Community"
+    }
+  ]
+}
