@@ -207,7 +207,7 @@
             // allPosts[1] = second newest (should be page 2)
             // etc.
             
-            // Always show exactly 3 page numbers
+            // Show current page and surrounding pages with ellipsis
             if (totalPosts <= 3) {
                 // If 3 or fewer posts, show all pages
                 for (let i = 1; i <= totalPosts; i++) {
@@ -216,25 +216,9 @@
                     addPageButton(postId, paginationNumbers, isActive);
                 }
             } else {
-                // If more than 3 posts, show 3 pages with ellipsis
-                // Always show page 1 (newest)
-                addPageButton(allPosts[0], paginationNumbers, true);
-                
-                // Show ellipsis if there are posts before page 2
-                if (totalPosts > 3) {
-                    addEllipsis(paginationNumbers);
-                }
-                
-                // Show middle page (page 2)
-                addPageButton(allPosts[1], paginationNumbers, false);
-                
-                // Show ellipsis if there are posts after page 2
-                if (totalPosts > 3) {
-                    addEllipsis(paginationNumbers);
-                }
-                
-                // Always show last page (oldest)
-                addPageButton(allPosts[totalPosts - 1], paginationNumbers, false);
+                // Show current page and surrounding pages
+                const currentPage = 1; // Start with page 1 (newest post)
+                showPaginationRange(currentPage, totalPosts, paginationNumbers);
             }
             
             // Update navigation button states
@@ -472,6 +456,47 @@
             }
         }
         
+        // Show pagination range with current page and surrounding pages
+        function showPaginationRange(currentPage, totalPosts, paginationNumbers, activePostNumber = null) {
+            // Show current page and 2 surrounding pages (total of 3 visible pages)
+            let startPage = Math.max(1, currentPage - 1);
+            let endPage = Math.min(totalPosts, currentPage + 1);
+            
+            // Adjust to always show 3 pages when possible
+            if (endPage - startPage < 2) {
+                if (startPage === 1) {
+                    endPage = Math.min(totalPosts, startPage + 2);
+                } else if (endPage === totalPosts) {
+                    startPage = Math.max(1, endPage - 2);
+                }
+            }
+            
+            // Add first page if not included
+            if (startPage > 1) {
+                const firstPostId = allPosts[0];
+                addPageButton(firstPostId, paginationNumbers, firstPostId === activePostNumber);
+                if (startPage > 2) {
+                    addEllipsis(paginationNumbers);
+                }
+            }
+            
+            // Add visible page numbers
+            for (let i = startPage; i <= endPage; i++) {
+                const postId = allPosts[i - 1];
+                const isActive = postId === activePostNumber;
+                addPageButton(postId, paginationNumbers, isActive);
+            }
+            
+            // Add last page if not included
+            if (endPage < totalPosts) {
+                if (endPage < totalPosts - 1) {
+                    addEllipsis(paginationNumbers);
+                }
+                const lastPostId = allPosts[totalPosts - 1];
+                addPageButton(lastPostId, paginationNumbers, lastPostId === activePostNumber);
+            }
+        }
+        
         // Update pagination to show current post in context
         function updatePaginationForPost(activePostNumber) {
             const paginationNumbers = document.querySelector('.pagination-numbers');
@@ -480,7 +505,9 @@
             const totalPosts = allPosts.length;
             const activeIndex = allPosts.indexOf(activePostNumber);
             
-            // Always show exactly 3 page numbers with ellipsis as needed
+            // Calculate current page number (1-based)
+            const currentPage = activeIndex + 1;
+            
             if (totalPosts <= 3) {
                 // If 3 or fewer posts, show all pages
                 for (let i = 1; i <= totalPosts; i++) {
@@ -489,28 +516,8 @@
                     addPageButton(postId, paginationNumbers, isActive);
                 }
             } else {
-                // If more than 3 posts, show 3 pages with ellipsis
-                // Always show page 1 (newest)
-                const firstPostId = allPosts[0];
-                addPageButton(firstPostId, paginationNumbers, firstPostId === activePostNumber);
-                
-                // Show ellipsis if there are posts before page 2
-                if (totalPosts > 3) {
-                    addEllipsis(paginationNumbers);
-                }
-                
-                // Show middle page (page 2)
-                const middlePostId = allPosts[1];
-                addPageButton(middlePostId, paginationNumbers, middlePostId === activePostNumber);
-                
-                // Show ellipsis if there are posts after page 2
-                if (totalPosts > 3) {
-                    addEllipsis(paginationNumbers);
-                }
-                
-                // Always show last page (oldest)
-                const lastPostId = allPosts[totalPosts - 1];
-                addPageButton(lastPostId, paginationNumbers, lastPostId === activePostNumber);
+                // Show current page and surrounding pages
+                showPaginationRange(currentPage, totalPosts, paginationNumbers, activePostNumber);
             }
         }
         
