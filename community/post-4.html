@@ -120,6 +120,7 @@
             display: flex;
             gap: 12px;
             align-items: center;
+            flex-wrap: nowrap;
         }
         
         .share-btn {
@@ -169,6 +170,12 @@
         .btn-outline:hover {
             background: var(--accent-color);
             color: white;
+        }
+        
+        /* Ensure Discord button doesn't wrap */
+        .post-actions .btn-outline {
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         
         /* Responsive design */
@@ -236,14 +243,15 @@
             } else {
                 // Fallback: copy to clipboard
                 navigator.clipboard.writeText(url).then(() => {
-                    // Show notification instead of alert
-                    if (window.parent && window.parent.showNotification) {
-                        window.parent.showNotification('Link copied to clipboard!', 'success');
-                    } else if (window.showNotification) {
-                        // Try to use global notification if available
-                        window.showNotification('Link copied to clipboard!', 'success');
+                    // Use postMessage to communicate with parent window
+                    if (window.parent && window.parent !== window) {
+                        window.parent.postMessage({
+                            type: 'showNotification',
+                            message: 'Link copied to clipboard!',
+                            notificationType: 'success'
+                        }, '*');
                     } else {
-                        // Final fallback to alert
+                        // Fallback to alert if not embedded
                         alert('Link copied to clipboard!');
                     }
                 });

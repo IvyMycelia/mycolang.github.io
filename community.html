@@ -356,6 +356,13 @@
         // Post loading is now handled directly by loadPostContent function
         // No more embed-related complexity needed
         
+        // Listen for postMessage from embedded posts to show notifications
+        window.addEventListener('message', function(event) {
+            if (event.data.type === 'showNotification') {
+                showNotification(event.data.message, event.data.notificationType || 'info');
+            }
+        });
+        
         // Parse and load post content directly into DOM
         async function loadPostContent(postNumber) {
             try {
