@@ -5917,7 +5917,7 @@ body.trans-theme.light-theme {
     margin-bottom: 0.5rem !important; /* Minimal spacing after last post */
 }
 
-/* Reduce spacing between header and ALL posts */
+/* Reduce spacing between header and ALL posts - target by ID for pagination */
 #posts-container .content-section {
     margin-top: 0.25rem !important; /* Minimal spacing from header for all posts */
 }
@@ -5927,14 +5927,9 @@ body.trans-theme.light-theme {
     margin-bottom: 0.5rem !important; /* Reduced spacing below paragraph */
 }
 
-/* Reduce spacing between posts */
+/* Reduce spacing after ANY post (before pagination) - works for both pages */
 #posts-container .content-section {
-    margin-bottom: 1rem !important; /* Reduced spacing between posts */
-}
-
-/* Reduce spacing after the last post (before pagination) */
-#posts-container .content-section:last-child {
-    margin-bottom: 0.5rem !important; /* Minimal spacing before pagination */
+    margin-bottom: 0.5rem !important; /* Minimal spacing before pagination for any post */
 }
 
 /* Reduce spacing above pagination */
