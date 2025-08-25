@@ -5922,21 +5922,25 @@ body.trans-theme.light-theme {
     margin-bottom: 0.5rem !important; /* Reduced spacing below paragraph */
 }
 
-/* Fix spacing for the posts container itself */
+/* Container handles ALL spacing consistently */
 #posts-container {
-    margin-top: 0.25rem !important; /* Minimal spacing from header */
-    margin-bottom: 0.5rem !important; /* Minimal spacing before pagination */
+    margin-top: 0.25rem !important;     /* Consistent top spacing from header */
+    margin-bottom: 0.5rem !important;   /* Consistent bottom spacing to pagination */
 }
 
-/* Ensure individual posts don't add extra spacing */
+/* Individual posts get NO margins - container handles all spacing */
 #posts-container .content-section {
-    margin-top: 0 !important; /* No extra top margin */
-    margin-bottom: 0 !important; /* No extra bottom margin */
+    margin: 0 !important;                /* Remove all individual margins */
 }
 
 /* Reduce spacing below the "Stay informed..." paragraph */
 #latest-updates > p {
-    margin-bottom: 0.25rem !important; /* Minimal spacing below paragraph */
+    margin-bottom: 0.25rem !important;  /* Minimal spacing below paragraph */
+}
+
+/* Pagination gets consistent spacing */
+.pagination {
+    margin-top: 0.5rem !important;      /* Consistent spacing above pagination */
 }
 
 /* Reduce spacing above pagination */
@@ -5988,15 +5992,7 @@ body.trans-theme.light-theme {
     width: 100% !important;
 }
 
-/* Force flexbox layout for community posts - highest specificity */
-#posts-container .content-section .post-body {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: flex-start !important;
-    gap: 2rem !important;
-    flex-wrap: nowrap !important;
-    justify-content: space-between !important;
-}
+/* Remove conflicting flexbox rules - use simple float layout */
 
 /* Alternative fallback for browsers that don't support :has() - ONLY for community posts */
 #posts-container .content-section.no-image .post-content {
@@ -6008,14 +6004,12 @@ body.trans-theme.light-theme {
     #posts-container .content-section .post-body .post-image {
         float: none !important; /* Remove float on mobile */
         width: 100% !important;
-        margin-left: 0 !important;
-        margin-bottom: 1rem !important;
         text-align: center !important;
     }
     
     #posts-container .content-section .post-body .post-text {
         width: 100% !important;
-        margin-right: 0 !important;
+        padding-right: 0 !important;
     }
     
     .post-attachment {
