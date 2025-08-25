@@ -1071,20 +1071,16 @@ function initCommunityPagination() {
     
     if (!postsContainer || !pagination) return;
     
-    // Get all posts (now using content-section instead of .post class)
-    allPosts = Array.from(postsContainer.querySelectorAll('.content-section'));
-    
-    console.log('Found posts:', allPosts.map(p => p.id));
-    console.log('Total posts found:', allPosts.length);
+    // Posts are now loaded from JSON, not from DOM
+    // allPosts is set globally in loadPostsFromJSON()
     
     // Initialize pagination
     updatePagination();
-    showPage(1);
+    // Don't call showPage here - it will be called by changePage() in loadPostsFromJSON
     
-    // Add event listeners
+    // Add event listeners for navigation buttons
     const prevBtn = document.getElementById('prev-page');
     const nextBtn = document.getElementById('next-page');
-    const pageNumbers = document.querySelectorAll('.page-number');
     
     if (prevBtn) prevBtn.addEventListener('click', () => {
         console.log('Previous button clicked, current page:', currentPage);
@@ -1093,14 +1089,6 @@ function initCommunityPagination() {
     if (nextBtn) nextBtn.addEventListener('click', () => {
         console.log('Next button clicked, current page:', currentPage);
         changePage(currentPage + 1);
-    });
-    
-    pageNumbers.forEach(number => {
-        number.addEventListener('click', () => {
-            const page = parseInt(number.dataset.page);
-            console.log('Page number clicked:', page, 'current page:', currentPage);
-            changePage(page);
-        });
     });
 }
 
