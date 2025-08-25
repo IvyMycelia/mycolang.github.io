@@ -424,27 +424,15 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add to page
         document.body.appendChild(notification);
         
-        // Trigger smooth float-in animation
+        // Trigger smooth slide-in animation
         setTimeout(() => {
-            console.log('Adding show class');
+            console.log('Adding show class - sliding in');
             notification.classList.add('show');
         }, 10);
         
-        // Add gentle bob effect after floating in
+        // Auto-remove after duration with smooth slide-out
         setTimeout(() => {
-            console.log('Adding bob effect');
-            notification.classList.add('bob');
-        }, 400);
-        
-        // Remove bob effect
-        setTimeout(() => {
-            console.log('Removing bob effect');
-            notification.classList.remove('bob');
-        }, 800);
-        
-        // Auto-remove after duration with smooth float-out
-        setTimeout(() => {
-            console.log('Starting exit animation');
+            console.log('Starting slide-out animation');
             notification.classList.remove('show');
             // Wait for exit animation to complete before removing from DOM
             setTimeout(() => {
@@ -452,7 +440,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (notification.parentNode) {
                     notification.remove();
                 }
-            }, 1000); // Even longer exit animation to ensure smooth transition
+            }, 500); // Exit animation duration matches CSS transition
         }, duration);
         
         return notification;
@@ -617,7 +605,66 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Old showNotification function removed - now using the animated version above
+    function showNotification(message, type = 'info') {
+        // Remove existing notifications
+        const existingNotifications = document.querySelectorAll('.notification');
+        existingNotifications.forEach(notification => notification.remove());
+        
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = `notification notification-${type}`;
+        notification.innerHTML = `
+            <span class="notification-message">${message}</span>
+            <button class="notification-close">&times;</button>
+        `;
+        
+        // Add styles
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-primary);
+            border-radius: 8px;
+            padding: 12px 20px;
+            box-shadow: 0 4px 15px var(--shadow-medium);
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: notificationSlideIn 0.3s ease;
+            max-width: 300px;
+        `;
+        
+        // Add close button functionality
+        const closeBtn = notification.querySelector('.notification-close');
+        closeBtn.style.cssText = `
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0;
+            margin-left: auto;
+        `;
+        
+        closeBtn.addEventListener('click', () => {
+            notification.style.animation = 'notificationSlideOut 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        });
+        
+        // Add to page
+        document.body.appendChild(notification);
+        
+        // Auto-remove after 3 seconds
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.style.animation = 'notificationSlideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }
+        }, 3000);
+    }
     
     // Floating particles effect
     function createFloatingParticles() {

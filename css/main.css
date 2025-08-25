@@ -6405,9 +6405,9 @@ body.trans-theme.light-theme {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     border: 1px solid var(--border-color);
     z-index: 10000;
-    transform: translateX(100%) translateY(-20px);
+    transform: translateX(100%);
     opacity: 0;
-    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     max-width: 300px;
     font-size: 0.9rem;
     font-weight: 500;
@@ -6415,23 +6415,10 @@ body.trans-theme.light-theme {
 }
 
 .notification.show {
-    transform: translateX(0) translateY(0) !important;
+    transform: translateX(0) !important;
     opacity: 1 !important;
     visibility: visible !important;
     display: block !important;
-}
-
-.notification.bob {
-    animation: notificationBob 0.4s ease-in-out !important;
-}
-
-@keyframes notificationBob {
-    0%, 100% {
-        transform: translateX(0) translateY(0) !important;
-    }
-    50% {
-        transform: translateX(0) translateY(-8px) !important;
-    }
 }
 
 .notification.success {
