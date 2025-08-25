@@ -398,6 +398,15 @@
             setTimeout(() => clearInterval(checkContent), 2000);
         }
         
+        // Minimal height adjustment for embedded posts
+        function adjustEmbedHeight() {
+            const embed = document.getElementById('post-embed');
+            if (embed && embed.contentDocument && embed.contentDocument.body) {
+                const contentHeight = embed.contentDocument.body.scrollHeight;
+                embed.style.height = `${contentHeight}px`;
+            }
+        }
+        
         // Complete the post loading process
         function completePostLoad(embed, postNumber) {
             // Animate out loading state
@@ -416,6 +425,9 @@
             setTimeout(() => {
                 embed.style.animation = '';
             }, 600);
+            
+            // Adjust height to fit content
+            setTimeout(adjustEmbedHeight, 100);
         }
         
         // Add loading spinner

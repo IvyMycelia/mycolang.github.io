@@ -6161,26 +6161,29 @@ body.trans-theme.light-theme {
 /* Embed post embedding */
 #post-embed {
     width: 100%;
-    min-height: 600px;
+    height: auto;
+    min-height: 0;
     border: none;
     border-radius: 12px;
     background: transparent;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Override embedded page backgrounds */
+/* Override embedded page backgrounds to inherit theme colors */
 #post-embed[src*="community/post-"] {
-    background: transparent !important;
+    background: var(--bg-color) !important;
 }
 
-/* Ensure embedded content has no background */
+/* Ensure embedded content inherits theme colors */
 #post-embed body {
-    background: transparent !important;
+    background: var(--bg-color) !important;
+    color: var(--text-color) !important;
 }
 
 /* Override any embedded page background colors */
 #post-embed html {
-    background: transparent !important;
+    background: var(--bg-color) !important;
+    color: var(--text-color) !important;
 }
 
 #post-embed * {
@@ -6266,6 +6269,49 @@ body.trans-theme.light-theme {
 #post-embed .content-section {
     padding: 16px !important;
     margin: 0 !important;
+}
+
+/* Additional comprehensive spacing overrides */
+#post-embed .post-content,
+#post-embed .post-body,
+#post-embed .post-text,
+#post-embed .post-header,
+#post-embed .post-meta,
+#post-embed .post-actions,
+#post-embed .post-attachment,
+#post-embed .share-btn,
+#post-embed .btn,
+#post-embed p,
+#post-embed h1,
+#post-embed h2,
+#post-embed h3,
+#post-embed h4,
+#post-embed h5,
+#post-embed h6,
+#post-embed ul,
+#post-embed ol,
+#post-embed li,
+#post-embed div,
+#post-embed section {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Ensure text elements have proper spacing between them */
+#post-embed .post-text p {
+    margin: 0 0 16px 0 !important;
+}
+
+#post-embed .post-text p:last-child {
+    margin-bottom: 0 !important;
+}
+
+#post-embed .post-meta p {
+    margin: 4px 0 !important;
+}
+
+#post-embed .post-actions {
+    margin-top: 16px !important;
 }
 
 #post-embed .post-content {
