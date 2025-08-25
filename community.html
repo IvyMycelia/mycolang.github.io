@@ -98,6 +98,15 @@
     <!-- Additional Social Media Meta Tags -->
     <meta property="og:determiner" content="the">
     <meta property="og:image:type" content="image/png">
+    
+    <!-- Dynamic meta tags for post-specific embeds -->
+    <meta id="dynamic-og-title" property="og:title" content="Community - Myco Language">
+    <meta id="dynamic-og-description" property="og:description" content="Join the Myco programming language community. Get updates on development progress, share ideas, and connect with other developers.">
+    <meta id="dynamic-og-url" property="og:url" content="https://mycolang.org/community.html">
+    <meta id="dynamic-twitter-title" name="twitter:title" content="Community - Myco Language">
+    <meta id="dynamic-twitter-description" name="twitter:description" content="Join the Myco programming language community. Get updates on development progress, share ideas, and connect with other developers.">
+    <meta id="dynamic-twitter-url" property="twitter:url" content="https://mycolang.org/community.html">
+    <meta id="dynamic-page-title" content="Community - Myco Language">
     <meta property="og:image:secure_url" content="https://mycolang.org/Assets/Myco_Purple.png">
     
     <!-- PWA Manifest -->
@@ -144,6 +153,68 @@
             // Fallback: apply theme when window loads
             window.addEventListener('load', applyTheme);
         })();
+    </script>
+    
+    <!-- Dynamic meta tag updates for post-specific embeds -->
+    <script>
+        function updateMetaTagsForPost(postId) {
+            const postElement = document.getElementById(postId);
+            if (!postElement) return;
+            
+            const postTitle = postElement.querySelector('h3').textContent;
+            const postDate = postElement.querySelector('p strong:contains("Date:") + span')?.textContent || 
+                           postElement.querySelector('p:contains("Date:")')?.textContent.replace('Date:', '').trim() || 
+                           '24th August 2025';
+            const postAuthor = postElement.querySelector('p strong:contains("Author:") + span')?.textContent || 
+                             postElement.querySelector('p:contains("Author:")')?.textContent.replace('Author:', '').trim() || 
+                             'Ivy Mycelia';
+            
+            // Update page title
+            document.title = `${postTitle} - Myco Community`;
+            
+            // Update Open Graph tags
+            const ogTitle = document.getElementById('dynamic-og-title');
+            const ogDescription = document.getElementById('dynamic-og-description');
+            const ogUrl = document.getElementById('dynamic-og-url');
+            
+            if (ogTitle) ogTitle.setAttribute('content', `${postTitle} - Myco Community`);
+            if (ogDescription) ogDescription.setAttribute('content', `Read "${postTitle}" by ${postAuthor} on ${postDate}. Join the Myco programming language community for development updates and discussions.`);
+            if (ogUrl) ogUrl.setAttribute('content', `https://mycolang.org/community.html#${postId}`);
+            
+            // Update Twitter tags
+            const twitterTitle = document.getElementById('dynamic-twitter-title');
+            const twitterDescription = document.getElementById('dynamic-twitter-description');
+            const twitterUrl = document.getElementById('dynamic-twitter-url');
+            
+            if (twitterTitle) twitterTitle.setAttribute('content', `${postTitle} - Myco Community`);
+            if (twitterDescription) twitterDescription.setAttribute('content', `Read "${postTitle}" by ${postAuthor} on ${postDate}. Join the Myco programming language community.`);
+            if (twitterUrl) twitterUrl.setAttribute('content', `https://mycolang.org/community.html#${postId}`);
+            
+            console.log(`Updated meta tags for post: ${postId} - ${postTitle}`);
+        }
+        
+        // Update meta tags when page loads with hash
+        if (window.location.hash) {
+            const postId = window.location.hash.substring(1);
+            if (postId.startsWith('post-')) {
+                // Wait for DOM to be ready
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', () => updateMetaTagsForPost(postId));
+                } else {
+                    updateMetaTagsForPost(postId);
+                }
+            }
+        }
+        
+        // Update meta tags when hash changes
+        window.addEventListener('hashchange', function() {
+            if (window.location.hash) {
+                const postId = window.location.hash.substring(1);
+                if (postId.startsWith('post-')) {
+                    updateMetaTagsForPost(postId);
+                }
+            }
+        });
     </script>
 </head>
 <body>

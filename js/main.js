@@ -1126,6 +1126,11 @@ function changePage(page) {
             window.history.replaceState(null, null, newHash);
             console.log(`URL updated to: ${newHash}`);
         }
+        
+        // Update meta tags for Discord/Google embeds
+        if (typeof updateMetaTagsForPost === 'function') {
+            updateMetaTagsForPost(currentPost.id);
+        }
     }
     
     // Don't change user's scroll position - let them stay where they are
