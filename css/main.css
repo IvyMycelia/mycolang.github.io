@@ -5917,19 +5917,21 @@ body.trans-theme.light-theme {
     margin-bottom: 0.5rem !important; /* Minimal spacing after last post */
 }
 
-/* Reduce spacing between header and ALL posts - target by ID for pagination */
-#posts-container .content-section {
-    margin-top: 0.25rem !important; /* Minimal spacing from header for all posts */
-}
-
 /* Reduce spacing below the "Stay informed..." paragraph */
 #latest-updates > p {
     margin-bottom: 0.5rem !important; /* Reduced spacing below paragraph */
 }
 
-/* Reduce spacing after ANY post (before pagination) - works for both pages */
-#posts-container .content-section {
-    margin-bottom: 0.5rem !important; /* Minimal spacing before pagination for any post */
+/* Target only VISIBLE posts for consistent spacing */
+#posts-container .content-section[style*="display: block"] {
+    margin-top: 0.25rem !important; /* Minimal spacing from header */
+    margin-bottom: 0.5rem !important; /* Minimal spacing before pagination */
+}
+
+/* Alternative: target posts that are visible (not hidden) */
+#posts-container .content-section:not([style*="display: none"]) {
+    margin-top: 0.25rem !important; /* Minimal spacing from header */
+    margin-bottom: 0.5rem !important; /* Minimal spacing before pagination */
 }
 
 /* Reduce spacing above pagination */
