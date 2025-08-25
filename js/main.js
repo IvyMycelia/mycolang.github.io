@@ -1149,25 +1149,6 @@ function initCommunityPagination() {
             changePage(currentPage + 1);
         }
     });
-    
-    // Add debounced resize handler for orientation changes only
-    let resizeTimeout;
-    let lastWidth = window.innerWidth;
-    
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            const currentWidth = window.innerWidth;
-            // Only update if crossing the mobile breakpoint (768px)
-            if ((lastWidth <= 768 && currentWidth > 768) || (lastWidth > 768 && currentWidth <= 768)) {
-                console.log('Device orientation changed, updating pagination layout');
-                if (window.allPosts && window.allPosts.length > 0) {
-                    updatePagination();
-                }
-            }
-            lastWidth = currentWidth;
-        }, 250); // 250ms debounce
-    });
 }
 
 function changePage(page) {
@@ -1260,6 +1241,15 @@ function loadAndShowPage(page) {
 }
 
 function updatePagination() {
+    // Prevent multiple rapid calls to updatePagination
+    if (updatePagination.isUpdating) {
+        console.log('updatePagination already in progress, skipping...');
+        return;
+    }
+    
+    console.log('updatePagination called from:', new Error().stack.split('\n')[2]);
+    updatePagination.isUpdating = true;
+    
     const totalPages = window.allPosts.length;
     const prevBtn = document.getElementById('prev-page');
     const nextBtn = document.getElementById('next-page');
@@ -1309,6 +1299,7 @@ function updatePagination() {
     // Check if content has actually changed to prevent unnecessary re-rendering
     const currentContent = paginationNumbers.textContent || '';
     if (currentContent === expectedContent) {
+        updatePagination.isUpdating = false;
         return; // No change needed
     }
     
@@ -1375,6 +1366,11 @@ function updatePagination() {
             paginationNumbers.appendChild(pageNumber);
         }
     }
+    
+    // Reset the guard after a short delay
+    setTimeout(() => {
+        updatePagination.isUpdating = false;
+    }, 100);
 }
 
 
