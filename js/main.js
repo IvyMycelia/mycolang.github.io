@@ -1214,7 +1214,11 @@ if (document.getElementById('posts-container')) {
             // Page 1 shows highest ID, Page 2 shows second highest ID, etc.
             const targetPage = postIndex + 1;
             console.log(`Hash detected: ${postId}, navigating to page ${targetPage}`);
-            changePage(targetPage);
+            
+            // Don't change page immediately - let the initial page load complete first
+            setTimeout(() => {
+                changePage(targetPage);
+            }, 100);
         }
     }
     
