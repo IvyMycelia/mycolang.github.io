@@ -5873,22 +5873,25 @@ body.trans-theme.light-theme {
     border-color: var(--accent-primary);
 }
 
-/* Content section layout for side-by-side posts */
-.content-section {
-    display: flex;
-    gap: 1.5rem; /* Reduced from 2rem */
-    align-items: flex-start;
+/* Content section layout for side-by-side posts - use more specific selector */
+#posts-container .content-section {
+    display: flex !important; /* Force flexbox layout */
+    gap: 1.5rem !important; /* Reduced from 2rem */
+    align-items: flex-start !important;
+    flex-direction: row !important; /* Ensure horizontal layout */
 }
 
-.content-section .post-content {
-    flex: 1;
+#posts-container .content-section .post-content {
+    flex: 1 !important; /* Force flex grow */
     min-width: 0; /* Allow text to shrink */
     padding-right: 0.5rem; /* Add some breathing room */
+    max-width: calc(100% - 140px); /* Ensure text doesn't overlap with image */
 }
 
-.content-section .post-image {
-    flex-shrink: 0;
+#posts-container .content-section .post-image {
+    flex-shrink: 0 !important; /* Prevent image from shrinking */
     width: 120px; /* Reduced from 200px for more compact layout */
+    margin-left: auto; /* Push image to the right */
 }
 
 /* Fallback for posts without images - text takes full width */
@@ -5903,15 +5906,16 @@ body.trans-theme.light-theme {
 
 /* Mobile responsive post images and layout */
 @media (max-width: 768px) {
-    .content-section {
-        flex-direction: column;
-        gap: 1rem;
+    #posts-container .content-section {
+        flex-direction: column !important;
+        gap: 1rem !important;
     }
     
-    .content-section .post-image {
-        width: 100%;
-        text-align: center;
-        order: -1; /* Image appears above text on mobile */
+    #posts-container .content-section .post-image {
+        width: 100% !important;
+        text-align: center !important;
+        order: -1 !important; /* Image appears above text on mobile */
+        margin-left: 0 !important; /* Reset margin for mobile */
     }
     
     .post-attachment {
@@ -5926,12 +5930,12 @@ body.trans-theme.light-theme {
 
 /* Tablet responsive adjustments */
 @media (min-width: 769px) and (max-width: 1024px) {
-    .content-section .post-image {
-        width: 100px; /* Reduced from 180px */
+    #posts-container .content-section .post-image {
+        width: 100px !important; /* Reduced from 180px */
     }
     
-    .content-section {
-        gap: 1.25rem; /* Reduced gap */
+    #posts-container .content-section {
+        gap: 1.25rem !important; /* Reduced gap */
     }
 }
 
