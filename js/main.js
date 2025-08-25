@@ -1071,12 +1071,7 @@ function initCommunityPagination() {
     
     if (!postsContainer || !pagination) return;
     
-    // Posts are now loaded from JSON, not from DOM
-    // allPosts is set globally in loadPostsFromJSON()
-    
-    // Initialize pagination
-    updatePagination();
-    // Don't call showPage here - it will be called by changePage() in loadPostsFromJSON
+    console.log('Initializing community pagination...');
     
     // Add event listeners for navigation buttons
     const prevBtn = document.getElementById('prev-page');
@@ -1084,16 +1079,21 @@ function initCommunityPagination() {
     
     if (prevBtn) prevBtn.addEventListener('click', () => {
         console.log('Previous button clicked, current page:', currentPage);
-        changePage(currentPage - 1);
+        if (currentPage > 1) {
+            changePage(currentPage - 1);
+        }
     });
+    
     if (nextBtn) nextBtn.addEventListener('click', () => {
         console.log('Next button clicked, current page:', currentPage);
-        changePage(currentPage + 1);
+        if (currentPage < allPosts.length) {
+            changePage(currentPage + 1);
+        }
     });
 }
 
 function changePage(page) {
-    console.log(`changePage called with page: ${page}, allPosts length: ${allPosts ? allPosts.length : 'undefined'}`);
+    console.log(`changePage called with page: ${page}`);
     
     if (!allPosts || allPosts.length === 0) {
         console.error('allPosts is not available');
@@ -1105,14 +1105,21 @@ function changePage(page) {
         return;
     }
     
+    console.log(`Changing to page ${page}...`);
     currentPage = page;
+    
+    // Load and show the page
     loadAndShowPage(page);
+    
+    // Update pagination UI
     updatePagination();
     
-    // Don't change user's scroll position - let them stay where they are
+    console.log(`Successfully changed to page ${page}`);
 }
 
 function loadAndShowPage(page) {
+    console.log(`loadAndShowPage called with page: ${page}`);
+    
     // Sort posts by ID in descending order (highest ID first)
     const sortedPosts = [...allPosts].sort((a, b) => {
         const aId = parseInt(a.id.replace('post-', ''));
@@ -1120,24 +1127,39 @@ function loadAndShowPage(page) {
         return bId - aId; // Descending order
     });
     
+    console.log('Sorted posts:', sortedPosts.map(p => p.id));
+    
     const postToShow = sortedPosts[page - 1];
-    if (!postToShow) return;
+    if (!postToShow) {
+        console.error(`No post found for page ${page}`);
+        return;
+    }
     
-    console.log(`Loading page ${page}, post: ${postToShow.id}`);
+    console.log(`Loading page ${page}, post: ${postToShow.id} - ${postToShow.title}`);
     
-    // Clear the container and load only this post
+    // Get the container
     const container = document.getElementById('posts-container');
-    container.innerHTML = '';
+    if (!container) {
+        console.error('Posts container not found');
+        return;
+    }
     
-    // Create and display only this post
+    // Clear the container
+    container.innerHTML = '';
+    console.log('Container cleared');
+    
+    // Create the post element
     const postElement = createPostElement(postToShow);
     
     // Add a class to indicate if this post has an image or not
     if (!postToShow.image) {
         postElement.classList.add('no-image');
+        console.log('Added no-image class');
     }
     
+    // Add the post to the container
     container.appendChild(postElement);
+    console.log('Post added to container');
     
     // Update URL hash to reflect the current post
     const newHash = `#${postToShow.id}`;
@@ -1150,6 +1172,8 @@ function loadAndShowPage(page) {
     if (typeof updateMetaTagsForPost === 'function') {
         updateMetaTagsForPost(postToShow.id);
     }
+    
+    console.log(`Page ${page} loaded successfully`);
 }
 
 function updatePagination() {
@@ -1188,36 +1212,55 @@ if (document.getElementById('posts-container')) {
 // Load posts from JSON and initialize community pagination
 async function loadPostsFromJSON() {
     try {
+        console.log('Loading posts from JSON...');
+        
         const response = await fetch('Assets/posts.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         const data = await response.json();
+        console.log('JSON data loaded:', data);
         
         // Store posts globally
         window.allPosts = data.posts;
+        console.log('Posts stored globally:', window.allPosts);
         
         // Initialize pagination
         initCommunityPagination();
         
-        // Check for hash navigation or default to page 1
+        // Determine which page to show
+        let targetPage = 1;
+        
         if (window.location.hash) {
             const postId = window.location.hash.substring(1);
-            const postIndex = window.allPosts.findIndex(post => post.id === postId);
+            console.log(`Hash detected: ${postId}`);
             
+            const postIndex = window.allPosts.findIndex(post => post.id === postId);
             if (postIndex !== -1) {
-                const targetPage = postIndex + 1;
-                console.log(`Hash detected: ${postId}, navigating to page ${targetPage}`);
-                changePage(targetPage);
+                // Convert to 1-based page number (posts are sorted newest first)
+                targetPage = postIndex + 1;
+                console.log(`Post ${postId} found at index ${postIndex}, showing page ${targetPage}`);
+            } else {
+                console.log(`Post ${postId} not found, defaulting to page 1`);
             }
         } else {
-            // Default to page 1 (most recent post)
-            changePage(1);
+            console.log('No hash found, defaulting to page 1');
         }
+        
+        // Show the target page
+        console.log(`Loading page ${targetPage}...`);
+        changePage(targetPage);
         
         // Listen for hash changes
         window.addEventListener('hashchange', handleHashChange);
         
     } catch (error) {
         console.error('Error loading posts:', error);
-        document.getElementById('posts-container').innerHTML = '<p>Error loading posts. Please refresh the page.</p>';
+        const container = document.getElementById('posts-container');
+        if (container) {
+            container.innerHTML = `<p>Error loading posts: ${error.message}. Please refresh the page.</p>`;
+        }
     }
 }
 
