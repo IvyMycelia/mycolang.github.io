@@ -5746,6 +5746,17 @@ body.trans-theme.light-theme {
     margin-top: 1rem;
 }
 
+/* Ensure hidden posts are completely hidden */
+.content-section[style*="display: none"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 .share-btn {
     background: var(--bg-tertiary);
     border: 1px solid var(--border-primary);

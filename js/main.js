@@ -1103,11 +1103,19 @@ function showPage(page) {
     const startIndex = (page - 1) * postsPerPage;
     const endIndex = startIndex + postsPerPage;
     
+    console.log(`Showing page ${page}, posts ${startIndex} to ${endIndex - 1}`); // Debug log
+    
     allPosts.forEach((post, index) => {
         if (index >= startIndex && index < endIndex) {
             post.style.display = 'block';
+            post.style.visibility = 'visible';
+            post.style.opacity = '1';
+            console.log(`Showing post ${index + 1}: ${post.querySelector('h3').textContent}`); // Debug log
         } else {
             post.style.display = 'none';
+            post.style.visibility = 'hidden';
+            post.style.opacity = '0';
+            console.log(`Hiding post ${index + 1}: ${post.querySelector('h3').textContent}`); // Debug log
         }
     });
 }
