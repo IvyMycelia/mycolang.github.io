@@ -19,6 +19,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize theme with smooth transitions
     initTheme();
     
+    // Initialize notification system
+    initNotificationSystem();
+    
     // Secret trans theme detection
     document.addEventListener('keydown', function(e) {
         const currentTime = Date.now();
@@ -398,6 +401,45 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    // Notification system
+    function initNotificationSystem() {
+        // Notification system is ready
+        console.log('Notification system initialized');
+    }
+    
+    function showNotification(message, type = 'info', duration = 3000) {
+        // Remove any existing notifications
+        const existingNotifications = document.querySelectorAll('.notification');
+        existingNotifications.forEach(notification => {
+            notification.remove();
+        });
+        
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.textContent = message;
+        
+        // Add to page
+        document.body.appendChild(notification);
+        
+        // Trigger animation
+        setTimeout(() => {
+            notification.classList.add('show');
+        }, 10);
+        
+        // Auto-remove after duration
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 300);
+        }, duration);
+        
+        return notification;
+    }
+    
     function setTheme(theme) {
         console.log('Setting theme to:', theme);
         
@@ -456,6 +498,15 @@ document.addEventListener('DOMContentLoaded', function() {
         // Update theme icon and trans toggle
         updateThemeIcon();
         updateTransToggle();
+        
+        // Show theme change notification
+        if (theme === 'light') {
+            showNotification('Light theme enabled', 'info');
+        } else if (theme === 'dark') {
+            showNotification('Dark theme enabled', 'info');
+        } else if (theme === 'trans') {
+            showNotification('Trans theme enabled', 'success');
+        }
         
         // Log current theme state for debugging
         console.log('Current body classes:', document.body.className);

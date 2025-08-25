@@ -251,7 +251,13 @@
             } else {
                 // Fallback: copy to clipboard
                 navigator.clipboard.writeText(url).then(() => {
-                    alert('Link copied to clipboard!');
+                    // Show notification instead of alert
+                    if (window.parent && window.parent.showNotification) {
+                        window.parent.showNotification('Link copied to clipboard!', 'success');
+                    } else {
+                        // Fallback to alert if notification system not available
+                        alert('Link copied to clipboard!');
+                    }
                 });
             }
         }
