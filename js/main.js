@@ -1243,8 +1243,16 @@ async function loadPostsFromJSON() {
         console.log('Immediate test - typeof:', typeof window.allPosts);
         console.log('Immediate test - length:', window.allPosts ? window.allPosts.length : 'undefined');
         
+        // Verify the variable is actually set
+        console.log('Verification - window.allPosts === data.posts:', window.allPosts === data.posts);
+        console.log('Verification - window.allPosts[0]:', window.allPosts[0]);
+        
         // Initialize pagination
         initCommunityPagination();
+        
+        // Test after pagination initialization
+        console.log('After initCommunityPagination - window.allPosts:', window.allPosts);
+        console.log('After initCommunityPagination - length:', window.allPosts ? window.allPosts.length : 'undefined');
         
         // Determine which page to show
         let targetPage = 1;
