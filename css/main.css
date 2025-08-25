@@ -5761,7 +5761,7 @@ body.trans-theme.light-theme {
     gap: 1rem;
     align-items: center;
     flex-wrap: nowrap; /* Prevent buttons from wrapping */
-    margin-top: 1rem; /* Reduced from 1.5rem */
+    margin-top: 0.5rem; /* Further reduced spacing above buttons */
     margin-bottom: 0.5rem; /* Reduced from 1.5rem */
     padding: 1rem;
     background: var(--bg-secondary);
@@ -5905,7 +5905,7 @@ body.trans-theme.light-theme {
 /* Content section layout - now uses post-body for side-by-side content */
 #posts-container .content-section {
     display: block !important; /* Use block layout for main container */
-    margin-bottom: 2rem !important; /* Reduced from 3rem to 2rem */
+    margin-bottom: 1.5rem !important; /* Further reduced spacing between posts */
     /* Override conflicting general content-section rules */
     padding: 1.5rem !important;
     background: var(--bg-secondary) !important;
@@ -5913,16 +5913,25 @@ body.trans-theme.light-theme {
     border-radius: 12px !important;
 }
 
-/* Reduce spacing between header and first post */
-#posts-container .content-section:first-child {
-    margin-top: 1rem !important; /* Reduced spacing from header */
+/* Reduce spacing after the last post */
+#posts-container .content-section:last-child {
+    margin-bottom: 0.5rem !important; /* Minimal spacing after last post */
 }
 
-/* Post body container - use float layout for text wrapping */
+/* Reduce spacing between header and first post */
+#posts-container .content-section:first-child {
+    margin-top: 0.5rem !important; /* Further reduced spacing from header */
+}
+
+/* Post body container for text and image side by side */
 #posts-container .content-section .post-body {
-    display: block !important; /* Use block layout for text wrapping */
-    margin-top: 1rem !important; /* Space below post-content */
-    overflow: hidden !important; /* Clear floats */
+    display: flex !important; /* Force flexbox layout */
+    gap: 2rem !important; /* Gap between text and image */
+    align-items: flex-start !important;
+    flex-direction: row !important; /* Ensure horizontal layout */
+    flex-wrap: nowrap !important; /* Prevent wrapping */
+    justify-content: space-between !important; /* Ensure proper distribution */
+    margin-top: 0.5rem !important; /* Reduced spacing below post-content */
 }
 
 #posts-container .content-section .post-content {
@@ -5932,21 +5941,22 @@ body.trans-theme.light-theme {
     margin-bottom: 0 !important;
 }
 
-/* Post image - float to the right for text wrapping */
-#posts-container .content-section .post-body .post-image {
-    float: right !important; /* Float image to the right */
-    width: 45% !important; /* Image takes up right side */
-    margin-left: 1.5rem !important; /* Space between image and text */
-    margin-bottom: 1rem !important; /* Space below image */
-    text-align: center !important;
+/* Post text within post-body */
+#posts-container .content-section .post-body .post-text {
+    flex: 1 !important; /* Take up available space */
+    min-width: 0 !important; /* Allow text to shrink */
+    padding-right: 1rem !important; /* Breathing room from image */
+    width: 50% !important; /* Text takes up left half */
 }
 
-/* Post text - flows around the image */
-#posts-container .content-section .post-body .post-text {
-    display: block !important;
-    width: auto !important; /* Text takes available width */
-    margin-right: 0 !important;
-    /* Text will naturally flow around the floated image */
+/* Post image within post-body */
+#posts-container .content-section .post-body .post-image {
+    flex-shrink: 0 !important; /* Prevent image from shrinking */
+    width: 50% !important; /* Image takes up right half */
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    text-align: center !important;
 }
 
 /* Fallback for posts without images - text takes full width - ONLY for community posts */
