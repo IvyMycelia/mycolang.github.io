@@ -1263,6 +1263,10 @@ function loadAndShowPage(page) {
 }
 
 function updatePagination() {
+    // TEMPORARILY DISABLED TO DEBUG INFINITE LOOP
+    console.log('updatePagination DISABLED - was called from:', new Error().stack.split('\n')[2]);
+    return;
+    
     // Prevent multiple rapid calls to updatePagination
     if (updatePagination.isUpdating) {
         console.log('updatePagination already in progress, skipping...');
