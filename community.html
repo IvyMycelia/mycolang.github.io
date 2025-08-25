@@ -162,6 +162,7 @@
         
         // Detect available posts by checking the community folder
         async function detectPosts() {
+            console.log('Starting post detection...');
             const postNumbers = [];
             let postNumber = 1;
             
@@ -171,11 +172,14 @@
                     const response = await fetch(`community/post-${postNumber}.html`);
                     if (response.ok) {
                         postNumbers.push(postNumber);
+                        console.log(`Found post-${postNumber}.html`);
                         postNumber++;
                     } else {
+                        console.log(`Post ${postNumber} not found (${response.status}), stopping detection`);
                         break;
                     }
                 } catch (error) {
+                    console.log(`Error checking post ${postNumber}:`, error);
                     break;
                 }
             }
@@ -559,7 +563,10 @@
             
             // Default to first post (most recent)
             if (allPosts.length > 0) {
+                console.log('Loading initial post:', allPosts[0]);
                 loadPost(allPosts[0]);
+            } else {
+                console.log('No posts detected, cannot load initial post');
             }
         }
         
@@ -655,7 +662,7 @@
                         <!-- Posts Container - Dynamically populated by JavaScript -->
                         <div id="posts-container">
                             <!-- Posts are embedded dynamically for perfect social media embeds -->
-                            <embed id="post-embed" src="community/post-5.html" type="text/html" style="width: 100%; min-height: 600px; border: none; border-radius: 12px;"></embed> 
+                            <embed id="post-embed" type="text/html" style="width: 100%; min-height: 600px; border: none; border-radius: 12px;"></embed> 
                         </div>
                         
                         <!-- Pagination -->
