@@ -1093,7 +1093,17 @@ function initCommunityPagination() {
 }
 
 function changePage(page) {
-    if (page < 1 || page > Math.ceil(allPosts.length / postsPerPage)) return;
+    console.log(`changePage called with page: ${page}, allPosts length: ${allPosts ? allPosts.length : 'undefined'}`);
+    
+    if (!allPosts || allPosts.length === 0) {
+        console.error('allPosts is not available');
+        return;
+    }
+    
+    if (page < 1 || page > allPosts.length) {
+        console.log(`Page ${page} is out of range (1-${allPosts.length})`);
+        return;
+    }
     
     currentPage = page;
     loadAndShowPage(page);
@@ -1143,7 +1153,7 @@ function loadAndShowPage(page) {
 }
 
 function updatePagination() {
-    const totalPages = Math.ceil(allPosts.length / postsPerPage);
+    const totalPages = allPosts.length;
     const prevBtn = document.getElementById('prev-page');
     const nextBtn = document.getElementById('next-page');
     const paginationNumbers = document.querySelector('.pagination-numbers');
