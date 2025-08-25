@@ -1125,12 +1125,19 @@ function addAnimationCSS() {
 
 // Community posts pagination functionality
 function initCommunityPagination() {
+    // Prevent multiple initializations
+    if (initCommunityPagination.hasRun) {
+        console.log('initCommunityPagination already run, skipping...');
+        return;
+    }
+    
     const postsContainer = document.getElementById('posts-container');
     const pagination = document.querySelector('.pagination');
     
     if (!postsContainer || !pagination) return;
     
     console.log('Initializing community pagination...');
+    initCommunityPagination.hasRun = true;
     
     // Add event listeners for navigation buttons
     const prevBtn = document.getElementById('prev-page');
@@ -1152,6 +1159,14 @@ function initCommunityPagination() {
 }
 
 function changePage(page) {
+    // Prevent multiple simultaneous calls to changePage
+    if (changePage.isChanging) {
+        console.log('changePage already in progress, skipping...');
+        return;
+    }
+    
+    changePage.isChanging = true;
+    
     console.log(`changePage called with page: ${page}`);
     console.log('changePage - window.allPosts:', window.allPosts);
     console.log('changePage - window.allPosts type:', typeof window.allPosts);
@@ -1161,11 +1176,13 @@ function changePage(page) {
         console.error('allPosts is not available');
         console.error('window.allPosts:', window.allPosts);
         console.error('window.allPosts type:', typeof window.allPosts);
+        changePage.isChanging = false;
         return;
     }
     
     if (page < 1 || page > window.allPosts.length) {
         console.log(`Page ${page} is out of range (1-${window.allPosts.length})`);
+        changePage.isChanging = false;
         return;
     }
     
@@ -1179,6 +1196,11 @@ function changePage(page) {
     updatePagination();
     
     console.log(`Successfully changed to page ${page}`);
+    
+    // Reset the guard after a delay
+    setTimeout(() => {
+        changePage.isChanging = false;
+    }, 200);
 }
 
 function loadAndShowPage(page) {
