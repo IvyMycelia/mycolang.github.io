@@ -1,4 +1,10 @@
 // Enhanced JavaScript for Myco Language Website
+
+// Community posts pagination - Global scope
+let currentPage = 1;
+const postsPerPage = 1; // Show only one post at a time
+let allPosts = [];
+
 document.addEventListener('DOMContentLoaded', function() {
     // Theme management
     const themes = ['dark', 'light'];
@@ -10,11 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Mobile menu state
     let isMobileMenuOpen = false;
-    
-    // Community posts pagination
-    let currentPage = 1;
-    const postsPerPage = 1; // Show only one post at a time
-    let allPosts = [];
     
     // Initialize theme with smooth transitions
     initTheme();
