@@ -5859,7 +5859,7 @@ body.trans-theme.light-theme {
 .post-attachment {
     max-width: 100%;
     height: auto;
-    max-height: 300px;
+    max-height: 150px; /* Reduced from 300px */
     border-radius: 8px;
     box-shadow: 0 4px 12px var(--shadow-medium);
     border: 1px solid var(--border-primary);
@@ -5876,18 +5876,29 @@ body.trans-theme.light-theme {
 /* Content section layout for side-by-side posts */
 .content-section {
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem; /* Reduced from 2rem */
     align-items: flex-start;
 }
 
 .content-section .post-content {
     flex: 1;
     min-width: 0; /* Allow text to shrink */
+    padding-right: 0.5rem; /* Add some breathing room */
 }
 
 .content-section .post-image {
     flex-shrink: 0;
-    width: 200px; /* Fixed width for consistent layout */
+    width: 120px; /* Reduced from 200px for more compact layout */
+}
+
+/* Fallback for posts without images - text takes full width */
+.content-section:not(:has(.post-image)) .post-content {
+    width: 100%;
+}
+
+/* Alternative fallback for browsers that don't support :has() */
+.content-section.no-image .post-content {
+    width: 100%;
 }
 
 /* Mobile responsive post images and layout */
@@ -5904,23 +5915,23 @@ body.trans-theme.light-theme {
     }
     
     .post-attachment {
-        max-height: 200px;
+        max-height: 120px; /* Reduced from 200px */
         border-radius: 6px;
     }
     
     .post-image {
-        margin: 0.75rem 0;
+        margin: 0.5rem 0; /* Reduced margin */
     }
 }
 
 /* Tablet responsive adjustments */
 @media (min-width: 769px) and (max-width: 1024px) {
     .content-section .post-image {
-        width: 180px;
+        width: 100px; /* Reduced from 180px */
     }
     
     .content-section {
-        gap: 1.5rem;
+        gap: 1.25rem; /* Reduced gap */
     }
 }
 
