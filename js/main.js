@@ -1173,7 +1173,9 @@ function loadAndShowPage(page) {
     }
     
     // Update meta tags for Discord/Google embeds
-    updateMetaTagsForPost(postToShow);
+    if (typeof updateMetaTagsForPost === 'function') {
+        updateMetaTagsForPost(postToShow.id);
+    }
     
     console.log(`Page ${page} loaded successfully`);
 }
@@ -1303,10 +1305,6 @@ function handleHashChange() {
             
             if (targetPage !== currentPage) {
                 changePage(targetPage);
-            } else {
-                // Even if we're on the same page, update meta tags for the post
-                const post = window.allPosts[postIndex];
-                updateMetaTagsForPost(post);
             }
         }
     }
