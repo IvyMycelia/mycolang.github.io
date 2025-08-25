@@ -383,8 +383,26 @@
                     throw new Error('Post content not found');
                 }
                 
+                // Extract the script content to execute the functions
+                const scripts = doc.querySelectorAll('script');
+                let scriptContent = '';
+                scripts.forEach(script => {
+                    if (script.textContent) {
+                        scriptContent += script.textContent + '\n';
+                    }
+                });
+                
                 // Inject the post content into the container
                 postContainer.innerHTML = postContent.innerHTML;
+                
+                // Execute the script content to make functions available
+                if (scriptContent) {
+                    try {
+                        eval(scriptContent);
+                    } catch (scriptError) {
+                        console.warn('Script execution warning:', scriptError);
+                    }
+                }
                 
                 // Add entrance animation
                 postContainer.style.animation = 'postEntrance 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
