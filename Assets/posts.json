@@ -6,7 +6,7 @@
       "date": "25th August 2025",
       "author": "Ivy Mycelia",
       "content": [
-        "After attempting to split up and modularize eval.c, I've found that properly linking everything together is proving more challenging than expected. For now, I'll be continuing Myco development without the modularization approach.",
+        "After attempting to split up and modularize <code>eval.c</code>, I've found that properly linking everything together is proving more challenging than expected. For now, I'll be continuing Myco development without the modularization approach.",
         "Currently working on getting memory management to be completely working and safe. This includes proper memory allocation, deallocation, and ensuring there are no memory leaks or unsafe memory access patterns.",
         "The focus is on stability and reliability rather than code organization for the time being."
       ],
