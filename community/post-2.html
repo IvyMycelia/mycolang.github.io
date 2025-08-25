@@ -186,8 +186,16 @@
         
         /* Ensure Discord button doesn't wrap */
         .post-actions .btn-outline {
-            white-space: nowrap;
-            flex-shrink: 0;
+            white-space: nowrap !important;
+            flex-shrink: 0 !important;
+            min-width: fit-content !important;
+            width: auto !important;
+        }
+        
+        /* Force button container to not wrap */
+        .post-actions {
+            flex-wrap: nowrap !important;
+            overflow: visible !important;
         }
         
         /* Responsive design */
@@ -266,15 +274,11 @@
             } else {
                 // Fallback: copy to clipboard
                 navigator.clipboard.writeText(url).then(() => {
-                    // Use postMessage to communicate with parent window
-                    if (window.parent && window.parent !== window) {
-                        window.parent.postMessage({
-                            type: 'showNotification',
-                            message: 'Link copied to clipboard!',
-                            notificationType: 'success'
-                        }, '*');
+                    // Since posts are now loaded directly into the DOM, we can use the notification system directly
+                    if (typeof showNotification === 'function') {
+                        showNotification('Link copied to clipboard!', 'success');
                     } else {
-                        // Fallback to alert if not embedded
+                        // Fallback to alert if notification system not available
                         alert('Link copied to clipboard!');
                     }
                 });
