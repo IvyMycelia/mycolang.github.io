@@ -6125,11 +6125,11 @@ body.trans-theme.light-theme {
 }
 
 .page-number {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 2.5rem;
     height: 2.5rem;
-    line-height: 2.5rem;
-    text-align: center;
     background: var(--bg-secondary);
     border: 1px solid var(--border-primary);
     color: var(--text-primary);
@@ -6138,38 +6138,24 @@ body.trans-theme.light-theme {
     cursor: pointer;
     transition: all 0.3s ease;
     font-size: 0.9rem;
+    font-weight: 500;
+    margin: 0 0.25rem;
+    user-select: none;
 }
 
 .page-number:hover {
     background: var(--accent-primary);
     color: var(--bg-primary);
     border-color: var(--accent-primary);
+    transform: scale(1.05);
 }
 
 .page-number.active {
     background: var(--accent-primary);
     color: var(--bg-primary);
     border-color: var(--accent-primary);
-}
-
-.page-number {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-primary);
-    color: var(--text-primary);
-    text-decoration: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-    margin: 0 0.25rem;
-}
-
-.page-number:hover {
-    background: var(--accent-primary);
-    color: var(--bg-primary);
-    border-color: var(--accent-primary);
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Embed post embedding */
@@ -6179,11 +6165,145 @@ body.trans-theme.light-theme {
     border: none;
     border-radius: 12px;
     background: transparent;
-    transition: opacity 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #post-embed.loading {
     opacity: 0.7;
+    transform: scale(0.98);
+}
+
+/* Loading spinner */
+.loading-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.spinner-ring {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--border-color);
+    border-top: 3px solid var(--accent-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 12px;
+}
+
+.spinner-text {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Post entrance animation */
+@keyframes postEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Pagination ellipsis */
+.pagination-ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.pagination-ellipsis:hover {
+    color: var(--accent-primary);
+    transform: scale(1.1);
+}
+
+/* Page jump dialog */
+.page-jump-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.3s ease;
+}
+
+.page-jump-content {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.page-jump-content h3 {
+    margin: 0 0 16px 0;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.page-jump-content p {
+    margin: 0 0 20px 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.page-jump-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--bg-primary);
+    color: var(--text-color);
+    font-size: 1rem;
+    margin-bottom: 20px;
+    transition: border-color 0.3s ease;
+}
+
+.page-jump-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+}
+
+.page-jump-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.page-jump-buttons .btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
 }
 
 /* Mobile responsive for community page */
