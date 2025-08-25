@@ -1094,9 +1094,14 @@ function initCommunityPagination() {
 
 function changePage(page) {
     console.log(`changePage called with page: ${page}`);
+    console.log('changePage - window.allPosts:', window.allPosts);
+    console.log('changePage - window.allPosts type:', typeof window.allPosts);
+    console.log('changePage - window.allPosts length:', window.allPosts ? window.allPosts.length : 'undefined');
     
     if (!window.allPosts || window.allPosts.length === 0) {
         console.error('allPosts is not available');
+        console.error('window.allPosts:', window.allPosts);
+        console.error('window.allPosts type:', typeof window.allPosts);
         return;
     }
     
@@ -1231,6 +1236,8 @@ async function loadPostsFromJSON() {
         // Store posts globally
         window.allPosts = data.posts;
         console.log('Posts stored globally:', window.allPosts);
+        console.log('window.allPosts type:', typeof window.allPosts);
+        console.log('window.allPosts length:', window.allPosts ? window.allPosts.length : 'undefined');
         
         // Initialize pagination
         initCommunityPagination();
@@ -1256,6 +1263,7 @@ async function loadPostsFromJSON() {
         
         // Show the target page
         console.log(`Loading page ${targetPage}...`);
+        console.log('About to call changePage, window.allPosts available:', !!window.allPosts);
         changePage(targetPage);
         
         // Listen for hash changes
