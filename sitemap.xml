@@ -2,49 +2,67 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://mycolang.org/</loc>
-        <lastmod>2025-08-23</lastmod>
+        <lastmod>2025-08-24</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://mycolang.org/docs.html</loc>
-        <lastmod>2025-08-23</lastmod>
+        <lastmod>2025-08-24</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://mycolang.org/grammar.html</loc>
-        <lastmod>2025-08-23</lastmod>
+        <lastmod>2025-08-24</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://mycolang.org/downloads.html</loc>
-        <lastmod>2025-08-23</lastmod>
+        <lastmod>2025-08-24</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://mycolang.org/community.html</loc>
+        <lastmod>2025-08-24</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://github.com/IvyMycelia/Myco</loc>
-        <lastmod>2025-08-23</lastmod>
+        <lastmod>2025-08-24</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://github.com/IvyMycelia/Myco/releases</loc>
-        <lastmod>2025-08-23</lastmod>
+        <lastmod>2025-08-24</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
+        <loc>https://mycolang.org/community.html#post-1</loc>
+        <lastmod>2025-08-24</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://mycolang.org/community.html#post-2</loc>
+        <lastmod>2025-08-24</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
         <loc>https://github.com/IvyMycelia/Myco/issues</loc>
-        <lastmod>2025-08-23</lastmod>
+        <lastmod>2025-08-24</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://github.com/IvyMycelia/Myco/discussions</loc>
-        <lastmod>2025-08-23</lastmod>
+        <lastmod>2025-08-24</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.5</priority>
     </url>

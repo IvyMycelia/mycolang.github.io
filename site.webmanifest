@@ -61,6 +61,18 @@
                     "sizes": "32x32"
                 }
             ]
+        },
+        {
+            "name": "Community",
+            "short_name": "Community",
+            "description": "Join the Myco community and view latest updates",
+            "url": "/community.html",
+            "icons": [
+                {
+                    "src": "Myco_Purple.ico",
+                    "sizes": "32x32"
+                }
+            ]
         }
     ]
 }
