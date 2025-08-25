@@ -157,11 +157,22 @@
     
     <!-- Dynamic meta tag updates for post-specific embeds -->
     <script>
-        function updateMetaTagsForPost(post) {
-            const postElement = document.getElementById(postId);
-            if (!postElement) return;
+        function updateMetaTagsForPost(postId) {
+            // Find the post data from the global allPosts array
+            if (!window.allPosts) {
+                console.log('allPosts not available yet, skipping meta tag update');
+                return;
+            }
             
-            const postTitle = postElement.querySelector('h3').textContent;
+            const post = window.allPosts.find(p => p.id === postId);
+            if (!post) {
+                console.log(`Post ${postId} not found in allPosts, skipping meta tag update`);
+                return;
+            }
+            
+            console.log(`Updating meta tags for post: ${post.id} - ${post.title}`);
+            
+            const postTitle = post.title;
             
             // Extract date - look for the paragraph containing "Date:"
             const dateParagraph = Array.from(postElement.querySelectorAll('p')).find(p => 
