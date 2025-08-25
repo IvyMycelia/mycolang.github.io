@@ -5920,7 +5920,12 @@ body.trans-theme.light-theme {
 
 /* Reduce spacing between header and first post */
 #posts-container .content-section:first-child {
-    margin-top: 0.5rem !important; /* Further reduced spacing from header */
+    margin-top: 0.25rem !important; /* Minimal spacing from header */
+}
+
+/* Reduce spacing below the "Stay informed..." paragraph */
+#latest-updates > p {
+    margin-bottom: 0.5rem !important; /* Reduced spacing below paragraph */
 }
 
 /* Post body container for text and image side by side */
@@ -5964,10 +5969,14 @@ body.trans-theme.light-theme {
     width: 100% !important;
 }
 
-/* Force float layout for community posts - highest specificity */
+/* Force flexbox layout for community posts - highest specificity */
 #posts-container .content-section .post-body {
-    display: block !important;
-    overflow: hidden !important; /* Clear floats */
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 2rem !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-between !important;
 }
 
 /* Alternative fallback for browsers that don't support :has() - ONLY for community posts */
