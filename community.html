@@ -404,28 +404,32 @@
             }
         }
         
-        // Create sharePost function for the current post if it doesn't exist
-        if (typeof window.sharePost !== 'function') {
-            window.sharePost = function() {
-                const url = `https://mycolang.org/community/post-${postNumber}.html`;
-                const title = document.querySelector('.post-header h3')?.textContent || 'Myco Community Post';
-                
-                if (navigator.share) {
-                    navigator.share({
-                        title: title,
-                        url: url
-                    });
-                } else {
-                    // Fallback: copy to clipboard
-                    navigator.clipboard.writeText(url).then(() => {
-                        showNotification('Link copied to clipboard!', 'success');
-                    }).catch(() => {
-                        // Fallback if clipboard fails
-                        alert('Link copied to clipboard!');
-                    });
-                }
-            };
-        }
+        // Create sharePost function for the current post
+        window.sharePost = function() {
+            const url = `https://mycolang.org/community/post-${postNumber}.html`;
+            const title = document.querySelector('.post-header h3')?.textContent || 'Myco Community Post';
+            
+            console.log('sharePost called for post', postNumber, 'with URL:', url);
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: title,
+                    url: url
+                });
+            } else {
+                // Fallback: copy to clipboard
+                navigator.clipboard.writeText(url).then(() => {
+                    console.log('Clipboard write successful, showing notification');
+                    showNotification('Link copied to clipboard!', 'success');
+                }).catch((error) => {
+                    console.error('Clipboard write failed:', error);
+                    // Fallback if clipboard fails
+                    alert('Link copied to clipboard!');
+                });
+            }
+        };
+        
+        console.log('sharePost function created for post', postNumber);
                 
                 // Add entrance animation
                 postContainer.style.animation = 'postEntrance 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
