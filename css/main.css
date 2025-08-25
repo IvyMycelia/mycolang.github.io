@@ -5905,7 +5905,6 @@ body.trans-theme.light-theme {
 /* Content section layout - now uses post-body for side-by-side content */
 #posts-container .content-section {
     display: block !important; /* Use block layout for main container */
-    margin-bottom: 1.5rem !important; /* Further reduced spacing between posts */
     /* Override conflicting general content-section rules */
     padding: 1.5rem !important;
     background: var(--bg-secondary) !important;
@@ -5918,14 +5917,38 @@ body.trans-theme.light-theme {
     margin-bottom: 0.5rem !important; /* Minimal spacing after last post */
 }
 
-/* Reduce spacing between header and first post */
-#posts-container .content-section:first-child {
-    margin-top: 0.25rem !important; /* Minimal spacing from header */
+/* Reduce spacing between header and ALL posts */
+#posts-container .content-section {
+    margin-top: 0.25rem !important; /* Minimal spacing from header for all posts */
 }
 
 /* Reduce spacing below the "Stay informed..." paragraph */
 #latest-updates > p {
     margin-bottom: 0.5rem !important; /* Reduced spacing below paragraph */
+}
+
+/* Reduce spacing between posts */
+#posts-container .content-section {
+    margin-bottom: 1rem !important; /* Reduced spacing between posts */
+}
+
+/* Reduce spacing after the last post (before pagination) */
+#posts-container .content-section:last-child {
+    margin-bottom: 0.5rem !important; /* Minimal spacing before pagination */
+}
+
+/* Reduce spacing above pagination */
+.pagination {
+    margin-top: 0.5rem !important; /* Reduced spacing above pagination */
+}
+
+/* Reduce spacing in sidebar navigation */
+.docs-sidebar .docs-nav ul li {
+    margin-bottom: 0.25rem !important; /* Tighter spacing between nav items */
+}
+
+.docs-sidebar .docs-nav h3 {
+    margin-bottom: 0.5rem !important; /* Reduced spacing below nav headers */
 }
 
 /* Post body container for text and image side by side */
