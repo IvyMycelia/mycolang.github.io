@@ -11,6 +11,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mobile menu state
     let isMobileMenuOpen = false;
     
+    // Community posts pagination
+    let currentPage = 1;
+    const postsPerPage = 3;
+    let allPosts = [];
+    
     // Initialize theme with smooth transitions
     initTheme();
     
@@ -1048,4 +1053,88 @@ function addAnimationCSS() {
         }
     `;
     document.head.appendChild(style);
+}
+
+// Community posts pagination functionality
+function initCommunityPagination() {
+    const postsContainer = document.getElementById('posts-container');
+    const pagination = document.querySelector('.pagination');
+    
+    if (!postsContainer || !pagination) return;
+    
+    // Get all posts
+    allPosts = Array.from(postsContainer.querySelectorAll('.post'));
+    
+    // Initialize pagination
+    updatePagination();
+    showPage(1);
+    
+    // Add event listeners
+    const prevBtn = document.getElementById('prev-page');
+    const nextBtn = document.getElementById('next-page');
+    const pageNumbers = document.querySelectorAll('.page-number');
+    
+    if (prevBtn) prevBtn.addEventListener('click', () => changePage(currentPage - 1));
+    if (nextBtn) nextBtn.addEventListener('click', () => changePage(currentPage + 1));
+    
+    pageNumbers.forEach(number => {
+        number.addEventListener('click', () => {
+            const page = parseInt(number.dataset.page);
+            changePage(page);
+        });
+    });
+}
+
+function changePage(page) {
+    if (page < 1 || page > Math.ceil(allPosts.length / postsPerPage)) return;
+    
+    currentPage = page;
+    showPage(page);
+    updatePagination();
+    
+    // Update URL hash for direct linking
+    const activePost = allPosts[(page - 1) * postsPerPage];
+    if (activePost) {
+        window.location.hash = activePost.id;
+    }
+}
+
+function showPage(page) {
+    const startIndex = (page - 1) * postsPerPage;
+    const endIndex = startIndex + postsPerPage;
+    
+    allPosts.forEach((post, index) => {
+        if (index >= startIndex && index < endIndex) {
+            post.style.display = 'block';
+        } else {
+            post.style.display = 'none';
+        }
+    });
+}
+
+function updatePagination() {
+    const totalPages = Math.ceil(allPosts.length / postsPerPage);
+    const prevBtn = document.getElementById('prev-page');
+    const nextBtn = document.getElementById('next-page');
+    const pageNumbers = document.querySelectorAll('.page-number');
+    
+    // Update button states
+    if (prevBtn) prevBtn.disabled = currentPage === 1;
+    if (nextBtn) nextBtn.disabled = currentPage === totalPages;
+    
+    // Update page numbers
+    pageNumbers.forEach((number, index) => {
+        const pageNum = index + 1;
+        if (pageNum <= totalPages) {
+            number.style.display = 'inline-block';
+            number.classList.toggle('active', pageNum === currentPage);
+        } else {
+            number.style.display = 'none';
+        }
+    });
+}
+
+// Initialize community pagination when page loads
+if (document.getElementById('posts-container')) {
+    initCommunityPagination();
 }

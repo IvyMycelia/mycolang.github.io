@@ -225,33 +225,53 @@
                         <h2>Latest Development Updates</h2>
                         <p>Stay informed about what's happening with Myco development.</p>
                         
-                        <div class="content-section" id="post-2">
-                            <h3>Codebase Refactor - Splitting Up <code>eval.c</code></h3>
-                            <p><strong>Date:</strong> 24th August 2025</p>
-                            <p><strong>Author:</strong> Ivy Mycelia</p>
-                            <p>I've been working on refactoring the codebase to make it more modular and easier to maintain. I've split up <code>eval.c</code> into multiple files, and I'm currently working on bringing Myco back to full functionality.</p>
-                            <p>Once I've finished this refactor, I'll begin working on v1.7.x.</p>
-                        </div>
-
-                        <div class="content-section" id="post-1">
-                            <h3>Welcome to the Myco Community</h3>
-                            <p><strong>Date:</strong> 24th August 2025</p>
-                            <p><strong>Author:</strong> Ivy Mycelia</p>
-                            <p>Welcome to the Myco programming language community! This is where you'll find the latest updates on development progress, new features, and community discussions.</p>
-                            <p>Feel free to join our Discord server to connect with other developers and stay updated on all things Myco!</p>
-                            <p><a href="https://discord.gg/CR8xcKb3zM" target="_blank" rel="noopener">Discuss on Discord</a></p>
+                        <!-- Posts Container -->
+                        <div id="posts-container">
+                            <!-- Post 1 -->
+                            <article id="post-1" class="content-section post">
+                                <h3>Codebase Refactor - Splitting Up <code>eval.c</code></h3>
+                                <div class="post-meta">
+                                    <span class="post-date">24th August 2025</span>
+                                    <span class="post-author">Ivy Mycelia</span>
+                                </div>
+                                <div class="post-content">
+                                    <p>I've been working on refactoring the codebase to make it more modular and easier to maintain. I've split up <code>eval.c</code> into multiple files, and I'm currently working on bringing Myco back to full functionality.</p>
+                                    <p>Once I've finished this refactor, I'll begin working on v1.7.x.</p>
+                                </div>
+                                <div class="post-actions">
+                                    <a href="https://discord.gg/CR8xcKb3zM" target="_blank" rel="noopener" class="btn btn-outline">Discuss on Discord</a>
+                                    <a href="#post-1" class="post-link">Direct Link</a>
+                                </div>
+                            </article>
+                            
+                            <!-- Post 2 -->
+                            <article id="post-2" class="content-section post">
+                                <h3>Welcome to the Myco Community</h3>
+                                <div class="post-meta">
+                                    <span class="post-date">24th August 2025</span>
+                                    <span class="post-author">Ivy Mycelia</span>
+                                </div>
+                                <div class="post-content">
+                                    <p>Welcome to the Myco programming language community! This is where you'll find the latest updates on development progress, new features, and community discussions.</p>
+                                    <p>Feel free to join our Discord server to connect with other developers and stay updated on all things Myco!</p>
+                                </div>
+                                <div class="post-actions">
+                                    <a href="https://discord.gg/CR8xcKb3zM" target="_blank" rel="noopener" class="btn btn-outline">Discuss on Discord</a>
+                                    <a href="#post-2" class="post-link">Direct Link</a>
+                                </div>
+                            </article>
                         </div>
                         
-                        <!-- Example structure for new posts -->
-                        <!-- 
-                        <div class="content-section">
-                            <h3>Your Post Title Here</h3>
-                            <p><strong>Date:</strong> 24th August 2025</p>
-                            <p><strong>Author:</strong> Ivy Mycelia</p>
-                            <p>Your post content goes here...</p>
-                            <p><a href="https://discord.gg/CR8xcKb3zM" target="_blank" rel="noopener">Discuss on Discord</a></p>
+                        <!-- Pagination -->
+                        <div class="pagination">
+                            <button class="pagination-btn" id="prev-page" disabled>← Previous</button>
+                            <div class="pagination-numbers">
+                                <span class="page-number active" data-page="1">1</span>
+                                <span class="page-number" data-page="2">2</span>
+                                <span class="page-number" data-page="3">3</span>
+                            </div>
+                            <button class="pagination-btn" id="next-page">Next →</button>
                         </div>
-                        -->
                     </section>
 
                     <section id="guidelines">
