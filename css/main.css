@@ -275,6 +275,19 @@ body.trans-theme:not(.light-theme) {
     box-shadow: 0 8px 25px var(--shadow-heavy-light);
 }
 
+/* Ensure button text is always visible */
+.btn-primary {
+    color: white !important;
+}
+
+.light-theme .btn-primary {
+    color: white !important;
+}
+
+.trans-theme .btn-primary {
+    color: white !important;
+}
+
 .trans-theme:not(.light-theme) .btn-secondary {
     background: transparent;
     border: 2px solid var(--accent-trans-blue);
@@ -292,7 +305,7 @@ body.trans-theme:not(.light-theme) {
 .trans-theme:not(.light-theme) .example,
 .trans-theme:not(.light-theme) .step {
     background: linear-gradient(135deg, var(--bg-secondary-trans-dark), var(--bg-tertiary-trans-dark));
-    border: 2px solid var(--accent-trans-pink);
+    border: none;
     box-shadow: 0 4px 20px rgba(255, 105, 180, 0.2);
 }
 
@@ -325,7 +338,7 @@ body.trans-theme:not(.light-theme) {
 
 .trans-theme:not(.light-theme) .code-block {
     background: linear-gradient(135deg, var(--bg-tertiary-trans-dark), var(--bg-secondary-trans-dark));
-    border: 2px solid var(--accent-trans-pink);
+    border: none;
     box-shadow: 0 4px 20px rgba(255, 105, 180, 0.2);
 }
 
@@ -511,11 +524,11 @@ a:hover {
     z-index: 100;
     backdrop-filter: blur(10px);
     transition: all var(--transition-normal);
-    width: 100%;
-    left: 0;
-    right: 0;
-    margin: 0;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
     padding: 0;
+    position: relative;
 }
 
 /* Ensure header background extends full width */
@@ -536,7 +549,7 @@ a:hover {
     width: 100% !important;
     padding: 0 1.5rem !important;
     box-sizing: border-box !important;
-    margin: 0 auto !important;
+    margin: 0 !important;
     position: relative;
     z-index: 1;
 }
@@ -561,8 +574,8 @@ a:hover {
     padding: 0.75rem 0;
     gap: 2rem;
     width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
+    max-width: none;
+    margin: 0;
 }
 
 .logo {
@@ -1300,6 +1313,7 @@ body .logo:hover .logo-img {
     box-shadow: 0 4px 15px var(--shadow-medium);
     position: relative;
     overflow: hidden;
+    z-index: 2;
 }
 
 .btn-primary::after {
