@@ -117,6 +117,11 @@
     <script>
         (function() {
             function applyTheme() {
+                // Only proceed if DOM elements are available
+                if (!document.documentElement || !document.body) {
+                    return;
+                }
+                
                 // Check for trans theme first (highest priority)
                 const transThemeActive = localStorage.getItem('myco-trans-theme') === 'true';
                 const savedTheme = localStorage.getItem('myco-theme');
@@ -132,16 +137,16 @@
                 // dark theme is default (no class needed)
             }
             
-            // Try to apply theme immediately
-            applyTheme();
-            
-            // Also apply theme when CSS is fully loaded
+            // Only try to apply theme if DOM is ready
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', applyTheme);
+            } else {
+                // DOM is already loaded, apply theme immediately
+                applyTheme();
             }
             
-            // Fallback: apply theme after a short delay to ensure CSS is ready
-            setTimeout(applyTheme, 50);
+            // Fallback: apply theme when window loads
+            window.addEventListener('load', applyTheme);
         })();
     </script>
     
