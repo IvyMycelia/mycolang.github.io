@@ -1205,9 +1205,15 @@ function updatePagination() {
 }
 
 // Initialize community pagination when page loads
-if (document.getElementById('posts-container')) {
-    loadPostsFromJSON();
-}
+// Wait for DOM to be ready
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('posts-container')) {
+        console.log('Posts container found, initializing community system...');
+        loadPostsFromJSON();
+    } else {
+        console.log('Posts container not found, not on community page');
+    }
+});
 
 // Load posts from JSON and initialize community pagination
 async function loadPostsFromJSON() {
