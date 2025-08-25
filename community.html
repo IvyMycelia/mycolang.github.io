@@ -202,36 +202,34 @@
             
             // Smart pagination: show only 4 numbers at a time
             const totalPosts = allPosts.length;
-            const currentPageIndex = 0; // Start with first post
             
-            // Calculate which numbers to show
-            let startPage = Math.max(1, currentPageIndex - 1);
-            let endPage = Math.min(totalPosts, startPage + 3);
+            // allPosts is sorted with newest first (highest ID), so:
+            // allPosts[0] = newest post (should be page 1)
+            // allPosts[1] = second newest (should be page 2)
+            // etc.
             
-            // Adjust start if we're near the end
-            if (endPage - startPage < 3 && totalPosts > 4) {
-                startPage = Math.max(1, endPage - 3);
+            // Calculate which page numbers to show
+            let startPage = 1;
+            let endPage = Math.min(totalPosts, 4);
+            
+            // If we have more than 4 posts, show ellipsis
+            if (totalPosts > 4) {
+                endPage = 4;
             }
             
-            // Add first page if not included
-            if (startPage > 1) {
-                addPageButton(1, paginationNumbers);
-                if (startPage > 2) {
-                    addEllipsis(paginationNumbers);
-                }
-            }
-            
-            // Add visible page numbers
+            // Add visible page numbers (1, 2, 3, 4...)
             for (let i = startPage; i <= endPage; i++) {
-                addPageButton(i, paginationNumbers, i === allPosts[0]);
+                // Map page number to post ID: page 1 = newest post, page 2 = second newest, etc.
+                const postId = allPosts[i - 1]; // i-1 because arrays are 0-indexed
+                const isActive = i === 1; // Page 1 (newest post) is always active initially
+                addPageButton(postId, paginationNumbers, isActive);
             }
             
-            // Add last page if not included
-            if (endPage < totalPosts) {
-                if (endPage < totalPosts - 1) {
-                    addEllipsis(paginationNumbers);
-                }
-                addPageButton(totalPosts, paginationNumbers);
+            // Add ellipsis if we have more than 4 posts
+            if (totalPosts > 4) {
+                addEllipsis(paginationNumbers);
+                // Add last page number
+                addPageButton(allPosts[totalPosts - 1], paginationNumbers);
             }
             
             // Update navigation button states
@@ -239,18 +237,22 @@
         }
         
         // Add a page button with animation
-        function addPageButton(postNumber, container, isActive = false) {
+        function addPageButton(postId, container, isActive = false) {
             const pageButton = document.createElement('button');
             pageButton.className = 'pagination-btn page-number';
-            pageButton.textContent = postNumber;
-            pageButton.setAttribute('data-page', postNumber);
-            pageButton.setAttribute('data-index', allPosts.indexOf(postNumber));
+            
+            // Calculate the page number (1-based) for display
+            const pageNumber = allPosts.indexOf(postId) + 1;
+            pageButton.textContent = pageNumber;
+            
+            pageButton.setAttribute('data-page', postId);
+            pageButton.setAttribute('data-index', allPosts.indexOf(postId));
             
             if (isActive) {
                 pageButton.classList.add('active');
             }
             
-            pageButton.onclick = () => loadPost(postNumber);
+            pageButton.onclick = () => loadPost(postId);
             
             // Add entrance animation
             pageButton.style.opacity = '0';
@@ -473,8 +475,9 @@
             const totalPosts = allPosts.length;
             const activeIndex = allPosts.indexOf(activePostNumber);
             
-            // Calculate which numbers to show (keep active post centered when possible)
-            let startPage = Math.max(1, activeIndex - 1);
+            // Calculate which page numbers to show around the active post
+            // We want to show 4 page numbers when possible
+            let startPage = Math.max(1, activeIndex + 1 - 2); // Center around active post
             let endPage = Math.min(totalPosts, startPage + 3);
             
             // Adjust start if we're near the end
@@ -484,7 +487,8 @@
             
             // Add first page if not included
             if (startPage > 1) {
-                addPageButton(1, paginationNumbers);
+                const firstPostId = allPosts[0]; // Newest post
+                addPageButton(firstPostId, paginationNumbers);
                 if (startPage > 2) {
                     addEllipsis(paginationNumbers);
                 }
@@ -492,7 +496,9 @@
             
             // Add visible page numbers
             for (let i = startPage; i <= endPage; i++) {
-                addPageButton(i, paginationNumbers, i === activePostNumber);
+                const postId = allPosts[i - 1]; // i-1 because arrays are 0-indexed
+                const isActive = postId === activePostNumber;
+                addPageButton(postId, paginationNumbers, isActive);
             }
             
             // Add last page if not included
@@ -500,7 +506,8 @@
                 if (endPage < totalPosts - 1) {
                     addEllipsis(paginationNumbers);
                 }
-                addPageButton(totalPosts, paginationNumbers);
+                const lastPostId = allPosts[totalPosts - 1]; // Oldest post
+                addPageButton(lastPostId, paginationNumbers);
             }
         }
         
