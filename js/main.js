@@ -407,7 +407,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Notification system initialized');
     }
     
-    function showNotification(message, type = 'info', duration = 3000) {
+    function showNotification(message, type = 'info', duration = 5000) {
         // Remove any existing notifications
         const existingNotifications = document.querySelectorAll('.notification');
         existingNotifications.forEach(notification => {
