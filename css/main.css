@@ -5760,7 +5760,7 @@ body.trans-theme.light-theme {
     display: flex;
     gap: 1rem;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Prevent buttons from wrapping */
     margin-top: 1rem; /* Reduced from 1.5rem */
     margin-bottom: 0.5rem; /* Reduced from 1.5rem */
     padding: 1rem;
@@ -5785,6 +5785,8 @@ body.trans-theme.light-theme {
     overflow: hidden;
     box-sizing: border-box;
     min-height: 44px; /* Mobile touch target */
+    max-width: 200px; /* Prevent button from being too wide */
+    flex-shrink: 0; /* Prevent button from shrinking */
 }
 
 .btn-outline:hover {
@@ -5809,12 +5811,14 @@ body.trans-theme.light-theme {
     transition: all 0.3s ease;
     font-size: 0.9rem;
     font-weight: 500;
-    min-width: 120px; /* Ensure text fits */
+    min-width: 100px; /* Reduced from 120px */
+    max-width: 120px; /* Prevent button from being too wide */
     min-height: 44px; /* Mobile touch target */
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    flex-shrink: 0; /* Prevent button from shrinking */
 }
 
 .share-btn:hover {
@@ -5904,6 +5908,7 @@ body.trans-theme.light-theme {
     align-items: flex-start !important;
     flex-direction: row !important; /* Ensure horizontal layout */
     margin-bottom: 2rem !important; /* Reduced from 3rem to 2rem */
+    flex-wrap: nowrap !important; /* Prevent wrapping */
 }
 
 #posts-container .content-section .post-content {
@@ -5911,6 +5916,8 @@ body.trans-theme.light-theme {
     min-width: 0; /* Allow text to shrink */
     padding-right: 1rem; /* Increased breathing room */
     max-width: 50% !important; /* Text takes up left half */
+    flex-shrink: 0 !important; /* Prevent text from shrinking */
+    order: 1 !important; /* Ensure text appears first */
 }
 
 #posts-container .content-section .post-image {
@@ -5920,6 +5927,7 @@ body.trans-theme.light-theme {
     display: flex !important;
     justify-content: center !important;
     align-items: flex-start !important;
+    order: 2 !important; /* Ensure image appears after text */
 }
 
 /* Fallback for posts without images - text takes full width - ONLY for community posts */
