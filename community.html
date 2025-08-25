@@ -199,7 +199,7 @@
             allPosts.forEach((postNumber, index) => {
                 const pageButton = document.createElement('button');
                 pageButton.className = 'pagination-btn page-number';
-                pageButton.textContent = `Post ${postNumber}`;
+                pageButton.textContent = postNumber;
                 pageButton.setAttribute('data-page', postNumber);
                 pageButton.setAttribute('data-index', index);
                 pageButton.onclick = () => loadPost(postNumber);
