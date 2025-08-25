@@ -285,8 +285,11 @@
                     // Show notification instead of alert
                     if (window.parent && window.parent.showNotification) {
                         window.parent.showNotification('Link copied to clipboard!', 'success');
+                    } else if (window.showNotification) {
+                        // Try to use global notification if available
+                        window.showNotification('Link copied to clipboard!', 'success');
                     } else {
-                        // Fallback to alert if notification system not available
+                        // Final fallback to alert
                         alert('Link copied to clipboard!');
                     }
                 });

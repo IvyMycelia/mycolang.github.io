@@ -440,6 +440,9 @@ document.addEventListener('DOMContentLoaded', function() {
         return notification;
     }
     
+    // Make notification system globally available for embedded posts
+    window.showNotification = showNotification;
+    
     function setTheme(theme) {
         console.log('Setting theme to:', theme);
         
