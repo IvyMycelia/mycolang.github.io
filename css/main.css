@@ -429,12 +429,27 @@ a:hover {
     z-index: -1;
 }
 
+/* Override container constraints for header */
+.header > .container {
+    max-width: none;
+    width: 100%;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+}
+
 /* Force header to span full viewport width */
 .header {
     width: 100vw;
     margin-left: calc(-50vw + 50%);
     margin-right: calc(-50vw + 50%);
     position: relative;
+    overflow: hidden;
+}
+
+/* Ensure header container doesn't constrain the background */
+.header .container {
+    position: relative;
+    z-index: 1;
 }
 
 .header.scrolled {
@@ -457,6 +472,8 @@ a:hover {
     padding: 0.75rem 0;
     gap: 2rem;
     width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .logo {
@@ -4094,6 +4111,13 @@ body.trans-theme.light-theme {
         padding: 0 1rem;
         box-sizing: border-box;
         margin: 0;
+    }
+    
+    /* Ensure header container spans full width on mobile */
+    .header > .container {
+        max-width: none;
+        width: 100%;
+        padding: 0 1rem;
     }
     
     /* Ensure header spans full width on mobile */
