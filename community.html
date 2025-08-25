@@ -521,17 +521,19 @@
             }
         }
         
-        // Navigate to previous post
+        // Navigate to previous post (older post - lower ID)
         function previousPost() {
             if (currentPostIndex < allPosts.length - 1) {
+                // Go to older post (higher index in allPosts array)
                 const prevPostNumber = allPosts[currentPostIndex + 1];
                 loadPost(prevPostNumber);
             }
         }
         
-        // Navigate to next post
+        // Navigate to next post (newer post - higher ID)
         function nextPost() {
             if (currentPostIndex > 0) {
+                // Go to newer post (lower index in allPosts array)
                 const nextPostNumber = allPosts[currentPostIndex - 1];
                 loadPost(nextPostNumber);
             }
@@ -684,11 +686,11 @@
                         
                         <!-- Pagination -->
                         <div class="pagination">
-                            <button class="pagination-btn" id="prev-page" onclick="previousPost()">← Previous</button>
+                            <button class="pagination-btn" id="prev-page" onclick="previousPost()">← Older</button>
                             <div class="pagination-numbers">
                                 <!-- Page numbers will be generated dynamically -->
                             </div>
-                            <button class="pagination-btn" id="next-page" onclick="nextPost()">Next →</button>
+                            <button class="pagination-btn" id="next-page" onclick="nextPost()">Newer →</button>
                         </div>
                     </section>
 
