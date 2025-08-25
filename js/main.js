@@ -1108,10 +1108,10 @@ function changePage(page) {
     showPage(page);
     updatePagination();
     
-    // Update URL hash to reflect the current post (using reversed order)
+    // Update URL hash to reflect the current post
     const totalPosts = allPosts.length;
-    const startIndex = totalPosts - (page * postsPerPage);
-    const currentPost = allPosts[startIndex];
+    const postIndex = totalPosts - page; // Page 1 shows last post (highest ID)
+    const currentPost = allPosts[postIndex];
     if (currentPost) {
         // Update URL without triggering hashchange event
         const newHash = `#${currentPost.id}`;
@@ -1125,15 +1125,14 @@ function changePage(page) {
 }
 
 function showPage(page) {
-    // Reverse the order: highest ID (most recent) on page 1, lowest ID (oldest) on last page
+    // Show one post per page: highest ID (most recent) on page 1, lowest ID (oldest) on last page
     const totalPosts = allPosts.length;
-    const startIndex = totalPosts - (page * postsPerPage);
-    const endIndex = totalPosts - ((page - 1) * postsPerPage);
+    const postIndex = totalPosts - page; // Page 1 shows last post (highest ID), Page 2 shows second-to-last post
     
-    console.log(`Showing page ${page}, posts ${startIndex} to ${endIndex - 1} (reversed order)`); // Debug log
+    console.log(`Showing page ${page}, post index ${postIndex} (post ${postIndex + 1})`); // Debug log
     
     allPosts.forEach((post, index) => {
-        if (index >= startIndex && index < endIndex) {
+        if (index === postIndex) {
             post.style.display = 'block';
             post.style.visibility = 'visible';
             post.style.opacity = '1';
@@ -1179,31 +1178,31 @@ function updatePagination() {
 if (document.getElementById('posts-container')) {
     initCommunityPagination();
     
-    // Check if there's a hash in the URL and navigate to the correct page (using reversed order)
+    // Check if there's a hash in the URL and navigate to the correct page
     if (window.location.hash) {
         const postId = window.location.hash.substring(1); // Remove the #
         const postIndex = allPosts.findIndex(post => post.id === postId);
         
         if (postIndex !== -1) {
-            // Calculate page for reversed order: highest ID = page 1, lowest ID = last page
+            // Calculate page: highest ID = page 1, lowest ID = last page
             const totalPosts = allPosts.length;
-            const targetPage = Math.ceil((totalPosts - postIndex) / postsPerPage);
-            console.log(`Hash detected: ${postId}, navigating to page ${targetPage} (reversed order)`); // Debug log
+            const targetPage = totalPosts - postIndex; // Page 1 shows last post (highest ID)
+            console.log(`Hash detected: ${postId}, navigating to page ${targetPage}`); // Debug log
             changePage(targetPage);
         }
     }
     
-    // Listen for hash changes (browser back/forward buttons) (using reversed order)
+    // Listen for hash changes (browser back/forward buttons)
     window.addEventListener('hashchange', function() {
         if (window.location.hash) {
             const postId = window.location.hash.substring(1);
             const postIndex = allPosts.findIndex(post => post.id === postId);
             
             if (postIndex !== -1) {
-                // Calculate page for reversed order: highest ID = page 1, lowest ID = last page
+                // Calculate page: highest ID = page 1, lowest ID = last page
                 const totalPosts = allPosts.length;
-                const targetPage = Math.ceil((totalPosts - postIndex) / postsPerPage);
-                console.log(`Hash changed to: ${postId}, navigating to page ${targetPage} (reversed order)`); // Debug log
+                const targetPage = totalPosts - postIndex; // Page 1 shows last post (highest ID)
+                console.log(`Hash changed to: ${postId}, navigating to page ${targetPage}`); // Debug log
                 
                 // Only change page if it's different from current page to avoid loops
                 if (targetPage !== currentPage) {
