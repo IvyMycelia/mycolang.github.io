@@ -162,12 +162,22 @@
             if (!postElement) return;
             
             const postTitle = postElement.querySelector('h3').textContent;
-            const postDate = postElement.querySelector('p strong:contains("Date:") + span')?.textContent || 
-                           postElement.querySelector('p:contains("Date:")')?.textContent.replace('Date:', '').trim() || 
-                           '24th August 2025';
-            const postAuthor = postElement.querySelector('p strong:contains("Author:") + span')?.textContent || 
-                             postElement.querySelector('p:contains("Author:")')?.textContent.replace('Author:', '').trim() || 
-                             'Ivy Mycelia';
+            
+            // Extract date - look for the paragraph containing "Date:"
+            const dateParagraph = Array.from(postElement.querySelectorAll('p')).find(p => 
+                p.textContent.includes('Date:')
+            );
+            const postDate = dateParagraph ? 
+                dateParagraph.textContent.replace('Date:', '').trim() : 
+                '24th August 2025';
+            
+            // Extract author - look for the paragraph containing "Author:"
+            const authorParagraph = Array.from(postElement.querySelectorAll('p')).find(p => 
+                p.textContent.includes('Author:')
+            );
+            const postAuthor = authorParagraph ? 
+                authorParagraph.textContent.replace('Author:', '').trim() : 
+                'Ivy Mycelia';
             
             // Get post image if available
             const postImage = postElement.querySelector('.post-attachment');
@@ -348,7 +358,7 @@
                                 
                                 <!-- Post Image Attachment -->
                                 <div class="post-image">
-                                    <img src="https://mycolang.org/Assets/post_2.png" alt="LoC of `eval.c`" class="post-attachment">
+                                    <img src="https://mycolang.org/Assets/Myco_Transparent.png" alt="Myco Transparent Logo - Codebase Refactor" class="post-attachment">
                                 </div>
                             </div>
                         </div>
