@@ -5981,18 +5981,20 @@ body.trans-theme.light-theme {
     padding-right: 1rem !important; /* Breathing room from image */
 }
 
+/* Ensure text takes full width when no image class is present */
+#posts-container .content-section.no-image .post-body .post-text {
+    float: none !important;
+    width: 100% !important;
+    padding-right: 0 !important;
+}
+
 #posts-container .content-section .post-body .post-image {
     float: right !important;
     width: 50% !important; /* Image takes up right half */
     text-align: center !important;
 }
 
-/* When no image exists, text takes full width */
-#posts-container .content-section .post-body:not(:has(.post-image)) .post-text {
-    float: none !important;
-    width: 100% !important;
-    padding-right: 0 !important;
-}
+
 
 /* Post actions below text/image - MAXIMUM SPECIFICITY */
 #posts-container .content-section .post-actions {

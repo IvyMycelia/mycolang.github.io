@@ -1121,6 +1121,12 @@ function loadAndShowPage(page) {
     
     // Create and display only this post
     const postElement = createPostElement(postToShow);
+    
+    // Add a class to indicate if this post has an image or not
+    if (!postToShow.image) {
+        postElement.classList.add('no-image');
+    }
+    
     container.appendChild(postElement);
     
     // Update URL hash to reflect the current post
