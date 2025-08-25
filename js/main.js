@@ -1093,7 +1093,18 @@ function changePage(page) {
     showPage(page);
     updatePagination();
     
-    // Smooth scroll to top of posts container instead of jumping to hash
+    // Update URL hash to reflect the current post
+    const startIndex = (page - 1) * postsPerPage;
+    const currentPost = allPosts[startIndex];
+    if (currentPost) {
+        // Update URL without triggering hashchange event
+        const newHash = `#${currentPost.id}`;
+        if (window.location.hash !== newHash) {
+            window.history.replaceState(null, null, newHash);
+        }
+    }
+    
+    // Smooth scroll to top of posts container
     const postsContainer = document.getElementById('posts-container');
     if (postsContainer) {
         postsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
