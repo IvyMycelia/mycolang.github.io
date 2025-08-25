@@ -5849,6 +5849,14 @@ body.trans-theme.light-theme {
     border-radius: 12px;
 }
 
+/* Ensure non-community content sections maintain normal layout */
+.docs-content .content-section,
+.grammar-content .content-section,
+.downloads-content .content-section {
+    display: block !important; /* Force block layout for other pages */
+    width: 100% !important; /* Ensure full width */
+}
+
 /* Post image attachments - side-by-side layout with text on left, image on right */
 .post-image {
     margin: 0;
@@ -5894,13 +5902,13 @@ body.trans-theme.light-theme {
     margin-left: auto; /* Push image to the right */
 }
 
-/* Fallback for posts without images - text takes full width */
-.content-section:not(:has(.post-image)) .post-content {
+/* Fallback for posts without images - text takes full width - ONLY for community posts */
+#posts-container .content-section:not(:has(.post-image)) .post-content {
     width: 100%;
 }
 
-/* Alternative fallback for browsers that don't support :has() */
-.content-section.no-image .post-content {
+/* Alternative fallback for browsers that don't support :has() - ONLY for community posts */
+#posts-container .content-section.no-image .post-content {
     width: 100%;
 }
 
