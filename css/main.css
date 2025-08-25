@@ -26,9 +26,9 @@
     --bg-primary-light: #ffffff;
     --bg-secondary-light: #f8fafc;
     --bg-tertiary-light: #e2e8f0;
-    --text-primary-light: #1f2937;
-    --text-secondary-light: #6b7280;
-    --text-muted-light: #9ca3af;
+    --text-primary-light: #0f172a; /* Darker for better contrast */
+    --text-secondary-light: #334155; /* Darker for better contrast */
+    --text-muted-light: #64748b; /* Darker for better contrast */
     --accent-primary-light: #7c3aed;
     --accent-secondary-light: #be185d;
     --accent-tertiary-light: #059669;
@@ -155,6 +155,24 @@ body.trans-theme:not(.light-theme) {
 .light-theme .header {
     background: var(--bg-primary-light);
     border-bottom: 1px solid var(--border-primary-light);
+}
+
+/* Ensure proper contrast for headers in light mode */
+.light-theme h1,
+.light-theme h2,
+.light-theme h3,
+.light-theme h4,
+.light-theme h5,
+.light-theme h6 {
+    color: var(--text-primary-light) !important;
+}
+
+.light-theme .code-header {
+    color: var(--bg-primary-light) !important;
+}
+
+.light-theme .code-header span {
+    color: var(--bg-primary-light) !important;
 }
 
 /* Dark theme header (default) */

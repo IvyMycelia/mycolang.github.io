@@ -415,6 +415,14 @@ document.addEventListener('DOMContentLoaded', function() {
             document.documentElement.classList.add('trans-theme');
             document.body.classList.add('trans-theme');
             console.log('Added trans-theme class to html and body');
+            
+            // Check if user was previously using light theme and preserve it
+            const wasLightTheme = localStorage.getItem('myco-theme') === 'light';
+            if (wasLightTheme) {
+                document.documentElement.classList.add('light-theme');
+                document.body.classList.add('light-theme');
+                console.log('Preserved light theme state for trans theme');
+            }
         } else {
             console.log('No theme class added (dark theme)');
         }
