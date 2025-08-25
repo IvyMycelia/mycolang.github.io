@@ -155,9 +155,10 @@
         })();
     </script>
     
-    <!-- Dynamic meta tag updates for post-specific embeds -->
+    <!-- Simple iframe-based navigation for perfect social media embeds -->
     <script>
-        function updateMetaTagsForPost(postId) {
+        // Simple iframe-based navigation
+        function loadPost(postNumber) {
             // Find the post data from the global allPosts array
             if (!window.allPosts) {
                 console.log('allPosts not available yet, skipping meta tag update');
@@ -227,27 +228,38 @@
             console.log(`Updated meta tags for post: ${postId} - ${postTitle} with image: ${imageUrl}`);
         }
         
-        // Update meta tags when page loads with hash
-        if (window.location.hash) {
-            const postId = window.location.hash.substring(1);
-            if (postId.startsWith('post-')) {
-                // Wait for DOM to be ready
-                if (document.readyState === 'loading') {
-                    document.addEventListener('DOMContentLoaded', () => updateMetaTagsForPost(postId));
-                } else {
-                    updateMetaTagsForPost(postId);
-                }
+        // Simple iframe-based navigation
+        function loadPost(postNumber) {
+            const iframe = document.getElementById('post-iframe');
+            if (iframe) {
+                iframe.src = `community/post-${postNumber}.html`;
+                
+                // Update URL without hash for clean social media embeds
+                const newUrl = `https://mycolang.org/community/post-${postNumber}.html`;
+                window.history.pushState({}, '', newUrl);
+                
+                // Update active page indicator
+                updateActivePage(postNumber);
             }
         }
         
-        // Update meta tags when hash changes
-        window.addEventListener('hashchange', function() {
-            if (window.location.hash) {
-                const postId = window.location.hash.substring(1);
-                if (postId.startsWith('post-')) {
-                    updateMetaTagsForPost(postId);
-                }
+        function updateActivePage(activePage) {
+            // Remove active class from all page numbers
+            document.querySelectorAll('.page-number').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Add active class to current page
+            const activePageElement = document.querySelector(`[data-page="${activePage}"]`);
+            if (activePageElement) {
+                activePageElement.classList.add('active');
             }
+        }
+        
+        // Initialize with post 3 (most recent)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set initial active page
+            updateActivePage(3);
         });
     </script>
 </head>
@@ -330,17 +342,16 @@
                         <p>Stay informed about what's happening with Myco development.</p>
                         
                         <!-- Posts Container - Dynamically populated by JavaScript -->
-                        <div id="posts-container">
-                            <!-- Posts will be loaded here dynamically -->
-                        </div>
+                            <div id="posts-container">
+        <!-- Posts are embedded via iframes for perfect social media embeds -->
+        <iframe id="post-iframe" src="community/post-3.html" frameborder="0" style="width: 100%; min-height: 600px; border: none; border-radius: 12px;"></iframe>
+    </div>
                         
                         <!-- Pagination -->
                         <div class="pagination">
-                            <button class="pagination-btn" id="prev-page" disabled>← Previous</button>
-                            <div class="pagination-numbers">
-                                <!-- Page numbers will be generated dynamically -->
-                            </div>
-                            <button class="pagination-btn" id="next-page">Next →</button>
+                            <button class="pagination-btn" onclick="loadPost(3)" data-page="3">Post 3</button>
+                            <button class="pagination-btn" onclick="loadPost(2)" data-page="2">Post 2</button>
+                            <button class="pagination-btn" onclick="loadPost(1)" data-page="1">Post 1</button>
                         </div>
                     </section>
 

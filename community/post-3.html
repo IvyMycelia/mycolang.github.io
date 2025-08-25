@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Development Update - Continuing Without Modularization - Myco Community</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Read 'Development Update - Continuing Without Modularization' by Ivy Mycelia. Join the Myco programming language community for development updates and discussions.">
+    <meta name="keywords" content="Myco, Programming Language, Community, Development, eval.c, Memory Management">
+    <meta name="author" content="Ivy Mycelia">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Development Update - Continuing Without Modularization - Myco Community">
+    <meta property="og:description" content="Read 'Development Update - Continuing Without Modularization' by Ivy Mycelia. Join the Myco programming language community for development updates and discussions.">
+    <meta property="og:url" content="https://mycolang.org/community/post-3.html">
+    <meta property="og:image" content="https://mycolang.org/Assets/Myco_Purple.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Myco Programming Language Logo">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:site_name" content="Myco Programming Language">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@mycolang">
+    <meta name="twitter:title" content="Development Update - Continuing Without Modularization - Myco Community">
+    <meta name="twitter:description" content="Read 'Development Update - Continuing Without Modularization' by Ivy Mycelia. Join the Myco programming language community.">
+    <meta name="twitter:url" content="https://mycolang.org/community/post-3.html">
+    <meta name="twitter:image" content="https://mycolang.org/Assets/Myco_Purple.png">
+    <meta name="twitter:image:alt" content="Myco Programming Language Logo">
+    
+    <!-- Article Meta Tags -->
+    <meta property="article:published_time" content="2025-08-25T00:00:00Z">
+    <meta property="article:author" content="Ivy Mycelia">
+    <meta property="article:section" content="Community">
+    <meta property="article:tag" content="Myco, Programming Language, Community, Development, eval.c, Memory Management">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://mycolang.org/community/post-3.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/Myco_Transparent.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/Myco_Transparent.ico">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/main.css">
+    
+    <style>
+        /* Post-specific styles for iframe embedding */
+        body {
+            margin: 0;
+            padding: 20px;
+            background: transparent;
+        }
+        
+        .post-content {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        .content-section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+        
+        .post-header h3 {
+            margin: 0 0 16px 0;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .post-meta {
+            margin-bottom: 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .post-meta p {
+            margin: 4px 0;
+        }
+        
+        .post-body {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        
+        .post-text {
+            flex: 1;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .post-text p {
+            margin-bottom: 16px;
+        }
+        
+        .post-text code {
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9em;
+        }
+        
+        .post-actions {
+            margin-top: 20px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        .share-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: background-color 0.2s;
+        }
+        
+        .share-btn:hover {
+            background: var(--accent-hover);
+        }
+        
+        .share-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            body {
+                padding: 16px;
+            }
+            
+            .post-body {
+                flex-direction: column;
+            }
+            
+            .post-text {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="post-content">
+        <div class="content-section">
+            <div class="post-header">
+                <h3>Development Update - Continuing Without Modularization</h3>
+            </div>
+            
+            <div class="post-meta">
+                <p><strong>Date:</strong> 25th August 2025</p>
+                <p><strong>Author:</strong> Ivy Mycelia</p>
+            </div>
+            
+            <div class="post-body">
+                <div class="post-text">
+                    <p>After attempting to split up and modularize <code>eval.c</code>, I've found that properly linking everything together is proving more challenging than expected. For now, I'll be continuing Myco development without the modularization approach.</p>
+                    
+                    <p>Currently working on getting memory management to be completely working and safe. This includes proper memory allocation, deallocation, and ensuring there are no memory leaks or unsafe memory access patterns.</p>
+                    
+                    <p>The focus is on stability and reliability rather than code organization for the time being.</p>
+                </div>
+            </div>
+            
+            <div class="post-actions">
+                <button class="share-btn" onclick="sharePost()">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z"/>
+                    </svg>
+                    Share
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function sharePost() {
+            const url = 'https://mycolang.org/community/post-3.html';
+            const title = 'Development Update - Continuing Without Modularization - Myco Community';
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: title,
+                    url: url
+                });
+            } else {
+                // Fallback: copy to clipboard
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('Link copied to clipboard!');
+                });
+            }
+        }
+    </script>
+</body>
+</html>
