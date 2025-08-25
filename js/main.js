@@ -1150,11 +1150,23 @@ function initCommunityPagination() {
         }
     });
     
-    // Add resize listener to update pagination layout on screen size change
+    // Add debounced resize handler for orientation changes only
+    let resizeTimeout;
+    let lastWidth = window.innerWidth;
+    
     window.addEventListener('resize', () => {
-        if (window.allPosts && window.allPosts.length > 0) {
-            updatePagination();
-        }
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            const currentWidth = window.innerWidth;
+            // Only update if crossing the mobile breakpoint (768px)
+            if ((lastWidth <= 768 && currentWidth > 768) || (lastWidth > 768 && currentWidth <= 768)) {
+                console.log('Device orientation changed, updating pagination layout');
+                if (window.allPosts && window.allPosts.length > 0) {
+                    updatePagination();
+                }
+            }
+            lastWidth = currentWidth;
+        }, 250); // 250ms debounce
     });
 }
 
@@ -1257,11 +1269,51 @@ function updatePagination() {
     if (prevBtn) prevBtn.disabled = currentPage === 1;
     if (nextBtn) nextBtn.disabled = currentPage === totalPages;
     
-    // Clear existing page numbers
-    paginationNumbers.innerHTML = '';
-    
     // Check if we're on mobile (window width <= 768px)
     const isMobile = window.innerWidth <= 768;
+    
+    // Generate the expected pagination content
+    let expectedContent = '';
+    
+    if (isMobile && totalPages > 3) {
+        // Mobile pagination: Previous | [Most Recent] | [Current] | [Oldest] | Next
+        // Most recent page (page 1)
+        if (currentPage !== 1) {
+            expectedContent += `1`;
+        }
+        
+        // Ellipsis if there's a gap
+        if (currentPage > 3) {
+            expectedContent += `...`;
+        }
+        
+        // Current page
+        expectedContent += `${currentPage}`;
+        
+        // Ellipsis if there's a gap
+        if (currentPage < totalPages - 2) {
+            expectedContent += `...`;
+        }
+        
+        // Oldest page (last page)
+        if (currentPage !== totalPages) {
+            expectedContent += `${totalPages}`;
+        }
+    } else {
+        // Desktop pagination: show all page numbers
+        for (let i = 1; i <= totalPages; i++) {
+            expectedContent += `${i}`;
+        }
+    }
+    
+    // Check if content has actually changed to prevent unnecessary re-rendering
+    const currentContent = paginationNumbers.textContent || '';
+    if (currentContent === expectedContent) {
+        return; // No change needed
+    }
+    
+    // Clear existing page numbers
+    paginationNumbers.innerHTML = '';
     
     if (isMobile && totalPages > 3) {
         // Mobile pagination: Previous | [Most Recent] | [Current] | [Oldest] | Next
