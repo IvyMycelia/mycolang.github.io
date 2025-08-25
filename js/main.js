@@ -617,66 +617,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    function showNotification(message, type = 'info') {
-        // Remove existing notifications
-        const existingNotifications = document.querySelectorAll('.notification');
-        existingNotifications.forEach(notification => notification.remove());
-        
-        // Create notification element
-        const notification = document.createElement('div');
-        notification.className = `notification notification-${type}`;
-        notification.innerHTML = `
-            <span class="notification-message">${message}</span>
-            <button class="notification-close">&times;</button>
-        `;
-        
-        // Add styles
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            border: 1px solid var(--border-primary);
-            border-radius: 8px;
-            padding: 12px 20px;
-            box-shadow: 0 4px 15px var(--shadow-medium);
-            z-index: 10001;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            animation: notificationSlideIn 0.3s ease;
-            max-width: 300px;
-        `;
-        
-        // Add close button functionality
-        const closeBtn = notification.querySelector('.notification-close');
-        closeBtn.style.cssText = `
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            cursor: pointer;
-            padding: 0;
-            margin-left: auto;
-        `;
-        
-        closeBtn.addEventListener('click', () => {
-            notification.style.animation = 'notificationSlideOut 0.3s ease';
-            setTimeout(() => notification.remove(), 300);
-        });
-        
-        // Add to page
-        document.body.appendChild(notification);
-        
-        // Auto-remove after 3 seconds
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.style.animation = 'notificationSlideOut 0.3s ease';
-                setTimeout(() => notification.remove(), 300);
-            }
-        }, 3000);
-    }
+    // Old showNotification function removed - now using the animated version above
     
     // Floating particles effect
     function createFloatingParticles() {
