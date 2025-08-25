@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Tracker Fix - Cleanup Sequence Resolution - Myco Community</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Read 'Memory Tracker Fix - Cleanup Sequence Resolution' by Ivy Mycelia. Learn how the memory pointer issue was resolved by reordering the cleanup sequence in Myco's main.c.">
+    <meta name="keywords" content="Myco, Programming Language, Community, Development, Memory Management, Memory Tracker, Cleanup Sequence, Bug Fix, C Programming">
+    <meta name="author" content="Ivy Mycelia">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Memory Tracker Fix - Cleanup Sequence Resolution - Myco Community">
+    <meta property="og:description" content="Read 'Memory Tracker Fix - Cleanup Sequence Resolution' by Ivy Mycelia. Learn how the memory pointer issue was resolved by reordering the cleanup sequence in Myco's main.c.">
+    <meta property="og:url" content="https://mycolang.org/community/post-5.html">
+    <meta property="og:image" content="https://mycolang.org/Assets/Myco_Purple.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Myco Programming Language Logo">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:site_name" content="Myco Programming Language">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:updated_time" content="2025-08-26T00:00:00Z">
+    <meta property="og:determiner" content="the">
+    <meta property="og:image:secure_url" content="https://mycolang.org/Assets/Myco_Purple.png">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@mycolang">
+    <meta name="twitter:creator" content="@ivymycelia">
+    <meta name="twitter:title" content="Memory Tracker Fix - Cleanup Sequence Resolution - Myco Community">
+    <meta name="twitter:description" content="Read 'Memory Tracker Fix - Cleanup Sequence Resolution' by Ivy Mycelia. Learn how the memory pointer issue was resolved by reordering the cleanup sequence in Myco's main.c.">
+    <meta name="twitter:url" content="https://mycolang.org/community/post-5.html">
+    <meta name="twitter:image" content="https://mycolang.org/Assets/Myco_Purple.png">
+    <meta name="twitter:image:alt" content="Myco Programming Language Logo">
+    
+    <!-- Article Meta Tags -->
+    <meta property="article:published_time" content="2025-08-26T00:00:00Z">
+    <meta property="article:author" content="Ivy Mycelia">
+    <meta property="article:section" content="Community">
+    <meta property="article:tag" content="Myco, Programming Language, Community, Development, Memory Management, Memory Tracker, Cleanup Sequence, Bug Fix, C Programming, Debugging">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://mycolang.org/community/post-5.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/Myco_Transparent.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/Myco_Transparent.ico">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/main.css">
+    
+    <style>
+        /* Post-specific styles for iframe embedding */
+        body {
+            margin: 0;
+            padding: 0;
+            background: transparent;
+        }
+        
+        .post-content {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        .content-section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+        
+        .post-header h3 {
+            margin: 0 0 16px 0;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .post-meta {
+            margin-bottom: 12px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .post-meta p {
+            margin: 4px 0;
+        }
+        
+        .post-body {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        
+        .post-text {
+            flex: 1;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .post-text p {
+            margin-bottom: 16px;
+        }
+        
+        .post-text code {
+            background: var(--code-bg);
+            color: var(--code-color);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9em;
+        }
+        
+        .post-text .highlight {
+            background: var(--accent-color);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        
+        .post-image {
+            flex: 0 0 300px;
+            text-align: center;
+        }
+        
+        .post-attachment {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .post-actions {
+            margin-top: 12px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        .share-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: background-color 0.2s;
+        }
+        
+        .share-btn:hover {
+            background: var(--accent-hover);
+        }
+        
+        .share-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+        
+        /* Button styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+        
+        .btn-outline:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            body {
+                padding: 16px;
+            }
+            
+            .post-body {
+                flex-direction: column;
+            }
+            
+            .post-text {
+                width: 100%;
+            }
+            
+            .post-image {
+                flex: none;
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="post-content">
+        <div class="content-section">
+            <div class="post-header">
+                <h3>Memory Tracker Fix - Cleanup Sequence Resolution</h3>
+            </div>
+            
+            <div class="post-meta">
+                <p><strong>Date:</strong> 26th August 2025</p>
+                <p><strong>Author:</strong> Ivy Mycelia</p>
+            </div>
+            
+            <div class="post-body">
+                <div class="post-text">
+                    <p>Great news! I've successfully fixed the memory pointer issue that was causing Myco to print out warning messages when running <code>*.myco</code> files.</p>
+                    
+                    <p><strong>Root Cause:</strong> The cleanup sequence in <code>main.c</code> was calling <code>memory_tracker_cleanup()</code> before <code>cleanup_implicit_functions()</code>, which cleared all tracked allocations before we could properly free the <code>operator_map</code>.</p>
+                    
+                    <p><strong>The Fix:</strong> I reordered the cleanup sequence so that:</p>
+                    
+                    <ol>
+                        <li><span class="highlight">First:</span> <code>cleanup_implicit_functions()</code> - frees tracked <code>operator_map</code> memory</li>
+                        <li><span class="highlight">Second:</span> <code>cleanup_loop_execution_state()</code> - frees tracked loop state memory</li>
+                        <li><span class="highlight">Third:</span> <code>parser_free_ast()</code> - frees tracked AST memory</li>
+                        <li><span class="highlight">Last:</span> <code>memory_tracker_cleanup()</code> - clears the memory tracker</li>
+                    </ol>
+                    
+                    <p>This ensures that all tracked memory is properly freed before the memory tracker itself is cleaned up, eliminating the warning messages and preventing potential memory leaks.</p>
+                    
+                    <p>The fix maintains the integrity of the memory tracking system while ensuring proper cleanup order. Myco should now run <code>*.myco</code> files without any memory-related warnings!</p>
+                </div>
+                
+                <div class="post-image">
+                    <img src="https://mycolang.org/Assets/Myco_Purple.png" alt="Myco Programming Language Logo" class="post-attachment">
+                </div>
+            </div>
+            
+            <div class="post-actions">
+                <a href="https://discord.gg/CR8xcKb3zM" target="_blank" rel="noopener" class="btn btn-outline">Join Discord Community</a>
+                <button class="share-btn" onclick="sharePost()">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z"/>
+                    </svg>
+                    Share
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Redirect to community page if accessed directly (not embedded)
+        if (window.self === window.top) {
+            // Not embedded, redirect to community page
+            window.location.href = 'https://mycolang.org/community.html#post-5';
+        }
+        
+        function sharePost() {
+            const url = 'https://mycolang.org/community/post-5.html';
+            const title = 'Memory Tracker Fix - Cleanup Sequence Resolution - Myco Community';
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: title,
+                    url: url
+                });
+            } else {
+                // Fallback: copy to clipboard
+                navigator.clipboard.writeText(url).then(() => {
+                    // Show notification instead of alert
+                    if (window.parent && window.parent.showNotification) {
+                        window.parent.showNotification('Link copied to clipboard!', 'success');
+                    } else {
+                        // Fallback to alert if notification system not available
+                        alert('Link copied to clipboard!');
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
