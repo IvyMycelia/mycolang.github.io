@@ -341,6 +341,9 @@
                 // Add loading spinner
                 addLoadingSpinner();
                 
+                // Store the target post number for the onload handler
+                embed.dataset.targetPost = postNumber;
+                
                 // Update embed source
                 embed.src = `community/post-${postNumber}.html`;
                 
@@ -357,21 +360,67 @@
                 // Update navigation button states
                 updateNavigationButtons();
                 
-                // Remove loading state when embed loads
-                embed.onload = function() {
-                    // Animate out loading state
-                    embed.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
-                    embed.style.transform = 'scale(1)';
-                    embed.style.opacity = '1';
-                    embed.classList.remove('loading');
-                    
-                    // Remove loading spinner
-                    removeLoadingSpinner();
-                    
-                    // Add entrance animation for new content
-                    embed.style.animation = 'postEntrance 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-                };
+                // Set up a more robust loading completion handler
+                setupEmbedLoadHandler(embed, postNumber);
             }
+        }
+        
+        // Set up embed load handler with fallback timing
+        function setupEmbedLoadHandler(embed, postNumber) {
+            let loadCompleted = false;
+            
+            // Primary onload handler
+            embed.onload = function() {
+                if (!loadCompleted) {
+                    loadCompleted = true;
+                    completePostLoad(embed, postNumber);
+                }
+            };
+            
+            // Fallback: if onload doesn't fire within 1 second, complete anyway
+            setTimeout(() => {
+                if (!loadCompleted) {
+                    loadCompleted = true;
+                    completePostLoad(embed, postNumber);
+                }
+            }, 1000);
+            
+            // Additional check: monitor for content changes
+            const checkContent = setInterval(() => {
+                if (embed.contentDocument && embed.contentDocument.body) {
+                    const content = embed.contentDocument.body.textContent;
+                    if (content && content.length > 50) { // Basic content check
+                        if (!loadCompleted) {
+                            loadCompleted = true;
+                            clearInterval(checkContent);
+                            completePostLoad(embed, postNumber);
+                        }
+                    }
+                }
+            }, 100);
+            
+            // Clean up interval after 2 seconds
+            setTimeout(() => clearInterval(checkContent), 2000);
+        }
+        
+        // Complete the post loading process
+        function completePostLoad(embed, postNumber) {
+            // Animate out loading state
+            embed.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+            embed.style.transform = 'scale(1)';
+            embed.style.opacity = '1';
+            embed.classList.remove('loading');
+            
+            // Remove loading spinner
+            removeLoadingSpinner();
+            
+            // Add entrance animation for new content
+            embed.style.animation = 'postEntrance 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            
+            // Clear the animation after it completes
+            setTimeout(() => {
+                embed.style.animation = '';
+            }, 600);
         }
         
         // Add loading spinner
