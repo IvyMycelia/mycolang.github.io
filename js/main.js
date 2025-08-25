@@ -407,7 +407,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Notification system initialized');
     }
     
-    function showNotification(message, type = 'info', duration = 5000) {
+    function showNotification(message, type = 'info', duration = 8000) {
         console.log('Showing notification:', message, 'for', duration, 'ms');
         
         // Remove any existing notifications
@@ -452,7 +452,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (notification.parentNode) {
                     notification.remove();
                 }
-            }, 800); // Longer exit animation to ensure smooth transition
+            }, 1000); // Even longer exit animation to ensure smooth transition
         }, duration);
         
         return notification;

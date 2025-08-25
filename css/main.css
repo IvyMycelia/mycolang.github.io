@@ -6415,8 +6415,10 @@ body.trans-theme.light-theme {
 }
 
 .notification.show {
-    transform: translateX(0) translateY(0);
-    opacity: 1;
+    transform: translateX(0) translateY(0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
 }
 
 .notification.bob {
@@ -6446,6 +6448,21 @@ body.trans-theme.light-theme {
 
 .notification.error {
     border-left: 4px solid #ef4444;
+}
+
+/* Ensure notification stays visible and doesn't get hidden by other CSS */
+.notification {
+    visibility: visible !important;
+    display: block !important;
+    opacity: 1 !important;
+    transform: translateX(0) translateY(0) !important;
+}
+
+.notification.show {
+    visibility: visible !important;
+    display: block !important;
+    opacity: 1 !important;
+    transform: translateX(0) translateY(0) !important;
 }
 
 #post-embed.loading {
