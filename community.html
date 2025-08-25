@@ -521,20 +521,20 @@
             }
         }
         
-        // Navigate to previous post (older post - lower ID)
+        // Navigate to previous post (newer post - lower page number, left direction)
         function previousPost() {
-            if (currentPostIndex < allPosts.length - 1) {
-                // Go to older post (higher index in allPosts array)
-                const prevPostNumber = allPosts[currentPostIndex + 1];
+            if (currentPostIndex > 0) {
+                // Go to newer post (lower index in allPosts array = higher ID)
+                const prevPostNumber = allPosts[currentPostIndex - 1];
                 loadPost(prevPostNumber);
             }
         }
         
-        // Navigate to next post (newer post - higher ID)
+        // Navigate to next post (older post - higher page number, right direction)
         function nextPost() {
-            if (currentPostIndex > 0) {
-                // Go to newer post (lower index in allPosts array)
-                const nextPostNumber = allPosts[currentPostIndex - 1];
+            if (currentPostIndex < allPosts.length - 1) {
+                // Go to older post (higher index in allPosts array = lower ID)
+                const nextPostNumber = allPosts[currentPostIndex + 1];
                 loadPost(nextPostNumber);
             }
         }
@@ -545,11 +545,13 @@
             const nextBtn = document.getElementById('next-page');
             
             if (prevBtn) {
-                prevBtn.disabled = currentPostIndex >= allPosts.length - 1;
+                // Previous button (newer posts) is disabled when viewing newest post
+                prevBtn.disabled = currentPostIndex <= 0;
             }
             
             if (nextBtn) {
-                nextBtn.disabled = currentPostIndex <= 0;
+                // Next button (older posts) is disabled when viewing oldest post
+                nextBtn.disabled = currentPostIndex >= allPosts.length - 1;
             }
         }
         
@@ -686,11 +688,11 @@
                         
                         <!-- Pagination -->
                         <div class="pagination">
-                            <button class="pagination-btn" id="prev-page" onclick="previousPost()">← Older</button>
+                            <button class="pagination-btn" id="prev-page" onclick="previousPost()">← Previous</button>
                             <div class="pagination-numbers">
                                 <!-- Page numbers will be generated dynamically -->
                             </div>
-                            <button class="pagination-btn" id="next-page" onclick="nextPost()">Newer →</button>
+                            <button class="pagination-btn" id="next-page" onclick="nextPost()">Next →</button>
                         </div>
                     </section>
 
