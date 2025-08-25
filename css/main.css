@@ -5844,8 +5844,8 @@ body.trans-theme.light-theme {
     padding: 0 !important;
 }
 
-/* Ensure visible posts have proper spacing and borders */
-.content-section {
+/* General content-section styling - but NOT for community posts */
+.content-section:not(#posts-container .content-section) {
     margin-bottom: 1.5rem; /* Reduced from 2rem */
     padding: 1.5rem;
     background: var(--bg-secondary);
@@ -5917,20 +5917,17 @@ body.trans-theme.light-theme {
     margin-bottom: 0.5rem !important; /* Minimal spacing after last post */
 }
 
-/* Reduce spacing below the "Stay informed..." paragraph */
-#latest-updates > p {
-    margin-bottom: 0.5rem !important; /* Reduced spacing below paragraph */
-}
-
-/* Container handles ALL spacing consistently */
+/* Container handles ALL spacing consistently - MAXIMUM SPECIFICITY */
 #posts-container {
     margin-top: 0.25rem !important;     /* Consistent top spacing from header */
     margin-bottom: 0.5rem !important;   /* Consistent bottom spacing to pagination */
 }
 
-/* Individual posts get NO margins - container handles all spacing */
+/* Individual posts get NO margins - container handles all spacing - MAXIMUM SPECIFICITY */
 #posts-container .content-section {
     margin: 0 !important;                /* Remove all individual margins */
+    margin-top: 0 !important;           /* Explicitly override any top margins */
+    margin-bottom: 0 !important;        /* Explicitly override any bottom margins */
 }
 
 /* Reduce spacing below the "Stay informed..." paragraph */
@@ -5981,10 +5978,11 @@ body.trans-theme.light-theme {
     text-align: center !important;
 }
 
-/* Post actions below text/image */
+/* Post actions below text/image - MAXIMUM SPECIFICITY */
 #posts-container .content-section .post-actions {
     clear: both !important; /* Clear the floats */
     margin-top: 1rem !important; /* Space above buttons */
+    margin-bottom: 0 !important; /* No bottom margin */
 }
 
 /* Fallback for posts without images - text takes full width - ONLY for community posts */
