@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Community posts pagination
     let currentPage = 1;
-    const postsPerPage = 3;
+    const postsPerPage = 1; // Show only one post at a time
     let allPosts = [];
     
     // Initialize theme with smooth transitions
@@ -1062,8 +1062,8 @@ function initCommunityPagination() {
     
     if (!postsContainer || !pagination) return;
     
-    // Get all posts
-    allPosts = Array.from(postsContainer.querySelectorAll('.post'));
+    // Get all posts (now using content-section instead of .post class)
+    allPosts = Array.from(postsContainer.querySelectorAll('.content-section'));
     
     // Initialize pagination
     updatePagination();
@@ -1116,22 +1116,28 @@ function updatePagination() {
     const totalPages = Math.ceil(allPosts.length / postsPerPage);
     const prevBtn = document.getElementById('prev-page');
     const nextBtn = document.getElementById('next-page');
-    const pageNumbers = document.querySelectorAll('.page-number');
+    const paginationNumbers = document.querySelector('.pagination-numbers');
     
     // Update button states
     if (prevBtn) prevBtn.disabled = currentPage === 1;
     if (nextBtn) nextBtn.disabled = currentPage === totalPages;
     
-    // Update page numbers
-    pageNumbers.forEach((number, index) => {
-        const pageNum = index + 1;
-        if (pageNum <= totalPages) {
-            number.style.display = 'inline-block';
-            number.classList.toggle('active', pageNum === currentPage);
-        } else {
-            number.style.display = 'none';
-        }
-    });
+    // Clear existing page numbers
+    paginationNumbers.innerHTML = '';
+    
+    // Create page numbers dynamically
+    for (let i = 1; i <= totalPages; i++) {
+        const pageNumber = document.createElement('span');
+        pageNumber.className = 'page-number';
+        pageNumber.dataset.page = i;
+        pageNumber.textContent = i;
+        pageNumber.classList.toggle('active', i === currentPage);
+        
+        // Add click event listener
+        pageNumber.addEventListener('click', () => changePage(i));
+        
+        paginationNumbers.appendChild(pageNumber);
+    }
 }
 
 // Initialize community pagination when page loads

@@ -5738,30 +5738,12 @@ body.trans-theme.light-theme {
 }
 
 /* Community page specific styles */
-.post {
-    margin-bottom: 2rem;
-    transition: all 0.3s ease;
-}
-
-.post:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px var(--shadow-medium);
-}
-
-.post-meta {
+.post-actions {
     display: flex;
     gap: 1rem;
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
-    color: var(--text-secondary);
+    align-items: center;
     flex-wrap: wrap;
-}
-
-.post-date, .post-author {
-    background: var(--bg-tertiary);
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
+    margin-top: 1rem;
 }
 
 .share-btn {
@@ -5883,20 +5865,6 @@ body.trans-theme.light-theme {
 
 /* Mobile responsive for community page */
 @media (max-width: 768px) {
-    .post {
-        margin-bottom: 1.5rem;
-    }
-    
-    .post-meta {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    
-    .share-btn {
-        margin-left: 0;
-        margin-top: 0.25rem;
-    }
-    
     .post-actions {
         flex-direction: column;
         align-items: stretch;
@@ -5904,6 +5872,11 @@ body.trans-theme.light-theme {
     
     .post-actions .btn {
         text-align: center;
+    }
+    
+    .share-btn {
+        align-self: center;
+        margin-top: 0.5rem;
     }
     
     .pagination {
