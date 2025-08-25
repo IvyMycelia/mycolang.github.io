@@ -1159,6 +1159,10 @@ function initCommunityPagination() {
 }
 
 function changePage(page) {
+    // TEMPORARILY DISABLED TO DEBUG INFINITE LOOP
+    console.log('changePage DISABLED - was called from:', new Error().stack.split('\n')[2]);
+    return;
+    
     // Prevent multiple simultaneous calls to changePage
     if (changePage.isChanging) {
         console.log('changePage already in progress, skipping...');
@@ -1204,6 +1208,10 @@ function changePage(page) {
 }
 
 function loadAndShowPage(page) {
+    // TEMPORARILY DISABLED TO DEBUG INFINITE LOOP
+    console.log('loadAndShowPage DISABLED - was called from:', new Error().stack.split('\n')[2]);
+    return;
+    
     console.log(`loadAndShowPage called with page: ${page}`);
     
     // Sort posts by ID in descending order (highest ID first)
