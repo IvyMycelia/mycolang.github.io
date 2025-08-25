@@ -422,19 +422,29 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add to page
         document.body.appendChild(notification);
         
-        // Trigger animation
+        // Trigger smooth float-in animation
         setTimeout(() => {
             notification.classList.add('show');
         }, 10);
         
-        // Auto-remove after duration
+        // Add gentle bob effect after floating in
+        setTimeout(() => {
+            notification.classList.add('bob');
+        }, 400);
+        
+        // Remove bob effect
+        setTimeout(() => {
+            notification.classList.remove('bob');
+        }, 800);
+        
+        // Auto-remove after duration with smooth float-out
         setTimeout(() => {
             notification.classList.remove('show');
             setTimeout(() => {
                 if (notification.parentNode) {
                     notification.remove();
                 }
-            }, 300);
+            }, 600); // Longer exit animation
         }, duration);
         
         return notification;
