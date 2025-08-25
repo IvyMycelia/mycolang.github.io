@@ -155,36 +155,126 @@
         })();
     </script>
     
-    <!-- Simple iframe-based navigation for perfect social media embeds -->
+    <!-- Dynamic post detection and embed navigation -->
     <script>
-        // Simple iframe-based navigation
+        let allPosts = [];
+        let currentPostIndex = 0;
+        
+        // Detect available posts by checking the community folder
+        async function detectPosts() {
+            const postNumbers = [];
+            let postNumber = 1;
+            
+            // Try to fetch each post until we get a 404
+            while (true) {
+                try {
+                    const response = await fetch(`community/post-${postNumber}.html`);
+                    if (response.ok) {
+                        postNumbers.push(postNumber);
+                        postNumber++;
+                    } else {
+                        break;
+                    }
+                } catch (error) {
+                    break;
+                }
+            }
+            
+            // Sort posts in descending order (newest first)
+            allPosts = postNumbers.sort((a, b) => b - a);
+            console.log(`Detected ${allPosts.length} posts:`, allPosts);
+            
+            // Initialize pagination
+            initializePagination();
+            
+            // Load initial post based on URL or default to first
+            loadInitialPost();
+        }
+        
+        // Initialize pagination with detected posts
+        function initializePagination() {
+            const paginationNumbers = document.querySelector('.pagination-numbers');
+            paginationNumbers.innerHTML = '';
+            
+            allPosts.forEach((postNumber, index) => {
+                const pageButton = document.createElement('button');
+                pageButton.className = 'pagination-btn page-number';
+                pageButton.textContent = `Post ${postNumber}`;
+                pageButton.setAttribute('data-page', postNumber);
+                pageButton.setAttribute('data-index', index);
+                pageButton.onclick = () => loadPost(postNumber);
+                paginationNumbers.appendChild(pageButton);
+            });
+            
+            // Update navigation button states
+            updateNavigationButtons();
+        }
+        
+        // Load a specific post
         function loadPost(postNumber) {
-            const iframe = document.getElementById('post-iframe');
-            if (iframe) {
+            const embed = document.getElementById('post-embed');
+            if (embed) {
                 // Add loading state
-                iframe.classList.add('loading');
+                embed.classList.add('loading');
                 
-                // Update iframe source
-                iframe.src = `community/post-${postNumber}.html`;
+                // Update embed source
+                embed.src = `community/post-${postNumber}.html`;
                 
-                // Update URL without hash for clean social media embeds
+                // Update URL for clean social media embeds
                 const newUrl = `https://mycolang.org/community/post-${postNumber}.html`;
                 window.history.pushState({}, '', newUrl);
+                
+                // Update current post index
+                currentPostIndex = allPosts.indexOf(postNumber);
                 
                 // Update active page indicator
                 updateActivePage(postNumber);
                 
-                // Remove loading state when iframe loads
-                iframe.onload = function() {
-                    iframe.classList.remove('loading');
+                // Update navigation button states
+                updateNavigationButtons();
+                
+                // Remove loading state when embed loads
+                embed.onload = function() {
+                    embed.classList.remove('loading');
                 };
             }
         }
         
+        // Navigate to previous post
+        function previousPost() {
+            if (currentPostIndex < allPosts.length - 1) {
+                const prevPostNumber = allPosts[currentPostIndex + 1];
+                loadPost(prevPostNumber);
+            }
+        }
+        
+        // Navigate to next post
+        function nextPost() {
+            if (currentPostIndex > 0) {
+                const nextPostNumber = allPosts[currentPostIndex - 1];
+                loadPost(nextPostNumber);
+            }
+        }
+        
+        // Update navigation button states
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prev-page');
+            const nextBtn = document.getElementById('next-page');
+            
+            if (prevBtn) {
+                prevBtn.disabled = currentPostIndex >= allPosts.length - 1;
+            }
+            
+            if (nextBtn) {
+                nextBtn.disabled = currentPostIndex <= 0;
+            }
+        }
+        
+        // Update active page indicator
         function updateActivePage(activePage) {
             // Remove active class from all page numbers
-            document.querySelectorAll('.pagination-btn').forEach(btn => {
-                btn.classList.remove('active');
+            document.querySelectorAll('.page-number').forEach(page => {
+                page.classList.remove('active');
             });
             
             // Add active class to current page
@@ -194,10 +284,33 @@
             }
         }
         
-        // Initialize with post 3 (most recent)
+        // Load initial post based on URL or default to first
+        function loadInitialPost() {
+            const url = window.location.href;
+            const postMatch = url.match(/post-(\d+)\.html/);
+            
+            if (postMatch) {
+                const postNumber = parseInt(postMatch[1]);
+                if (allPosts.includes(postNumber)) {
+                    loadPost(postNumber);
+                    return;
+                }
+            }
+            
+            // Default to first post (most recent)
+            if (allPosts.length > 0) {
+                loadPost(allPosts[0]);
+            }
+        }
+        
+        // Handle browser back/forward buttons
+        window.addEventListener('popstate', function() {
+            loadInitialPost();
+        });
+        
+        // Initialize when DOM is ready
         document.addEventListener('DOMContentLoaded', function() {
-            // Set initial active page
-            updateActivePage(3);
+            detectPosts();
         });
     </script>
 </head>
@@ -281,15 +394,17 @@
                         
                         <!-- Posts Container - Dynamically populated by JavaScript -->
                             <div id="posts-container">
-        <!-- Posts are embedded via iframes for perfect social media embeds -->
-        <iframe id="post-iframe" src="community/post-3.html" frameborder="0" style="width: 100%; min-height: 600px; border: none; border-radius: 12px;"></iframe>
+        <!-- Posts are embedded dynamically for perfect social media embeds -->
+        <embed id="post-embed" src="community/post-3.html" type="text/html" style="width: 100%; min-height: 600px; border: none; border-radius: 12px;"></embed> 
     </div>
                         
                         <!-- Pagination -->
                         <div class="pagination">
-                            <button class="pagination-btn" onclick="loadPost(3)" data-page="3">Post 3</button>
-                            <button class="pagination-btn" onclick="loadPost(2)" data-page="2">Post 2</button>
-                            <button class="pagination-btn" onclick="loadPost(1)" data-page="1">Post 1</button>
+                            <button class="pagination-btn" id="prev-page" onclick="previousPost()">← Previous</button>
+                            <div class="pagination-numbers">
+                                <!-- Page numbers will be generated dynamically -->
+                            </div>
+                            <button class="pagination-btn" id="next-page" onclick="nextPost()">Next →</button>
                         </div>
                     </section>
 
