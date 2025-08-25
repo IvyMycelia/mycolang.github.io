@@ -5849,10 +5849,11 @@ body.trans-theme.light-theme {
     border-radius: 12px;
 }
 
-/* Post image attachments - compact and neat */
+/* Post image attachments - side-by-side layout with text on left, image on right */
 .post-image {
-    margin: 1rem 0;
-    text-align: center;
+    margin: 0;
+    text-align: right;
+    flex-shrink: 0;
 }
 
 .post-attachment {
@@ -5872,8 +5873,36 @@ body.trans-theme.light-theme {
     border-color: var(--accent-primary);
 }
 
-/* Mobile responsive post images */
+/* Content section layout for side-by-side posts */
+.content-section {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.content-section .post-content {
+    flex: 1;
+    min-width: 0; /* Allow text to shrink */
+}
+
+.content-section .post-image {
+    flex-shrink: 0;
+    width: 200px; /* Fixed width for consistent layout */
+}
+
+/* Mobile responsive post images and layout */
 @media (max-width: 768px) {
+    .content-section {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .content-section .post-image {
+        width: 100%;
+        text-align: center;
+        order: -1; /* Image appears above text on mobile */
+    }
+    
     .post-attachment {
         max-height: 200px;
         border-radius: 6px;
@@ -5881,6 +5910,17 @@ body.trans-theme.light-theme {
     
     .post-image {
         margin: 0.75rem 0;
+    }
+}
+
+/* Tablet responsive adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .content-section .post-image {
+        width: 180px;
+    }
+    
+    .content-section {
+        gap: 1.5rem;
     }
 }
 
