@@ -394,10 +394,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Regular theme cycling (dark ↔ light)
         if (document.body.classList.contains('light-theme')) {
             // Currently light theme, switch to dark
-            setTheme('dark');
+            setTheme('dark', true);
         } else {
             // Currently dark theme, switch to light
-            setTheme('light');
+            setTheme('light', true);
         }
     }
     
