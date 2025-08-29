@@ -517,15 +517,14 @@
             updateNavigationButtons();
             
             // Load the post content directly into the DOM
-            loadPostContent(postNumber);
-            
-            // Restore normal state after loading (with delay to ensure content is loaded)
-            setTimeout(function() {
+            loadPostContent(postNumber, function() {
+                // Reset loading flag only after content is fully loaded
+                loadPost.isLoading = false;
+                
+                // Restore normal state after loading
                 postContainer.style.transform = 'scale(1)';
                 postContainer.style.opacity = '1';
-                // Reset loading flag
-                loadPost.isLoading = false;
-            }, 100);
+            });
         }
         
         // Post loading is now handled directly by loadPostContent function
@@ -534,10 +533,11 @@
         // PostMessage listener no longer needed since posts are loaded directly into DOM
         
         // Parse and load post content directly into DOM
-        function loadPostContent(postNumber) {
+        function loadPostContent(postNumber, onComplete) {
             // Prevent multiple simultaneous content loads
             if (loadPostContent.isLoading) {
                 console.log('Post content load already in progress, skipping...');
+                if (onComplete) onComplete();
                 return;
             }
             
@@ -644,22 +644,31 @@
                         // Reset loading flag
                         loadPostContent.isLoading = false;
                         
+                        // Call completion callback
+                        if (onComplete) onComplete();
+                        
                     } else {
                         console.error('Failed to load post ' + postNumber + ': ' + xhr.status);
-                        postContainer.innerHTML = '<div class="content-section"><h3>Error Loading Post</h3><p>Sorry, there was an error loading this post. Please try again.</p><button onclick="loadPostContent(' + postNumber + ')" class="btn btn-outline">Retry</button></div>';
+                        postContainer.innerHTML = '<div class="content-section"><h3>Error Loading Post</h3><p>Sorry, there was an error loading this post. Please try again.</p><button onclick="loadPostContent(' + postNumber + ', function(){loadPost.isLoading = false;})" class="btn btn-outline">Retry</button></div>';
                         
                         // Reset loading flag on error too
                         loadPostContent.isLoading = false;
+                        
+                        // Call completion callback even on error
+                        if (onComplete) onComplete();
                     }
                 }
             };
             
             xhr.onerror = function() {
                 console.error('Network error loading post ' + postNumber);
-                postContainer.innerHTML = '<div class="content-section"><h3>Error Loading Post</h3><p>Network error. Please check your connection and try again.</p><button onclick="loadPostContent(' + postNumber + ')" class="btn btn-outline">Retry</button></div>';
+                postContainer.innerHTML = '<div class="content-section"><h3>Error Loading Post</h3><p>Network error. Please check your connection and try again.</p><button onclick="loadPostContent(' + postNumber + ', function(){loadPost.isLoading = false;})" class="btn btn-outline">Retry</button></div>';
                 
                 // Reset loading flag on network error
                 loadPostContent.isLoading = false;
+                
+                // Call completion callback on network error
+                if (onComplete) onComplete();
             };
             
             xhr.send();
