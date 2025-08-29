@@ -484,6 +484,14 @@
         
         // Load a specific post
         function loadPost(postNumber) {
+            // Prevent multiple simultaneous post loads
+            if (loadPost.isLoading) {
+                console.log('Post load already in progress, skipping...');
+                return;
+            }
+            
+            loadPost.isLoading = true;
+            
             // Add fancy loading state with animation
             var postContainer = document.getElementById('post-content');
             postContainer.style.transform = 'scale(0.98)';
@@ -502,8 +510,8 @@
             // Update current post index
             currentPostIndex = allPosts.indexOf(postNumber);
             
-            // Update pagination with new active state
-            updatePaginationForPost(postNumber);
+            // Only update pagination active state, don't rebuild entire pagination
+            updateActivePage(postNumber);
             
             // Update navigation button states
             updateNavigationButtons();
@@ -515,6 +523,8 @@
             setTimeout(function() {
                 postContainer.style.transform = 'scale(1)';
                 postContainer.style.opacity = '1';
+                // Reset loading flag
+                loadPost.isLoading = false;
             }, 100);
         }
         
@@ -525,6 +535,14 @@
         
         // Parse and load post content directly into DOM
         function loadPostContent(postNumber) {
+            // Prevent multiple simultaneous content loads
+            if (loadPostContent.isLoading) {
+                console.log('Post content load already in progress, skipping...');
+                return;
+            }
+            
+            loadPostContent.isLoading = true;
+            
             // Show loading state
             var postContainer = document.getElementById('post-content');
             postContainer.innerHTML = '<div class="loading-spinner"><div class="spinner-ring"></div><div class="spinner-text">Loading post...</div></div>';
@@ -623,9 +641,15 @@
                         
                         console.log('Post ' + postNumber + ' loaded successfully');
                         
+                        // Reset loading flag
+                        loadPostContent.isLoading = false;
+                        
                     } else {
                         console.error('Failed to load post ' + postNumber + ': ' + xhr.status);
                         postContainer.innerHTML = '<div class="content-section"><h3>Error Loading Post</h3><p>Sorry, there was an error loading this post. Please try again.</p><button onclick="loadPostContent(' + postNumber + ')" class="btn btn-outline">Retry</button></div>';
+                        
+                        // Reset loading flag on error too
+                        loadPostContent.isLoading = false;
                     }
                 }
             };
@@ -633,6 +657,9 @@
             xhr.onerror = function() {
                 console.error('Network error loading post ' + postNumber);
                 postContainer.innerHTML = '<div class="content-section"><h3>Error Loading Post</h3><p>Network error. Please check your connection and try again.</p><button onclick="loadPostContent(' + postNumber + ')" class="btn btn-outline">Retry</button></div>';
+                
+                // Reset loading flag on network error
+                loadPostContent.isLoading = false;
             };
             
             xhr.send();
