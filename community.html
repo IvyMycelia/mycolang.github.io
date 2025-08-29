@@ -484,6 +484,8 @@
         
         // Load a specific post
         function loadPost(postNumber) {
+            console.log('loadPost called with postNumber:', postNumber, 'from:', new Error().stack.split('\n')[2]);
+            
             // Prevent multiple simultaneous post loads
             if (loadPost.isLoading) {
                 console.log('Post load already in progress, skipping...');
@@ -491,6 +493,7 @@
             }
             
             loadPost.isLoading = true;
+            console.log('loadPost.isLoading set to true for post:', postNumber);
             
             // Add fancy loading state with animation
             var postContainer = document.getElementById('post-content');
@@ -518,8 +521,10 @@
             
             // Load the post content directly into the DOM
             loadPostContent(postNumber, function() {
+                console.log('Completion callback executed for post:', postNumber);
                 // Reset loading flag only after content is fully loaded
                 loadPost.isLoading = false;
+                console.log('loadPost.isLoading set to false for post:', postNumber);
                 
                 // Restore normal state after loading
                 postContainer.style.transform = 'scale(1)';
@@ -534,6 +539,8 @@
         
         // Parse and load post content directly into DOM
         function loadPostContent(postNumber, onComplete) {
+            console.log('loadPostContent called with postNumber:', postNumber, 'from:', new Error().stack.split('\n')[2]);
+            
             // Prevent multiple simultaneous content loads
             if (loadPostContent.isLoading) {
                 console.log('Post content load already in progress, skipping...');
@@ -542,6 +549,7 @@
             }
             
             loadPostContent.isLoading = true;
+            console.log('loadPostContent.isLoading set to true for post:', postNumber);
             
             // Show loading state
             var postContainer = document.getElementById('post-content');
@@ -645,6 +653,7 @@
                         loadPostContent.isLoading = false;
                         
                         // Call completion callback
+                        console.log('Calling completion callback for post:', postNumber);
                         if (onComplete) onComplete();
                         
                     } else {
@@ -851,7 +860,13 @@
         
         // Handle browser back/forward buttons
         window.addEventListener('popstate', function() {
+            console.log('popstate event fired');
             loadInitialPost();
+        });
+        
+        // Check for hashchange events that might be interfering
+        window.addEventListener('hashchange', function() {
+            console.log('hashchange event fired');
         });
         
         // Initialize when DOM is ready
