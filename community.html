@@ -821,6 +821,18 @@
         // Initialize when DOM is ready
         document.addEventListener('DOMContentLoaded', function() {
             detectPosts();
+            
+            // Add event listeners for Previous/Next buttons
+            const prevBtn = document.getElementById('prev-page');
+            const nextBtn = document.getElementById('next-page');
+            
+            if (prevBtn) {
+                prevBtn.addEventListener('click', previousPost);
+            }
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', nextPost);
+            }
         });
     </script>
 </head>

@@ -394,10 +394,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Regular theme cycling (dark ↔ light)
         if (document.body.classList.contains('light-theme')) {
             // Currently light theme, switch to dark
-            setTheme('dark', true);
+            setTheme('dark');
         } else {
             // Currently dark theme, switch to light
-            setTheme('light', true);
+            setTheme('light');
         }
     }
     
@@ -485,7 +485,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Saved trans theme to localStorage');
         } else {
             // Regular themes (dark/light) are stored normally
-            localStorage.setItem('myco-theme', theme);
+        localStorage.setItem('myco-theme', theme);
             // Clear trans theme when regular theme is selected
             localStorage.removeItem('myco-trans-theme');
             console.log('Saved theme to localStorage:', theme, 'and cleared trans theme');
