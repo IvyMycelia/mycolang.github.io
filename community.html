@@ -157,42 +157,200 @@
     
     <!-- Dynamic post detection and embed navigation -->
     <script>
+        // Browser compatibility polyfills
+        if (!window.Promise) {
+            // Simple Promise polyfill for older browsers
+            window.Promise = function(executor) {
+                var self = this;
+                self.state = 'pending';
+                self.value = undefined;
+                self.reason = undefined;
+                self.onFulfilledCallbacks = [];
+                self.onRejectedCallbacks = [];
+                
+                function resolve(value) {
+                    if (self.state === 'pending') {
+                        self.state = 'fulfilled';
+                        self.value = value;
+                        self.onFulfilledCallbacks.forEach(function(callback) {
+                            callback(value);
+                        });
+                    }
+                }
+                
+                function reject(reason) {
+                    if (self.state === 'pending') {
+                        self.state = 'rejected';
+                        self.reason = reason;
+                        self.onRejectedCallbacks.forEach(function(callback) {
+                            callback(reason);
+                        });
+                    }
+                }
+                
+                try {
+                    executor(resolve, reject);
+                } catch (e) {
+                    reject(e);
+                }
+            };
+            
+            Promise.prototype.then = function(onFulfilled, onRejected) {
+                var self = this;
+                var promise2 = new Promise(function(resolve, reject) {
+                    if (self.state === 'fulfilled') {
+                        setTimeout(function() {
+                            try {
+                                var x = onFulfilled ? onFulfilled(self.value) : self.value;
+                                resolve(x);
+                            } catch (e) {
+                                reject(e);
+                            }
+                        }, 0);
+                    } else if (self.state === 'rejected') {
+                        setTimeout(function() {
+                            try {
+                                var x = onRejected ? onRejected(self.reason) : self.reason;
+                                reject(x);
+                            } catch (e) {
+                                reject(e);
+                            }
+                        }, 0);
+                    } else {
+                        self.onFulfilledCallbacks.push(function(value) {
+                            setTimeout(function() {
+                                try {
+                                    var x = onFulfilled ? onFulfilled(value) : value;
+                                    resolve(x);
+                                } catch (e) {
+                                    reject(e);
+                                }
+                            }, 0);
+                        });
+                        self.onRejectedCallbacks.push(function(reason) {
+                            setTimeout(function() {
+                                try {
+                                    var x = onRejected ? onRejected(reason) : reason;
+                                    reject(x);
+                                } catch (e) {
+                                    reject(x);
+                                }
+                            }, 0);
+                        });
+                    }
+                });
+                return promise2;
+            };
+        }
+        
+        // Array.includes polyfill for older browsers
+        if (!Array.prototype.includes) {
+            Array.prototype.includes = function(searchElement, fromIndex) {
+                if (this == null) {
+                    throw new TypeError('"this" is null or not defined');
+                }
+                
+                var o = Object(this);
+                var len = parseInt(o.length) || 0;
+                
+                if (len === 0) {
+                    return false;
+                }
+                
+                var n = parseInt(fromIndex) || 0;
+                var k;
+                
+                if (n >= 0) {
+                    k = n;
+                } else {
+                    k = len + n;
+                    if (k < 0) {
+                        k = 0;
+                    }
+                }
+                
+                while (k < len) {
+                    if (o[k] === searchElement) {
+                        return true;
+                    }
+                    k++;
+                }
+                
+                return false;
+            };
+        }
+        
+        // showNotification fallback for older browsers
+        if (typeof window.showNotification !== 'function') {
+            window.showNotification = function(message, type) {
+                // Simple fallback notification
+                var notification = document.createElement('div');
+                notification.style.cssText = 'position: fixed; top: 20px; right: 20px; background: #333; color: white; padding: 15px; border-radius: 5px; z-index: 10000; font-family: Arial, sans-serif;';
+                notification.textContent = message;
+                document.body.appendChild(notification);
+                
+                setTimeout(function() {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 3000);
+            };
+        }
+        
         let allPosts = [];
         let currentPostIndex = 0;
         
         // Detect available posts by checking the community folder
-        async function detectPosts() {
+        function detectPosts() {
             console.log('Starting post detection...');
-            const postNumbers = [];
-            let postNumber = 1;
+            var postNumbers = [];
+            var postNumber = 1;
             
-            // Try to fetch each post until we get a 404
-            while (true) {
-                try {
-                    const response = await fetch(`community/post-${postNumber}.html`);
-                    if (response.ok) {
-                        postNumbers.push(postNumber);
-                        console.log(`Found post-${postNumber}.html`);
-                        postNumber++;
-                    } else {
-                        console.log(`Post ${postNumber} not found (${response.status}), stopping detection`);
-                        break;
+            // Use a recursive approach instead of async/await for better compatibility
+            function checkNextPost() {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', 'community/post-' + postNumber + '.html', true);
+                
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            postNumbers.push(postNumber);
+                            console.log('Found post-' + postNumber + '.html');
+                            postNumber++;
+                            // Check next post
+                            checkNextPost();
+                        } else {
+                            console.log('Post ' + postNumber + ' not found (' + xhr.status + '), stopping detection');
+                            // Sort posts in descending order (newest first)
+                            allPosts = postNumbers.sort(function(a, b) { return b - a; });
+                            console.log('Detected ' + allPosts.length + ' posts:', allPosts);
+                            
+                            // Initialize pagination
+                            initializePagination();
+                            
+                            // Load initial post based on URL or default to first
+                            loadInitialPost();
+                        }
                     }
-                } catch (error) {
-                    console.log(`Error checking post ${postNumber}:`, error);
-                    break;
-                }
-            }
+                };
+                
+                xhr.onerror = function() {
+                    console.log('Error checking post ' + postNumber + ':', xhr.statusText);
+                    // Sort posts in descending order (newest first)
+                    allPosts = postNumbers.sort(function(a, b) { return b - a; });
+                    console.log('Detected ' + allPosts.length + ' posts:', allPosts);
+                    
+                    // Initialize pagination
+                    initializePagination();
+                    
+                    // Load initial post based on URL or default to first
+                    loadInitialPost();
+                };
+                
+                xhr.send();
+            };
             
-            // Sort posts in descending order (newest first)
-            allPosts = postNumbers.sort((a, b) => b - a);
-            console.log(`Detected ${allPosts.length} posts:`, allPosts);
-            
-            // Initialize pagination
-            initializePagination();
-            
-            // Load initial post based on URL or default to first
-            loadInitialPost();
+            checkNextPost();
         }
         
         // Initialize pagination with detected posts
@@ -327,14 +485,19 @@
         // Load a specific post
         function loadPost(postNumber) {
             // Add fancy loading state with animation
-            const postContainer = document.getElementById('post-content');
+            var postContainer = document.getElementById('post-content');
             postContainer.style.transform = 'scale(0.98)';
             postContainer.style.opacity = '0.7';
             postContainer.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
             
             // Update URL with hash for internal navigation (keeps main page URL)
-            const newUrl = `community.html#post-${postNumber}`;
-            window.history.pushState({postNumber: postNumber}, '', newUrl);
+            var newUrl = 'community.html#post-' + postNumber;
+            if (window.history && window.history.pushState) {
+                window.history.pushState({postNumber: postNumber}, '', newUrl);
+            } else {
+                // Fallback for older browsers
+                window.location.hash = '#post-' + postNumber;
+            }
             
             // Update current post index
             currentPostIndex = allPosts.indexOf(postNumber);
@@ -346,11 +509,13 @@
             updateNavigationButtons();
             
             // Load the post content directly into the DOM
-            loadPostContent(postNumber).then(() => {
-                // Restore normal state after loading
+            loadPostContent(postNumber);
+            
+            // Restore normal state after loading (with delay to ensure content is loaded)
+            setTimeout(function() {
                 postContainer.style.transform = 'scale(1)';
                 postContainer.style.opacity = '1';
-            });
+            }, 100);
         }
         
         // Post loading is now handled directly by loadPostContent function
@@ -359,97 +524,118 @@
         // PostMessage listener no longer needed since posts are loaded directly into DOM
         
         // Parse and load post content directly into DOM
-        async function loadPostContent(postNumber) {
-            try {
-                // Show loading state
-                const postContainer = document.getElementById('post-content');
-                postContainer.innerHTML = '<div class="loading-spinner"><div class="spinner-ring"></div><div class="spinner-text">Loading post...</div></div>';
-                
-                // Fetch the post HTML file
-                const response = await fetch(`community/post-${postNumber}.html`);
-                if (!response.ok) {
-                    throw new Error(`Failed to load post ${postNumber}`);
-                }
-                
-                const html = await response.text();
-                
-                // Parse the HTML to extract the post content
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                
-                // Extract the post content from the parsed document
-                const postContent = doc.querySelector('.post-content');
-                if (!postContent) {
-                    throw new Error('Post content not found');
-                }
-                
-                // Extract the script content to execute the functions
-                const scripts = doc.querySelectorAll('script');
-                let scriptContent = '';
-                scripts.forEach(script => {
-                    if (script.textContent) {
-                        scriptContent += script.textContent + '\n';
-                    }
-                });
-                
-                // Inject the post content into the container
-                postContainer.innerHTML = postContent.innerHTML;
-                
+        function loadPostContent(postNumber) {
+            // Show loading state
+            var postContainer = document.getElementById('post-content');
+            postContainer.innerHTML = '<div class="loading-spinner"><div class="spinner-ring"></div><div class="spinner-text">Loading post...</div></div>';
+            
+            // Use XMLHttpRequest instead of fetch for better compatibility
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'community/post-' + postNumber + '.html', true);
+            
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        var html = xhr.responseText;
+                        
+                        // Parse the HTML to extract the post content
+                        var parser = new DOMParser();
+                        var doc = parser.parseFromString(html, 'text/html');
+                        
+                        // Extract the post content from the parsed document
+                        var postContent = doc.querySelector('.post-content');
+                        if (!postContent) {
+                            console.error('Post content not found');
+                            postContainer.innerHTML = '<div class="content-section"><h3>Error Loading Post</h3><p>Post content not found.</p></div>';
+                            return;
+                        }
+                        
+                        // Extract the script content to execute the functions
+                        var scripts = doc.querySelectorAll('script');
+                        var scriptContent = '';
+                        for (var i = 0; i < scripts.length; i++) {
+                            var script = scripts[i];
+                            if (script.textContent) {
+                                scriptContent += script.textContent + '\n';
+                            }
+                        }
+                        
+                        // Inject the post content into the container
+                        postContainer.innerHTML = postContent.innerHTML;
+                        
                         // Execute the script content to make functions available
-        if (scriptContent) {
-            try {
-                eval(scriptContent);
-            } catch (scriptError) {
-                console.warn('Script execution warning:', scriptError);
-            }
-        }
-        
-        // Create sharePost function for the current post
-        window.sharePost = function() {
-            const url = `https://mycolang.org/community/post-${postNumber}.html`;
-            const title = document.querySelector('.post-header h3')?.textContent || 'Myco Community Post';
+                        if (scriptContent) {
+                            try {
+                                eval(scriptContent);
+                            } catch (scriptError) {
+                                console.warn('Script execution warning:', scriptError);
+                            }
+                        }
+                        
+                        // Create sharePost function for the current post
+                        window.sharePost = function() {
+                            var url = 'https://mycolang.org/community/post-' + postNumber + '.html';
+                            var titleElement = document.querySelector('.post-header h3');
+                            var title = titleElement ? titleElement.textContent : 'Myco Community Post';
+                            
+                            console.log('sharePost called for post', postNumber, 'with URL:', url);
+                            
+                            if (navigator.share) {
+                                navigator.share({
+                                    title: title,
+                                    url: url
+                                });
+                            } else {
+                                // Fallback: copy to clipboard
+                                if (navigator.clipboard && navigator.clipboard.writeText) {
+                                    navigator.clipboard.writeText(url).then(function() {
+                                        console.log('Clipboard write successful, showing notification');
+                                        showNotification('Link copied to clipboard!', 'success');
+                                    }).catch(function(error) {
+                                        console.error('Clipboard write failed:', error);
+                                        // Fallback if clipboard fails
+                                        alert('Link copied to clipboard!');
+                                    });
+                                } else {
+                                    // Fallback for older browsers
+                                    var textArea = document.createElement('textarea');
+                                    textArea.value = url;
+                                    document.body.appendChild(textArea);
+                                    textArea.select();
+                                    try {
+                                        document.execCommand('copy');
+                                        showNotification('Link copied to clipboard!', 'success');
+                                    } catch (err) {
+                                        alert('Link copied to clipboard!');
+                                    }
+                                    document.body.removeChild(textArea);
+                                }
+                            }
+                        };
+                        
+                        console.log('sharePost function created for post', postNumber);
+                        
+                        // Add entrance animation
+                        postContainer.style.animation = 'postEntrance 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                        setTimeout(function() {
+                            postContainer.style.animation = '';
+                        }, 600);
+                        
+                        console.log('Post ' + postNumber + ' loaded successfully');
+                        
+                    } else {
+                        console.error('Failed to load post ' + postNumber + ': ' + xhr.status);
+                        postContainer.innerHTML = '<div class="content-section"><h3>Error Loading Post</h3><p>Sorry, there was an error loading this post. Please try again.</p><button onclick="loadPostContent(' + postNumber + ')" class="btn btn-outline">Retry</button></div>';
+                    }
+                }
+            };
             
-            console.log('sharePost called for post', postNumber, 'with URL:', url);
+            xhr.onerror = function() {
+                console.error('Network error loading post ' + postNumber);
+                postContainer.innerHTML = '<div class="content-section"><h3>Error Loading Post</h3><p>Network error. Please check your connection and try again.</p><button onclick="loadPostContent(' + postNumber + ')" class="btn btn-outline">Retry</button></div>';
+            };
             
-            if (navigator.share) {
-                navigator.share({
-                    title: title,
-                    url: url
-                });
-            } else {
-                // Fallback: copy to clipboard
-                navigator.clipboard.writeText(url).then(() => {
-                    console.log('Clipboard write successful, showing notification');
-                    showNotification('Link copied to clipboard!', 'success');
-                }).catch((error) => {
-                    console.error('Clipboard write failed:', error);
-                    // Fallback if clipboard fails
-                    alert('Link copied to clipboard!');
-                });
-            }
-        };
-        
-        console.log('sharePost function created for post', postNumber);
-                
-                // Add entrance animation
-                postContainer.style.animation = 'postEntrance 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-                setTimeout(() => {
-                    postContainer.style.animation = '';
-                }, 600);
-                
-                console.log(`Post ${postNumber} loaded successfully`);
-                
-            } catch (error) {
-                console.error('Error loading post:', error);
-                const postContainer = document.getElementById('post-content');
-                postContainer.innerHTML = `
-                    <div class="content-section">
-                        <h3>Error Loading Post</h3>
-                        <p>Sorry, there was an error loading this post. Please try again.</p>
-                        <button onclick="loadPostContent(${postNumber})" class="btn btn-outline">Retry</button>
-                    </div>
-                `;
-            }
+            xhr.send();
         }
         
         // Post loading completion is now handled within loadPostContent function
@@ -607,12 +793,12 @@
         
         // Load initial post based on URL hash or default to first
         function loadInitialPost() {
-            const hash = window.location.hash;
-            const postMatch = hash.match(/#post-(\d+)/);
+            var hash = window.location.hash;
+            var postMatch = hash.match(/#post-(\d+)/);
             
             if (postMatch) {
-                const postNumber = parseInt(postMatch[1]);
-                if (allPosts.includes(postNumber)) {
+                var postNumber = parseInt(postMatch[1]);
+                if (allPosts.indexOf(postNumber) !== -1) {
                     loadPost(postNumber);
                     return;
                 }
