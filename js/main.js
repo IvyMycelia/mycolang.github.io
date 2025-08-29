@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (e.key.toLowerCase() === 'y' && secretSequence === 'iv') {
             secretSequence = 'ivy';
             // Activate secret trans theme!
-            setTheme('trans');
+            setTheme('trans', true);
             showSecretMessage();
             secretSequence = '';
         } else if (e.key.toLowerCase() === 'i' && secretSequence === 'ivy') {
@@ -394,10 +394,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Regular theme cycling (dark ↔ light)
         if (document.body.classList.contains('light-theme')) {
             // Currently light theme, switch to dark
-            setTheme('dark');
+            setTheme('dark', true);
         } else {
             // Currently dark theme, switch to light
-            setTheme('light');
+            setTheme('light', true);
         }
     }
     
@@ -449,8 +449,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Make notification system globally available for embedded posts
     window.showNotification = showNotification;
     
-    function setTheme(theme) {
-        console.log('Setting theme to:', theme);
+    function setTheme(theme, showNotificationFlag = false) {
+        console.log('Setting theme to:', theme, 'showNotification:', showNotificationFlag);
         
         // Remove all theme classes from both html and body elements
         document.documentElement.classList.remove('light-theme', 'trans-theme');
@@ -485,7 +485,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Saved trans theme to localStorage');
         } else {
             // Regular themes (dark/light) are stored normally
-        localStorage.setItem('myco-theme', theme);
+            localStorage.setItem('myco-theme', theme);
             // Clear trans theme when regular theme is selected
             localStorage.removeItem('myco-trans-theme');
             console.log('Saved theme to localStorage:', theme, 'and cleared trans theme');
@@ -508,13 +508,15 @@ document.addEventListener('DOMContentLoaded', function() {
         updateThemeIcon();
         updateTransToggle();
         
-        // Show theme change notification
-        if (theme === 'light') {
-            showNotification('Light theme enabled', 'info');
-        } else if (theme === 'dark') {
-            showNotification('Dark theme enabled', 'info');
-        } else if (theme === 'trans') {
-            showNotification('Trans theme enabled', 'success');
+        // Only show theme change notification if explicitly requested
+        if (showNotificationFlag) {
+            if (theme === 'light') {
+                showNotification('Light theme enabled', 'info');
+            } else if (theme === 'dark') {
+                showNotification('Dark theme enabled', 'info');
+            } else if (theme === 'trans') {
+                showNotification('Trans theme enabled', 'success');
+            }
         }
         
         // Log current theme state for debugging
@@ -533,7 +535,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Get the last saved regular theme or default to dark
         const savedTheme = localStorage.getItem('myco-theme') || 'dark';
-        setTheme(savedTheme);
+        setTheme(savedTheme, true);
         
         // Show notification
         showNotification('Trans theme disabled', 'info');
@@ -1159,10 +1161,6 @@ function initCommunityPagination() {
 }
 
 function changePage(page) {
-    // TEMPORARILY DISABLED TO DEBUG INFINITE LOOP
-    console.log('changePage DISABLED - was called from:', new Error().stack.split('\n')[2]);
-    return;
-    
     // Prevent multiple simultaneous calls to changePage
     if (changePage.isChanging) {
         console.log('changePage already in progress, skipping...');
@@ -1208,10 +1206,6 @@ function changePage(page) {
 }
 
 function loadAndShowPage(page) {
-    // TEMPORARILY DISABLED TO DEBUG INFINITE LOOP
-    console.log('loadAndShowPage DISABLED - was called from:', new Error().stack.split('\n')[2]);
-    return;
-    
     console.log(`loadAndShowPage called with page: ${page}`);
     
     // Sort posts by ID in descending order (highest ID first)
@@ -1271,10 +1265,6 @@ function loadAndShowPage(page) {
 }
 
 function updatePagination() {
-    // TEMPORARILY DISABLED TO DEBUG INFINITE LOOP
-    console.log('updatePagination DISABLED - was called from:', new Error().stack.split('\n')[2]);
-    return;
-    
     // Prevent multiple rapid calls to updatePagination
     if (updatePagination.isUpdating) {
         console.log('updatePagination already in progress, skipping...');
